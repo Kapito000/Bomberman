@@ -9,27 +9,42 @@ namespace Infrastructure
 	public sealed class EcsRunner : MonoBehaviour
 	{
 		[Inject] EcsWorld _world;
-		[Inject] EcsSystems _systems;
 		[Inject] ISystemFactory _systemFactory;
+		[Inject] FeatureController _features;
+
+		EcsSystems _worldDebugSystems;
 
 		void Start()
 		{
-			_systems.Add(_systemFactory.Create<GameFeature>())
 #if UNITY_EDITOR
+			_worldDebugSystems = new EcsSystems(_world);
+			_worldDebugSystems
 				.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
-				.Add(new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem())
-#endif
 				.Init();
+#endif
+			_features.Init();
 		}
 
 		void Update()
 		{
-			_systems?.Run();
+			_features.Update();
+		}
+
+		void FixedUpdate()
+		{
+			_features.FixedUpdate();
+		}
+
+		void LateUpdate()
+		{
+			_features.LateUpdate();
+			_worldDebugSystems?.Run();
 		}
 
 		void OnDestroy()
 		{
-			_systems?.Destroy();
+			_features.Dispose();
+			_worldDebugSystems?.Destroy();
 			_world?.Destroy();
 		}
 	}

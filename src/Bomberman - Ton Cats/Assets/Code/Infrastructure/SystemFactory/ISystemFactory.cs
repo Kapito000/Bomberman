@@ -8,5 +8,7 @@ namespace Infrastructure.SystemFactory
 
 		TSystem Create<TSystem>(params object[] args)
 			where TSystem : class, IEcsSystem;
+
+		EcsSystems CreateSystemGroup();
 	}
 }

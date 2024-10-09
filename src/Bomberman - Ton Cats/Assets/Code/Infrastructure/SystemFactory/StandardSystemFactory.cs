@@ -5,7 +5,6 @@ namespace Infrastructure.SystemFactory
 {
 	public sealed class StandardSystemFactory : ISystemFactory
 	{
-		[Inject] EcsWorld _world;
 		[Inject] DiContainer _container;
 
 		public TSystem Create<TSystem>() where TSystem : class, IEcsSystem
@@ -18,5 +17,8 @@ namespace Infrastructure.SystemFactory
 		{
 			return _container.Instantiate<TSystem>(args);
 		}
+
+		public EcsSystems CreateSystemGroup() => 
+			_container.Instantiate<EcsSystems>();
 	}
 }

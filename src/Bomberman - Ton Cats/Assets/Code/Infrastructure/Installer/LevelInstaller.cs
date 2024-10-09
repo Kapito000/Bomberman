@@ -1,4 +1,5 @@
-﻿using Infrastructure.SystemFactory;
+﻿using Feature;
+using Infrastructure.SystemFactory;
 using Leopotam.EcsLite;
 using Zenject;
 
@@ -10,6 +11,12 @@ namespace Infrastructure.Installer
 		{
 			BindWorld();
 			BindSystemFactory();
+			FeatureController();
+		}
+
+		void FeatureController()
+		{
+			Container.Bind<FeatureController>().AsSingle();
 		}
 
 		void BindSystemFactory()
@@ -20,7 +27,6 @@ namespace Infrastructure.Installer
 		void BindWorld()
 		{
 			Container.Bind<EcsWorld>().FromNew().AsSingle();
-			Container.Bind<EcsSystems>().FromNew().AsSingle();
 		}
 	}
 }

@@ -7,7 +7,7 @@ namespace Feature
 {
 	public sealed class FeatureController : IDisposable
 	{
-		List<Infrastructure.Feature> _features = new();
+		readonly List<Infrastructure.Feature> _features = new();
 
 		public FeatureController(ISystemFactory systemFactory)
 		{

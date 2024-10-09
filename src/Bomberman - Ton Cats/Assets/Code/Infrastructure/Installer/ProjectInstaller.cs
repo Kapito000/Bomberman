@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Infrastructure.Installer
 {
-	public class Project : MonoInstaller
+	public class ProjectInstaller : MonoInstaller
 	{
 		[SerializeField] SceneNamesData _sceneNamesData;
 

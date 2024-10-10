@@ -3,7 +3,7 @@ using Infrastructure.SystemFactory;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 
-namespace Infrastructure
+namespace Infrastructure.ECS
 {
 	public abstract class Feature : IEcsSystem, IDisposable
 	{

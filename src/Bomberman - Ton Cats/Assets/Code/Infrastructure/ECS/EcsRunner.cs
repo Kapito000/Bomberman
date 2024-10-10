@@ -4,9 +4,9 @@ using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure
+namespace Infrastructure.ECS
 {
-	public sealed class EcsRunner : MonoBehaviour
+	public sealed class EcsRunner : MonoBehaviour, IEcsRunner
 	{
 		[Inject] EcsWorld _world;
 		[Inject] ISystemFactory _systemFactory;
@@ -14,7 +14,7 @@ namespace Infrastructure
 
 		EcsSystems _worldDebugSystems;
 
-		void InitWorld()
+		public void InitWorld()
 		{
 #if UNITY_EDITOR
 			_worldDebugSystems = new EcsSystems(_world);

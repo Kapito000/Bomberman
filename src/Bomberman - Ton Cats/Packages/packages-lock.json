@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.anbi.leoecslite.entityconverter": {
+      "version": "https://github.com/AndreyBirchenko/LeoEcsLiteEntityConverter.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d44746319696adda1379505be3e514fb324b968e"
+    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,

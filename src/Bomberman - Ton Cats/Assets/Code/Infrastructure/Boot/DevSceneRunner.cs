@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Infrastructure.Boot
 {
-	public sealed class GameRunner : MonoBehaviour
+	public sealed class DevSceneRunner : MonoBehaviour
 	{
 		[Inject] Game _game;
 		[Inject] IGameStateMachine _gameStateMachine;

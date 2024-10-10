@@ -14,7 +14,7 @@ namespace Infrastructure
 
 		EcsSystems _worldDebugSystems;
 
-		void Start()
+		void InitWorld()
 		{
 #if UNITY_EDITOR
 			_worldDebugSystems = new EcsSystems(_world);
@@ -23,6 +23,7 @@ namespace Infrastructure
 				.Init();
 #endif
 			_features.Init();
+			_features.Start();
 		}
 
 		void Update()

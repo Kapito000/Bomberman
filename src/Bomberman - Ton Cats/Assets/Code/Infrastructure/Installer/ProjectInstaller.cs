@@ -1,6 +1,7 @@
 ﻿using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.SceneLoader;
+using LevelData;
 using StaticData.SceneNames;
 using UnityEngine;
 using Zenject;
@@ -13,9 +14,15 @@ namespace Infrastructure.Installer
 
 		public override void InstallBindings()
 		{
+			BindLevelData();
 			BindStaticData();
 			BindSceneLoader();
 			BindGameStateMachine();
+		}
+
+		void BindLevelData()
+		{
+			Container.Bind<ILevelData>().To<StandardLevelData>().AsSingle();
 		}
 
 		void BindSceneLoader()
@@ -36,6 +43,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
 			Container.Bind<IState>().To<LoadGame>().AsSingle();
 			Container.Bind<IState>().To<LoadScene>().AsSingle();
+			Container.Bind<IState>().To<LaunchGame>().AsSingle();
 			Container.Bind<IState>().To<GameLoop>().AsSingle();
 			Container.Bind<IState>().To<GameExit>().AsSingle();
 		}

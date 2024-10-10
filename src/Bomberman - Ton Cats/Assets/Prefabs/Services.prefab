@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1151611061826460944}
   - component: {fileID: 5728285120814759560}
   m_Layer: 0
-  m_Name: GameRunner
+  m_Name: Dev scene runner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,3 +231,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9199d6ec57be4115832d7d9257ece10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ecsRunner: {fileID: 7876780682337382973}

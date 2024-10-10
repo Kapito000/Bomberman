@@ -1,13 +1,17 @@
-﻿using Factory.SystemFactory;
+﻿using Factory.CameraFactory;
+using Factory.HeroFactory;
+using Factory.SystemFactory;
 using Feature;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
+using InstantiateService;
 using Leopotam.EcsLite;
 using LevelData;
 using UnityEngine;
 using Zenject;
+using IInstantiator = InstantiateService.IInstantiator;
 
 namespace Infrastructure.Installer
 {
@@ -22,9 +26,11 @@ namespace Infrastructure.Installer
 		{
 			BindInitializable();
 			BindWorld();
+			BindFactories();
+			BindInstantiator();
 			BindSystemFactory();
-			FeatureController();
 			BindDevSceneRunner();
+			BindFeatureController();
 		}
 
 		public void Initialize()
@@ -44,7 +50,18 @@ namespace Infrastructure.Installer
 			Container.Bind<IDevSceneRunner>().FromComponentInHierarchy().AsSingle();
 		}
 
-		void FeatureController()
+		void BindInstantiator()
+		{
+			Container.Bind<IInstantiator>().To<StandardInstantiator>().AsSingle();
+		}
+
+		void BindFactories()
+		{
+			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
+			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
+		}
+
+		void BindFeatureController()
 		{
 			Container.Bind<FeatureController>().AsSingle();
 		}

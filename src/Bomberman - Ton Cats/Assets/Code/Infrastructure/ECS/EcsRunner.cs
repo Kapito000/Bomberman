@@ -1,6 +1,7 @@
 ﻿using Factory.SystemFactory;
 using Feature;
 using Leopotam.EcsLite;
+using LevelData;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ namespace Infrastructure.ECS
 	public sealed class EcsRunner : MonoBehaviour, IEcsRunner
 	{
 		[Inject] EcsWorld _world;
+		[Inject] ILevelData _levelData;
 		[Inject] ISystemFactory _systemFactory;
 		[Inject] FeatureController _features;
 

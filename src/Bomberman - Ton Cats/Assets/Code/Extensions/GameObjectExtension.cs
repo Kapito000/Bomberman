@@ -6,12 +6,19 @@ namespace Extensions
 {
 	public static class GameObjectExtension
 	{
-		public static void AddToEcs(this GameObject go, EcsWorld world,
+		public static bool TryAddToEcs(this GameObject go, EcsWorld world,
 			out int entity)
 		{
-			var entityBehaviour = go.AddComponent<EntityBehaviour>();
+			if (false == go.TryGetComponent<EntityBehaviour>(out var entityBehaviour))
+			{
+				Debug.LogError($"Has no \"{nameof(EntityBehaviour)}\".");
+				entity = default;
+				return false;
+			}
+
 			entity = world.NewEntity();
 			entityBehaviour.SetEntity(entity);
+			return true;
 		}
 	}
 }

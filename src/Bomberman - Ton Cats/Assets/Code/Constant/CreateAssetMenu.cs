@@ -6,6 +6,7 @@
 		{
 			public const string c_StaticData = "Static data/";
 			public const string c_SceneNameData = c_StaticData + "Scene name data";
+			public const string c_AssetProvider = "Asset provider/";
 		}
 	}
 }

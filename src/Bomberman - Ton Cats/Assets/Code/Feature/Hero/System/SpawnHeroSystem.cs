@@ -26,7 +26,9 @@ namespace Feature.Hero.System
 				var heroObj = _heroFactory
 					.CreateHero(pos, quaternion.identity, transform);
 				
-				heroObj.AddToEcs(_world, out var heroEntity);
+				if (heroObj.TryAddToEcs(_world, out var heroEntity) == false)
+					continue;
+				
 				_world.AddComponent<Component.Hero>(heroEntity);
 			}
 		}

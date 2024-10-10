@@ -1,4 +1,5 @@
 ﻿using System;
+using AB_Utility.FromSceneToEntityConverter;
 using Factory.SystemFactory;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -27,7 +28,7 @@ namespace Infrastructure.ECS
 			Init(_lateUpdateSystem);
 		}
 
-		public void Start() => 
+		public void Start() =>
 			Run(_initSystems);
 
 		public void Update() =>
@@ -73,7 +74,7 @@ namespace Infrastructure.ECS
 #if UNITY_EDITOR
 				.Add(new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem())
 #endif
-				.Inject().Init();
+				.ConvertScene().Inject().Init();
 		}
 
 		void Run(IEcsSystems systems)

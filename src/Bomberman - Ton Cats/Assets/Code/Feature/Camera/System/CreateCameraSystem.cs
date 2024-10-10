@@ -18,7 +18,7 @@ namespace Feature.Camera.System
 			foreach (var e in _filter.Value)
 			{
 				var cameraObj = _cameraFactory.CreateCamera();
-				cameraObj.AddToEcs(_world, out var cameraEntity);
+				cameraObj.TryAddToEcs(_world, out var cameraEntity);
 			}
 		}
 	}

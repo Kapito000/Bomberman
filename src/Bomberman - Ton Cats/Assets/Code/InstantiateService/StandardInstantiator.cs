@@ -21,5 +21,11 @@ namespace InstantiateService
 				.InstantiatePrefab(prefab, pos, rot, parent);
 			return instance;
 		}
+
+		public TComponent AddComponent<TComponent>(GameObject instance)
+			where TComponent : Component
+		{
+			return _container.InstantiateComponent<TComponent>(instance);
+		}
 	}
 }

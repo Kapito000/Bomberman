@@ -15,7 +15,7 @@ namespace Feature
 		{
 			_systemFactory = systemFactory;
 			Add<HeroFeature>();
-			Add<CameraFeature>();
+			// Add<CameraFeature>();
 		}
 
 		public void Init() =>

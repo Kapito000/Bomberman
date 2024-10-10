@@ -1,4 +1,6 @@
-﻿using Factory.CameraFactory;
+﻿using Factory;
+using Factory.CameraFactory;
+using Factory.EntityBehaviourFactory;
 using Factory.HeroFactory;
 using Factory.SystemFactory;
 using Feature;
@@ -57,6 +59,8 @@ namespace Infrastructure.Installer
 
 		void BindFactories()
 		{
+			Container.Bind<IEntityBehaviourFactory>().To<EntityBehaviourFactory>()
+				.AsSingle();
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
 		}

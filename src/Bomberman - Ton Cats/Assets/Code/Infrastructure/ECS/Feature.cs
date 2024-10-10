@@ -74,7 +74,7 @@ namespace Infrastructure.ECS
 #if UNITY_EDITOR
 				.Add(new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem())
 #endif
-				.ConvertScene().Inject().Init();
+				.Inject().Init();
 		}
 
 		void Run(IEcsSystems systems)

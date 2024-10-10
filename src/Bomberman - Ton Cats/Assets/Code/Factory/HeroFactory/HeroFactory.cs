@@ -1,5 +1,5 @@
-﻿using Infrastructure.AssetProvider;
-using Infrastructure.ECS;
+﻿using Factory.EntityBehaviourFactory;
+using Infrastructure.AssetProvider;
 using UnityEngine;
 using Zenject;
 using IInstantiator = InstantiateService.IInstantiator;
@@ -10,16 +10,13 @@ namespace Factory.HeroFactory
 	{
 		[Inject] IInstantiator _instantiator;
 		[Inject] IAssetProvider _assetProvider;
+		[Inject] IEntityBehaviourFactory _entityBehaviourFactory;
 
-		public GameObject CreateHero(Vector2 pos, Quaternion rot, Transform parent)
+		public int CreateHero(Vector2 pos, Quaternion rot, Transform parent)
 		{
 			var prefab = _assetProvider.Hero();
-			var instance = _instantiator.Instantiate(prefab, pos, rot, parent);
-
-			if (!instance.TryGetComponent<EntityBehaviour>(out var entityBehaviour))
-				_instantiator.AddComponent<EntityBehaviour>(instance);
-
-			return instance;
+			var heroObj = _instantiator.Instantiate(prefab, pos, rot, parent);
+			return _entityBehaviourFactory.CreateEntityBehaviour(heroObj);
 		}
 	}
 }

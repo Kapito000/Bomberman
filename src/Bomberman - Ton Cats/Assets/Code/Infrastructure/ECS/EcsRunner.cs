@@ -1,4 +1,5 @@
-﻿using Factory.SystemFactory;
+﻿using AB_Utility.FromSceneToEntityConverter;
+using Factory.SystemFactory;
 using Feature;
 using Leopotam.EcsLite;
 using LevelData;
@@ -14,16 +15,16 @@ namespace Infrastructure.ECS
 		[Inject] ISystemFactory _systemFactory;
 		[Inject] FeatureController _features;
 
-		EcsSystems _worldDebugSystems;
+		IEcsSystems _worldDebugSystems;
 
 		public void InitWorld()
 		{
-#if UNITY_EDITOR
 			_worldDebugSystems = new EcsSystems(_world);
 			_worldDebugSystems
 				.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
+				.ConvertScene()
 				.Init();
-#endif
+			
 			_features.Init();
 			_features.Start();
 		}

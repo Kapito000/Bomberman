@@ -7,6 +7,7 @@ namespace Infrastructure
 {
 	public abstract class Feature : IEcsSystem, IDisposable
 	{
+		IEcsSystems _initSystems;
 		IEcsSystems _updateSystem;
 		IEcsSystems _fixedUpdateSystem;
 		IEcsSystems _lateUpdateSystem;
@@ -20,10 +21,14 @@ namespace Infrastructure
 
 		public void Init()
 		{
+			Init(_initSystems);
 			Init(_updateSystem);
 			Init(_fixedUpdateSystem);
 			Init(_lateUpdateSystem);
 		}
+
+		public void Start() => 
+			Run(_initSystems);
 
 		public void Update() =>
 			Run(_updateSystem);
@@ -41,6 +46,9 @@ namespace Infrastructure
 			DestroySystems(ref _lateUpdateSystem);
 		}
 
+		protected void AddInit<TSystem>() where TSystem : class, IEcsInitSystem =>
+			Add<TSystem>(ref _initSystems);
+
 		protected void AddUpdate<TSystem>() where TSystem : class, IEcsRunSystem =>
 			Add<TSystem>(ref _updateSystem);
 
@@ -53,7 +61,7 @@ namespace Infrastructure
 			Add<TSystem>(ref _lateUpdateSystem);
 
 		void Add<TSystem>(ref IEcsSystems systems)
-			where TSystem : class, IEcsRunSystem
+			where TSystem : class, IEcsSystem
 		{
 			systems ??= _systemFactory.CreateSystemGroup();
 			systems.Add(_systemFactory.Create<TSystem>());

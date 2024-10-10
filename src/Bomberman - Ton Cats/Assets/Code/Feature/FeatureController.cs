@@ -17,6 +17,9 @@ namespace Feature
 		public void Init() =>
 			_features.ForEach(f => f.Init());
 
+		public void Start() => 
+			_features.ForEach(f=> f.Start());
+
 		public void Update() =>
 			_features.ForEach(f => f.Update());
 

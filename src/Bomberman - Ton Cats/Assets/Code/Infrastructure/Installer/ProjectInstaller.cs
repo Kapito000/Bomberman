@@ -1,23 +1,48 @@
-﻿using Infrastructure.GameStatus;
+﻿using Factory.CameraFactory;
+using Factory.HeroFactory;
+using Infrastructure.AssetProvider;
+using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.SceneLoader;
+using InstantiateService;
 using LevelData;
 using StaticData.SceneNames;
 using UnityEngine;
 using Zenject;
+using IInstantiator = InstantiateService.IInstantiator;
 
 namespace Infrastructure.Installer
 {
 	public class ProjectInstaller : MonoInstaller
 	{
 		[SerializeField] SceneNamesData _sceneNamesData;
+		[SerializeField] DirectLinkProvider _assetProvider;
 
 		public override void InstallBindings()
 		{
+			BindFactories();
 			BindLevelData();
 			BindStaticData();
 			BindSceneLoader();
+			BindInstantiator();
+			BindAssetProvider();
 			BindGameStateMachine();
+		}
+
+		void BindInstantiator()
+		{
+			Container.Bind<IInstantiator>().To<StandardInstantiator>().AsSingle();
+		}
+
+		void BindFactories()
+		{
+			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
+			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
+		}
+
+		void BindAssetProvider()
+		{
+			Container.Bind<IAssetProvider>().FromInstance(_assetProvider).AsSingle();
 		}
 
 		void BindLevelData()

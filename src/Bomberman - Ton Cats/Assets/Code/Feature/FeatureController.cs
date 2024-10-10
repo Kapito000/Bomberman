@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using Factory.SystemFactory;
+using Feature.Camera;
 using Feature.Hero;
-using Infrastructure.SystemFactory;
 
 namespace Feature
 {
 	public sealed class FeatureController : IDisposable
 	{
-		readonly List<Infrastructure.Feature> _features = new();
+		readonly ISystemFactory _systemFactory;
+		readonly List<Infrastructure.ECS.Feature> _features = new();
 
 		public FeatureController(ISystemFactory systemFactory)
 		{
-			Add(systemFactory.Create<HeroFeature>());
+			_systemFactory = systemFactory;
+			Add<HeroFeature>();
+			Add<CameraFeature>();
 		}
 
 		public void Init() =>
 			_features.ForEach(f => f.Init());
 
-		public void Start() => 
-			_features.ForEach(f=> f.Start());
+		public void Start() =>
+			_features.ForEach(f => f.Start());
 
 		public void Update() =>
 			_features.ForEach(f => f.Update());
@@ -35,7 +39,10 @@ namespace Feature
 			_features.Clear();
 		}
 
-		void Add(Infrastructure.Feature feature) => 
+		void Add(Infrastructure.ECS.Feature feature) =>
 			_features.Add(feature);
+
+		void Add<TFeature>() where TFeature : Infrastructure.ECS.Feature =>
+			_features.Add(_systemFactory.Create<TFeature>());
 	}
 }

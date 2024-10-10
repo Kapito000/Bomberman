@@ -1,5 +1,5 @@
-﻿using Feature;
-using Infrastructure.SystemFactory;
+﻿using Factory.SystemFactory;
+using Feature;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;

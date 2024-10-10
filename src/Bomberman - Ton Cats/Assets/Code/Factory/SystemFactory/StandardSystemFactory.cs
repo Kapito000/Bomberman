@@ -1,7 +1,7 @@
 ﻿using Leopotam.EcsLite;
 using Zenject;
 
-namespace Infrastructure.SystemFactory
+namespace Factory.SystemFactory
 {
 	public sealed class StandardSystemFactory : ISystemFactory
 	{

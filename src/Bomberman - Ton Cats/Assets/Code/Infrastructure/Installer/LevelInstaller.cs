@@ -1,9 +1,9 @@
-﻿using Feature;
+﻿using Factory.SystemFactory;
+using Feature;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
-using Infrastructure.SystemFactory;
 using Leopotam.EcsLite;
 using LevelData;
 using UnityEngine;

@@ -1,8 +1,9 @@
-﻿using Leopotam.EcsLite;
+﻿using Factory.CameraFactory;
+using Leopotam.EcsLite;
 
-namespace Infrastructure.SystemFactory
+namespace Factory.SystemFactory
 {
-	public interface ISystemFactory : IService
+	public interface ISystemFactory : IFactory
 	{
 		TSystem Create<TSystem>() where TSystem : class, IEcsSystem;
 

@@ -9,6 +9,7 @@ namespace Feature.Input
 		{
 			AddInit<CharacterPutBombInputSystem>();
 			AddUpdate<CharacterMoveInputSystem>();
+			AddCleanup<PutBombRequestCleanupSystem>();
 		}
 	}
 }

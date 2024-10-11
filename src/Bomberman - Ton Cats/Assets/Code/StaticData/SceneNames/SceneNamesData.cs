@@ -3,8 +3,7 @@ using Menu = Constant.CreateAssetMenu;
 
 namespace StaticData.SceneNames
 {
-	[CreateAssetMenu(
-		menuName = Menu.Path.c_SceneNameData + nameof(SceneNamesData),
+	[CreateAssetMenu(menuName = Menu.Path.c_StaticData + nameof(SceneNamesData),
 		fileName = nameof(SceneNamesData))]
 	public sealed class SceneNamesData : ScriptableObject, ISceneNameData
 	{

@@ -1,10 +1,12 @@
-﻿using Extensions;
+﻿using Common.Component;
+using Extensions;
 using Factory.HeroFactory;
 using Feature.Hero.Component;
 using Feature.Input.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using StaticData.Hero;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
@@ -14,6 +16,7 @@ namespace Feature.Hero.System
 {
 	public sealed class SpawnHeroSystem : EcsSystem, IEcsInitSystem
 	{
+		[Inject] IHeroData _heroData;
 		[Inject] IHeroFactory _heroFactory;
 		[Inject] EntityWrapper _heroEntity;
 
@@ -32,6 +35,10 @@ namespace Feature.Hero.System
 				_heroEntity
 					.Add<Component.Hero>()
 					.Add<InputReader>()
+					.Add<CharacterInput>()
+					.Add<MovementDirection>()
+					.Add<BombCarrier>()
+					.Add<MoveSpeed>().With(e => e.SetMoveSpeed(_heroData.MovementSpeed))
 					;
 			}
 		}

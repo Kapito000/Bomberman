@@ -1,4 +1,6 @@
-﻿using Infrastructure.AssetProvider;
+﻿using System;
+using System.ComponentModel;
+using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
@@ -6,6 +8,7 @@ using Infrastructure.SceneLoader;
 using Input;
 using Input.Character;
 using LevelData;
+using StaticData.Hero;
 using StaticData.SceneNames;
 using UnityEngine;
 using Zenject;
@@ -14,6 +17,7 @@ namespace Infrastructure.Installer
 {
 	public class ProjectInstaller : MonoInstaller
 	{
+		[SerializeField] HeroData _heroData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] DirectLinkProvider _assetProvider;
 
@@ -30,12 +34,13 @@ namespace Infrastructure.Installer
 
 		void BindEntityWrapper()
 		{
-			Container.Bind<EntityWrapper>().AsTransient();
+			Container.Bind<EntityWrapper>().AsTransient().MoveIntoAllSubContainers();
 		}
 
 		void BindInputService()
 		{
 			Container.Bind<Controls>().AsSingle();
+			Container.Bind<IInput>().To<CommonInput>().AsSingle();
 			Container.Bind<ICharacterInput>().To<CharacterInputService>().AsSingle();
 		}
 
@@ -56,6 +61,7 @@ namespace Infrastructure.Installer
 
 		void BindStaticData()
 		{
+			Container.Bind<IHeroData>().FromInstance(_heroData).AsSingle();
 			Container.Bind<ISceneNameData>().FromInstance(_sceneNamesData)
 				.AsSingle();
 		}

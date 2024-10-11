@@ -8,6 +8,7 @@ namespace Feature.Hero
 		public HeroFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<SpawnHeroSystem>();
+			AddUpdate<HeroMovementSystem>();
 		}
 	}
 }

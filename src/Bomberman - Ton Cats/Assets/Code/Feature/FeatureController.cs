@@ -34,6 +34,9 @@ namespace Feature
 
 		public void LateUpdate() =>
 			_features.ForEach(f => f.LateUpdate());
+		
+		public void Cleanup() =>
+			_features.ForEach(f => f.Cleanup());
 
 		public void Dispose()
 		{

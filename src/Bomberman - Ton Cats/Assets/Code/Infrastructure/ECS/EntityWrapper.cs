@@ -12,7 +12,7 @@ namespace Infrastructure.ECS
 		{
 			_world = world;
 		}
-		
+
 		public void SetEntity(int entity)
 		{
 			_entity = entity;
@@ -24,11 +24,25 @@ namespace Infrastructure.ECS
 			ref var component = ref _world.AddComponent<TComponent>(_entity);
 			return ref component;
 		}
-		
+
 		public EntityWrapper Add<TComponent>()
 			where TComponent : struct
 		{
 			AddComponent<TComponent>();
+			return this;
+		}
+
+		public ref TComponent ReplaceComponent<TComponent>()
+			where TComponent : struct
+		{
+			ref var component = ref _world.Replace<TComponent>(_entity);
+			return ref component;
+		}
+
+		public EntityWrapper Replace<TComponent>()
+			where TComponent : struct
+		{
+			ReplaceComponent<TComponent>();
 			return this;
 		}
 	}

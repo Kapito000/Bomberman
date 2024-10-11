@@ -36,10 +36,10 @@ namespace Extensions
 			world.GetPool<PutBombRequest>().Add(e);
 		}
 
-		public static void SetMovableDirection(this EcsWorld world, int e,
+		public static void SetMovementDirection(this EcsWorld world, int e,
 			Vector2 value)
 		{
-			ref var movableDirection = ref world.GetPool<MovableDirection>().Get(e);
+			ref var movableDirection = ref world.GetPool<MovementDirection>().Get(e);
 			movableDirection.Value = value;
 		}
 

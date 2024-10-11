@@ -14,13 +14,13 @@ namespace Feature.Input.System
 		[Inject] ICharacterInput _characterInput;
 
 		readonly EcsFilterInject<
-			Inc<InputReader, CharacterInput, MovableDirection>> _filter;
+			Inc<InputReader, CharacterInput, MovementDirection>> _filter;
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var e in _filter.Value)
 			{
-				_world.SetMovableDirection(e, _characterInput.Movement);
+				_world.SetMovementDirection(e, _characterInput.Movement);
 			}
 		}
 	}

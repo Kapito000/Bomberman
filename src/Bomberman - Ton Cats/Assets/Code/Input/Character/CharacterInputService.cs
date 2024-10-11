@@ -34,7 +34,10 @@ namespace Input.Character
 		void OnPutBombPerformed(InputAction.CallbackContext context) =>
 			PutBomb?.Invoke();
 
-		void OnMovePerformed(InputAction.CallbackContext context) =>
+		void OnMovePerformed(InputAction.CallbackContext context)
+		{
+			Debug.Log(context.ReadValue<Vector2>());
 			Movement = context.ReadValue<Vector2>();
+		}
 	}
 }

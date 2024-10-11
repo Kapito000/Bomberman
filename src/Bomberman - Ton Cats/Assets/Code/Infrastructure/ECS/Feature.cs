@@ -40,7 +40,7 @@ namespace Infrastructure.ECS
 
 		public void LateUpdate() =>
 			Run(_lateUpdateSystem);
-		
+
 		public void Cleanup() =>
 			Run(_cleanupSystem);
 
@@ -64,7 +64,7 @@ namespace Infrastructure.ECS
 		protected void AddLateUpdate<TSystem>()
 			where TSystem : class, IEcsRunSystem =>
 			Add<TSystem>(ref _lateUpdateSystem);
-		
+
 		protected void AddCleanup<TSystem>()
 			where TSystem : class, IEcsRunSystem =>
 			Add<TSystem>(ref _cleanupSystem);
@@ -76,14 +76,8 @@ namespace Infrastructure.ECS
 			systems.Add(_systemFactory.Create<TSystem>());
 		}
 
-		void Init(IEcsSystems systems)
-		{
-			systems?
-#if UNITY_EDITOR
-				.Add(new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem())
-#endif
-				.Inject().Init();
-		}
+		void Init(IEcsSystems systems) => 
+			systems?.Inject().Init();
 
 		void Run(IEcsSystems systems)
 		{

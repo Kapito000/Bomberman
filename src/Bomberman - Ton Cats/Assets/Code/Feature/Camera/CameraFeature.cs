@@ -8,6 +8,7 @@ namespace Feature.Camera
 		public CameraFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateCameraSystem>();
+			AddUpdate<SetCameraFollowSystem>();
 		}
 	}
 }

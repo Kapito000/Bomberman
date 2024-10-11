@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7363762565896216880}
   - component: {fileID: 7209716582571728122}
   - component: {fileID: 220015611666997577}
+  - component: {fileID: 6647204141757510419}
+  - component: {fileID: 6248118446389695904}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -96,6 +98,35 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6647204141757510419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771511697424430387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d40b90da6b42589971320ba7a7bc95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _converters:
+  - {fileID: 6248118446389695904}
+  _destroyAfterConversion: 0
+--- !u!114 &6248118446389695904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771511697424430387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b097392da974b1ba8c6a081af2358bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _component:
+    Value: {fileID: 7363762565896216880}
 --- !u!1 &4839042698076241352
 GameObject:
   m_ObjectHideFlags: 0

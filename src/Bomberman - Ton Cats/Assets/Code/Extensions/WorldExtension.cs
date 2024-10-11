@@ -1,7 +1,8 @@
-﻿using Common.Component;
+﻿using Cinemachine;
+using Common.Component;
+using Feature.Camera.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
-using UnityEngine;
 using Transform = Common.Component.Transform;
 
 namespace Extensions
@@ -29,8 +30,18 @@ namespace Extensions
 			return transform.Value;
 		}
 
-		public static Vector2 Pos2(this EcsWorld world, int e) =>
-			world.Transform(e).Pos2();
+		public static CinemachineVirtualCamera VirtualCamera(this EcsWorld world,
+			int e)
+		{
+			ref var virtualCamera = ref world.GetPool<VirtualCamera>().Get(e);
+			return virtualCamera.Value;
+		}
+
+		public static UnityEngine.Transform FollowTarget(this EcsWorld world, int e)
+		{
+			ref var setFollowTarget = ref world.GetPool<FollowTarget>().Get(e);
+			return setFollowTarget.Value;
+		}
 
 		public static ref TComponent AddComponent<TComponent>(this EcsWorld world,
 			int e)
@@ -46,6 +57,10 @@ namespace Extensions
 
 			return ref pool.Add(e);
 		}
+
+		public static void Remove<TComponent>(this EcsWorld world, int e)
+			where TComponent : struct =>
+			world.GetPool<TComponent>().Del(e);
 
 		public static bool Has<TComponent>(this EcsWorld world, int e)
 			where TComponent : struct =>

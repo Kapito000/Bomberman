@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc53c414784741aba87337e8fe708f13, type: 3}
   m_Name: DirectLinkProvider
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
+  _camera: {fileID: 3495701177089780482, guid: 5278d9ec4c4caa940b878d2098984464, type: 3}
+  _virtualCamera: {fileID: 5275231450059323486, guid: af826cf0be4df5c49af016e7f5afedf3, type: 3}
   _hero: {fileID: 771511697424430387, guid: 8c6293d2d569ffd46b13832d1774c499, type: 3}

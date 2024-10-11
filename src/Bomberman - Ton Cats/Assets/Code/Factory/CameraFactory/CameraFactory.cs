@@ -1,5 +1,5 @@
-﻿using Infrastructure.AssetProvider;
-using UnityEngine;
+﻿using Factory.EntityBehaviourFactory;
+using Infrastructure.AssetProvider;
 using Zenject;
 using IInstantiator = InstantiateService.IInstantiator;
 
@@ -9,12 +9,20 @@ namespace Factory.CameraFactory
 	{
 		[Inject] IInstantiator _instantiator;
 		[Inject] IAssetProvider _assetProvider;
+		[Inject] IEntityBehaviourFactory _entityBehaviourFactory;
 
-		public GameObject CreateCamera()
+		public int CreateCamera()
 		{
-			var prefab = _assetProvider.Camera();
-			var instance = _instantiator.Instantiate(prefab);
-			return instance;
+			var cameraPrefab = _assetProvider.Camera();
+			var cameraInstance = _instantiator.Instantiate(cameraPrefab);
+			return _entityBehaviourFactory.CreateEntityBehaviour(cameraInstance);
+		}
+
+		public int CreateVirtualCamera()
+		{
+			var prefab = _assetProvider.VirtualCamera();
+			var cameraInstance = _instantiator.Instantiate(prefab);
+			return _entityBehaviourFactory.CreateEntityBehaviour(cameraInstance);
 		}
 	}
 }

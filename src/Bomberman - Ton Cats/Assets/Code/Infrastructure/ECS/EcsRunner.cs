@@ -27,6 +27,7 @@ namespace Infrastructure.ECS
 			
 			_features.Init();
 			_features.Start();
+			enabled = true;
 		}
 
 		void Update()

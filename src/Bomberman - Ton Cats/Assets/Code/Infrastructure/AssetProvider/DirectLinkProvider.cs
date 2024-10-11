@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 using Menu = Constant.CreateAssetMenu;
 
 namespace Infrastructure.AssetProvider
@@ -9,10 +10,11 @@ namespace Infrastructure.AssetProvider
 	public sealed class DirectLinkProvider : ScriptableObject, IAssetProvider
 	{
 		[SerializeField] Camera _camera;
+		[SerializeField] CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] GameObject _hero;
 
 		public Camera Camera() => _camera;
-
+		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
 		public GameObject Hero() => _hero;
 	}
 }

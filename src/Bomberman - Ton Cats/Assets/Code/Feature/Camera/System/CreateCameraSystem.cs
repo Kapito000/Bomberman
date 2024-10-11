@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using Common.Component;
+using Extensions;
 using Factory.CameraFactory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
@@ -11,13 +12,17 @@ namespace Feature.Camera.System
 	{
 		[Inject] ICameraFactory _cameraFactory;
 
-		readonly EcsFilterInject<Inc<Hero.Component.Hero>> _filter;
+		readonly EcsFilterInject<Inc<Hero.Component.Hero, Transform>> _filter;
 
 		public void Init(IEcsSystems systems)
 		{
-			foreach (var e in _filter.Value)
+			foreach (var heroEntity in _filter.Value)
 			{
-				// var cameraObj = _cameraFactory.CreateCamera();
+				var cameraEntity = _cameraFactory.CreateCamera();
+
+				var virtualCameraEntity = _cameraFactory.CreateVirtualCamera();
+				var heroTransform = _world.Transform(heroEntity);
+				_world.AddFollowTarget(virtualCameraEntity, heroTransform);
 			}
 		}
 	}

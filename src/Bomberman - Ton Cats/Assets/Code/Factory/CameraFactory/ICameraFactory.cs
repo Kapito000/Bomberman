@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-
-namespace Factory.CameraFactory
+﻿namespace Factory.CameraFactory
 {
 	public interface ICameraFactory : IFactory
 	{
-		GameObject CreateCamera();
+		int CreateCamera();
+		int CreateVirtualCamera();
 	}
 }

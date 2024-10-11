@@ -1,4 +1,5 @@
 ﻿using Infrastructure.AssetProvider;
+using Infrastructure.ECS;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.SceneLoader;
@@ -22,8 +23,14 @@ namespace Infrastructure.Installer
 			BindStaticData();
 			BindSceneLoader();
 			BindInputService();
+			BindEntityWrapper();
 			BindAssetProvider();
 			BindGameStateMachine();
+		}
+
+		void BindEntityWrapper()
+		{
+			Container.Bind<EntityWrapper>().AsTransient();
 		}
 
 		void BindInputService()

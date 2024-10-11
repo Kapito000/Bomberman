@@ -1,6 +1,7 @@
 ﻿using Extensions;
 using Factory.HeroFactory;
 using Feature.Hero.Component;
+using Feature.Input.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -14,6 +15,7 @@ namespace Feature.Hero.System
 	public sealed class SpawnHeroSystem : EcsSystem, IEcsInitSystem
 	{
 		[Inject] IHeroFactory _heroFactory;
+		[Inject] EntityWrapper _heroEntity;
 
 		readonly EcsFilterInject<Inc<HeroSpawnPoint, Transform>> _filter;
 
@@ -25,8 +27,12 @@ namespace Feature.Hero.System
 				Vector2 pos = transform.position;
 				var heroEntity = _heroFactory
 					.CreateHero(pos, quaternion.identity, transform);
-				
-				_world.AddComponent<Component.Hero>(heroEntity);
+				_heroEntity.SetEntity(heroEntity);
+
+				_heroEntity
+					.Add<Component.Hero>()
+					.Add<InputReader>()
+					;
 			}
 		}
 	}

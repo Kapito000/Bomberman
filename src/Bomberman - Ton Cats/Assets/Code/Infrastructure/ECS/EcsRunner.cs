@@ -43,6 +43,7 @@ namespace Infrastructure.ECS
 		void LateUpdate()
 		{
 			_features.LateUpdate();
+			_features.Cleanup();
 			_worldDebugSystems?.Run();
 		}
 

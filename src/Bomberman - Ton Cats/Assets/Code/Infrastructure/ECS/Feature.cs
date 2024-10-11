@@ -11,6 +11,7 @@ namespace Infrastructure.ECS
 		IEcsSystems _updateSystem;
 		IEcsSystems _fixedUpdateSystem;
 		IEcsSystems _lateUpdateSystem;
+		IEcsSystems _cleanupSystem;
 
 		readonly ISystemFactory _systemFactory;
 
@@ -25,6 +26,7 @@ namespace Infrastructure.ECS
 			Init(_updateSystem);
 			Init(_fixedUpdateSystem);
 			Init(_lateUpdateSystem);
+			Init(_cleanupSystem);
 		}
 
 		public void Start() =>
@@ -38,6 +40,9 @@ namespace Infrastructure.ECS
 
 		public void LateUpdate() =>
 			Run(_lateUpdateSystem);
+		
+		public void Cleanup() =>
+			Run(_cleanupSystem);
 
 		public void Dispose()
 		{
@@ -59,6 +64,10 @@ namespace Infrastructure.ECS
 		protected void AddLateUpdate<TSystem>()
 			where TSystem : class, IEcsRunSystem =>
 			Add<TSystem>(ref _lateUpdateSystem);
+		
+		protected void AddCleanup<TSystem>()
+			where TSystem : class, IEcsRunSystem =>
+			Add<TSystem>(ref _cleanupSystem);
 
 		void Add<TSystem>(ref IEcsSystems systems)
 			where TSystem : class, IEcsSystem

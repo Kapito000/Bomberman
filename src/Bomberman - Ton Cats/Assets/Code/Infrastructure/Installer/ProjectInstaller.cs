@@ -2,6 +2,8 @@
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.SceneLoader;
+using Input;
+using Input.Character;
 using LevelData;
 using StaticData.SceneNames;
 using UnityEngine;
@@ -19,8 +21,15 @@ namespace Infrastructure.Installer
 			BindLevelData();
 			BindStaticData();
 			BindSceneLoader();
+			BindInputService();
 			BindAssetProvider();
 			BindGameStateMachine();
+		}
+
+		void BindInputService()
+		{
+			Container.Bind<Controls>().AsSingle();
+			Container.Bind<ICharacterInput>().To<CharacterInputService>().AsSingle();
 		}
 
 		void BindAssetProvider()

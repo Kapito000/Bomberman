@@ -1,8 +1,9 @@
 ﻿using Cinemachine;
 using Common.Component;
-using Feature.Camera.Component;
+using Feature.Camera;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
+using UnityEngine;
 using Transform = Common.Component.Transform;
 
 namespace Extensions
@@ -28,6 +29,18 @@ namespace Extensions
 		{
 			ref var transform = ref world.GetPool<Transform>().Get(e);
 			return transform.Value;
+		}
+
+		public static void RequestPutBomb(this EcsWorld world, int e)
+		{
+			world.GetPool<PutBombRequest>().Add(e);
+		}
+
+		public static void SetMovableDirection(this EcsWorld world, int e,
+			Vector2 value)
+		{
+			ref var movableDirection = ref world.GetPool<MovableDirection>().Get(e);
+			movableDirection.Value = value;
 		}
 
 		public static CinemachineVirtualCamera VirtualCamera(this EcsWorld world,

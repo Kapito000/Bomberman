@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Factory.SystemFactory;
 using Feature.Camera;
 using Feature.Hero;
+using Feature.Input;
 
 namespace Feature
 {
@@ -14,6 +15,7 @@ namespace Feature
 		public FeatureController(ISystemFactory systemFactory)
 		{
 			_systemFactory = systemFactory;
+			Add<InputFeature>();
 			Add<HeroFeature>();
 			Add<CameraFeature>();
 		}

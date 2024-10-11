@@ -1,5 +1,4 @@
 ﻿using System;
-using AB_Utility.FromSceneToEntityConverter;
 using Factory.SystemFactory;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

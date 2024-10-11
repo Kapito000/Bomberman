@@ -7,8 +7,8 @@ namespace Feature.Input
 	{
 		public InputFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
-			AddInit<PutBombInputSystem>();
-			AddUpdate<MoveInputSystem>();
+			AddInit<CharacterPutBombInputSystem>();
+			AddUpdate<CharacterMoveInputSystem>();
 		}
 	}
 }

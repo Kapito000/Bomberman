@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Feature.Input.System
 {
-	public sealed class PutBombInputSystem : EcsSystem, IEcsInitSystem,
+	public sealed class CharacterPutBombInputSystem : EcsSystem, IEcsInitSystem,
 		IDisposable
 	{
 		[Inject] ICharacterInput _characterInput;

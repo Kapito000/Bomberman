@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Feature.Input.System
 {
-	public sealed class MoveInputSystem : EcsSystem, IEcsRunSystem
+	public sealed class CharacterMoveInputSystem : EcsSystem, IEcsRunSystem
 	{
 		[Inject] ICharacterInput _characterInput;
 

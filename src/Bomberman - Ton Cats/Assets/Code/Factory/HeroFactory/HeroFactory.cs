@@ -1,5 +1,6 @@
 ﻿using Common;
 using Extensions;
+using Factory.Kit;
 using Feature.Hero;
 using Feature.Input;
 using Infrastructure.ECS;

@@ -2,7 +2,7 @@
 using Infrastructure.AssetProvider;
 using InstantiateService;
 
-namespace Factory
+namespace Factory.Kit
 {
 	public interface IFactoryKit
 	{

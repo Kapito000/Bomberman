@@ -1,6 +1,6 @@
 ﻿using Infrastructure;
 
-namespace Factory.Kit
+namespace Factory
 {
 	public interface IFactory : IService
 	{ }

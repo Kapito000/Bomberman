@@ -1,4 +1,5 @@
-﻿using Infrastructure.ECS;
+﻿using Factory.Kit;
+using Infrastructure.ECS;
 using Zenject;
 
 namespace Factory.UiFactory

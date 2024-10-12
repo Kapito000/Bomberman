@@ -2,7 +2,7 @@
 using Infrastructure.ECS;
 using UnityEngine;
 
-namespace Common.Component
+namespace Common
 {
 	[Serializable] public struct Transform { public UnityEngine.Transform Value; }
 	[Serializable] public struct Rigidbody2D { public UnityEngine.Rigidbody2D Value; }

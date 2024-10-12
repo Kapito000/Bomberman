@@ -1,4 +1,5 @@
-﻿using Infrastructure.AssetProvider;
+﻿using Factory;
+using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;

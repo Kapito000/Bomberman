@@ -1,8 +1,11 @@
-﻿namespace Factory.CameraFactory
+﻿using Factory.Kit;
+using UnityEngine;
+
+namespace Factory.CameraFactory
 {
 	public interface ICameraFactory : IFactory
 	{
 		int CreateCamera();
-		int CreateVirtualCamera();
+		int CreateVirtualCamera(Transform followTarget);
 	}
 }

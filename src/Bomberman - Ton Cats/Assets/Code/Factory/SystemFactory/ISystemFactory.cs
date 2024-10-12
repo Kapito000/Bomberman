@@ -1,4 +1,5 @@
 ﻿using Factory.CameraFactory;
+using Factory.Kit;
 using Leopotam.EcsLite;
 
 namespace Factory.SystemFactory

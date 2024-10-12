@@ -1,16 +1,17 @@
-﻿using Infrastructure.ECS;
+﻿using Common;
+using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
-using Rigidbody2D = Common.Component.Rigidbody2D;
+using Rigidbody2D = Common.Rigidbody2D;
 
 namespace Feature.Hero.System
 {
 	public sealed class HeroMovementSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-			Inc<Component.Hero, Common.Component.MovementDirection,
-				Common.Component.MoveSpeed, Rigidbody2D>> _filter;
+			Inc<Hero, MovementDirection,
+				MoveSpeed, Rigidbody2D>> _filter;
 
 		[Inject] EntityWrapper _hero;
 

@@ -1,6 +1,5 @@
-﻿using Common.Component;
+﻿using Common;
 using Extensions;
-using Feature.Input.Component;
 using Infrastructure.ECS;
 using Input.Character;
 using Leopotam.EcsLite;

@@ -1,5 +1,7 @@
-﻿using Common.Component;
+﻿using Common;
 using Extensions;
+using Feature.Camera;
+using Feature.Camera.System;
 using UnityEngine;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
 using Transform = UnityEngine.Transform;
@@ -20,7 +22,7 @@ namespace Infrastructure.ECS
 		public Rigidbody2D Rigidbody2D()
 		{
 			ref var rigidbody2D = ref _world
-				.GetPool<Common.Component.Rigidbody2D>()
+				.GetPool<Common.Rigidbody2D>()
 				.Get(_entity);
 
 			return rigidbody2D.Value;
@@ -28,7 +30,8 @@ namespace Infrastructure.ECS
 
 		public Vector2 MoveDirection()
 		{
-			ref var moveDirection = ref _world.GetPool<MovementDirection>().Get(_entity);
+			ref var moveDirection =
+				ref _world.GetPool<MovementDirection>().Get(_entity);
 			return moveDirection.Value;
 		}
 
@@ -43,5 +46,8 @@ namespace Infrastructure.ECS
 			ref var speed = ref _world.GetPool<MoveSpeed>().Get(_entity);
 			speed.Value = value;
 		}
+
+		public void AddVirtualCameraFollowTarget(Transform followTarget) =>
+			_world.AddFollowTarget(_entity, followTarget);
 	}
 }

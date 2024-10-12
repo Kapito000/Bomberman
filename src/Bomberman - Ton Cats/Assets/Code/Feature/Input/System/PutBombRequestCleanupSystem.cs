@@ -1,4 +1,4 @@
-﻿using Common.Component;
+﻿using Common;
 using Extensions;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;

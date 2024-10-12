@@ -4,6 +4,7 @@ using Factory.SystemFactory;
 using Feature.Camera;
 using Feature.Hero;
 using Feature.Input;
+using Feature.UI;
 
 namespace Feature
 {
@@ -18,6 +19,7 @@ namespace Feature
 			Add<InputFeature>();
 			Add<HeroFeature>();
 			Add<CameraFeature>();
+			Add<UiFeature>();
 		}
 
 		public void Init() =>

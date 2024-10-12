@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsLite;
 
-namespace Feature.Camera.System
+namespace Feature.Camera
 {
 	public static class WorldExtension
 	{

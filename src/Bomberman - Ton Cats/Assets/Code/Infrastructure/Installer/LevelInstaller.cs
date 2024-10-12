@@ -2,7 +2,9 @@
 using Factory.CameraFactory;
 using Factory.EntityBehaviourFactory;
 using Factory.HeroFactory;
+using Factory.Kit;
 using Factory.SystemFactory;
+using Factory.UiFactory;
 using Feature;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
@@ -13,7 +15,6 @@ using Leopotam.EcsLite;
 using LevelData;
 using UnityEngine;
 using Zenject;
-using IInstantiator = InstantiateService.IInstantiator;
 
 namespace Infrastructure.Installer
 {
@@ -29,6 +30,8 @@ namespace Infrastructure.Installer
 			BindInitializable();
 			BindWorld();
 			BindFactories();
+			BindFactoryKit();
+			BindUiFactories();
 			BindInstantiator();
 			BindSystemFactory();
 			BindDevSceneRunner();
@@ -47,6 +50,11 @@ namespace Infrastructure.Installer
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
 
+		void BindUiFactories()
+		{
+			Container.Bind<IUiFactory>().To<UiFactory>().AsCached();
+		}
+
 		void BindDevSceneRunner()
 		{
 			Container.Bind<IDevSceneRunner>().FromComponentInHierarchy().AsSingle();
@@ -54,7 +62,12 @@ namespace Infrastructure.Installer
 
 		void BindInstantiator()
 		{
-			Container.Bind<IInstantiator>().To<StandardInstantiator>().AsSingle();
+			Container.Bind<IInstantiateService>().To<StandardInstantiateService>().AsSingle();
+		}
+
+		void BindFactoryKit()
+		{
+			Container.Bind<IFactoryKit>().To<FactoryKit>().AsSingle();
 		}
 
 		void BindFactories()

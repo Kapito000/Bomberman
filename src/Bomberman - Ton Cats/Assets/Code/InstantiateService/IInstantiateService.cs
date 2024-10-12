@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InstantiateService
 {
-	public interface IInstantiator : IService
+	public interface IInstantiateService : IService
 	{
 		GameObject Instantiate(Object prefab);
 
@@ -11,6 +11,9 @@ namespace InstantiateService
 			Transform parent);
 
 		TComponent AddComponent<TComponent>(GameObject instance)
+			where TComponent : Component;
+
+		TComponent Instantiate<TComponent>(Object prefab)
 			where TComponent : Component;
 	}
 }

@@ -3,9 +3,13 @@ using Zenject;
 
 namespace InstantiateService
 {
-	public sealed class StandardInstantiator : IInstantiator
+	public sealed class StandardInstantiateService : IInstantiateService
 	{
 		[Inject] DiContainer _container;
+
+		public TComponent Instantiate<TComponent>(Object prefab)
+			where TComponent : Component =>
+			_container.InstantiatePrefabForComponent<TComponent>(prefab);
 
 		public GameObject Instantiate(Object prefab)
 		{

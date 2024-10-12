@@ -1,10 +1,10 @@
 ﻿using Cinemachine;
-using Common.Component;
+using Common;
 using Feature.Camera;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using UnityEngine;
-using Transform = Common.Component.Transform;
+using Transform = Common.Transform;
 
 namespace Extensions
 {

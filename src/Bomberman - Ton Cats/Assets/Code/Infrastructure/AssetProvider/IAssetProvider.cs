@@ -8,5 +8,6 @@ namespace Infrastructure.AssetProvider
 		Camera Camera();
 		CinemachineVirtualCamera VirtualCamera();
 		GameObject Hero();
+		Canvas UiRoot();
 	}
 }

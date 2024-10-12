@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Factory.Kit;
+using UnityEngine;
 
 namespace Factory.HeroFactory
 {

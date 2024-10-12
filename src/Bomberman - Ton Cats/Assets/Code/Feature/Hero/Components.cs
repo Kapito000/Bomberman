@@ -1,4 +1,4 @@
-﻿namespace Feature.Hero.Component
+﻿namespace Feature.Hero
 {
 	public struct Hero { }
 	public struct HeroSpawnPoint { }

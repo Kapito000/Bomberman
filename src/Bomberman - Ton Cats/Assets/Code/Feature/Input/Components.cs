@@ -1,4 +1,4 @@
-﻿namespace Feature.Input.Component
+﻿namespace Feature.Input
 {
 	public struct InputReader { }
 	public struct CharacterInput { }

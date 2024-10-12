@@ -12,6 +12,7 @@ namespace Feature.UI.System
 		public void Init(IEcsSystems systems)
 		{
 			_uiFactory.CreateRootCanvas();
+			_uiFactory.EventSystem();
 		}
 	}
 }

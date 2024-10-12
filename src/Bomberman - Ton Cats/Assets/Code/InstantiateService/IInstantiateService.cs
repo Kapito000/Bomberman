@@ -6,6 +6,7 @@ namespace InstantiateService
 	public interface IInstantiateService : IService
 	{
 		GameObject Instantiate(Object prefab);
+		GameObject Instantiate(Object prefab, Transform parent);
 
 		GameObject Instantiate(GameObject prefab, Vector2 pos, Quaternion rot,
 			Transform parent);

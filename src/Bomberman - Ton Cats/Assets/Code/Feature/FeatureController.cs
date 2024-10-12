@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Factory.SystemFactory;
 using Feature.Camera;
 using Feature.Hero;
+using Feature.HUD;
 using Feature.Input;
 using Feature.UI;
 
@@ -20,6 +21,7 @@ namespace Feature
 			Add<HeroFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
+			Add<HudFeature>();
 		}
 
 		public void Init() =>

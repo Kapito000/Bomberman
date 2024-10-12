@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Infrastructure.AssetProvider
 {
@@ -9,5 +10,8 @@ namespace Infrastructure.AssetProvider
 		CinemachineVirtualCamera VirtualCamera();
 		GameObject Hero();
 		Canvas UiRoot();
+		Canvas HudRoot();
+		GameObject CharacterJoystick();
+		EventSystem EventSystem();
 	}
 }

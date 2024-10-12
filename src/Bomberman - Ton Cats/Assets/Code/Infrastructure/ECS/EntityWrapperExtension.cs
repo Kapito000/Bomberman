@@ -1,7 +1,6 @@
 ﻿using Common;
 using Extensions;
 using Feature.Camera;
-using Feature.Camera.System;
 using UnityEngine;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
 using Transform = UnityEngine.Transform;
@@ -12,6 +11,12 @@ namespace Infrastructure.ECS
 	{
 		public Transform Transform() =>
 			_world.Transform(_entity);
+
+		public EntityWrapper AddTransform(Transform transform)
+		{
+			_world.AddTransform(_entity, transform);
+			return this;
+		}
 
 		public void SetRigidbody2DVelocity(Vector2 velocity)
 		{

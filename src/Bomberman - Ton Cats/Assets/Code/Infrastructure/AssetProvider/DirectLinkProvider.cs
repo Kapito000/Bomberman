@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Menu = Constant.CreateAssetMenu;
 
 namespace Infrastructure.AssetProvider
@@ -14,10 +15,16 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _hero;
 		[Header("UI")]
 		[SerializeField] Canvas _root;
+		[SerializeField] EventSystem _eventSystem;
+		[SerializeField] Canvas _hudRoot;
+		[SerializeField] GameObject _characterJoystick;
 
 		public Camera Camera() => _camera;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
 		public GameObject Hero() => _hero;
 		public Canvas UiRoot() => _root;
+		public Canvas HudRoot() => _hudRoot;
+		public GameObject CharacterJoystick() => _characterJoystick;
+		public EventSystem EventSystem() => _eventSystem;
 	}
 }

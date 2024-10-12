@@ -2,6 +2,7 @@
 using Factory.CameraFactory;
 using Factory.EntityBehaviourFactory;
 using Factory.HeroFactory;
+using Factory.HudFactory;
 using Factory.Kit;
 using Factory.SystemFactory;
 using Factory.UiFactory;
@@ -52,7 +53,8 @@ namespace Infrastructure.Installer
 
 		void BindUiFactories()
 		{
-			Container.Bind<IUiFactory>().To<UiFactory>().AsCached();
+			Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
+			Container.Bind<IHudFactory>().To<HudFactory>().AsSingle();
 		}
 
 		void BindDevSceneRunner()
@@ -62,7 +64,8 @@ namespace Infrastructure.Installer
 
 		void BindInstantiator()
 		{
-			Container.Bind<IInstantiateService>().To<StandardInstantiateService>().AsSingle();
+			Container.Bind<IInstantiateService>().To<StandardInstantiateService>()
+				.AsSingle();
 		}
 
 		void BindFactoryKit()
@@ -74,8 +77,8 @@ namespace Infrastructure.Installer
 		{
 			Container.Bind<IEntityBehaviourFactory>().To<EntityBehaviourFactory>()
 				.AsSingle();
-			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
+			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 		}
 
 		void BindFeatureController()

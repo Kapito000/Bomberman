@@ -1,5 +1,8 @@
-﻿using Factory.Kit;
+﻿using Extensions;
+using Factory.Kit;
+using Feature.UI;
 using Infrastructure.ECS;
+using UnityEngine;
 using Zenject;
 
 namespace Factory.UiFactory
@@ -8,6 +11,7 @@ namespace Factory.UiFactory
 	{
 		[Inject] IFactoryKit _factoryKit;
 		[Inject] EntityWrapper _rootEntity;
+		[Inject] EntityWrapper _uiRootEntity;
 
 		public int CreateRootCanvas()
 		{
@@ -16,7 +20,19 @@ namespace Factory.UiFactory
 			var entity = _factoryKit.EntityBehaviourFactory
 				.CreateEntityBehaviour(rootInstance);
 
+			var transform = rootInstance.GetComponent<Transform>();
+			_uiRootEntity
+				.Add<UiRoot>()
+				.AddTransform(transform);
+				;
+
 			return entity;
+		}
+
+		public void EventSystem()
+		{
+			var prefab = _factoryKit.AssetProvider.EventSystem();
+			_factoryKit.InstantiateService.Instantiate(prefab);
 		}
 	}
 }

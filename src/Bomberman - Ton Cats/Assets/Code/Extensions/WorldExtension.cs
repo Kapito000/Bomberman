@@ -31,6 +31,13 @@ namespace Extensions
 			return transform.Value;
 		}
 
+		public static void AddTransform(this EcsWorld world, int e,
+			UnityEngine.Transform transform)
+		{
+			ref var transformComponent = ref world.GetPool<Transform>().Get(e);
+			transformComponent.Value = transform;
+		}
+
 		public static void RequestPutBomb(this EcsWorld world, int e)
 		{
 			world.GetPool<PutBombRequest>().Add(e);

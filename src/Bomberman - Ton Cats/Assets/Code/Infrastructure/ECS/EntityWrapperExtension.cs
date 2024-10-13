@@ -70,5 +70,11 @@ namespace Infrastructure.ECS
 			ref var bombNumber = ref Get<BombNumber>();
 			return bombNumber.Value;
 		}
+
+		public IEntityView View()
+		{
+			ref var view = ref Get<View>();
+			return view.Value;
+		}
 	}
 }

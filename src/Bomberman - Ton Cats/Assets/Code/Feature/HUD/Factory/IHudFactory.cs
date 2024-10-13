@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Factory;
+using UnityEngine;
 
-namespace Factory.HudFactory
+namespace Feature.HUD.Factory
 {
 	public interface IHudFactory : IFactory
 	{

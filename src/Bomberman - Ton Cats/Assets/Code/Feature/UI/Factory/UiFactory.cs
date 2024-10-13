@@ -1,11 +1,9 @@
-﻿using Extensions;
-using Factory.Kit;
-using Feature.UI;
+﻿using Factory.Kit;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
 
-namespace Factory.UiFactory
+namespace Feature.UI.Factory
 {
 	public sealed class UiFactory : IUiFactory
 	{

@@ -1,7 +1,7 @@
-﻿using Factory.Kit;
+﻿using Factory;
 using UnityEngine;
 
-namespace Factory.CameraFactory
+namespace Feature.Camera.Factory
 {
 	public interface ICameraFactory : IFactory
 	{

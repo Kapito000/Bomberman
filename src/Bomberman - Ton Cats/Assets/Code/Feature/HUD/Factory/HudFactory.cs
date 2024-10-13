@@ -1,11 +1,10 @@
 ﻿using Extensions;
 using Factory.Kit;
-using Feature.HUD;
 using Infrastructure.ECS;
 using Zenject;
 using Transform = UnityEngine.Transform;
 
-namespace Factory.HudFactory
+namespace Feature.HUD.Factory
 {
 	public sealed class HudFactory : IHudFactory
 	{

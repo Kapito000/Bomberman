@@ -5,7 +5,7 @@ using InstantiateService;
 using UnityEngine;
 using Zenject;
 
-namespace Factory.CameraFactory
+namespace Feature.Camera.Factory
 {
 	public sealed class CameraFactory : ICameraFactory
 	{

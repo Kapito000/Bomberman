@@ -1,6 +1,6 @@
 ﻿using Common;
 using Extensions;
-using Factory.CameraFactory;
+using Feature.Camera.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

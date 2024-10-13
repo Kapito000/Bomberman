@@ -1,4 +1,4 @@
-﻿using Factory.UiFactory;
+﻿using Feature.UI.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Zenject;

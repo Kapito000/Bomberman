@@ -1,12 +1,11 @@
-﻿using Factory;
-using Factory.CameraFactory;
-using Factory.EntityBehaviourFactory;
-using Factory.HeroFactory;
-using Factory.HudFactory;
+﻿using Factory.EntityBehaviourFactory;
 using Factory.Kit;
 using Factory.SystemFactory;
-using Factory.UiFactory;
 using Feature;
+using Feature.Camera.Factory;
+using Feature.Hero.Factory;
+using Feature.HUD.Factory;
+using Feature.UI.Factory;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;

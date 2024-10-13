@@ -1,7 +1,7 @@
-﻿using Factory.Kit;
+﻿using Factory;
 using UnityEngine;
 
-namespace Factory.HeroFactory
+namespace Feature.Hero.Factory
 {
 	public interface IHeroFactory : IFactory
 	{

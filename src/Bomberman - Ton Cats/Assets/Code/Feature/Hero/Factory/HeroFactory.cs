@@ -1,7 +1,7 @@
 ﻿using Common;
 using Extensions;
 using Factory.Kit;
-using Feature.Hero;
+using Feature.Bomb;
 using Feature.Input;
 using Infrastructure.ECS;
 using StaticData.Hero;
@@ -9,7 +9,7 @@ using UnityEngine;
 using Zenject;
 using Transform = UnityEngine.Transform;
 
-namespace Factory.HeroFactory
+namespace Feature.Hero.Factory
 {
 	public sealed class HeroFactory : IHeroFactory
 	{
@@ -32,6 +32,7 @@ namespace Factory.HeroFactory
 				.Add<CharacterInput>()
 				.Add<MovementDirection>()
 				.Add<BombCarrier>()
+				.Add<BombNumber>().With(e=> e.SetBombNumber(_heroData.StartBombNumber))
 				.Add<MoveSpeed>().With(e => e.SetMoveSpeed(_heroData.MovementSpeed))
 				;
 

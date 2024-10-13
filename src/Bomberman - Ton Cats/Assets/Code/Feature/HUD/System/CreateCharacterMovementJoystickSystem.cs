@@ -1,5 +1,5 @@
 ﻿using Common;
-using Factory.HudFactory;
+using Feature.HUD.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

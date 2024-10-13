@@ -1,5 +1,5 @@
 ﻿using Extensions;
-using Factory.HeroFactory;
+using Feature.Hero.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

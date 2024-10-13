@@ -1,10 +1,11 @@
-﻿using Common;
-using Feature.Bomb.Factory;
+﻿using Feature.Bomb.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
+using Transform = Common.Transform;
 
 namespace Feature.Bomb.System
 {
@@ -34,10 +35,19 @@ namespace Feature.Bomb.System
 						continue;
 
 					_bombCarrier.SetBombNumber(bombNumber - 1);
-					var pos = _bombCarrier.TransformPos2();
+					var pos = CellCenterPos();
 					_bombFactory.CreateBomb(pos, parent);
 				}
 			}
+		}
+
+		Vector2 CellCenterPos()
+		{
+			var pos = _bombCarrier.TransformPos2();
+			var cellPos = _tilemap.WorldToCell(pos);
+			pos = _tilemap.CellToWorld(cellPos);
+			pos += (Vector2)_tilemap.tileAnchor;
+			return pos;
 		}
 	}
 }

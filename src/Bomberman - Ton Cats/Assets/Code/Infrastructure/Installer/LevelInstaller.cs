@@ -2,6 +2,7 @@
 using Factory.Kit;
 using Factory.SystemFactory;
 using Feature;
+using Feature.Bomb.Factory;
 using Feature.Camera.Factory;
 using Feature.Hero.Factory;
 using Feature.HUD.Factory;
@@ -14,12 +15,14 @@ using InstantiateService;
 using Leopotam.EcsLite;
 using LevelData;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Infrastructure.Installer
 {
 	public class LevelInstaller : MonoInstaller, IInitializable
 	{
+		[SerializeField] Tilemap _mainTailMap;
 		[SerializeField] EcsRunner _ecsRunner;
 
 		[Inject] ILevelData _levelData;
@@ -29,6 +32,7 @@ namespace Infrastructure.Installer
 		{
 			BindInitializable();
 			BindWorld();
+			BindTileMap();
 			BindFactories();
 			BindFactoryKit();
 			BindUiFactories();
@@ -48,6 +52,11 @@ namespace Infrastructure.Installer
 		{
 			_levelData.EcsRunner = _ecsRunner;
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
+		}
+
+		void BindTileMap()
+		{
+			Container.BindInstance(_mainTailMap).AsSingle();
 		}
 
 		void BindUiFactories()
@@ -77,6 +86,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IEntityBehaviourFactory>().To<EntityBehaviourFactory>()
 				.AsSingle();
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
+			Container.Bind<IBombFactory>().To<BombFactory>().AsSingle();
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 		}
 

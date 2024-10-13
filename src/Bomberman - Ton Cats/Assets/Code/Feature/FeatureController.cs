@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Factory.SystemFactory;
+using Feature.Bomb;
 using Feature.Camera;
 using Feature.Hero;
 using Feature.HUD;
@@ -19,6 +20,7 @@ namespace Feature
 			_systemFactory = systemFactory;
 			Add<InputFeature>();
 			Add<HeroFeature>();
+			Add<BombFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();

@@ -32,6 +32,10 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
+		public ref TComponent Get<TComponent>()
+			where TComponent : struct =>
+			ref _world.Get<TComponent>(_entity);
+
 		public ref TComponent ReplaceComponent<TComponent>()
 			where TComponent : struct
 		{

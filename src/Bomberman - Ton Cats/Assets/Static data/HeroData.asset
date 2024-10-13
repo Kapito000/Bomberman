@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1f7abb79e04a658bd1912f97eb5aa4, type: 3}
   m_Name: HeroData
   m_EditorClassIdentifier: 
+  <StartBombNumber>k__BackingField: 1
   <MovementSpeed>k__BackingField: 5

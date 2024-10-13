@@ -21,7 +21,7 @@ namespace Feature.UI.Factory
 			var transform = rootInstance.GetComponent<Transform>();
 			_uiRootEntity
 				.Add<UiRoot>()
-				.AddTransform(transform);
+				.SetTransform(transform);
 				;
 
 			return entity;

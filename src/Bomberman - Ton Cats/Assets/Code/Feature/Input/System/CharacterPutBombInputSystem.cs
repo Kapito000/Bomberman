@@ -1,5 +1,6 @@
 ﻿using System;
 using Extensions;
+using Feature.Bomb;
 using Infrastructure.ECS;
 using Input.Character;
 using Leopotam.EcsLite;
@@ -31,7 +32,7 @@ namespace Feature.Input.System
 		{
 			foreach (var e in _filter.Value)
 			{
-				_world.RequestPutBomb(e);
+				_world.AddComponent<PutBombRequest>(e);
 			}
 		}
 	}

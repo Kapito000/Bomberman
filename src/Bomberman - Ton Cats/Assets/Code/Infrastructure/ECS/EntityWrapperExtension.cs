@@ -1,5 +1,6 @@
 ﻿using Common;
 using Extensions;
+using Feature.Bomb;
 using Feature.Camera;
 using UnityEngine;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
@@ -12,9 +13,12 @@ namespace Infrastructure.ECS
 		public Transform Transform() =>
 			_world.Transform(_entity);
 
-		public EntityWrapper AddTransform(Transform transform)
+		public Vector2 TransformPos2() =>
+			_world.TransformPos2(_entity);
+
+		public EntityWrapper SetTransform(Transform transform)
 		{
-			_world.AddTransform(_entity, transform);
+			_world.SetTransform(_entity, transform);
 			return this;
 		}
 
@@ -54,5 +58,17 @@ namespace Infrastructure.ECS
 
 		public void AddVirtualCameraFollowTarget(Transform followTarget) =>
 			_world.AddFollowTarget(_entity, followTarget);
+
+		public void SetBombNumber(int value)
+		{
+			ref var bombNumber = ref _world.GetPool<BombNumber>().Get(_entity);
+			bombNumber.Value = value;
+		}
+
+		public int BombNumber()
+		{
+			ref var bombNumber = ref Get<BombNumber>();
+			return bombNumber.Value;
+		}
 	}
 }

@@ -22,7 +22,7 @@ namespace Feature.HUD.Factory
 			var transform = instance.GetComponent<Transform>();
 			_hudRootEntity
 				.Add<HudRoot>()
-				.Add<Common.Transform>().With(e => e.AddTransform(transform))
+				.Add<Common.Transform>().With(e => e.SetTransform(transform))
 				;
 			return entity;
 		}

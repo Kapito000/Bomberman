@@ -9,8 +9,6 @@ namespace Common
 	
 	public struct View { public IEntityView Value; }
 	
-	public struct PutBombRequest { }
-	public struct BombCarrier { }
 	[Serializable] public struct MoveSpeed { public float Value; }
 	public struct MovementDirection { public Vector2 Value; }
 }

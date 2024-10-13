@@ -13,6 +13,7 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] Camera _camera;
 		[SerializeField] CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] GameObject _hero;
+		[SerializeField] GameObject _bomb;
 		[Header("UI")]
 		[SerializeField] Canvas _root;
 		[SerializeField] EventSystem _eventSystem;
@@ -22,6 +23,7 @@ namespace Infrastructure.AssetProvider
 		public Camera Camera() => _camera;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
 		public GameObject Hero() => _hero;
+		public GameObject Bomb() => _bomb;
 		public Canvas UiRoot() => _root;
 		public Canvas HudRoot() => _hudRoot;
 		public GameObject CharacterJoystick() => _characterJoystick;

@@ -9,6 +9,7 @@ namespace Infrastructure.AssetProvider
 		Camera Camera();
 		CinemachineVirtualCamera VirtualCamera();
 		GameObject Hero();
+		GameObject Bomb();
 		Canvas UiRoot();
 		Canvas HudRoot();
 		GameObject CharacterJoystick();

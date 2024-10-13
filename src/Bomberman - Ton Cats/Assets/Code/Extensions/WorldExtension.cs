@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using Common;
+using Feature.Bomb;
 using Feature.Camera;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
@@ -31,16 +32,17 @@ namespace Extensions
 			return transform.Value;
 		}
 
-		public static void AddTransform(this EcsWorld world, int e,
+		public static Vector2 TransformPos2(this EcsWorld world, int e)
+		{
+			ref var transform = ref world.GetPool<Transform>().Get(e);
+			return transform.Value.position;
+		}
+
+		public static void SetTransform(this EcsWorld world, int e,
 			UnityEngine.Transform transform)
 		{
 			ref var transformComponent = ref world.GetPool<Transform>().Get(e);
 			transformComponent.Value = transform;
-		}
-
-		public static void RequestPutBomb(this EcsWorld world, int e)
-		{
-			world.GetPool<PutBombRequest>().Add(e);
 		}
 
 		public static void SetMovementDirection(this EcsWorld world, int e,
@@ -81,6 +83,10 @@ namespace Extensions
 		public static void Remove<TComponent>(this EcsWorld world, int e)
 			where TComponent : struct =>
 			world.GetPool<TComponent>().Del(e);
+
+		public static ref TComponent Get<TComponent>(this EcsWorld world, int e)
+			where TComponent : struct =>
+			ref world.GetPool<TComponent>().Get(e);
 
 		public static bool Has<TComponent>(this EcsWorld world, int e)
 			where TComponent : struct =>

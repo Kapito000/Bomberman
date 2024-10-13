@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Mathematics;
+using UnityEngine;
 using Zenject;
 
 namespace InstantiateService
@@ -21,6 +22,10 @@ namespace InstantiateService
 		{
 			return _container.InstantiatePrefab(prefab, parent);
 		}
+
+		public GameObject Instantiate(GameObject prefab, Vector2 pos,
+			Transform parent) =>
+			Instantiate(prefab, pos, quaternion.identity, parent);
 
 		public GameObject Instantiate(GameObject prefab,
 			Vector2 pos = new(), Quaternion rot = new(),

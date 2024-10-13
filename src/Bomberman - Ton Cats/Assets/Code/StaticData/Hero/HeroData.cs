@@ -7,6 +7,7 @@ namespace StaticData.Hero
 		fileName = nameof(HeroData))]
 	public class HeroData : ScriptableObject, IHeroData
 	{
+		[field: SerializeField] public int StartBombNumber { get; private set; }
 		[field: SerializeField] public float MovementSpeed { get; private set; }
 	}
 }

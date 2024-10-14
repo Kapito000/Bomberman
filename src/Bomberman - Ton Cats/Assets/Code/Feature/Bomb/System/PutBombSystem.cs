@@ -1,4 +1,5 @@
-﻿using Feature.Bomb.Factory;
+﻿using Feature.Bomb.Component;
+using Feature.Bomb.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

@@ -1,5 +1,6 @@
 ﻿using Extensions;
 using Factory.Kit;
+using Feature.Bomb.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;

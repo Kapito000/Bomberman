@@ -1,6 +1,5 @@
-﻿using Common;
-using Extensions;
-using Feature.Bomb;
+﻿using Extensions;
+using Feature.Bomb.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

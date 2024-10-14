@@ -1,6 +1,8 @@
 ﻿using System;
 using Extensions;
 using Feature.Bomb;
+using Feature.Bomb.Component;
+using Feature.Input.Component;
 using Infrastructure.ECS;
 using Input.Character;
 using Leopotam.EcsLite;

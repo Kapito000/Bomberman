@@ -1,6 +1,7 @@
 ﻿using Common;
 using Feature.HUD.Factory;
 using Feature.UI;
+using Feature.UI.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

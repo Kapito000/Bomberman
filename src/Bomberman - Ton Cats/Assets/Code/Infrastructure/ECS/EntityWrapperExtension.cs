@@ -1,6 +1,7 @@
 ﻿using Common;
 using Extensions;
 using Feature.Bomb;
+using Feature.Bomb.Component;
 using Feature.Camera;
 using UnityEngine;
 using Rigidbody2D = UnityEngine.Rigidbody2D;

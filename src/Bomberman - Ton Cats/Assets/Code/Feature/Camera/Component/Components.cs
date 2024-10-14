@@ -2,7 +2,7 @@
 using Cinemachine;
 using UnityEngine;
 
-namespace Feature.Camera
+namespace Feature.Camera.Component
 {
 	public struct FollowTarget { public Transform Value; }
 	[Serializable]

@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using Feature.Camera.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

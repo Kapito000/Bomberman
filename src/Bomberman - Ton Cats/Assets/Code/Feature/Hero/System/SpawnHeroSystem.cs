@@ -1,4 +1,5 @@
 ﻿using Extensions;
+using Feature.Hero.Component;
 using Feature.Hero.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;

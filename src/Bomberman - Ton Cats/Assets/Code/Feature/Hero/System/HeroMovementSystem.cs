@@ -10,7 +10,7 @@ namespace Feature.Hero.System
 	public sealed class HeroMovementSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-			Inc<Hero, MovementDirection,
+			Inc<Component.Hero, MovementDirection,
 				MoveSpeed, Rigidbody2D>> _filter;
 
 		[Inject] EntityWrapper _hero;

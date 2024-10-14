@@ -1,4 +1,5 @@
 ﻿using Factory.Kit;
+using Feature.UI.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;

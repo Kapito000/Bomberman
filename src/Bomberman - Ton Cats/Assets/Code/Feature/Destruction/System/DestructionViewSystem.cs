@@ -1,4 +1,5 @@
 ﻿using Common;
+using Feature.Destruction.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

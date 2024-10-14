@@ -1,7 +1,6 @@
 ﻿using Cinemachine;
 using Common;
-using Feature.Bomb;
-using Feature.Camera;
+using Feature.Camera.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -16,7 +15,8 @@ namespace Extensions
 		{
 			entity = world.NewEntity();
 			behaviour.SetEntity(entity);
-			behaviour.TryConvertConverters(world, entity);
+			behaviour.ConvertConverters(world, entity);
+			behaviour.ResolveEntityDependant();
 		}
 
 		public static void AddView(this EcsWorld world, int e,

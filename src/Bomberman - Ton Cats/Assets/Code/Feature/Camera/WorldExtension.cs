@@ -1,4 +1,5 @@
-﻿using Leopotam.EcsLite;
+﻿using Feature.Camera.Component;
+using Leopotam.EcsLite;
 
 namespace Feature.Camera
 {

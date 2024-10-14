@@ -1,4 +1,5 @@
-﻿using Infrastructure.ECS;
+﻿using Feature.Hero.Component;
+using Infrastructure.ECS;
 
 namespace Feature.Hero.Converter
 {

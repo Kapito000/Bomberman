@@ -1,5 +1,6 @@
 ﻿using Extensions;
 using Factory.Kit;
+using Feature.HUD.Component;
 using Infrastructure.ECS;
 using Zenject;
 using Transform = UnityEngine.Transform;

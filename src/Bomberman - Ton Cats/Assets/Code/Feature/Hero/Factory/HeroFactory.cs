@@ -2,7 +2,9 @@
 using Extensions;
 using Factory.Kit;
 using Feature.Bomb;
+using Feature.Bomb.Component;
 using Feature.Input;
+using Feature.Input.Component;
 using Infrastructure.ECS;
 using StaticData.Hero;
 using UnityEngine;
@@ -27,7 +29,7 @@ namespace Feature.Hero.Factory
 			_heroEntity.SetEntity(entity);
 
 			_heroEntity
-				.Add<Hero>()
+				.Add<Component.Hero>()
 				.Add<InputReader>()
 				.Add<CharacterInput>()
 				.Add<MovementDirection>()

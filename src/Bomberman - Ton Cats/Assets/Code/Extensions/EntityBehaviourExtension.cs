@@ -6,12 +6,12 @@ namespace Extensions
 {
 	public static class EntityBehaviourExtension
 	{
-		public static bool TryConvertConverters(this EntityBehaviour behaviour,
+		public static void ConvertConverters(this EntityBehaviour behaviour,
 			EcsWorld world, int entity)
 		{
-			if (behaviour.TryGetComponent<ComponentsContainer>(out var container) ==
-			    false)
-				return false;
+			if (false == behaviour
+				    .TryGetComponent<ComponentsContainer>(out var container))
+				return;
 
 			var destroyAfterConversion = container.DestroyAfterConversion;
 			var packedEntity = world.PackEntityWithWorld(entity);
@@ -27,8 +27,15 @@ namespace Extensions
 
 			if (destroyAfterConversion)
 				UnityEngine.Object.Destroy(container);
+		}
 
-			return true;
+		public static void ResolveEntityDependant(this EntityBehaviour entityView)
+		{
+			var dependants = entityView.GetComponents<EntityDependant>();
+			foreach (var dependant in dependants)
+			{
+				dependant.Init(entityView);
+			}
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace Infrastructure.AssetProvider
 		Canvas UiRoot();
 		Canvas HudRoot();
 		GameObject CharacterJoystick();
+		GameObject PutBombButton();
 		EventSystem EventSystem();
 		GameObject Explosion();
 	}

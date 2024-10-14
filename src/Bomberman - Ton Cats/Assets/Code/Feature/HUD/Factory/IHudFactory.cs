@@ -6,6 +6,7 @@ namespace Feature.HUD.Factory
 	public interface IHudFactory : IFactory
 	{
 		int CreateHudRoot(Transform parent);
-		int CharacterJoystick(Transform parent);
+		int CreateCharacterJoystick(Transform parent);
+		int CreatePutBombButton(Transform parent);
 	}
 }

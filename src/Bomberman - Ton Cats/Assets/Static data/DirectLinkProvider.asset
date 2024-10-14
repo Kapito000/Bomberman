@@ -20,4 +20,5 @@ MonoBehaviour:
   _root: {fileID: 4644769364156463938, guid: 2a25ecfac15109f4b9f21645efa713e4, type: 3}
   _eventSystem: {fileID: 176851465483218010, guid: a3c37fa5708cd3944a3f5bb8921fd59e, type: 3}
   _hudRoot: {fileID: 8017098716089676229, guid: faa23bd9d87b9194dbb9532caf1f2fdb, type: 3}
-  _characterJoystick: {fileID: 186695312122789468, guid: f1b6b89e894823644b7ae9b2b4eaa415, type: 3}
+  _characterJoystick: {fileID: 186695312122789468, guid: fa117ee6c85273a498a7aa54c49a092c, type: 3}
+  _putBombButton: {fileID: 186695312122789468, guid: f1b6b89e894823644b7ae9b2b4eaa415, type: 3}

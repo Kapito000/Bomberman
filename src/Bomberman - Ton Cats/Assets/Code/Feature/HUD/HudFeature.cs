@@ -9,6 +9,7 @@ namespace Feature.HUD
 		{
 			AddInit<CreateHudRootSystem>();
 			AddInit<CreateCharacterMovementJoystickSystem>();
+			AddInit<CreatePutBombButtonSystem>();
 		}
 	}
 }

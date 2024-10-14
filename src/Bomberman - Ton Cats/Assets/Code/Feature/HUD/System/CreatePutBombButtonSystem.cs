@@ -8,11 +8,11 @@ using Zenject;
 
 namespace Feature.HUD.System
 {
-	public sealed class CreateCharacterMovementJoystickSystem : IEcsInitSystem
+	public sealed class CreatePutBombButtonSystem : IEcsInitSystem
 	{
 		[Inject] IHudFactory _hudFactory;
 		[Inject] EntityWrapper _hudRoot;
-
+		
 		readonly EcsFilterInject<Inc<HudRoot, Transform>> _filter;
 
 		public void Init(IEcsSystems systems)
@@ -21,7 +21,7 @@ namespace Feature.HUD.System
 			{
 				_hudRoot.SetEntity(e);
 				var parent = _hudRoot.Transform();
-				_hudFactory.CreateCharacterJoystick(parent);
+				_hudFactory.CreatePutBombButton(parent);
 			}
 		}
 	}

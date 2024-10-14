@@ -42,15 +42,16 @@ namespace Feature.Bomb.System
 		{
 			var cellPos = _tilemap.WorldToCell(pos);
 			var tile = _tilemap.GetTile(cellPos);
-			if (tile is Destructible destructible)
-			{
-				_tilemap.SetTile(cellPos, null);
-				_instantiateService
-					.Instantiate(destructible.DestructibleObj, pos, null);
-			}
-			else
+			if (tile == null)
 			{
 				_explosionFactory.CreateExplosionPart(pos, direction, null, part);
+			}
+			else if (tile is Destructible destructible)
+			{
+				_tilemap.SetTile(cellPos, null);
+				var gameObject = _instantiateService
+					.Instantiate(destructible.DestructibleObj, pos, null);
+				// gameObject
 			}
 		}
 	}

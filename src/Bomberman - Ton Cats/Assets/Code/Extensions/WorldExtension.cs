@@ -1,10 +1,11 @@
 ﻿using Cinemachine;
 using Common;
+using Common.Component;
 using Feature.Camera.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using UnityEngine;
-using Transform = Common.Transform;
+using Transform = Common.Component.Transform;
 
 namespace Extensions
 {
@@ -32,7 +33,7 @@ namespace Extensions
 			return transform.Value;
 		}
 
-		public static Vector2 TransformPos2(this EcsWorld world, int e)
+		public static Vector3 TransformPos(this EcsWorld world, int e)
 		{
 			ref var transform = ref world.GetPool<Transform>().Get(e);
 			return transform.Value.position;

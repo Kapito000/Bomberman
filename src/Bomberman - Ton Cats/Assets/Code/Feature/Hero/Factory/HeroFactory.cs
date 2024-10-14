@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Component;
 using Extensions;
 using Factory.Kit;
 using Feature.Bomb;
@@ -25,7 +26,7 @@ namespace Feature.Hero.Factory
 			var heroObj = _factoryKit.InstantiateService
 				.Instantiate(prefab, pos, rot, parent);
 			var entity = _factoryKit.EntityBehaviourFactory
-				.CreateEntityBehaviour(heroObj);
+				.InitEntityBehaviour(heroObj);
 			_heroEntity.SetEntity(entity);
 
 			_heroEntity

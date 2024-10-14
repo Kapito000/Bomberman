@@ -1,6 +1,5 @@
-﻿using Common;
+﻿using Common.Component;
 using Extensions;
-using Feature.Bomb;
 using Feature.Bomb.Component;
 using Feature.Camera;
 using UnityEngine;
@@ -14,8 +13,8 @@ namespace Infrastructure.ECS
 		public Transform Transform() =>
 			_world.Transform(_entity);
 
-		public Vector2 TransformPos2() =>
-			_world.TransformPos2(_entity);
+		public Vector3 TransformPos() =>
+			_world.TransformPos(_entity);
 
 		public EntityWrapper SetTransform(Transform transform)
 		{
@@ -32,7 +31,7 @@ namespace Infrastructure.ECS
 		public Rigidbody2D Rigidbody2D()
 		{
 			ref var rigidbody2D = ref _world
-				.GetPool<Common.Rigidbody2D>()
+				.GetPool<Common.Component.Rigidbody2D>()
 				.Get(_entity);
 
 			return rigidbody2D.Value;
@@ -76,6 +75,18 @@ namespace Infrastructure.ECS
 		{
 			ref var view = ref Get<View>();
 			return view.Value;
+		}
+
+		public Vector3 Position()
+		{
+			ref var position = ref _world.GetPool<Position>().Get(_entity);
+			return position.Value;
+		}
+
+		public void SetPosition(Vector2 pos)
+		{
+			ref var position = ref Get<Position>();
+			position.Value = pos;
 		}
 	}
 }

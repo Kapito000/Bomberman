@@ -1,6 +1,9 @@
-﻿using Cinemachine;
+﻿using System;
+using Cinemachine;
+using Feature.Bomb.Factory;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using Menu = Constant.CreateAssetMenu;
 
 namespace Infrastructure.AssetProvider
@@ -14,6 +17,7 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] GameObject _hero;
 		[SerializeField] GameObject _bomb;
+		[SerializeField] GameObject _explosion;
 		[Header("UI")]
 		[SerializeField] Canvas _root;
 		[SerializeField] EventSystem _eventSystem;
@@ -28,5 +32,6 @@ namespace Infrastructure.AssetProvider
 		public Canvas HudRoot() => _hudRoot;
 		public GameObject CharacterJoystick() => _characterJoystick;
 		public EventSystem EventSystem() => _eventSystem;
+		public GameObject Explosion() => _explosion;
 	}
 }

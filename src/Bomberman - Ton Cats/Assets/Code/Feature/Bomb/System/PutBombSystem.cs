@@ -6,7 +6,7 @@ using Leopotam.EcsLite.Di;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
-using Transform = Common.Transform;
+using Transform = Common.Component.Transform;
 
 namespace Feature.Bomb.System
 {
@@ -44,7 +44,7 @@ namespace Feature.Bomb.System
 
 		Vector2 CellCenterPos()
 		{
-			var pos = _bombCarrier.TransformPos2();
+			Vector2 pos = _bombCarrier.TransformPos();
 			var cellPos = _tilemap.WorldToCell(pos);
 			pos = _tilemap.CellToWorld(cellPos);
 			pos += (Vector2)_tilemap.tileAnchor;

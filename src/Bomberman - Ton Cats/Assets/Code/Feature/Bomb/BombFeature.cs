@@ -9,6 +9,8 @@ namespace Feature.Bomb
 		{
 			AddInit<CreateBombParentSystem>();
 			AddUpdate<PutBombSystem>();
+			AddUpdate<BombExplosionSystem>();
+			AddUpdate<ExplosionSystem>();
 		}
 	}
 }

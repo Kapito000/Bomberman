@@ -8,6 +8,7 @@ using Input;
 using Input.Character;
 using LevelData;
 using StaticData.Hero;
+using StaticData.Physic;
 using StaticData.SceneNames;
 using UnityEngine;
 using Zenject;
@@ -17,6 +18,7 @@ namespace Infrastructure.Installer
 	public class ProjectInstaller : MonoInstaller
 	{
 		[SerializeField] HeroData _heroData;
+		[SerializeField] PhysicsData _physicsData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] DirectLinkProvider _assetProvider;
 
@@ -61,6 +63,7 @@ namespace Infrastructure.Installer
 		void BindStaticData()
 		{
 			Container.Bind<IHeroData>().FromInstance(_heroData).AsSingle();
+			Container.Bind<IPhysicsData>().FromInstance(_physicsData).AsSingle();
 			Container.Bind<ISceneNameData>().FromInstance(_sceneNamesData)
 				.AsSingle();
 		}

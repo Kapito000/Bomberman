@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Component;
 using Extensions;
 using Feature.Camera.Factory;
 using Infrastructure.ECS;

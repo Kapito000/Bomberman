@@ -88,6 +88,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
 			Container.Bind<IBombFactory>().To<BombFactory>().AsSingle();
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
+			Container.Bind<IExplosionFactory>().To<ExplosionFactory>().AsSingle();
 		}
 
 		void BindFeatureController()

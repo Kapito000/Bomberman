@@ -19,7 +19,7 @@ namespace Feature.Camera.Factory
 			var cameraPrefab = _assetProvider.Camera();
 			var cameraInstance = _instantiateService.Instantiate(cameraPrefab);
 			var entity =
-				_entityBehaviourFactory.CreateEntityBehaviour(cameraInstance);
+				_entityBehaviourFactory.InitEntityBehaviour(cameraInstance);
 			return entity;
 		}
 
@@ -27,7 +27,7 @@ namespace Feature.Camera.Factory
 		{
 			var prefab = _assetProvider.VirtualCamera();
 			var instance = _instantiateService.Instantiate(prefab);
-			var entity = _entityBehaviourFactory.CreateEntityBehaviour(instance);
+			var entity = _entityBehaviourFactory.InitEntityBehaviour(instance);
 			_vCameraEntity.SetEntity(entity);
 			_vCameraEntity.AddVirtualCameraFollowTarget(followTarget);
 			return entity;

@@ -5,6 +5,6 @@ namespace Factory.EntityBehaviourFactory
 {
 	public interface IEntityBehaviourFactory : IFactory
 	{
-		int CreateEntityBehaviour(GameObject obj);
+		int InitEntityBehaviour(GameObject obj);
 	}
 }

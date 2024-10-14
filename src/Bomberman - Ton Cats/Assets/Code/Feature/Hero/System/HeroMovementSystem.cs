@@ -1,9 +1,10 @@
 ﻿using Common;
+using Common.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
-using Rigidbody2D = Common.Rigidbody2D;
+using Rigidbody2D = Common.Component.Rigidbody2D;
 
 namespace Feature.Hero.System
 {

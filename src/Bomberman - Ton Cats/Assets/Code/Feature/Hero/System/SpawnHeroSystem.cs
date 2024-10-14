@@ -8,7 +8,7 @@ using StaticData.Hero;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
-using Transform = Common.Transform;
+using Transform = Common.Component.Transform;
 
 namespace Feature.Hero.System
 {

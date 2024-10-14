@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using Common.Component;
 using Feature.Destruction.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;

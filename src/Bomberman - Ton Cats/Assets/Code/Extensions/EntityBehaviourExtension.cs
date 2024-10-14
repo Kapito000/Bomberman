@@ -31,7 +31,7 @@ namespace Extensions
 
 		public static void ResolveEntityDependant(this EntityBehaviour entityView)
 		{
-			var dependants = entityView.GetComponents<EntityDependant>();
+			var dependants = entityView.GetComponents<EntityDependantBehavior>();
 			foreach (var dependant in dependants)
 			{
 				dependant.Init(entityView);

@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using Feature.Bomb.Factory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,5 +15,6 @@ namespace Infrastructure.AssetProvider
 		Canvas HudRoot();
 		GameObject CharacterJoystick();
 		EventSystem EventSystem();
+		GameObject Explosion();
 	}
 }

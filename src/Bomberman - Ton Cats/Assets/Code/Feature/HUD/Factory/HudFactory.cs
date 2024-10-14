@@ -17,13 +17,13 @@ namespace Feature.HUD.Factory
 			var hudRoot = _factoryKit.AssetProvider.HudRoot();
 			var instance = _factoryKit.InstantiateService.Instantiate(hudRoot, parent);
 			var entity = _factoryKit.EntityBehaviourFactory
-				.CreateEntityBehaviour(instance);
+				.InitEntityBehaviour(instance);
 			_hudRootEntity.SetEntity(entity);
 
 			var transform = instance.GetComponent<Transform>();
 			_hudRootEntity
 				.Add<HudRoot>()
-				.Add<Common.Transform>().With(e => e.SetTransform(transform))
+				.Add<Common.Component.Transform>().With(e => e.SetTransform(transform))
 				;
 			return entity;
 		}
@@ -34,7 +34,7 @@ namespace Feature.HUD.Factory
 			var instance =
 				_factoryKit.InstantiateService.Instantiate(characterJoystick, parent);
 			var entity =
-				_factoryKit.EntityBehaviourFactory.CreateEntityBehaviour(instance);
+				_factoryKit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			return entity;
 		}
 	}

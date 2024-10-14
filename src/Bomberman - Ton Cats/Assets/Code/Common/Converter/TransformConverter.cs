@@ -1,4 +1,5 @@
-﻿using Infrastructure.ECS;
+﻿using Common.Component;
+using Infrastructure.ECS;
 
 namespace Common.Converter
 {

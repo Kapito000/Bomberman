@@ -12,7 +12,7 @@ namespace Factory.EntityBehaviourFactory
 		[Inject] EcsWorld _world;
 		[Inject] IInstantiateService _instantiateService;
 
-		public int CreateEntityBehaviour(GameObject obj)
+		public int InitEntityBehaviour(GameObject obj)
 		{
 			if (!obj.TryGetComponent<EntityBehaviour>(out var entityBehaviour))
 				entityBehaviour = _instantiateService.AddComponent<EntityBehaviour>(obj);

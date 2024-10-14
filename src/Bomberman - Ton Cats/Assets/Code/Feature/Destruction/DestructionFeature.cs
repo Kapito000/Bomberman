@@ -8,8 +8,8 @@ namespace Feature.Destruction
 		public DestructionFeature(ISystemFactory systemFactory) : base(
 			systemFactory)
 		{
-			AddLateUpdate<DestructionViewSystem>();
-			AddLateUpdate<DestructionSystem>();
+			AddCleanup<DestructionViewSystem>();
+			AddCleanup<DestructionSystem>();
 		}
 	}
 }

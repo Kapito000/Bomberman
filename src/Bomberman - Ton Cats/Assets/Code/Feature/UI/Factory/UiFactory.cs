@@ -17,7 +17,7 @@ namespace Feature.UI.Factory
 			var prefab = _factoryKit.AssetProvider.UiRoot();
 			var rootInstance = _factoryKit.InstantiateService.Instantiate(prefab);
 			var entity = _factoryKit.EntityBehaviourFactory
-				.CreateEntityBehaviour(rootInstance);
+				.InitEntityBehaviour(rootInstance);
 
 			var transform = rootInstance.GetComponent<Transform>();
 			_uiRootEntity

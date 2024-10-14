@@ -16,6 +16,7 @@ MonoBehaviour:
   _virtualCamera: {fileID: 5275231450059323486, guid: af826cf0be4df5c49af016e7f5afedf3, type: 3}
   _hero: {fileID: 771511697424430387, guid: 8c6293d2d569ffd46b13832d1774c499, type: 3}
   _bomb: {fileID: 522777777130883961, guid: ef692530b47e6ac4ebc1b83a8297df86, type: 3}
+  _explosion: {fileID: 4520389842868597706, guid: f2b0be94c295e7d4b88034b81dd5016a, type: 3}
   _root: {fileID: 4644769364156463938, guid: 2a25ecfac15109f4b9f21645efa713e4, type: 3}
   _eventSystem: {fileID: 176851465483218010, guid: a3c37fa5708cd3944a3f5bb8921fd59e, type: 3}
   _hudRoot: {fileID: 8017098716089676229, guid: faa23bd9d87b9194dbb9532caf1f2fdb, type: 3}

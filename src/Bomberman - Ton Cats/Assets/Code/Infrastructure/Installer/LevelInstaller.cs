@@ -103,7 +103,7 @@ namespace Infrastructure.Installer
 
 		void BindWorld()
 		{
-			Container.Bind<EcsWorld>().FromNew().AsSingle();
+			Container.Bind<EcsWorld>().FromInstance(new EcsWorld()).AsSingle();
 		}
 
 		void BindInitializable()

@@ -3,6 +3,7 @@ using Factory.SystemFactory;
 using Feature;
 using Leopotam.EcsLite;
 using LevelData;
+using Mitfart.LeoECSLite.UnityIntegration;
 using UnityEngine;
 using Zenject;
 
@@ -15,16 +16,18 @@ namespace Infrastructure.ECS
 		[Inject] ISystemFactory _systemFactory;
 		[Inject] FeatureController _features;
 
-		IEcsSystems _worldDebugSystems;
+		IEcsSystems _supprotiveSystems;
 
 		public void InitWorld()
 		{
-			_worldDebugSystems = new EcsSystems(_world);
-			_worldDebugSystems
-				.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
+			_supprotiveSystems = new EcsSystems(_world);
+			_supprotiveSystems
+#if UNITY_EDITOR
+				.Add(new EcsWorldDebugSystem(null, new NameSettings(true)))
+#endif
 				.ConvertScene()
 				.Init();
-			
+
 			_features.Init();
 			_features.Start();
 			enabled = true;
@@ -44,13 +47,13 @@ namespace Infrastructure.ECS
 		{
 			_features.LateUpdate();
 			_features.Cleanup();
-			_worldDebugSystems?.Run();
+			_supprotiveSystems?.Run();
 		}
 
 		void OnDestroy()
 		{
 			_features.Dispose();
-			_worldDebugSystems?.Destroy();
+			_supprotiveSystems?.Destroy();
 			_world?.Destroy();
 		}
 	}

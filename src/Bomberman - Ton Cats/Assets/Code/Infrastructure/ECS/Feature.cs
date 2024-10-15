@@ -76,13 +76,9 @@ namespace Infrastructure.ECS
 			systems.Add(_systemFactory.Create<TSystem>());
 		}
 
-		void Init(IEcsSystems systems) => 
-			systems?.Inject().Init();
+		void Init(IEcsSystems systems) => systems?.Inject().Init();
 
-		void Run(IEcsSystems systems)
-		{
-			systems?.Run();
-		}
+		void Run(IEcsSystems systems) => systems?.Run();
 
 		void DestroySystems(ref IEcsSystems systems)
 		{

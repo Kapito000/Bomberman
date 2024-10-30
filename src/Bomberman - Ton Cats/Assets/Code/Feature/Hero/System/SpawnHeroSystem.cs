@@ -1,10 +1,10 @@
 ﻿using Extensions;
 using Feature.Hero.Component;
 using Feature.Hero.Factory;
+using Feature.Hero.StaticData;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using StaticData.Hero;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;

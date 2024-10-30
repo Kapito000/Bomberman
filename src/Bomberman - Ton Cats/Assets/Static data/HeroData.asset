@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: HeroData
   m_EditorClassIdentifier: 
   <StartBombNumber>k__BackingField: 100
+  <StartHealthValue>k__BackingField: 3
   <MovementSpeed>k__BackingField: 5

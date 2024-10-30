@@ -88,5 +88,11 @@ namespace Infrastructure.ECS
 			ref var position = ref Get<Position>();
 			position.Value = pos;
 		}
+
+		public void SetLifePoints(int value)
+		{
+			ref var health = ref Get<LifePoints>();
+			health.Value = value;
+		}
 	}
 }

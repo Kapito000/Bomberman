@@ -1,4 +1,5 @@
 ﻿using Factory;
+using Feature.Hero.StaticData;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
@@ -7,7 +8,6 @@ using Infrastructure.SceneLoader;
 using Input;
 using Input.Character;
 using LevelData;
-using StaticData.Hero;
 using StaticData.Physic;
 using StaticData.SceneNames;
 using UnityEngine;

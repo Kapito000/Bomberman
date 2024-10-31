@@ -97,6 +97,13 @@ namespace Infrastructure.ECS
 			return dir.Value;
 		}
 
+		public EntityWrapper AddDirection(Vector2 dir)
+		{
+			ref var direction = ref AddComponent<Direction>();
+			direction.Value = dir;
+			return this;
+		}
+		
 		public void SetDirection(Vector2 dir)
 		{
 			ref var direction = ref Get<Direction>();

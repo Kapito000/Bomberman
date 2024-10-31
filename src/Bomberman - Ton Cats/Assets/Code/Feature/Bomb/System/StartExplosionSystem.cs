@@ -9,7 +9,6 @@ using Leopotam.EcsLite.Di;
 using UnityEngine;
 using Zenject;
 using Transform = UnityEngine.Transform;
-using Direction = UnityEditor.Experimental.GraphView.Direction;
 
 namespace Feature.Bomb.System
 {
@@ -54,7 +53,7 @@ namespace Feature.Bomb.System
 			EExplosionPart part, Transform parent)
 		{
 			RequestCreatingExplosion(pos, parent)
-				.Add<Direction>().With(e => e.SetDirection(dir))
+				.AddDirection(dir)
 				.AddExplosionPart(part)
 				;
 		}

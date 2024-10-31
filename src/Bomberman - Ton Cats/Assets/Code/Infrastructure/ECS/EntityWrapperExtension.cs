@@ -5,6 +5,7 @@ using Feature.Bomb.Component;
 using Feature.Camera;
 using MapTile;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
 using Transform = UnityEngine.Transform;
 
@@ -139,6 +140,19 @@ namespace Infrastructure.ECS
 		{
 			ref var blowUpDestructible = ref AddComponent<BlowUpDestructible>();
 			blowUpDestructible.Destructible = destructible;
+			return this;
+		}
+
+		public Vector3Int DestructibleTileCellPos()
+		{
+			ref var destructibleTile = ref Get<DestructibleTileCellPos>();
+			return destructibleTile.Value;
+		}
+		
+		public EntityWrapper AddDestructibleTileCellPos(Vector3Int cellPos)
+		{
+			ref var destructibleTilePos = ref AddComponent<DestructibleTileCellPos>();
+			destructibleTilePos.Value = cellPos;
 			return this;
 		}
 

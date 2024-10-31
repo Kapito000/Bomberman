@@ -4,17 +4,18 @@ using Feature.Bomb.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine.Tilemaps;
 using Zenject;
-
 
 namespace Feature.Bomb.System
 {
 	public sealed class CreateBlowUpDestructibleSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-				Inc<CreateExplosionRequest, BlowUpDestructible, Position, ForParent>>
-			_requestFilter;
+			Inc<CreateExplosionRequest, BlowUpDestructible, DestructibleTileCellPos,
+				Position, ForParent>> _requestFilter;
 
+		[Inject] Tilemap _tilemap;
 		[Inject] EntityWrapper _request;
 		[Inject] IExplosionFactory _explosionFactory;
 
@@ -24,13 +25,25 @@ namespace Feature.Bomb.System
 			{
 				_request.SetEntity(request);
 
-				var prefab = _request.BlowUpDestructibleTile().DestructiblePrefab;
-				var pos = _request.Position();
-				var parent = _request.ForParent();
-				_explosionFactory.CreateDestructibleTile(prefab, pos, parent);
+				DestroyTile();
+				CreateDestructiblePrefab();
 
 				_request.DestroyImmediate();
 			}
+		}
+
+		void DestroyTile()
+		{
+			var cellPos = _request.DestructibleTileCellPos();
+			_tilemap.SetTile(cellPos, null);
+		}
+
+		void CreateDestructiblePrefab()
+		{
+			var prefab = _request.BlowUpDestructibleTile().DestructiblePrefab;
+			var pos = _request.Position();
+			var parent = _request.ForParent();
+			_explosionFactory.CreateDestructibleTile(prefab, pos, parent);
 		}
 	}
 }

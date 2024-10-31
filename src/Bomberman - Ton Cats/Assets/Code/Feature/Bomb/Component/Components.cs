@@ -1,6 +1,7 @@
 ﻿using System;
 using Feature.Bomb.Behaviour;
 using MapTile;
+using UnityEngine;
 
 namespace Feature.Bomb.Component
 {
@@ -15,6 +16,7 @@ namespace Feature.Bomb.Component
 	public struct ExplosionRequest { }
 	public struct CreateExplosionRequest { }
 	public struct BlowUpDestructible { public IDestructible Destructible; }
+	public struct DestructibleTileCellPos { public Vector3Int Value; }
 	public struct ExplosionPart { public Feature.Bomb.EExplosionPart Value; }
 	public struct ExplosionCenter { }
 }

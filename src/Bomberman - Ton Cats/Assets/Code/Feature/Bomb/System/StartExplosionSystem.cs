@@ -38,7 +38,7 @@ namespace Feature.Bomb.System
 				RequestCreatingExplosionPart(pos + Vector2.left, Vector2.left, EExplosionPart.End, parent);
 				RequestCreatingExplosionPart(pos + Vector2.right, Vector2.right, EExplosionPart.End, parent);
 
-				_explosionRequest.Add<Destructed>();
+				_explosionRequest.Destroy();
 			}
 		}
 

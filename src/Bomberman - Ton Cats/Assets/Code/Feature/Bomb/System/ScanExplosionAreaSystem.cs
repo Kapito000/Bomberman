@@ -28,7 +28,8 @@ namespace Feature.Bomb.System
 				var tile = Tile(out var cellPos);
 				if (tile == null)
 					continue;
-				else if (tile is IDestructible destructible)
+
+				if (tile is IDestructible destructible)
 				{
 					_request
 						.AddBlowUpDestructible(destructible)

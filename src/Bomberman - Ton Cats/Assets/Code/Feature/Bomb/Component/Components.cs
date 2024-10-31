@@ -1,5 +1,6 @@
 ﻿using System;
 using Feature.Bomb.Behaviour;
+using MapTile;
 
 namespace Feature.Bomb.Component
 {
@@ -12,4 +13,8 @@ namespace Feature.Bomb.Component
 	public struct BombAnimatorComponent { public BombAnimator Value; }
 	public struct Explosion { }
 	public struct ExplosionRequest { }
+	public struct CreateExplosionRequest { }
+	public struct BlowUpDestructible { public IDestructible Destructible; }
+	public struct ExplosionPart { public Feature.Bomb.EExplosionPart Value; }
+	public struct ExplosionCenter { }
 }

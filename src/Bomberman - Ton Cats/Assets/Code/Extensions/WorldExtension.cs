@@ -1,5 +1,4 @@
 ﻿using Cinemachine;
-using Common;
 using Common.Component;
 using Feature.Camera.Component;
 using Infrastructure.ECS;
@@ -25,6 +24,17 @@ namespace Extensions
 		{
 			ref var view = ref world.AddComponent<View>(e);
 			view.Value = entityView;
+		}
+
+		public static void DestroyImmediate(this EcsWorld world, int e)
+		{
+			var viewPool = world.GetPool<View>();
+			if (viewPool.Has(e))
+			{
+				ref var view = ref world.Get<View>(e);
+				Object.Destroy(view.Value.gameObject);
+			}
+			world.DelEntity(e);
 		}
 
 		public static UnityEngine.Transform Transform(this EcsWorld world, int e)

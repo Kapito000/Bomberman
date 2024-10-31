@@ -8,6 +8,7 @@ using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
+using NotImplementedException = System.NotImplementedException;
 using Transform = UnityEngine.Transform;
 
 namespace Feature.Bomb.Factory
@@ -30,7 +31,7 @@ namespace Feature.Bomb.Factory
 		}
 
 		public int CreateExplosionPart(Vector2 pos, Vector2 direction,
-			Transform parent, ExplosionPart part)
+			Transform parent, EExplosionPart part)
 		{
 			var instance = InstantiateExplosion(pos, parent);
 			var entity = InitExplosionEntity(instance);
@@ -43,11 +44,17 @@ namespace Feature.Bomb.Factory
 		{
 			var instance = InstantiateExplosion(pos, parent);
 			var entity = InitExplosionEntity(instance);
-			PlayAnimation(instance, ExplosionPart.Center);
+			PlayAnimation(instance, EExplosionPart.Center);
 			return entity;
 		}
+		
+		public void CreateDestructibleTile(GameObject prefab, Vector2 pos,
+			Transform parent)
+		{
+			_kit.InstantiateService.Instantiate(prefab, pos, parent);
+		}
 
-		void PlayAnimation(GameObject instance, ExplosionPart part)
+		void PlayAnimation(GameObject instance, EExplosionPart part)
 		{
 			if (!instance.TryGetComponent<ExplosionAnimator>(out var animator))
 			{
@@ -71,6 +78,7 @@ namespace Feature.Bomb.Factory
 			_explosion.SetEntity(entity);
 			_explosion
 				.Add<Explosion>()
+				.Add<FirstBreath>()
 				;
 			return entity;
 		}
@@ -82,17 +90,17 @@ namespace Feature.Bomb.Factory
 				.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
 		}
 
-		void PlayExplosionAnimation(ExplosionAnimator animator, ExplosionPart part)
+		void PlayExplosionAnimation(ExplosionAnimator animator, EExplosionPart part)
 		{
 			switch (part)
 			{
-				case ExplosionPart.Center:
+				case EExplosionPart.Center:
 					animator.PlayCenter();
 					break;
-				case ExplosionPart.Middle:
+				case EExplosionPart.Middle:
 					animator.PlayMiddle();
 					break;
-				case ExplosionPart.End:
+				case EExplosionPart.End:
 					animator.PlayEnd();
 					break;
 				default:

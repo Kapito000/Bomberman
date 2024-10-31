@@ -10,7 +10,12 @@ namespace Feature.Bomb
 			AddInit<CreateBombParentSystem>();
 			AddUpdate<PutBombSystem>();
 			AddUpdate<BombExplosionSystem>();
-			AddUpdate<ExplosionSystem>();
+			AddUpdate<StartExplosionSystem>();
+			AddUpdate<ScanExplosionAreaSystem>();
+			AddUpdate<CreateBlowUpDestructibleSystem>();
+			AddUpdate<CreateExplosionCenterSystem>();
+			AddUpdate<CreateExplosionPartSystem>();
+			AddCleanup<CreateExplosionRequestCleanupSystem>(); 
 		}
 	}
 }

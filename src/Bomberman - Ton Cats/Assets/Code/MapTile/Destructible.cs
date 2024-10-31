@@ -4,9 +4,9 @@ using Menu = Constant.CreateAssetMenu;
 namespace MapTile
 {
 	[CreateAssetMenu(menuName = Menu.Path.c_MapTile + nameof(Destructible))]
-	public class Destructible : BaseGameTile
+	public class Destructible : BaseGameTile, IDestructible
 	{
 		[field: SerializeField]
-		public GameObject DestructibleObj { get; private set; }
+		public GameObject DestructiblePrefab { get; private set; }
 	}
 }

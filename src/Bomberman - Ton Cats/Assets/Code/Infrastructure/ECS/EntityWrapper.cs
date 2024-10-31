@@ -1,5 +1,7 @@
 ﻿using Extensions;
+using Feature.Destruction.Component;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Infrastructure.ECS
 {
@@ -32,6 +34,13 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
+		public EntityWrapper Remove<TComponent>()
+			where TComponent : struct
+		{
+			_world.Remove<TComponent>(_entity);
+			return this;
+		}
+
 		public ref TComponent Get<TComponent>()
 			where TComponent : struct =>
 			ref _world.Get<TComponent>(_entity);
@@ -48,6 +57,16 @@ namespace Infrastructure.ECS
 		{
 			ReplaceComponent<TComponent>();
 			return this;
+		}
+
+		public void Destroy()
+		{
+			Add<Destructed>();
+		}
+
+		public void DestroyImmediate()
+		{
+			_world.DestroyImmediate(_entity);
 		}
 	}
 }

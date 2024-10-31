@@ -1,7 +1,9 @@
 ﻿using Common.Component;
 using Extensions;
+using Feature.Bomb;
 using Feature.Bomb.Component;
 using Feature.Camera;
+using MapTile;
 using UnityEngine;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
 using Transform = UnityEngine.Transform;
@@ -89,10 +91,68 @@ namespace Infrastructure.ECS
 			position.Value = pos;
 		}
 
+		public Vector2 Direction()
+		{
+			ref var dir = ref Get<Direction>();
+			return dir.Value;
+		}
+
+		public void SetDirection(Vector2 dir)
+		{
+			ref var direction = ref Get<Direction>();
+			direction.Value = dir;
+		}
+
 		public void SetLifePoints(int value)
 		{
 			ref var health = ref Get<LifePoints>();
 			health.Value = value;
+		}
+
+		public IDestructible BlowUpDestructibleTile()
+		{
+			ref var blowUpDestructible = ref Get<BlowUpDestructible>();
+			return blowUpDestructible.Destructible;
+		}
+
+		public EExplosionPart ExplosionPart()
+		{
+			ref var explosionPart = ref Get<ExplosionPart>();
+			return explosionPart.Value;
+		}
+
+		public EntityWrapper AddExplosionPart(EExplosionPart part)
+		{
+			ref var explosionPart = ref AddComponent<ExplosionPart>();
+			explosionPart.Value = part;
+			return this;
+		}
+
+		public EntityWrapper AddBlowUpDestructible(IDestructible destructible)
+		{
+			ref var blowUpDestructible = ref AddComponent<BlowUpDestructible>();
+			blowUpDestructible.Destructible = destructible;
+			return this;
+		}
+
+		public EntityWrapper SetBlowUpDestructible(IDestructible destructible)
+		{
+			ref var blowUpDestructible = ref Get<BlowUpDestructible>();
+			blowUpDestructible.Destructible = destructible;
+			return this;
+		}
+
+		public Transform ForParent()
+		{
+			ref var forParent = ref Get<ForParent>();
+			return forParent.Value;
+		}
+
+		public EntityWrapper AddForParent(Transform parent)
+		{
+			ref var forParent = ref AddComponent<ForParent>();
+			forParent.Value = parent;
+			return this;
 		}
 	}
 }

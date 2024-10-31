@@ -15,8 +15,7 @@ namespace Feature.Bomb.System
 		[Inject] EntityWrapper _bomb;
 		[Inject] IExplosionFactory _explosionFactory;
 
-		readonly EcsFilterInject<
-			Inc<Component.Bomb, Explosion, Transform>> _filter;
+		readonly EcsFilterInject<Inc<Component.Bomb, Explosion, Transform>> _filter;
 
 		public void Run(IEcsSystems systems)
 		{

@@ -19,7 +19,9 @@ namespace Feature.Destruction.System
 			foreach (var e in _filter.Value)
 			{
 				_destroyed.SetEntity(e);
-				Object.Destroy(_destroyed.View().gameObject);
+				var view = _destroyed.View();
+				view.Dispose();
+				Object.Destroy(view.gameObject);
 			}
 		}
 	}

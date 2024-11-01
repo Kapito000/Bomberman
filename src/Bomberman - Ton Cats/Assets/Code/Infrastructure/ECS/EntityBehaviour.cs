@@ -1,4 +1,6 @@
-﻿using AB_Utility.FromSceneToEntityConverter;
+﻿using System;
+using AB_Utility.FromSceneToEntityConverter;
+using Common.Collisions;
 using Extensions;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -9,6 +11,7 @@ namespace Infrastructure.ECS
 	public class EntityBehaviour : MonoBehaviour, IEntityView
 	{
 		[Inject] EcsWorld _world;
+		[Inject] ICollisionRegistry _collisionRegistry;
 
 		EcsPackedEntity _packedEntity;
 
@@ -16,6 +19,7 @@ namespace Infrastructure.ECS
 		{
 			entity = _world.NewEntity();
 			SetEntity(entity);
+			RegisterColliders(entity);
 			ConvertConverters(_world, entity);
 			ResolveEntityDependant();
 		}
@@ -28,10 +32,22 @@ namespace Infrastructure.ECS
 			return true;
 		}
 
-		void SetEntity(int e)
+		public void Dispose()
 		{
-			_packedEntity = _world.PackEntity(e);
-			_world.AddView(e, this);
+			foreach (Collider2D collider2d in GetComponentsInChildren<Collider2D>(includeInactive: true)) 
+				_collisionRegistry.Unregister(collider2d.GetInstanceID());
+		}
+
+		void SetEntity(int entity)
+		{
+			_packedEntity = _world.PackEntity(entity);
+			_world.AddView(entity, this);
+		}
+
+		void RegisterColliders(int entity)
+		{
+			foreach (Collider2D collider2d in GetComponentsInChildren<Collider2D>(includeInactive: true))
+				_collisionRegistry.Register(collider2d.GetInstanceID(), entity);
 		}
 
 		void ConvertConverters(EcsWorld world, int entity)

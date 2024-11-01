@@ -4,6 +4,7 @@ using Factory.SystemFactory;
 using Feature.Bomb;
 using Feature.Camera;
 using Feature.Destruction;
+using Feature.Explosion;
 using Feature.Hero;
 using Feature.HUD;
 using Feature.Input;
@@ -22,6 +23,7 @@ namespace Feature
 			Add<InputFeature>();
 			Add<HeroFeature>();
 			Add<BombFeature>();
+			Add<ExplosionFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();

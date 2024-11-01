@@ -1,8 +1,8 @@
 ﻿using Common.Component;
 using Extensions;
 using Feature.Bomb.Component;
-using Feature.Bomb.Factory;
-using Feature.Destruction.Component;
+using Feature.Explosion.Component;
+using Feature.Explosion.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -10,7 +10,7 @@ using UnityEngine;
 using Zenject;
 using Transform = UnityEngine.Transform;
 
-namespace Feature.Bomb.System
+namespace Feature.Explosion.System
 {
 	public sealed class StartExplosionSystem : EcsSystem, IEcsRunSystem
 	{

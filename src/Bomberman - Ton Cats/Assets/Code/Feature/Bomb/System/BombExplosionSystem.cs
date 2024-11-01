@@ -1,6 +1,5 @@
-﻿using Feature.Bomb.Component;
-using Feature.Bomb.Factory;
-using Feature.Destruction.Component;
+﻿using Feature.Destruction.Component;
+using Feature.Explosion.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -15,7 +14,8 @@ namespace Feature.Bomb.System
 		[Inject] EntityWrapper _bomb;
 		[Inject] IExplosionFactory _explosionFactory;
 
-		readonly EcsFilterInject<Inc<Component.Bomb, Explosion, Transform>> _filter;
+		readonly EcsFilterInject<
+			Inc<Component.Bomb, Explosion.Component.Explosion, Transform>> _filter;
 
 		public void Run(IEcsSystems systems)
 		{

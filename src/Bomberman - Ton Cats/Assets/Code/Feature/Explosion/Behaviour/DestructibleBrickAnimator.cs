@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Feature.Bomb.Behaviour
+namespace Feature.Explosion.Behaviour
 {
 	public sealed class DestructibleBrickAnimator : MonoBehaviour
 	{

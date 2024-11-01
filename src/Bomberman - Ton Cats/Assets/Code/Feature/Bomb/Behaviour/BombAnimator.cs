@@ -1,5 +1,4 @@
-﻿using Feature.Bomb.Component;
-using Infrastructure.ECS;
+﻿using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
 
@@ -24,7 +23,7 @@ namespace Feature.Bomb.Behaviour
 				return;
 
 			_bomb.SetEntity(e);
-			_bomb.Add<Explosion>();
+			_bomb.Add<Explosion.Component.Explosion>();
 		}
 	}
 }

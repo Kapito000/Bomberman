@@ -1,7 +1,8 @@
 ﻿using Factory;
+using Feature.Bomb;
 using UnityEngine;
 
-namespace Feature.Bomb.Factory
+namespace Feature.Explosion.Factory
 {
 	public interface IExplosionFactory : IFactory
 	{

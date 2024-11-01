@@ -1,17 +1,17 @@
 ﻿using Common.Component;
 using Extensions;
 using Factory.Kit;
-using Feature.Bomb.Behaviour;
-using Feature.Bomb.Component;
+using Feature.Bomb;
+using Feature.Explosion.Behaviour;
+using Feature.Explosion.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
-using NotImplementedException = System.NotImplementedException;
 using Transform = UnityEngine.Transform;
 
-namespace Feature.Bomb.Factory
+namespace Feature.Explosion.Factory
 {
 	public sealed class ExplosionFactory : IExplosionFactory
 	{
@@ -77,7 +77,7 @@ namespace Feature.Bomb.Factory
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			_explosion.SetEntity(entity);
 			_explosion
-				.Add<Explosion>()
+				.Add<Component.Explosion>()
 				.Add<FirstBreath>()
 				;
 			return entity;

@@ -12,11 +12,4 @@ namespace Feature.Bomb.Component
 	public struct PutBombRequest { }
 	[Serializable]
 	public struct BombAnimatorComponent { public BombAnimator Value; }
-	public struct Explosion { }
-	public struct ExplosionRequest { }
-	public struct CreateExplosionRequest { }
-	public struct BlowUpDestructible { public IDestructible Destructible; }
-	public struct DestructibleTileCellPos { public Vector3Int Value; }
-	public struct ExplosionPart { public Feature.Bomb.EExplosionPart Value; }
-	public struct ExplosionCenter { }
 }

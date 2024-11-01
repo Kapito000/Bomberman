@@ -1,10 +1,10 @@
-﻿using Feature.Bomb.Component;
+﻿using Feature.Explosion.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Feature.Bomb.System
+namespace Feature.Explosion.System
 {
 	public sealed class CreateExplosionRequestCleanupSystem : IEcsRunSystem
 	{

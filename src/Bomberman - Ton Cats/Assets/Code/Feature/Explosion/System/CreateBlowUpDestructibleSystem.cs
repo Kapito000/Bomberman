@@ -1,13 +1,13 @@
 ﻿using Common.Component;
-using Feature.Bomb.Component;
-using Feature.Bomb.Factory;
+using Feature.Explosion.Component;
+using Feature.Explosion.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine.Tilemaps;
 using Zenject;
 
-namespace Feature.Bomb.System
+namespace Feature.Explosion.System
 {
 	public sealed class CreateBlowUpDestructibleSystem : IEcsRunSystem
 	{

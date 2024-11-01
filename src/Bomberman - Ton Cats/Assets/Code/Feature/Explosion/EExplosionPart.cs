@@ -1,4 +1,4 @@
-﻿namespace Feature.Bomb
+﻿namespace Feature.Explosion
 {
 	public enum EExplosionPart
 	{

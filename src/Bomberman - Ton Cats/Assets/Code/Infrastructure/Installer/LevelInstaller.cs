@@ -4,6 +4,7 @@ using Factory.SystemFactory;
 using Feature;
 using Feature.Bomb.Factory;
 using Feature.Camera.Factory;
+using Feature.Explosion.Factory;
 using Feature.Hero.Factory;
 using Feature.HUD.Factory;
 using Feature.UI.Factory;

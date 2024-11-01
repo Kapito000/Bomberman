@@ -1,18 +1,18 @@
 ﻿using Common.Component;
-using Feature.Bomb.Component;
-using Feature.Bomb.Factory;
+using Feature.Explosion.Component;
+using Feature.Explosion.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Feature.Bomb.System
+namespace Feature.Explosion.System
 {
-	public sealed class CreateExplosionPartSystem : IEcsRunSystem
+	public sealed class CreateExplosionCenterSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-			Inc<CreateExplosionRequest, Position, Direction, ExplosionPart,
-				ForParent>> _requestFilter;
+				Inc<CreateExplosionRequest, ExplosionCenter, Position, ForParent>>
+			_requestFilter;
 
 		[Inject] EntityWrapper _request;
 		[Inject] IExplosionFactory _explosionFactory;
@@ -24,10 +24,8 @@ namespace Feature.Bomb.System
 				_request.SetEntity(request);
 
 				var pos = _request.Position();
-				var dir = _request.Direction();
 				var parent = _request.ForParent();
-				var part = _request.ExplosionPart();
-				_explosionFactory.CreateExplosionPart(pos, dir, parent, part);
+				_explosionFactory.CreateExplosionCenter(pos, parent);
 			}
 		}
 	}

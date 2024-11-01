@@ -1,5 +1,5 @@
 ﻿using Common.Component;
-using Feature.Bomb.Component;
+using Feature.Explosion.Component;
 using Infrastructure.ECS;
 using InstantiateService;
 using Leopotam.EcsLite;
@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
 
-namespace Feature.Bomb.System
+namespace Feature.Explosion.System
 {
 	public sealed class ScanExplosionAreaSystem : IEcsRunSystem
 	{

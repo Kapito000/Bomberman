@@ -3,7 +3,7 @@ using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
 
-namespace Feature.Bomb.Behaviour
+namespace Feature.Explosion.Behaviour
 {
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(Animator))]

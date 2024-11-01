@@ -1,7 +1,6 @@
-﻿using System;
-using AB_Utility.FromSceneToEntityConverter;
-using Common.Collisions;
+﻿using AB_Utility.FromSceneToEntityConverter;
 using Extensions;
+using Gameplay.Collisions;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;

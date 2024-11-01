@@ -3,7 +3,7 @@ using Leopotam.EcsLite;
 using Zenject;
 using int_instanceId = System.Int32;
 
-namespace Common.Collisions
+namespace Gameplay.Collisions
 {
 	public class CollisionRegistry : ICollisionRegistry
 	{

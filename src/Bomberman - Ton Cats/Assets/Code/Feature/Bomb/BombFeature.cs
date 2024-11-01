@@ -8,6 +8,7 @@ namespace Feature.Bomb
 		public BombFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateBombParentSystem>();
+			
 			AddUpdate<PutBombSystem>();
 			AddUpdate<BombExplosionSystem>();
 			AddUpdate<StartExplosionSystem>();
@@ -15,6 +16,7 @@ namespace Feature.Bomb
 			AddUpdate<CreateBlowUpDestructibleSystem>();
 			AddUpdate<CreateExplosionCenterSystem>();
 			AddUpdate<CreateExplosionPartSystem>();
+			
 			AddCleanup<CreateExplosionRequestCleanupSystem>(); 
 		}
 	}

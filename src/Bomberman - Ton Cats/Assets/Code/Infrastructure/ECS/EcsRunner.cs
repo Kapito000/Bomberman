@@ -23,6 +23,7 @@ namespace Infrastructure.ECS
 			_supprotiveSystems = new EcsSystems(_world);
 			_supprotiveSystems
 #if UNITY_EDITOR
+				// .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 				.Add(new EcsWorldDebugSystem(null, new NameSettings(true)))
 #endif
 				.ConvertScene()

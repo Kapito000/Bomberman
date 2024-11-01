@@ -1,5 +1,4 @@
-﻿using Factory;
-using Feature.Hero.StaticData;
+﻿using Feature.Hero.StaticData;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;

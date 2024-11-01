@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using AB_Utility.FromSceneToEntityConverter;
+using Extensions;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
@@ -11,10 +12,12 @@ namespace Infrastructure.ECS
 
 		EcsPackedEntity _packedEntity;
 
-		public void SetEntity(int e)
+		public void AddToEcs(out int entity)
 		{
-			_packedEntity = _world.PackEntity(e);
-			_world.AddView(e, this);
+			entity = _world.NewEntity();
+			SetEntity(entity);
+			ConvertConverters(_world, entity);
+			ResolveEntityDependant();
 		}
 
 		public bool TryGetEntity(out int entity)
@@ -23,6 +26,42 @@ namespace Infrastructure.ECS
 				return false;
 
 			return true;
+		}
+
+		void SetEntity(int e)
+		{
+			_packedEntity = _world.PackEntity(e);
+			_world.AddView(e, this);
+		}
+
+		void ConvertConverters(EcsWorld world, int entity)
+		{
+			if (false == TryGetComponent<ComponentsContainer>(out var container))
+				return;
+
+			var destroyAfterConversion = container.DestroyAfterConversion;
+			var packedEntity = world.PackEntityWithWorld(entity);
+
+			for (int j = 0; j < container.Converters.Length; j++)
+			{
+				var converter = container.Converters[j];
+				converter.Convert(packedEntity);
+
+				if (destroyAfterConversion)
+					Destroy(converter);
+			}
+
+			if (destroyAfterConversion)
+				Destroy(container);
+		}
+
+		void ResolveEntityDependant()
+		{
+			var dependants = GetComponents<EntityDependantBehavior>();
+			foreach (var dependant in dependants)
+			{
+				dependant.Init(this);
+			}
 		}
 	}
 }

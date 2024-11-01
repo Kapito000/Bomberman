@@ -1,5 +1,4 @@
-﻿using Extensions;
-using Infrastructure.ECS;
+﻿using Infrastructure.ECS;
 using InstantiateService;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -17,8 +16,7 @@ namespace Factory.EntityBehaviourFactory
 			if (!obj.TryGetComponent<EntityBehaviour>(out var entityBehaviour))
 				entityBehaviour = _instantiateService.AddComponent<EntityBehaviour>(obj);
 
-			_world.AddToEcs(entityBehaviour, out var entity);
-
+			entityBehaviour.AddToEcs(out var entity);
 			return entity;
 		}
 	}

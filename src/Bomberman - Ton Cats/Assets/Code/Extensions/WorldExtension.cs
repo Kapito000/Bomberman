@@ -10,15 +10,6 @@ namespace Extensions
 {
 	public static class WorldExtension
 	{
-		public static void AddToEcs(this EcsWorld world, EntityBehaviour behaviour,
-			out int entity)
-		{
-			entity = world.NewEntity();
-			behaviour.SetEntity(entity);
-			behaviour.ConvertConverters(world, entity);
-			behaviour.ResolveEntityDependant();
-		}
-
 		public static void AddView(this EcsWorld world, int e,
 			IEntityView entityView)
 		{

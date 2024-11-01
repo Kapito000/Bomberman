@@ -4,9 +4,9 @@ namespace Infrastructure.ECS
 {
 	public abstract class EntityDependantBehavior : MonoBehaviour
 	{
-		EntityBehaviour _entityView;
+		IEntityView _entityView;
 
-		public void Init(EntityBehaviour entityView) =>
+		public void Init(IEntityView entityView) =>
 			_entityView = entityView;
 
 		protected bool TryGetEntity(out int entity) =>

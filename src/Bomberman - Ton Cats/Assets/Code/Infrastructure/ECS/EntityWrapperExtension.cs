@@ -4,6 +4,7 @@ using Feature.Bomb.Component;
 using Feature.Camera;
 using Feature.Explosion;
 using Feature.Explosion.Component;
+using Leopotam.EcsLite;
 using MapTile;
 using UnityEngine;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
@@ -13,6 +14,8 @@ namespace Infrastructure.ECS
 {
 	public partial class EntityWrapper
 	{
+		public EcsWorld World() => _world;
+
 		public Transform Transform() =>
 			_world.Transform(_entity);
 
@@ -104,7 +107,7 @@ namespace Infrastructure.ECS
 			direction.Value = dir;
 			return this;
 		}
-		
+
 		public void SetDirection(Vector2 dir)
 		{
 			ref var direction = ref Get<Direction>();
@@ -148,7 +151,7 @@ namespace Infrastructure.ECS
 			ref var destructibleTile = ref Get<DestructibleTileCellPos>();
 			return destructibleTile.Value;
 		}
-		
+
 		public EntityWrapper AddDestructibleTileCellPos(Vector3Int cellPos)
 		{
 			ref var destructibleTilePos = ref AddComponent<DestructibleTileCellPos>();

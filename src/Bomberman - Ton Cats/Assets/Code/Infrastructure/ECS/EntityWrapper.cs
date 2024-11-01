@@ -8,7 +8,7 @@ namespace Infrastructure.ECS
 	public partial class EntityWrapper
 	{
 		int _entity;
-		EcsWorld _world;
+		readonly EcsWorld _world;
 
 		public EntityWrapper(EcsWorld world)
 		{
@@ -57,6 +57,11 @@ namespace Infrastructure.ECS
 		{
 			ReplaceComponent<TComponent>();
 			return this;
+		}
+
+		public bool Has<TComponent>() where TComponent : struct
+		{
+			return _world.Has<TComponent>(_entity);
 		}
 
 		public void Destroy()

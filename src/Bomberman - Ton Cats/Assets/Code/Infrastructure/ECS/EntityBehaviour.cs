@@ -26,7 +26,10 @@ namespace Infrastructure.ECS
 		public bool TryGetEntity(out int entity)
 		{
 			if (_packedEntity.Unpack(_world, out entity) == false)
+			{
+				Debug.LogError($"Cannot to get entity: {entity}.");
 				return false;
+			}
 
 			return true;
 		}

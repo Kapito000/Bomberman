@@ -1,4 +1,5 @@
-﻿using Factory.EntityBehaviourFactory;
+﻿using Common.Collisions;
+using Factory.EntityBehaviourFactory;
 using Factory.Kit;
 using Factory.SystemFactory;
 using Feature;
@@ -39,6 +40,7 @@ namespace Infrastructure.Installer
 			BindInstantiator();
 			BindSystemFactory();
 			BindDevSceneRunner();
+			BindCollisionRegistry();
 			BindFeatureController();
 		}
 
@@ -52,6 +54,11 @@ namespace Infrastructure.Installer
 		{
 			_levelData.EcsRunner = _ecsRunner;
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
+		}
+
+		void BindCollisionRegistry()
+		{
+			Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
 		}
 
 		void BindTileMap()

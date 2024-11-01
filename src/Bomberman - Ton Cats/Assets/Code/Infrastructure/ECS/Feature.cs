@@ -46,9 +46,11 @@ namespace Infrastructure.ECS
 
 		public void Dispose()
 		{
+			DestroySystems(ref _initSystems);
 			DestroySystems(ref _updateSystem);
 			DestroySystems(ref _fixedUpdateSystem);
 			DestroySystems(ref _lateUpdateSystem);
+			DestroySystems(ref _cleanupSystem);
 		}
 
 		protected void AddInit<TSystem>() where TSystem : class, IEcsInitSystem =>

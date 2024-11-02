@@ -2,7 +2,7 @@
 using Extensions;
 using Feature.Bomb.Component;
 using Feature.Camera;
-using Feature.Damage.Component;
+using Feature.DamageApplication.Component;
 using Feature.Explosion;
 using Feature.Explosion.Component;
 using Leopotam.EcsLite;
@@ -115,10 +115,17 @@ namespace Infrastructure.ECS
 			direction.Value = dir;
 		}
 
-		public void SetLifePoints(int value)
+		public int LifePoints()
+		{
+			ref var health = ref Get<LifePoints>();
+			return health.Value;
+		}
+
+		public EntityWrapper SetLifePoints(int value)
 		{
 			ref var health = ref Get<LifePoints>();
 			health.Value = value;
+			return this;
 		}
 
 		public IDestructible BlowUpDestructibleTile()
@@ -179,11 +186,36 @@ namespace Infrastructure.ECS
 			forParent.Value = parent;
 			return this;
 		}
-		
+
+		public int Damage()
+		{
+			ref var damage = ref Get<Damage>();
+			return damage.Value;
+		}
+
+		public EntityWrapper ReplaceDamage(int value)
+		{
+			ref var damage = ref ReplaceComponent<Damage>();
+			damage.Value = value;
+			return this;
+		}
+
 		public EntityWrapper AppendDamage(int value)
 		{
 			ref var damage = ref ReplaceComponent<Damage>();
 			damage.Value += value;
+			return this;
+		}
+
+		public EntityWrapper SubtractDamage(int value)
+		{
+			if (Has<Damage>() == false)
+				return this;
+			ref var damage = ref Get<Damage>();
+			damage.Value -= value;
+
+			if (damage.Value <= 0)
+				Remove<Damage>();
 			return this;
 		}
 	}

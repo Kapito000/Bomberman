@@ -15,4 +15,5 @@ namespace Feature.Explosion.Component
 	public struct TargetsBufferIncrementRequest { public List<int> Value; }
 	public struct TargetsBufferDecrementRequest { public List<int> Value; }
 	public struct TargetsBuffer { public List<EcsPackedEntityWithWorld> Value; }
+	public struct ExplodedTargetsBuffer { public List<EcsPackedEntityWithWorld> Value; }
 }

@@ -2,6 +2,7 @@
 using Extensions;
 using Feature.Bomb.Component;
 using Feature.Camera;
+using Feature.Damage.Component;
 using Feature.Explosion;
 using Feature.Explosion.Component;
 using Leopotam.EcsLite;
@@ -176,6 +177,13 @@ namespace Infrastructure.ECS
 		{
 			ref var forParent = ref AddComponent<ForParent>();
 			forParent.Value = parent;
+			return this;
+		}
+		
+		public EntityWrapper AppendDamage(int value)
+		{
+			ref var damage = ref ReplaceComponent<Damage>();
+			damage.Value += value;
 			return this;
 		}
 	}

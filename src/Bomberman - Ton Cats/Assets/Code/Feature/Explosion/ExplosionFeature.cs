@@ -14,7 +14,7 @@ namespace Feature.Explosion
 			AddUpdate<CreateExplosionPartSystem>();
 			AddUpdate<AddToTargetBufferSystem>();
 			AddUpdate<RemoveFromTargetBufferSystem>();
-			AddUpdate<DebugSystem>();
+			AddUpdate<ExplosionDamageSystem>();
 			
 			AddCleanup<CreateExplosionRequestCleanupSystem>();
 		}

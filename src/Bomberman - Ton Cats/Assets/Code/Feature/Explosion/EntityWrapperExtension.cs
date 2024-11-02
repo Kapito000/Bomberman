@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Extensions;
 using Feature.Explosion.Component;
 using Infrastructure.ECS;
@@ -91,6 +90,41 @@ namespace Feature.Explosion
 				}
 			}
 			return e;
+		}
+
+		public static List<EcsPackedEntityWithWorld> ExplodedTargetsBuffer(
+			this EntityWrapper e)
+		{
+			ref var explodedTargetsBuffer = ref e.Get<ExplodedTargetsBuffer>();
+			return explodedTargetsBuffer.Value;
+		}
+
+		public static EntityWrapper ReplaceExplodedTargetsBuffer(
+			this EntityWrapper e, int otherEntity)
+		{
+			ref var buffer = ref e.ReplaceComponent<ExplodedTargetsBuffer>();
+			buffer.Value ??= new List<EcsPackedEntityWithWorld>();
+
+			if (e.HasInExplodedTargetBuffer(otherEntity))
+				return e;
+
+			var newPackedOther = e.World().PackEntityWithWorld(otherEntity);
+			buffer.Value.Add(newPackedOther);
+			return e;
+		}
+
+		public static bool HasInExplodedTargetBuffer(this EntityWrapper e,
+			int otherEntity)
+		{
+			var buffer = e.ExplodedTargetsBuffer();
+			foreach (var pack in buffer)
+			{
+				if (pack.Unpack(out var bufferedEntity) &&
+				    bufferedEntity == otherEntity)
+					return true;
+			}
+
+			return false;
 		}
 	}
 }

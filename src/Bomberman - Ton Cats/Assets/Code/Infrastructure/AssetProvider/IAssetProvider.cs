@@ -17,5 +17,6 @@ namespace Infrastructure.AssetProvider
 		GameObject PutBombButton();
 		EventSystem EventSystem();
 		GameObject Explosion();
+		GameObject UpperPanel();
 	}
 }

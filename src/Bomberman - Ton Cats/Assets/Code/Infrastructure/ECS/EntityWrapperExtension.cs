@@ -20,6 +20,12 @@ namespace Infrastructure.ECS
 		public Transform Transform() =>
 			_world.Transform(_entity);
 
+		public void AddTransform(Transform transform)
+		{
+			ref var transformComponent = ref AddComponent<TransformComponent>();
+			transformComponent.Value = transform;
+		}
+		
 		public Vector3 TransformPos() =>
 			_world.TransformPos(_entity);
 

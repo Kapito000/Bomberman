@@ -1,11 +1,11 @@
-﻿using Feature.Destruction.Component;
+﻿using Common.Component;
+using Feature.Destruction.Component;
 using Feature.Explosion.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 using Zenject;
-using Transform = Common.Component.Transform;
 
 namespace Feature.Bomb.System
 {
@@ -15,7 +15,7 @@ namespace Feature.Bomb.System
 		[Inject] IExplosionFactory _explosionFactory;
 
 		readonly EcsFilterInject<
-			Inc<Component.Bomb, Explosion.Component.Explosion, Transform>> _filter;
+			Inc<Component.Bomb, Explosion.Component.Explosion, TransformComponent>> _filter;
 
 		public void Run(IEcsSystems systems)
 		{

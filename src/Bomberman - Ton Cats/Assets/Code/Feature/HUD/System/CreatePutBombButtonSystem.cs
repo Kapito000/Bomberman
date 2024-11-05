@@ -13,7 +13,7 @@ namespace Feature.HUD.System
 		[Inject] IHudFactory _hudFactory;
 		[Inject] EntityWrapper _hudRoot;
 		
-		readonly EcsFilterInject<Inc<HudRoot, Transform>> _filter;
+		readonly EcsFilterInject<Inc<HudRoot, TransformComponent>> _filter;
 
 		public void Init(IEcsSystems systems)
 		{

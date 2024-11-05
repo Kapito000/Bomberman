@@ -4,7 +4,6 @@ using Feature.Camera.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using UnityEngine;
-using Transform = Common.Component.Transform;
 
 namespace Extensions
 {
@@ -17,22 +16,22 @@ namespace Extensions
 			view.Value = entityView;
 		}
 
-		public static UnityEngine.Transform Transform(this EcsWorld world, int e)
+		public static Transform Transform(this EcsWorld world, int e)
 		{
-			ref var transform = ref world.GetPool<Transform>().Get(e);
+			ref var transform = ref world.GetPool<TransformComponent>().Get(e);
 			return transform.Value;
 		}
 
 		public static Vector3 TransformPos(this EcsWorld world, int e)
 		{
-			ref var transform = ref world.GetPool<Transform>().Get(e);
+			ref var transform = ref world.GetPool<TransformComponent>().Get(e);
 			return transform.Value.position;
 		}
 
 		public static void SetTransform(this EcsWorld world, int e,
-			UnityEngine.Transform transform)
+			Transform transform)
 		{
-			ref var transformComponent = ref world.GetPool<Transform>().Get(e);
+			ref var transformComponent = ref world.GetPool<TransformComponent>().Get(e);
 			transformComponent.Value = transform;
 		}
 

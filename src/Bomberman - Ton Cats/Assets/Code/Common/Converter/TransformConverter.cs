@@ -3,6 +3,6 @@ using Infrastructure.ECS;
 
 namespace Common.Converter
 {
-	public sealed class TransformConverter : Converter<Transform>
+	public sealed class TransformConverter : Converter<TransformComponent>
 	{ }
 }

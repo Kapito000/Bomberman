@@ -8,5 +8,6 @@ namespace Feature.HUD.Factory
 		int CreateHudRoot(Transform parent);
 		int CreateCharacterJoystick(Transform parent);
 		int CreatePutBombButton(Transform parent);
+		int CreateUpperPanel(Transform parent);
 	}
 }

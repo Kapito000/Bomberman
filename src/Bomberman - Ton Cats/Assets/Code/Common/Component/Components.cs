@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Common.Component
 {
-	[Serializable] public struct Transform { public UnityEngine.Transform Value; }
+	[Serializable] public struct TransformComponent { public Transform Value; }
 	[Serializable] public struct Rigidbody2D { public UnityEngine.Rigidbody2D Value; }
 	
 	public struct View { public IEntityView Value; }
@@ -15,5 +15,5 @@ namespace Common.Component
 	public struct Direction { public Vector2 Value; }
 	public struct LifePoints { public int Value; }
 	public struct FirstBreath { }
-	public struct ForParent { public UnityEngine.Transform Value; }
+	public struct ForParent { public Transform Value; }
 }

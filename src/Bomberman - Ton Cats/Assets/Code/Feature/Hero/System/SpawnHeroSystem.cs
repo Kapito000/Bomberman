@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using Common.Component;
+using Extensions;
 using Feature.Hero.Component;
 using Feature.Hero.Factory;
 using Feature.Hero.StaticData;
@@ -8,7 +9,6 @@ using Leopotam.EcsLite.Di;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
-using Transform = Common.Component.Transform;
 
 namespace Feature.Hero.System
 {
@@ -17,7 +17,7 @@ namespace Feature.Hero.System
 		[Inject] IHeroData _heroData;
 		[Inject] IHeroFactory _heroFactory;
 
-		readonly EcsFilterInject<Inc<HeroSpawnPoint, Transform>> _filter;
+		readonly EcsFilterInject<Inc<HeroSpawnPoint, TransformComponent>> _filter;
 
 		public void Init(IEcsSystems systems)
 		{

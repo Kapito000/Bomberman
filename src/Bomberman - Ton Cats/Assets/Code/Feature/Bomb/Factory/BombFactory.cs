@@ -32,7 +32,7 @@ namespace Feature.Bomb.Factory
 			_bombParent.SetEntity(entity);
 			_bombParent
 				.Add<BombParent>()
-				.Add<Common.Component.Transform>().With(e => e.SetTransform(instance.transform))
+				.Add<Common.Component.TransformComponent>().With(e => e.SetTransform(instance.transform))
 				;
 			return entity;
 		}

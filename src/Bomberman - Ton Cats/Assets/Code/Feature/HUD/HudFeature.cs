@@ -8,6 +8,7 @@ namespace Feature.HUD
 		public HudFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateHudRootSystem>();
+			AddInit<CreateUpperPanelSystem>();
 			AddInit<CreateCharacterMovementJoystickSystem>();
 			AddInit<CreatePutBombButtonSystem>();
 		}

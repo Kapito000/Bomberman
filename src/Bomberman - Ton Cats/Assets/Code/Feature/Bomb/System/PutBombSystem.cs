@@ -1,4 +1,5 @@
-﻿using Feature.Bomb.Component;
+﻿using Common.Component;
+using Feature.Bomb.Component;
 using Feature.Bomb.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
@@ -6,16 +7,15 @@ using Leopotam.EcsLite.Di;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
-using Transform = Common.Component.Transform;
 
 namespace Feature.Bomb.System
 {
 	public sealed class PutBombSystem : EcsSystem, IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-				Inc<BombCarrier, BombNumber, PutBombRequest, Transform>>
+				Inc<BombCarrier, BombNumber, PutBombRequest, TransformComponent>>
 			_bombCarrierFilter;
-		readonly EcsFilterInject<Inc<BombParent, Transform>> _bombParentFilter;
+		readonly EcsFilterInject<Inc<BombParent, TransformComponent>> _bombParentFilter;
 
 		[Inject] Tilemap _tilemap;
 		[Inject] IBombFactory _bombFactory;

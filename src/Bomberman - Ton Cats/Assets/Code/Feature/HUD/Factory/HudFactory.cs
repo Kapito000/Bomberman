@@ -1,9 +1,10 @@
-﻿using Extensions;
+﻿using Common.Component;
+using Extensions;
 using Factory.Kit;
 using Feature.HUD.Component;
 using Infrastructure.ECS;
 using Zenject;
-using Transform = UnityEngine.Transform;
+using UnityEngine;
 
 namespace Feature.HUD.Factory
 {
@@ -11,6 +12,7 @@ namespace Feature.HUD.Factory
 	{
 		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _hudRootEntity;
+		[Inject] EntityWrapper _entity;
 
 		public int CreateHudRoot(Transform parent)
 		{
@@ -22,7 +24,7 @@ namespace Feature.HUD.Factory
 			var transform = instance.GetComponent<Transform>();
 			_hudRootEntity
 				.Add<HudRoot>()
-				.Add<Common.Component.Transform>().With(e => e.SetTransform(transform))
+				.Add<TransformComponent>().With(e => e.SetTransform(transform))
 				;
 			return entity;
 		}
@@ -43,6 +45,19 @@ namespace Feature.HUD.Factory
 			var instance = _kit.InstantiateService.Instantiate(prefab, parent);
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			return entity;
+		}
+		
+		public int CreateUpperPanel(Transform parent)
+		{
+			var prefab = _kit.AssetProvider.UpperPanel();
+			var instance = _kit.InstantiateService.Instantiate(prefab, parent);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			_entity.SetEntity(e);
+			_entity
+				.Add<UpperPanel>()
+				.AddTransform(instance.transform);
+				;
+			return e;
 		}
 	}
 }

@@ -1,7 +1,5 @@
-﻿using Common;
-using Common.Component;
+﻿using Common.Component;
 using Feature.HUD.Factory;
-using Feature.UI;
 using Feature.UI.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
@@ -15,7 +13,7 @@ namespace Feature.HUD.System
 		[Inject] IHudFactory _hudFactory;
 		[Inject] EntityWrapper _uiRootEntity;
 
-		readonly EcsFilterInject<Inc<UiRoot, Transform>> _filter;
+		readonly EcsFilterInject<Inc<UiRoot, TransformComponent>> _filter;
 
 		public void Init(IEcsSystems systems)
 		{

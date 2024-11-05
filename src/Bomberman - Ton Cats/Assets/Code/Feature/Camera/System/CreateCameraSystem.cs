@@ -13,7 +13,7 @@ namespace Feature.Camera.System
 	{
 		[Inject] ICameraFactory _cameraFactory;
 
-		readonly EcsFilterInject<Inc<Hero.Component.Hero, Transform>> _filter;
+		readonly EcsFilterInject<Inc<Hero.Component.Hero, TransformComponent>> _filter;
 
 		public void Init(IEcsSystems systems)
 		{

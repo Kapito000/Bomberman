@@ -21,7 +21,7 @@ namespace Feature.Explosion.System
 
 		readonly EcsFilterInject<Inc<ExplosionRequest, Position>> _filter;
 		readonly EcsFilterInject<
-			Inc<BombParent, Common.Component.Transform>> _bombParentFilter;
+			Inc<BombParent, Common.Component.TransformComponent>> _bombParentFilter;
 
 		public void Run(IEcsSystems systems)
 		{

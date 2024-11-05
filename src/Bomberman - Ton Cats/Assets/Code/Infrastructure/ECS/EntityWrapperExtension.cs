@@ -240,5 +240,18 @@ namespace Infrastructure.ECS
 			lifePointsPanel.Value = value;
 			return this;
 		}
+
+		public BombCounterPanel BombCounterPanel()
+		{
+			ref var bombCounterPanel = ref Get<BombCounterPanelComponent>();
+			return bombCounterPanel.Value;
+		}
+
+		public EntityWrapper AddBombCounterPanel(BombCounterPanel value)
+		{
+			ref var bombCounterPanel = ref AddComponent<BombCounterPanelComponent>();
+			bombCounterPanel.Value = value;
+			return this;
+		}
 	}
 }

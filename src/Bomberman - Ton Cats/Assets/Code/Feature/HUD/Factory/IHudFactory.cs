@@ -10,5 +10,6 @@ namespace Feature.HUD.Factory
 		void CreatePutBombButton(Transform parent);
 		int CreateUpperPanel(Transform parent);
 		int CreateLifePointsPanel(Transform parent);
+		int CreateBombCounterPanel(Transform parent);
 	}
 }

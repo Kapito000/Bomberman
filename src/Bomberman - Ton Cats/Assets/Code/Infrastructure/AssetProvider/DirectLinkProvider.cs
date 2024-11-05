@@ -25,6 +25,7 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _putBombButton;
 		[SerializeField] GameObject _characterJoystick;
 		[SerializeField] LifePointsPanel _lifePointsPanel;
+		[SerializeField] BombCounterPanel _bombCounterPanel;
 
 		public Camera Camera() => _camera;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
@@ -38,5 +39,6 @@ namespace Infrastructure.AssetProvider
 		public GameObject Explosion() => _explosion;
 		public GameObject UpperPanel() => _upperPanel;
 		public LifePointsPanel LifePointsPanel() => _lifePointsPanel;
+		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
 	}
 }

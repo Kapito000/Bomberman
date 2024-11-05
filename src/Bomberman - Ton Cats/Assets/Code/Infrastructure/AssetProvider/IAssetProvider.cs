@@ -20,5 +20,6 @@ namespace Infrastructure.AssetProvider
 		GameObject Explosion();
 		GameObject UpperPanel();
 		LifePointsPanel LifePointsPanel();
+		BombCounterPanel BombCounterPanel();
 	}
 }

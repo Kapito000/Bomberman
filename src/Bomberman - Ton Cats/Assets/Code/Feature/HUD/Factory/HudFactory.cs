@@ -6,6 +6,7 @@ using Feature.HUD.Component;
 using Infrastructure.ECS;
 using Zenject;
 using UnityEngine;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Feature.HUD.Factory
 {
@@ -68,6 +69,22 @@ namespace Feature.HUD.Factory
 				.AddTransform(instance.transform)
 				.AddLifePointsPanel(instance)
 				;
+			return e;
+		}
+
+		public int CreateBombCounterPanel(Transform parent)
+		{
+			var prefab = _kit.AssetProvider.BombCounterPanel();
+			var instance = _kit.InstantiateService
+				.Instantiate<BombCounterPanel>(prefab, parent);
+			var e = _kit.EntityBehaviourFactory
+				.InitEntityBehaviour(instance.gameObject);
+			_entity.SetEntity(e);
+			_entity
+				.AddTransform(instance.transform)
+				.AddBombCounterPanel(instance)
+				;
+
 			return e;
 		}
 	}

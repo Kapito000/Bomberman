@@ -9,21 +9,21 @@ namespace Feature.UI.Factory
 	public sealed class UiFactory : IUiFactory
 	{
 		[Inject] IFactoryKit _factoryKit;
-		[Inject] EntityWrapper _rootEntity;
-		[Inject] EntityWrapper _uiRootEntity;
+		[Inject] EntityWrapper _entity;
 
 		public int CreateRootCanvas()
 		{
 			var prefab = _factoryKit.AssetProvider.UiRoot();
-			var rootInstance = _factoryKit.InstantiateService.Instantiate(prefab);
+			var instance = _factoryKit.InstantiateService.Instantiate(prefab);
 			var entity = _factoryKit.EntityBehaviourFactory
-				.InitEntityBehaviour(rootInstance);
+				.InitEntityBehaviour(instance);
+			_entity.SetEntity(entity);
 
-			var transform = rootInstance.GetComponent<Transform>();
-			_uiRootEntity
+			var transform = instance.GetComponent<Transform>();
+			_entity
 				.Add<UiRoot>()
-				.SetTransform(transform);
-				;
+				.AddTransform(transform);
+			;
 
 			return entity;
 		}

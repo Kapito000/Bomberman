@@ -18,9 +18,11 @@ namespace Infrastructure.AssetProvider
 		[Header("UI")]
 		[SerializeField] Canvas _root;
 		[SerializeField] EventSystem _eventSystem;
+		[Header("HUD")]
 		[SerializeField] Canvas _hudRoot;
-		[SerializeField] GameObject _characterJoystick;
+		[SerializeField] GameObject _upperPanel;
 		[SerializeField] GameObject _putBombButton;
+		[SerializeField] GameObject _characterJoystick;
 
 		public Camera Camera() => _camera;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
@@ -32,5 +34,6 @@ namespace Infrastructure.AssetProvider
 		public GameObject PutBombButton() => _putBombButton;
 		public EventSystem EventSystem() => _eventSystem;
 		public GameObject Explosion() => _explosion;
+		public GameObject UpperPanel() => _upperPanel;
 	}
 }

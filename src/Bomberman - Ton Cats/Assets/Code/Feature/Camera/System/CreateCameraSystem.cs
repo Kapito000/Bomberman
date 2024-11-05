@@ -19,7 +19,7 @@ namespace Feature.Camera.System
 		{
 			foreach (var heroEntity in _filter.Value)
 			{
-				var cameraEntity = _cameraFactory.CreateCamera();
+				_cameraFactory.CreateCamera();
 
 				var heroTransform = _world.Transform(heroEntity);
 				var virtualCameraEntity = _cameraFactory.CreateVirtualCamera(heroTransform);

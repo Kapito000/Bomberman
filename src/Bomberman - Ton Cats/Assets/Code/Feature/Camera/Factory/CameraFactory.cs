@@ -14,13 +14,10 @@ namespace Feature.Camera.Factory
 		[Inject] IEntityBehaviourFactory _entityBehaviourFactory;
 		[Inject] EntityWrapper _vCameraEntity;
 
-		public int CreateCamera()
+		public void CreateCamera()
 		{
 			var cameraPrefab = _assetProvider.Camera();
 			var cameraInstance = _instantiateService.Instantiate(cameraPrefab);
-			var entity =
-				_entityBehaviourFactory.InitEntityBehaviour(cameraInstance);
-			return entity;
 		}
 
 		public int CreateVirtualCamera(Transform followTarget)

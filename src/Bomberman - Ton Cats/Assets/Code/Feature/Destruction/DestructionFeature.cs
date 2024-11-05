@@ -8,6 +8,9 @@ namespace Feature.Destruction
 		public DestructionFeature(ISystemFactory systemFactory) : base(
 			systemFactory)
 		{
+#if UNITY_EDITOR
+			// AddInit<ShowViewNamesInConsoleSystem>();
+#endif
 			AddCleanup<CommonCleanupSystem>();
 			AddCleanup<DestructionViewSystem>();
 			AddCleanup<DestructionSystem>();

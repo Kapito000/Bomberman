@@ -5,7 +5,7 @@ namespace Feature.Camera.Factory
 {
 	public interface ICameraFactory : IFactory
 	{
-		int CreateCamera();
+		void CreateCamera();
 		int CreateVirtualCamera(Transform followTarget);
 	}
 }

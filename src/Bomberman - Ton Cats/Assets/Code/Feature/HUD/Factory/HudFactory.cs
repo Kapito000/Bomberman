@@ -29,22 +29,17 @@ namespace Feature.HUD.Factory
 			return entity;
 		}
 
-		public int CreateCharacterJoystick(Transform parent)
+		public void CreateCharacterJoystick(Transform parent)
 		{
 			var characterJoystick = _kit.AssetProvider.CharacterJoystick();
 			var instance =
 				_kit.InstantiateService.Instantiate(characterJoystick, parent);
-			var entity =
-				_kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
-			return entity;
 		}
 
-		public int CreatePutBombButton(Transform parent)
+		public void CreatePutBombButton(Transform parent)
 		{
 			var prefab = _kit.AssetProvider.PutBombButton();
 			var instance = _kit.InstantiateService.Instantiate(prefab, parent);
-			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
-			return entity;
 		}
 		
 		public int CreateUpperPanel(Transform parent)

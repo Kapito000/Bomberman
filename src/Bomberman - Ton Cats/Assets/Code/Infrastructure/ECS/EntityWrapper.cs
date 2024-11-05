@@ -68,10 +68,5 @@ namespace Infrastructure.ECS
 		{
 			Add<Destructed>();
 		}
-
-		public void DestroyImmediate()
-		{
-			_world.DestroyImmediate(_entity);
-		}
 	}
 }

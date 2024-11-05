@@ -17,17 +17,6 @@ namespace Extensions
 			view.Value = entityView;
 		}
 
-		public static void DestroyImmediate(this EcsWorld world, int e)
-		{
-			var viewPool = world.GetPool<View>();
-			if (viewPool.Has(e))
-			{
-				ref var view = ref world.Get<View>(e);
-				Object.Destroy(view.Value.gameObject);
-			}
-			world.DelEntity(e);
-		}
-
 		public static UnityEngine.Transform Transform(this EcsWorld world, int e)
 		{
 			ref var transform = ref world.GetPool<Transform>().Get(e);

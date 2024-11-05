@@ -1,4 +1,5 @@
 ﻿using Common.Component;
+using Feature.Destruction.Component;
 using Feature.Explosion.Component;
 using Feature.Explosion.Factory;
 using Infrastructure.ECS;
@@ -28,7 +29,10 @@ namespace Feature.Explosion.System
 				DestroyTile();
 				CreateDestructiblePrefab();
 
-				_request.DestroyImmediate();
+				_request
+					.Add<Destructed>()
+					.Remove<CreateExplosionRequest>()
+					;
 			}
 		}
 

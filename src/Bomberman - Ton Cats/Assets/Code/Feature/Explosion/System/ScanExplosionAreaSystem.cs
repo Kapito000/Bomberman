@@ -1,4 +1,5 @@
 ﻿using Common.Component;
+using Feature.Destruction.Component;
 using Feature.Explosion.Component;
 using Infrastructure.ECS;
 using InstantiateService;
@@ -37,7 +38,12 @@ namespace Feature.Explosion.System
 						;
 				}
 				else if (tile is IIndestructible)
-					_request.DestroyImmediate();
+				{
+					_request
+						.Add<Destructed>()
+						.Remove<CreateExplosionRequest>()
+						;
+				}
 			}
 		}
 

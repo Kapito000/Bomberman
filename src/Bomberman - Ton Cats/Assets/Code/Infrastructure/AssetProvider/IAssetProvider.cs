@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using Feature.Bomb.Factory;
+using Feature.HUD.Behaviour;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,5 +19,6 @@ namespace Infrastructure.AssetProvider
 		EventSystem EventSystem();
 		GameObject Explosion();
 		GameObject UpperPanel();
+		LifePointsPanel LifePointsPanel();
 	}
 }

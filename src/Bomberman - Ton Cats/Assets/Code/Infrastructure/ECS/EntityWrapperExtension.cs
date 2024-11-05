@@ -5,6 +5,8 @@ using Feature.Camera;
 using Feature.DamageApplication.Component;
 using Feature.Explosion;
 using Feature.Explosion.Component;
+using Feature.HUD.Behaviour;
+using Feature.HUD.Component;
 using Leopotam.EcsLite;
 using MapTile;
 using UnityEngine;
@@ -20,10 +22,11 @@ namespace Infrastructure.ECS
 		public Transform Transform() =>
 			_world.Transform(_entity);
 
-		public void AddTransform(Transform transform)
+		public EntityWrapper AddTransform(Transform transform)
 		{
 			ref var transformComponent = ref AddComponent<TransformComponent>();
 			transformComponent.Value = transform;
+			return this;
 		}
 		
 		public Vector3 TransformPos() =>
@@ -222,6 +225,19 @@ namespace Infrastructure.ECS
 
 			if (damage.Value <= 0)
 				Remove<Damage>();
+			return this;
+		}
+
+		public LifePointsPanel LifePointsPanel()
+		{
+			ref var component = ref Get<LifePointsPanelComponent>();
+			return component.Value;
+		}
+		
+		public EntityWrapper AddLifePointsPanel(LifePointsPanel value)
+		{
+			ref var lifePointsPanel = ref AddComponent<LifePointsPanelComponent>();
+			lifePointsPanel.Value = value;
 			return this;
 		}
 	}

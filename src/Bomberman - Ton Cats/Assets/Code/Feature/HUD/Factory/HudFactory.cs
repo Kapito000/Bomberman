@@ -1,6 +1,7 @@
 ﻿using Common.Component;
 using Extensions;
 using Factory.Kit;
+using Feature.HUD.Behaviour;
 using Feature.HUD.Component;
 using Infrastructure.ECS;
 using Zenject;
@@ -41,7 +42,7 @@ namespace Feature.HUD.Factory
 			var prefab = _kit.AssetProvider.PutBombButton();
 			var instance = _kit.InstantiateService.Instantiate(prefab, parent);
 		}
-		
+
 		public int CreateUpperPanel(Transform parent)
 		{
 			var prefab = _kit.AssetProvider.UpperPanel();
@@ -51,6 +52,21 @@ namespace Feature.HUD.Factory
 			_entity
 				.Add<UpperPanel>()
 				.AddTransform(instance.transform);
+			;
+			return e;
+		}
+
+		public int CreateLifePointsPanel(Transform parent)
+		{
+			var prefab = _kit.AssetProvider.LifePointsPanel();
+			var instance = _kit.InstantiateService
+				.Instantiate<LifePointsPanel>(prefab, parent);
+			var e = _kit.EntityBehaviourFactory
+				.InitEntityBehaviour(instance.gameObject);
+			_entity.SetEntity(e);
+			_entity
+				.AddTransform(instance.transform)
+				.AddLifePointsPanel(instance)
 				;
 			return e;
 		}

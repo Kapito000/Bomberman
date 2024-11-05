@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using Feature.HUD.Behaviour;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Menu = Constant.CreateAssetMenu;
@@ -23,6 +24,7 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _upperPanel;
 		[SerializeField] GameObject _putBombButton;
 		[SerializeField] GameObject _characterJoystick;
+		[SerializeField] LifePointsPanel _lifePointsPanel;
 
 		public Camera Camera() => _camera;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
@@ -35,5 +37,6 @@ namespace Infrastructure.AssetProvider
 		public EventSystem EventSystem() => _eventSystem;
 		public GameObject Explosion() => _explosion;
 		public GameObject UpperPanel() => _upperPanel;
+		public LifePointsPanel LifePointsPanel() => _lifePointsPanel;
 	}
 }

@@ -9,5 +9,6 @@ namespace Feature.HUD.Factory
 		void CreateCharacterJoystick(Transform parent);
 		void CreatePutBombButton(Transform parent);
 		int CreateUpperPanel(Transform parent);
+		int CreateLifePointsPanel(Transform parent);
 	}
 }

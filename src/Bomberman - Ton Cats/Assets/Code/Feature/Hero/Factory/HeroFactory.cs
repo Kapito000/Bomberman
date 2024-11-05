@@ -2,12 +2,12 @@
 using Extensions;
 using Factory.Kit;
 using Feature.Bomb.Component;
+using Feature.Hero.Component;
 using Feature.Hero.StaticData;
 using Feature.Input.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
-using Transform = UnityEngine.Transform;
 
 namespace Feature.Hero.Factory
 {
@@ -27,7 +27,7 @@ namespace Feature.Hero.Factory
 			_heroEntity.SetEntity(entity);
 
 			_heroEntity
-				.Add<Component.Hero>()
+				.Add<HeroComponent>()
 				.Add<InputReader>()
 				.Add<CharacterInput>()
 				.Add<MovementDirection>()

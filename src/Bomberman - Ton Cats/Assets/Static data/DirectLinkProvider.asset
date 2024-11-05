@@ -23,3 +23,4 @@ MonoBehaviour:
   _upperPanel: {fileID: 8391452172291091251, guid: 753c2ee5865d4114c889ada63cc2d3fc, type: 3}
   _putBombButton: {fileID: 186695312122789468, guid: f1b6b89e894823644b7ae9b2b4eaa415, type: 3}
   _characterJoystick: {fileID: 186695312122789468, guid: fa117ee6c85273a498a7aa54c49a092c, type: 3}
+  _lifePointsPanel: {fileID: 8672611766286454625, guid: 1b687938ee2272843b2647ab28065b3b, type: 3}

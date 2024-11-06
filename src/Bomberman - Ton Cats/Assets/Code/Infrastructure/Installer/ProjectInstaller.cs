@@ -88,6 +88,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
 			Container.Bind<IState>().To<LoadGame>().AsSingle();
 			Container.Bind<IState>().To<LoadScene>().AsSingle();
+			Container.Bind<IState>().To<MainMenu>().AsSingle();
 			Container.Bind<IState>().To<LaunchGame>().AsSingle();
 			Container.Bind<IState>().To<GameLoop>().AsSingle();
 			Container.Bind<IState>().To<GameExit>().AsSingle();

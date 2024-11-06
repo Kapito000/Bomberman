@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ec42a160a5430e8443f334971590d9, type: 3}
   m_Name: SceneNamesData
   m_EditorClassIdentifier: 
-  <BootSceneName>k__BackingField: Boot
-  <FirstGameSceneName>k__BackingField: Main
+  <Boot>k__BackingField: Boot
+  <First>k__BackingField: Main
+  <MainMenu>k__BackingField: Main menu

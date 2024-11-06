@@ -22,7 +22,7 @@ namespace Infrastructure.Boot
 			}
 
 			_game.CustomScene = SceneManager.GetActiveScene().name;
-			var boot = _sceneNameData.BootSceneName;
+			var boot = _sceneNameData.Boot;
 			_gameStateMachine.GetState<LoadScene>().LoadingSceneName = boot;
 			_gameStateMachine.Enter<LoadScene>();
 			return true;

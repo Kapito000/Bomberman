@@ -22,10 +22,10 @@ using Zenject;
 
 namespace Infrastructure.Installer
 {
-	public class LevelInstaller : MonoInstaller, IInitializable
+	public sealed class LevelInstaller : MonoInstaller, IInitializable
 	{
 		[SerializeField] Tilemap _mainTailMap;
-		[SerializeField] EcsRunner _ecsRunner;
+		[SerializeField] GameEcsRunner _ecsRunner;
 
 		[Inject] ILevelData _levelData;
 		[Inject] IGameStateMachine _gameStateMachine;

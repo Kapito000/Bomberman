@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Infrastructure.ECS
 {
-	public sealed class EcsRunner : MonoBehaviour, IEcsRunner
+	public sealed class GameEcsRunner : MonoBehaviour, IEcsRunner
 	{
 		[Inject] EcsWorld _world;
 		[Inject] ILevelData _levelData;

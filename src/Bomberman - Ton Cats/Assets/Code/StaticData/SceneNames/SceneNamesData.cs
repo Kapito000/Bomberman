@@ -7,8 +7,7 @@ namespace StaticData.SceneNames
 		fileName = nameof(SceneNamesData))]
 	public sealed class SceneNamesData : ScriptableObject, ISceneNameData
 	{
-		[field: SerializeField] public string BootSceneName { get; private set; }
-		[field: SerializeField]
-		public string FirstGameSceneName { get; private set; }
+		[field: SerializeField] public string Boot { get; private set; }
+		[field: SerializeField] public string MainMenu { get; private set; }
 	}
 }

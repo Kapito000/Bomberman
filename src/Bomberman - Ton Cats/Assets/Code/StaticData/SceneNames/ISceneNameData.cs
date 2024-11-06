@@ -2,7 +2,7 @@
 {
 	public interface ISceneNameData : IStaticData
 	{
-		string BootSceneName { get; }
-		string FirstGameSceneName { get; }
+		string Boot { get; }
+		string MainMenu { get; }
 	}
 }

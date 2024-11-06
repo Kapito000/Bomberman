@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿using Windows;
+using Cinemachine;
 using Feature.HUD.Behaviour;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -40,5 +41,9 @@ namespace Infrastructure.AssetProvider
 		public GameObject UpperPanel() => _upperPanel;
 		public LifePointsPanel LifePointsPanel() => _lifePointsPanel;
 		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
+		public GameObject WindowPrefab(WindowId id)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

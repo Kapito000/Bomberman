@@ -1,5 +1,5 @@
-﻿using Cinemachine;
-using Feature.Bomb.Factory;
+﻿using Windows;
+using Cinemachine;
 using Feature.HUD.Behaviour;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -21,5 +21,6 @@ namespace Infrastructure.AssetProvider
 		GameObject UpperPanel();
 		LifePointsPanel LifePointsPanel();
 		BombCounterPanel BombCounterPanel();
+		GameObject WindowPrefab(WindowId id);
 	}
 }

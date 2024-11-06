@@ -1,4 +1,6 @@
-﻿using Feature.Hero.StaticData;
+﻿using Windows;
+using Windows.Factory;
+using Feature.Hero.StaticData;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
@@ -26,10 +28,22 @@ namespace Infrastructure.Installer
 			BindLevelData();
 			BindStaticData();
 			BindSceneLoader();
+			BindUIFactories();
+			BindUIServices();
 			BindInputService();
 			BindEntityWrapper();
 			BindAssetProvider();
 			BindGameStateMachine();
+		}
+		
+		void BindUIServices()
+		{
+			Container.Bind<IWindowService>().To<WindowService>().AsSingle();
+		}
+		
+		void BindUIFactories()
+		{
+			Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
 		}
 
 		void BindEntityWrapper()

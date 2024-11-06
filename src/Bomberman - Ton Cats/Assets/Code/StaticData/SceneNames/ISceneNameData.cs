@@ -4,5 +4,6 @@
 	{
 		string Boot { get; }
 		string MainMenu { get; }
+		string Game { get; }
 	}
 }

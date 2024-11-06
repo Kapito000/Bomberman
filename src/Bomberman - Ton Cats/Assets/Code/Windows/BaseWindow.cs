@@ -4,22 +4,23 @@ namespace Windows
 {
 	public abstract class BaseWindow : MonoBehaviour
 	{
-		public WindowId Id { get; }
-
-		void Awake() =>
-			OnAwake();
+		WindowId _id;
+		
+		public WindowId Id
+		{
+			get => _id;
+			private set => _id = value;
+		}
 
 		void Start()
 		{
+			SetWindowId(ref _id);
 			Initialize();
 			SubscribeUpdates();
 		}
 
 		void OnDestroy() =>
 			Cleanup();
-
-		protected virtual void OnAwake()
-		{ }
 
 		protected virtual void Initialize()
 		{ }
@@ -30,15 +31,15 @@ namespace Windows
 		protected virtual void UnsubscribeUpdates()
 		{ }
 
-		protected virtual void Cleanup()
+		protected virtual void OnCleanup()
+		{ }
+
+		protected abstract void SetWindowId(ref WindowId id);
+
+		void Cleanup()
 		{
 			UnsubscribeUpdates();
 			OnCleanup();
 		}
-
-		protected virtual void OnCleanup()
-		{ }
-
-		protected abstract void SetWindowId();
 	}
 }

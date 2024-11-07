@@ -20,6 +20,7 @@ namespace Infrastructure.AssetProvider
 		[Header("UI")]
 		[SerializeField] Canvas _root;
 		[SerializeField] EventSystem _eventSystem;
+		[SerializeField] WindowsDictionary _windows;
 		[Header("HUD")]
 		[SerializeField] Canvas _hudRoot;
 		[SerializeField] GameObject _upperPanel;
@@ -41,9 +42,6 @@ namespace Infrastructure.AssetProvider
 		public GameObject UpperPanel() => _upperPanel;
 		public LifePointsPanel LifePointsPanel() => _lifePointsPanel;
 		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
-		public GameObject WindowPrefab(WindowId id)
-		{
-			throw new System.NotImplementedException();
-		}
+		public BaseWindow WindowPrefab(WindowId id) => _windows[id];
 	}
 }

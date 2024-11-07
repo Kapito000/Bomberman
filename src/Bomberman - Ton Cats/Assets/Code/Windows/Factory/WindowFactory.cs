@@ -18,7 +18,7 @@ namespace Windows.Factory
 				.Instantiate<BaseWindow>(PrefabFor(windowId), _uiRoot);
 		}
 
-		GameObject PrefabFor(WindowId id) =>
+		BaseWindow PrefabFor(WindowId id) =>
 			_kit.AssetProvider.WindowPrefab(id);
 	}
 }

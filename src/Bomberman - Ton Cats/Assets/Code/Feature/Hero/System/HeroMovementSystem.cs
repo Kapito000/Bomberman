@@ -5,14 +5,13 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 using Zenject;
-using Rigidbody2D = Common.Component.Rigidbody2D;
 
 namespace Feature.Hero.System
 {
 	public sealed class HeroMovementSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-			Inc<HeroComponent, MovementDirection, MoveSpeed, Rigidbody2D>> _filter;
+			Inc<HeroComponent, MovementDirection, MoveSpeed, Rigidbody2DComponent>> _filter;
 
 		[Inject] EntityWrapper _hero;
 

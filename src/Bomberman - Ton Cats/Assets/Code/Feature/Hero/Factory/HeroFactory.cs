@@ -27,8 +27,6 @@ namespace Feature.Hero.Factory
 				.InitEntityBehaviour(heroObj);
 			_heroEntity.SetEntity(entity);
 
-			var heroAnimator = heroObj.GetComponent<HeroAnimator>();
-
 			_heroEntity
 				.Add<HeroComponent>()
 				.Add<InputReader>()
@@ -38,7 +36,6 @@ namespace Feature.Hero.Factory
 				.Add<BombNumber>().With(e => e.SetBombNumber(_heroData.StartBombNumber))
 				.Add<MoveSpeed>().With(e => e.SetMoveSpeed(_heroData.MovementSpeed))
 				.Add<LifePoints>().With(e => e.SetLifePoints(_heroData.LifePointsOnStart))
-				.AddHeroAnimator(heroAnimator)
 				;
 
 			return entity;

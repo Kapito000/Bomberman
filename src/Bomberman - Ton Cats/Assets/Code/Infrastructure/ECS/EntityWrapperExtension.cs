@@ -12,6 +12,7 @@ using Feature.HUD.Component;
 using Leopotam.EcsLite;
 using MapTile;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
 using Transform = UnityEngine.Transform;
 
@@ -49,7 +50,7 @@ namespace Infrastructure.ECS
 		public Rigidbody2D Rigidbody2D()
 		{
 			ref var rigidbody2D = ref _world
-				.GetPool<Common.Component.Rigidbody2D>()
+				.GetPool<Common.Component.Rigidbody2DComponent>()
 				.Get(_entity);
 
 			return rigidbody2D.Value;
@@ -280,5 +281,11 @@ namespace Infrastructure.ECS
 
 		public bool IsMoving() =>
 			Has<Moving>();
+
+		public SpriteLibrary SpriteLibrary()
+		{
+			ref var spriteLibraryComponent = ref Get<SpriteLibraryComponent>();
+			return spriteLibraryComponent.Value;
+		}
 	}
 }

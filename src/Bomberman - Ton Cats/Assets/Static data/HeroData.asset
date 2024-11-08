@@ -15,3 +15,4 @@ MonoBehaviour:
   <StartBombNumber>k__BackingField: 100
   <LifePointsOnStart>k__BackingField: 3
   <MovementSpeed>k__BackingField: 5
+  <SkinLibraryAsset>k__BackingField: {fileID: 7108339969198208228, guid: feabb49dac2de2f468779b4413020d18, type: 3}

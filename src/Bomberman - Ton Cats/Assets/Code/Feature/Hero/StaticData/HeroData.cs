@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.U2D.Animation;
 using Menu = Constant.CreateAssetMenu;
 
 namespace Feature.Hero.StaticData
@@ -10,5 +11,8 @@ namespace Feature.Hero.StaticData
 		[field: SerializeField] public int StartBombNumber { get; private set; }
 		[field: SerializeField] public int LifePointsOnStart { get; private set; }
 		[field: SerializeField] public float MovementSpeed { get; private set; }
+		[field: SerializeField] public SpriteLibraryAsset SkinLibraryAsset { get; private set; }
+
+		public SpriteLibraryAsset SkinLibrary() => SkinLibraryAsset;
 	}
 }

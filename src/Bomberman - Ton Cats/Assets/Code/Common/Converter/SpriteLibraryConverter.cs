@@ -3,6 +3,6 @@ using Infrastructure.ECS;
 
 namespace Common.Converter
 {
-	public sealed class Rigidbody2DConverter : Converter<Rigidbody2DComponent>
+	public sealed class SpriteLibraryConverter : Converter<SpriteLibraryComponent>
 	{ }
 }

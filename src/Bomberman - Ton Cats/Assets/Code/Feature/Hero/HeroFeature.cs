@@ -9,6 +9,7 @@ namespace Feature.Hero
 		{
 			AddInit<SpawnHeroSystem>();
 			AddUpdate<HeroMovementSystem>();
+			AddUpdate<HeroAnimationSystem>();
 		}
 	}
 }

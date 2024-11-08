@@ -1,26 +1,22 @@
-﻿using UnityEngine;
+﻿using Feature.Hero.Animations;
+using UnityEngine;
+using Zenject;
 
 namespace Feature.Hero.Behaviour
 {
 	[RequireComponent(typeof(Animator))]
 	public sealed class HeroAnimator : MonoBehaviour
 	{
-		static readonly int _moveUp = Animator.StringToHash("Move up");
-		static readonly int _moveDown = Animator.StringToHash("Move down");
-		static readonly int _moveLeft = Animator.StringToHash("Move left");
-		static readonly int _moveRight = Animator.StringToHash("Move right");
-		static readonly int _idle = Animator.StringToHash("Idle");
-		static readonly int _death = Animator.StringToHash("Death");
-
-		Animator _animator;
+		// [Inject] Animator _animator;
+		[Inject] HeroAnimationStateMachine _stateMachine;
 
 		void Awake()
 		{
-			_animator = GetComponent<Animator>();
+			_stateMachine.Init(State.Idle);
 		}
 
 		public void Stop() =>
-			_animator.SetTrigger(_idle);
+			_stateMachine.Enter(State.Idle);
 
 		public void SetMoveDirection(Vector2 direction)
 		{
@@ -28,12 +24,12 @@ namespace Feature.Hero.Behaviour
 			var y = Mathf.Abs(direction.y);
 
 			if (x > y)
-				_animator.SetTrigger(direction.x > 0 ? _moveRight : _moveLeft);
+				_stateMachine.Enter(direction.x > 0 ? State.MoveRight : State.MoveLeft);
 			else
-				_animator.SetTrigger(direction.y > 0 ? _moveUp : _moveDown);
+				_stateMachine.Enter(direction.y > 0 ? State.MoveUp : State.MoveDown);
 		}
 
 		public void Death() =>
-			_animator.SetTrigger(_death);
+			_stateMachine.Enter(State.Death);
 	}
 }

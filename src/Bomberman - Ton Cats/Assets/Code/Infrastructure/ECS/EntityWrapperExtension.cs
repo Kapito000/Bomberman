@@ -5,6 +5,8 @@ using Feature.Camera;
 using Feature.DamageApplication.Component;
 using Feature.Explosion;
 using Feature.Explosion.Component;
+using Feature.Hero.Behaviour;
+using Feature.Hero.Component;
 using Feature.HUD.Behaviour;
 using Feature.HUD.Component;
 using Leopotam.EcsLite;
@@ -28,7 +30,7 @@ namespace Infrastructure.ECS
 			transformComponent.Value = transform;
 			return this;
 		}
-		
+
 		public Vector3 TransformPos() =>
 			_world.TransformPos(_entity);
 
@@ -233,7 +235,7 @@ namespace Infrastructure.ECS
 			ref var component = ref Get<LifePointsPanelComponent>();
 			return component.Value;
 		}
-		
+
 		public EntityWrapper AddLifePointsPanel(LifePointsPanel value)
 		{
 			ref var lifePointsPanel = ref AddComponent<LifePointsPanelComponent>();
@@ -253,5 +255,30 @@ namespace Infrastructure.ECS
 			bombCounterPanel.Value = value;
 			return this;
 		}
+
+		public HeroAnimator HeroAnimator()
+		{
+			ref var heroAnimatorComponent = ref Get<HeroAnimatorComponent>();
+			return heroAnimatorComponent.Value;
+		}
+
+		public void AddHeroAnimator(HeroAnimator heroAnimator)
+		{
+			ref var component = ref AddComponent<HeroAnimatorComponent>();
+			component.Value = heroAnimator;
+		}
+
+		public EntityWrapper IsMoving(bool value)
+		{
+			if (value)
+				ReplaceComponent<Moving>();
+			else
+				Remove<Moving>();
+
+			return this;
+		}
+
+		public bool IsMoving() =>
+			Has<Moving>();
 	}
 }

@@ -1,8 +1,9 @@
-﻿using Common;
-using Common.Component;
+﻿using Common.Component;
+using Feature.Hero.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using Zenject;
 using Rigidbody2D = Common.Component.Rigidbody2D;
 
@@ -11,8 +12,7 @@ namespace Feature.Hero.System
 	public sealed class HeroMovementSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-			Inc<Component.HeroComponent, MovementDirection,
-				MoveSpeed, Rigidbody2D>> _filter;
+			Inc<HeroComponent, MovementDirection, MoveSpeed, Rigidbody2D>> _filter;
 
 		[Inject] EntityWrapper _hero;
 
@@ -26,6 +26,9 @@ namespace Feature.Hero.System
 				var direction = _hero.MoveDirection();
 				var velocity = direction * speed;
 				_hero.SetRigidbody2DVelocity(velocity);
+
+				var isVelocityZero = Mathf.Approximately(velocity.sqrMagnitude, 0);
+				_hero.IsMoving(isVelocityZero == false);
 			}
 		}
 	}

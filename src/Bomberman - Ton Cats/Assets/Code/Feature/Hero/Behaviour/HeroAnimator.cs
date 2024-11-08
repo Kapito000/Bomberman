@@ -7,7 +7,6 @@ namespace Feature.Hero.Behaviour
 	[RequireComponent(typeof(Animator))]
 	public sealed class HeroAnimator : MonoBehaviour
 	{
-		// [Inject] Animator _animator;
 		[Inject] HeroAnimationStateMachine _stateMachine;
 
 		void Awake()

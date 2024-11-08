@@ -11,7 +11,6 @@ namespace Feature.Hero.Behaviour
 
 		public override void InstallBindings()
 		{
-			// Container.Bind<Animator>().FromComponentSibling().AsSingle();
 			Container.BindInstance(_animator).AsSingle();
 			Container.Bind<BoolAnimationState.Factory>().AsSingle();
 			Container.Bind<HeroAnimationStateMachine>().AsSingle();

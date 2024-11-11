@@ -1,8 +1,7 @@
-﻿namespace Animation
+﻿using BaseStateMachine;
+
+namespace Animation
 {
-	public interface IAnimationState
-	{
-		void Enter();
-		void Exit();
-	}
+	public interface IAnimationState : IState
+	{ }
 }

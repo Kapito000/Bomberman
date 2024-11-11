@@ -22,5 +22,6 @@ namespace Infrastructure.AssetProvider
 		LifePointsPanel LifePointsPanel();
 		BombCounterPanel BombCounterPanel();
 		BaseWindow WindowPrefab(WindowId id);
+		GameObject BaseEnemy();
 	}
 }

@@ -4,6 +4,7 @@ using Factory.SystemFactory;
 using Feature;
 using Feature.Bomb.Factory;
 using Feature.Camera.Factory;
+using Feature.Enemy.Base.Factory;
 using Feature.Explosion.Factory;
 using Feature.Hero.Factory;
 using Feature.HUD.Factory;
@@ -97,6 +98,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IBombFactory>().To<BombFactory>().AsSingle();
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 			Container.Bind<IExplosionFactory>().To<ExplosionFactory>().AsSingle();
+			Container.Bind<IBaseEnemyFactory>().To<BaseEnemyFactory>().AsSingle();
 		}
 
 		void BindFeatureController()

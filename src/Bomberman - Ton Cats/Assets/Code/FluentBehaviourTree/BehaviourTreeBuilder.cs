@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FluentBehaviourTree.Nodes;
 
 namespace FluentBehaviourTree
 {
@@ -23,7 +24,7 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Create an action node.
         /// </summary>
-        public BehaviourTreeBuilder Do(string name, Func<TimeData, BehaviourTreeStatus> fn)
+        public BehaviourTreeBuilder Do(string name, Func<BehaviourTreeStatus> fn)
         {
             if (parentNodeStack.Count <= 0)
             {
@@ -38,9 +39,9 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Like an action node... but the function can return true/false and is mapped to success/failure.
         /// </summary>
-        public BehaviourTreeBuilder Condition(string name, Func<TimeData, bool> fn)
+        public BehaviourTreeBuilder Condition(string name, Func<bool> fn)
         {
-            return Do(name, t => fn(t) ? BehaviourTreeStatus.Success : BehaviourTreeStatus.Failure);
+            return Do(name, () => fn() ? BehaviourTreeStatus.Success : BehaviourTreeStatus.Failure);
         }
 
         /// <summary>

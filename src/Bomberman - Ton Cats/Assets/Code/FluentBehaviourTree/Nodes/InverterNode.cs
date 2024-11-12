@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace FluentBehaviourTree
+namespace FluentBehaviourTree.Nodes
 {
     /// <summary>
     /// Decorator node that inverts the success/failure of its child.
@@ -25,14 +22,14 @@ namespace FluentBehaviourTree
             this.name = name;
         }
 
-        public BehaviourTreeStatus Tick(TimeData time)
+        public BehaviourTreeStatus Tick()
         {
             if (childNode == null)
             {
                 throw new ApplicationException("InverterNode must have a child node!");
             }
 
-            var result = childNode.Tick(time);
+            var result = childNode.Tick();
             if (result == BehaviourTreeStatus.Failure)
             {
                 return BehaviourTreeStatus.Success;

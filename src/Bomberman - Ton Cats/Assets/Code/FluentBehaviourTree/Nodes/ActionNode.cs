@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace FluentBehaviourTree
+namespace FluentBehaviourTree.Nodes
 {
     /// <summary>
     /// A behaviour tree leaf node for running an action.
@@ -18,18 +15,18 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Function to invoke for the action.
         /// </summary>
-        private Func<TimeData, BehaviourTreeStatus> fn;
+        private Func<BehaviourTreeStatus> fn;
         
 
-        public ActionNode(string name, Func<TimeData, BehaviourTreeStatus> fn)
+        public ActionNode(string name, Func<BehaviourTreeStatus> fn)
         {
             this.name=name;
             this.fn=fn;
         }
 
-        public BehaviourTreeStatus Tick(TimeData time)
+        public BehaviourTreeStatus Tick()
         {
-            return fn(time);
+            return fn();
         }
     }
 }

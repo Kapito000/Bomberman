@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace FluentBehaviourTree
+namespace FluentBehaviourTree.Nodes
 {
     /// <summary>
     /// Selects the first node that succeeds. Tries successive nodes until it finds one that doesn't fail.
@@ -25,11 +22,11 @@ namespace FluentBehaviourTree
             this.name = name;
         }
 
-        public BehaviourTreeStatus Tick(TimeData time)
+        public BehaviourTreeStatus Tick()
         {
             foreach (var child in children)
             {
-                var childStatus = child.Tick(time);
+                var childStatus = child.Tick();
                 if (childStatus != BehaviourTreeStatus.Failure)
                 {
                     return childStatus;

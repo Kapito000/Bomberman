@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Feature.Enemy.Base.System
 {
-	public sealed class CreateBaseEnemy : IEcsInitSystem
+	public sealed class CreateBaseEnemy : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _spawnPoint;
 		[Inject] IBaseEnemyFactory _baseEnemyFactory;
@@ -16,7 +16,7 @@ namespace Feature.Enemy.Base.System
 		readonly EcsFilterInject<
 			Inc<EnemySpawnPoint, TransformComponent>> _spawnPointFilter;
 
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			foreach (var spawnPoint in _spawnPointFilter.Value)
 			{

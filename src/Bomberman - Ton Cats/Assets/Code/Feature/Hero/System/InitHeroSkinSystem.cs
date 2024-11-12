@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Feature.Hero.System
 {
-	public sealed class InitHeroSkinSystem : IEcsInitSystem
+	public sealed class InitHeroSkinSystem : IEcsRunSystem
 	{
 		[Inject] IHeroData _heroData;
 		[Inject] EntityWrapper _hero;
@@ -16,7 +16,7 @@ namespace Feature.Hero.System
 		readonly EcsFilterInject<
 			Inc<HeroComponent, SpriteLibraryComponent>> _filter;
 
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			foreach (var hero in _filter.Value)
 			{

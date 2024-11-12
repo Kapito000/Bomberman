@@ -8,14 +8,14 @@ using Zenject;
 
 namespace Feature.HUD.System
 {
-	public sealed class CreateHudRootSystem : EcsSystem, IEcsInitSystem
+	public sealed class CreateHudRootSystem : EcsSystem, IEcsRunSystem
 	{
 		[Inject] IHudFactory _hudFactory;
 		[Inject] EntityWrapper _uiRootEntity;
 
 		readonly EcsFilterInject<Inc<UiRoot, TransformComponent>> _filter;
 
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			foreach (var e in _filter.Value)
 			{

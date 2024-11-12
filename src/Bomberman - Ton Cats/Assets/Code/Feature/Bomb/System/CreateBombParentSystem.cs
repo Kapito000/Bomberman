@@ -5,11 +5,11 @@ using Zenject;
 
 namespace Feature.Bomb.System
 {
-	public sealed class CreateBombParentSystem : EcsSystem, IEcsInitSystem
+	public sealed class CreateBombParentSystem : EcsSystem, IEcsRunSystem
 	{
 		[Inject] IBombFactory _bombFactory;
 		
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			_bombFactory.CreateBombParent();
 		}

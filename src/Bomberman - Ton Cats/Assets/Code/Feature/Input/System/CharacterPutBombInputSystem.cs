@@ -11,7 +11,7 @@ using Zenject;
 
 namespace Feature.Input.System
 {
-	public sealed class CharacterPutBombInputSystem : EcsSystem, IEcsInitSystem,
+	public sealed class CharacterPutBombInputSystem : EcsSystem, IEcsRunSystem,
 		IDisposable
 	{
 		[Inject] ICharacterInput _characterInput;
@@ -20,7 +20,7 @@ namespace Feature.Input.System
 			Inc<InputReader, CharacterInput, BombCarrier>,
 			Exc<PutBombRequest>> _filter;
 
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			_characterInput.PutBomb += OnPutBombInput;
 		}

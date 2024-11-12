@@ -53,7 +53,7 @@ namespace Infrastructure.ECS
 			DestroySystems(ref _cleanupSystem);
 		}
 
-		protected void AddInit<TSystem>() where TSystem : class, IEcsInitSystem =>
+		protected void AddInit<TSystem>() where TSystem : class, IEcsRunSystem =>
 			Add<TSystem>(ref _initSystems);
 
 		protected void AddUpdate<TSystem>() where TSystem : class, IEcsRunSystem =>

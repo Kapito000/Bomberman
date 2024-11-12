@@ -9,13 +9,13 @@ using Zenject;
 
 namespace Feature.Camera.System
 {
-	public sealed class CreateCameraSystem : EcsSystem, IEcsInitSystem
+	public sealed class CreateCameraSystem : EcsSystem, IEcsRunSystem
 	{
 		[Inject] ICameraFactory _cameraFactory;
 
 		readonly EcsFilterInject<Inc<Hero.Component.HeroComponent, TransformComponent>> _filter;
 
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			foreach (var heroEntity in _filter.Value)
 			{

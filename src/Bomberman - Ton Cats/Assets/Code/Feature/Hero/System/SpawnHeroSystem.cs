@@ -12,14 +12,14 @@ using Zenject;
 
 namespace Feature.Hero.System
 {
-	public sealed class SpawnHeroSystem : EcsSystem, IEcsInitSystem
+	public sealed class SpawnHeroSystem : EcsSystem, IEcsRunSystem
 	{
 		[Inject] IHeroData _heroData;
 		[Inject] IHeroFactory _heroFactory;
 
 		readonly EcsFilterInject<Inc<HeroSpawnPoint, TransformComponent>> _filter;
 
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			foreach (var spawnPointEntity in _filter.Value)
 			{

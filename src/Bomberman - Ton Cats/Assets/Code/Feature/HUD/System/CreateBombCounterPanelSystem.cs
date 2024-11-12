@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Feature.HUD.System
 {
-	public sealed class CreateBombCounterPanelSystem : IEcsInitSystem
+	public sealed class CreateBombCounterPanelSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _upperPanel;
 		[Inject] IHudFactory _hudFactory;
@@ -20,7 +20,7 @@ namespace Feature.HUD.System
 		readonly EcsFilterInject<
 			Inc<HeroComponent, BombCarrier, BombNumber>> _heroFilter;
 
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			foreach (var upperPanel in _upperPanelFilter.Value)
 			foreach (var hero in _heroFilter.Value)

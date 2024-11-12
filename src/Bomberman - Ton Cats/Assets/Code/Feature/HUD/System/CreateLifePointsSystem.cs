@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Feature.HUD.System
 {
-	public sealed class CreateLifePointsSystem : IEcsInitSystem
+	public sealed class CreateLifePointsSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _upperPanel;
 		[Inject] IHudFactory _hudFactory;
@@ -18,7 +18,7 @@ namespace Feature.HUD.System
 			Inc<UpperPanel, TransformComponent>> _upperPanelFilter;
 		readonly EcsFilterInject<Inc<HeroComponent, LifePoints>> _heroFilter;
 
-		public void Init(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
 			foreach (var upperPanel in _upperPanelFilter.Value)
 			foreach (var hero in _heroFilter.Value)

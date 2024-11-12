@@ -1,4 +1,5 @@
 ﻿using Factory.Kit;
+using Feature.Enemy.Base.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
@@ -16,6 +17,9 @@ namespace Feature.Enemy.Base.Factory
 			var instance = _kit.InstantiateService.Instantiate(prefab,pos, parent);
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			_entity.SetEntity(entity);
+			_entity
+				.Add<EnemyComponent>()
+				;
 			return entity;
 		}
 	}

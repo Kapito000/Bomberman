@@ -6,7 +6,6 @@ using FluentBehaviourTree;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Feature.Enemy.Base.System
 {
@@ -58,25 +57,31 @@ namespace Feature.Enemy.Base.System
 		EntityWrapper Agent() =>
 			_agent.Entity;
 
-		public BehaviourTreeStatus SelectPatrolPoint()
+		public BehaviourTreeStatus SelectPatrolDestination()
 		{
+			Transform target;
 			var patrolPoints = Agent().PatrolPoints();
 			if (patrolPoints.Count == 1)
 			{
-				Agent().ReplaceCurrentPatrolPoint(patrolPoints[0]);
-				return BehaviourTreeStatus.Success;
+				target = patrolPoints[0];
+				SetDestination();
 			}
-
-			var points = new List<Transform>(patrolPoints);
-			if (Agent().Has<CurrentPatrolPoint>())
+			else
 			{
-				var currentPatrolPoint = Agent().CurrentPatrolPoint();
-				points.Remove(currentPatrolPoint);
+				var points = new List<Transform>(patrolPoints);
+				if (Agent().Has<CurrentPatrolPoint>())
+				{
+					var currentPatrolPoint = Agent().CurrentPatrolPoint();
+					points.Remove(currentPatrolPoint);
+				}
+
+				var index = Random.Range(0, points.Count);
+				target = points[index];
 			}
 
-			var index = Random.Range(0, points.Count);
-			Agent().ReplaceCurrentPatrolPoint(points[index]);
-			
+			Agent().ReplaceCurrentPatrolPoint(target);
+			SetDestination();
+
 			return BehaviourTreeStatus.Success;
 		}
 

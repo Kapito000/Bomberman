@@ -17,28 +17,34 @@ namespace Feature.Enemy.Base.System
 		[Inject] public EntityWrapper Entity { get; private set; }
 
 		IBehaviourTreeNode _tree;
+		IBehaviourTreeNode _patrolTree;
 
 		readonly EcsFilterInject<Inc<BaseEnemyAIBlackboardComponent>> _enemyFilter;
 
 		public void Init(IEcsSystems systems)
 		{
 			_patrolling.Init(this);
-			
-			_tree = new BehaviourTreeBuilder()
+
+			var builder = new BehaviourTreeBuilder();
+			_patrolTree = builder
 				.Sequence("Patrolling")
 					.Condition(_patrolling.HasPatrolPoints)
 					.Selector("Select patrol point.")
 						.Condition(_patrolling.HasCurrentPatrolPoint)
-						.Do(_patrolling.SelectPatrolPoint)
+						.Do(_patrolling.SelectPatrolDestination)
 					.End()
-					.Selector()
+					.Selector("Process an arrival on the point.")
 						.Sequence()
 							.Condition(_patrolling.IsPatrolPointArrived)
-							.Do(_patrolling.SelectPatrolPoint)
+							.Do(_patrolling.SelectPatrolDestination)
 						.End()
-						.Do(_patrolling.SetDestination)
 					.End()
 				.End()
+				.Build();
+
+			_tree = builder
+				.Selector()
+				.Splice(_patrolTree)
 				.Build();
 		}
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using Infrastructure.ECS;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
 
 namespace Common.Component
@@ -8,6 +9,7 @@ namespace Common.Component
 	[Serializable] public struct Rigidbody2DComponent { public Rigidbody2D Value; }
 	[Serializable] public struct TransformComponent { public Transform Value; }
 	[Serializable] public struct SpriteLibraryComponent { public SpriteLibrary Value; }
+	[Serializable] public struct NavMeshAgentComponent { public NavMeshAgent Value; }
 	
 	public struct View { public IEntityView Value; }
 	

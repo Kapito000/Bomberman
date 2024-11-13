@@ -3,6 +3,8 @@ using Extensions;
 using Feature.Bomb.Component;
 using Feature.Camera;
 using Feature.DamageApplication.Component;
+using Feature.Enemy.AI.Blackboard;
+using Feature.Enemy.Base.Component;
 using Feature.Explosion;
 using Feature.Explosion.Component;
 using Feature.Hero.Behaviour;
@@ -12,6 +14,7 @@ using Feature.HUD.Component;
 using Leopotam.EcsLite;
 using MapTile;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
 using Transform = UnityEngine.Transform;
@@ -286,6 +289,25 @@ namespace Infrastructure.ECS
 		{
 			ref var spriteLibraryComponent = ref Get<SpriteLibraryComponent>();
 			return spriteLibraryComponent.Value;
+		}
+
+		public BaseEnemyAIBlackboard BaseEnemyAIBlackboard()
+		{
+			ref var blackboard = ref Get<BaseEnemyAIBlackboardComponent>();
+			return blackboard.Value;
+		}
+		
+		public EntityWrapper AddBaseEnemyAIBlackboard()
+		{
+			ref var blackboard = ref AddComponent<BaseEnemyAIBlackboardComponent>();
+			blackboard.Value = new BaseEnemyAIBlackboard();
+			return this;
+		}
+
+		public NavMeshAgent NavMeshAgent()
+		{
+			ref var navMeshAgent = ref Get<NavMeshAgentComponent>();
+			return navMeshAgent.Value;
 		}
 	}
 }

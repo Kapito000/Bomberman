@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Feature.Enemy.Base.System
 {
-	public sealed class CreateBaseEnemy : IEcsRunSystem
+	public sealed class CreateBaseEnemySystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _spawnPoint;
 		[Inject] IBaseEnemyFactory _baseEnemyFactory;

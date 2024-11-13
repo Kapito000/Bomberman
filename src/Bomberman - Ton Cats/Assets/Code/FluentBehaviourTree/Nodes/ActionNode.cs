@@ -18,13 +18,13 @@ namespace FluentBehaviourTree.Nodes
         private Func<BehaviourTreeStatus> fn;
         
 
-        public ActionNode(string name, Func<BehaviourTreeStatus> fn)
+        public ActionNode(Func<BehaviourTreeStatus> fn, string name = null)
         {
             this.name=name;
             this.fn=fn;
         }
 
-        public BehaviourTreeStatus Tick()
+        public BehaviourTreeStatus Process()
         {
             return fn();
         }

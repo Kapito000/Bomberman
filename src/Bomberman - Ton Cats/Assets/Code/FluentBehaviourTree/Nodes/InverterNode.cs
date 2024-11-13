@@ -22,14 +22,14 @@ namespace FluentBehaviourTree.Nodes
             this.name = name;
         }
 
-        public BehaviourTreeStatus Tick()
+        public BehaviourTreeStatus Process()
         {
             if (childNode == null)
             {
                 throw new ApplicationException("InverterNode must have a child node!");
             }
 
-            var result = childNode.Tick();
+            var result = childNode.Process();
             if (result == BehaviourTreeStatus.Failure)
             {
                 return BehaviourTreeStatus.Success;

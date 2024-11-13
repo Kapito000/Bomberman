@@ -22,11 +22,11 @@ namespace FluentBehaviourTree.Nodes
             this.name = name;
         }
 
-        public BehaviourTreeStatus Tick()
+        public BehaviourTreeStatus Process()
         {
             foreach (var child in children)
             {
-                var childStatus = child.Tick();
+                var childStatus = child.Process();
                 if (childStatus != BehaviourTreeStatus.Failure)
                 {
                     return childStatus;

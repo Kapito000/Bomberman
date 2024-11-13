@@ -24,14 +24,14 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Create an action node.
         /// </summary>
-        public BehaviourTreeBuilder Do(string name, Func<BehaviourTreeStatus> fn)
+        public BehaviourTreeBuilder Do(Func<BehaviourTreeStatus> fn, string name = null)
         {
             if (parentNodeStack.Count <= 0)
             {
                 throw new ApplicationException("Can't create an unnested ActionNode, it must be a leaf node.");
             }
 
-            var actionNode = new ActionNode(name, fn);
+            var actionNode = new ActionNode(fn, name);
             parentNodeStack.Peek().AddChild(actionNode);
             return this;
         }
@@ -39,9 +39,9 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Like an action node... but the function can return true/false and is mapped to success/failure.
         /// </summary>
-        public BehaviourTreeBuilder Condition(string name, Func<bool> fn)
+        public BehaviourTreeBuilder Condition(Func<bool> fn, string name = null)
         {
-            return Do(name, () => fn() ? BehaviourTreeStatus.Success : BehaviourTreeStatus.Failure);
+            return Do(() => fn() ? BehaviourTreeStatus.Success : BehaviourTreeStatus.Failure, name);
         }
 
         /// <summary>

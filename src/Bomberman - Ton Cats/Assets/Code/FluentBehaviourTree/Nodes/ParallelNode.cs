@@ -34,14 +34,14 @@ namespace FluentBehaviourTree.Nodes
             this.numRequiredToSucceed = numRequiredToSucceed;
         }
 
-        public BehaviourTreeStatus Tick()
+        public BehaviourTreeStatus Process()
         {
             var numChildrenSuceeded = 0;
             var numChildrenFailed = 0;
 
             foreach (var child in children)
             {
-                var childStatus = child.Tick();
+                var childStatus = child.Process();
                 switch (childStatus)
                 {
                     case BehaviourTreeStatus.Success: ++numChildrenSuceeded; break;

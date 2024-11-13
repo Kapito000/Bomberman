@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace FluentBehaviourTree
+﻿namespace FluentBehaviourTree
 {
     /// <summary>
     /// Interface for behaviour tree nodes.
@@ -13,6 +8,6 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Update the time of the behaviour tree.
         /// </summary>
-        BehaviourTreeStatus Tick();
+        BehaviourTreeStatus Process();
     }
 }

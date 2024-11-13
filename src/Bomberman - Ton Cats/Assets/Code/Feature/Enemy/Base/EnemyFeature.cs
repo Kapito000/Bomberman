@@ -8,7 +8,7 @@ namespace Feature.Enemy.Base
 		public EnemyFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateBaseEnemySystem>();
-			AddUpdate<EnemyIaiBrainProcessSystem>();
+			AddUpdate<EnemyAIBrainProcessSystem>();
 		}
 	}
 }

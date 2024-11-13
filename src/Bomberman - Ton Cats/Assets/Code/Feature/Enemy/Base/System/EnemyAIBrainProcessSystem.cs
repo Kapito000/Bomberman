@@ -1,5 +1,4 @@
 ﻿using AI;
-using Feature.Enemy.AI;
 using Feature.Enemy.Base.Component;
 using FluentBehaviourTree;
 using Infrastructure.ECS;
@@ -9,12 +8,13 @@ using Zenject;
 
 namespace Feature.Enemy.Base.System
 {
-	public sealed class EnemyIaiBrainProcessSystem : IEcsInitSystem,
+	
+	public sealed class EnemyAIBrainProcessSystem : IEcsInitSystem,
 		IEcsRunSystem, IAIAgent
 	{
+		[Inject] Patrolling _patrolling;
+		
 		[Inject] public EntityWrapper Entity { get; private set; }
-
-		IEnemyAIStateMachine _stateMachine;
 
 		IBehaviourTreeNode _tree;
 
@@ -22,20 +22,21 @@ namespace Feature.Enemy.Base.System
 
 		public void Init(IEcsSystems systems)
 		{
-			var patrolling = new Patrolling(this);
-
+			_patrolling.Init(this);
+			
 			_tree = new BehaviourTreeBuilder()
 				.Sequence("Patrolling")
-					.Condition(patrolling.HasPatrolPoints)
+					.Condition(_patrolling.HasPatrolPoints)
 					.Selector("Select patrol point.")
-						.Condition(patrolling.HasCurrentPatrolPoint)
-						.Do(patrolling.SelectPatrolPoint)
+						.Condition(_patrolling.HasCurrentPatrolPoint)
+						.Do(_patrolling.SelectPatrolPoint)
 					.End()
-				
-				
-					.Sequence("Assign current movement point.")
-						
-						.Condition(patrolling.IsPatrolPointArrived)
+					.Selector()
+						.Sequence()
+							.Condition(_patrolling.IsPatrolPointArrived)
+							.Do(_patrolling.SelectPatrolPoint)
+						.End()
+						.Do(_patrolling.SetDestination)
 					.End()
 				.End()
 				.Build();

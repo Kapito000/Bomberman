@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using AI;
 using Feature.Enemy.Base.Component;
 using Feature.Enemy.Base.StaticData;
@@ -15,9 +14,9 @@ namespace Feature.Enemy.Base.System
 	{
 		[Inject] IAIData _aiData;
 
-		readonly IAIAgent _agent;
+		IAIAgent _agent;
 
-		public Patrolling(IAIAgent agent)
+		public void Init(IAIAgent agent)
 		{
 			_agent = agent;
 		}
@@ -78,6 +77,13 @@ namespace Feature.Enemy.Base.System
 			var index = Random.Range(0, points.Count);
 			Agent().ReplaceCurrentPatrolPoint(points[index]);
 			
+			return BehaviourTreeStatus.Success;
+		}
+
+		public BehaviourTreeStatus SetDestination()
+		{
+			var point = Agent().CurrentPatrolPoint();
+			Agent().NavMeshAgent().SetDestination(point.position);
 			return BehaviourTreeStatus.Success;
 		}
 	}

@@ -1,5 +1,4 @@
-﻿using Common.Component;
-using Factory.Kit;
+﻿using Factory.Kit;
 using Feature.Enemy.Base.Component;
 using Infrastructure.ECS;
 using UnityEngine;
@@ -21,7 +20,6 @@ namespace Feature.Enemy.Base.Factory
 			_entity
 				.Add<EnemyComponent>()
 				.AddBaseEnemyAIBlackboard()
-				.Add<NavMeshAgentComponen>() // From converter.
 				;
 			return entity;
 		}

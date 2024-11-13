@@ -17,7 +17,7 @@ namespace FluentBehaviourTree.Nodes
         /// </summary>
         private List<IBehaviourTreeNode> children = new List<IBehaviourTreeNode>(); //todo: this could be optimized as a baked array.
 
-        public SequenceNode(string name)
+        public SequenceNode(string name = null)
         {
             this.name = name;
         }

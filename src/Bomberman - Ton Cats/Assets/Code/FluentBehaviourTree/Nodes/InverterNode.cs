@@ -17,7 +17,7 @@ namespace FluentBehaviourTree.Nodes
         /// </summary>
         private IBehaviourTreeNode childNode;
 
-        public InverterNode(string name)
+        public InverterNode(string name = null)
         {
             this.name = name;
         }

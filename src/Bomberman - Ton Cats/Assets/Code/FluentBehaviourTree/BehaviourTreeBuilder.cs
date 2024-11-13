@@ -47,7 +47,7 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Create an inverter node that inverts the success/failure of its children.
         /// </summary>
-        public BehaviourTreeBuilder Inverter(string name)
+        public BehaviourTreeBuilder Inverter(string name = null)
         {
             var inverterNode = new InverterNode(name);
 
@@ -63,7 +63,7 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Create a sequence node.
         /// </summary>
-        public BehaviourTreeBuilder Sequence(string name)
+        public BehaviourTreeBuilder Sequence(string name = null)
         {
             var sequenceNode = new SequenceNode(name);
 
@@ -95,7 +95,7 @@ namespace FluentBehaviourTree
         /// <summary>
         /// Create a selector node.
         /// </summary>
-        public BehaviourTreeBuilder Selector(string name)
+        public BehaviourTreeBuilder Selector(string name = null)
         {
             var selectorNode = new SelectorNode(name);
 

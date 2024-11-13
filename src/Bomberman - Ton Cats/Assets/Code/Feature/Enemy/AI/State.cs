@@ -2,8 +2,6 @@
 {
 	public enum State
 	{
-		Attack,
-		Pursuit,
-		Patrolling,
+		Movement,
 	}
 }

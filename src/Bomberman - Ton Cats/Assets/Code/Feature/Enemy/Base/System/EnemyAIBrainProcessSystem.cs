@@ -1,4 +1,5 @@
 ﻿using AI;
+using Feature.Enemy.AI;
 using Feature.Enemy.Base.Component;
 using FluentBehaviourTree;
 using Infrastructure.ECS;
@@ -16,6 +17,8 @@ namespace Feature.Enemy.Base.System
 		
 		[Inject] public EntityWrapper Entity { get; private set; }
 
+		EnemyAIStateMachine _stateMachine;
+		
 		IBehaviourTreeNode _tree;
 		IBehaviourTreeNode _patrolTree;
 

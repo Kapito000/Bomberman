@@ -59,27 +59,27 @@ namespace Feature.Enemy.Base.System
 
 		public BehaviourTreeStatus SelectPatrolDestination()
 		{
-			Transform target;
 			var patrolPoints = Agent().PatrolPoints();
-			if (patrolPoints.Count == 1)
+
+			var points = new List<Transform>(patrolPoints);
+			if (Agent().Has<CurrentPatrolPoint>())
 			{
-				target = patrolPoints[0];
-				SetDestination();
+				var currentPatrolPoint = Agent().CurrentPatrolPoint();
+				points.Remove(currentPatrolPoint);
 			}
-			else
+
+			var index = Random.Range(0, points.Count);
+			if (points[index] == null)
 			{
-				var points = new List<Transform>(patrolPoints);
-				if (Agent().Has<CurrentPatrolPoint>())
+				points.RemoveAll(x => x == null);
+				patrolPoints.RemoveAll(x => x == null);
+				if (points.Count == 0)
 				{
-					var currentPatrolPoint = Agent().CurrentPatrolPoint();
-					points.Remove(currentPatrolPoint);
+					return BehaviourTreeStatus.Failure;
 				}
-
-				var index = Random.Range(0, points.Count);
-				target = points[index];
 			}
 
-			Agent().ReplaceCurrentPatrolPoint(target);
+			Agent().ReplaceCurrentPatrolPoint(points[index]);
 			SetDestination();
 
 			return BehaviourTreeStatus.Success;

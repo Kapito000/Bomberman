@@ -11,9 +11,7 @@ namespace Feature.Enemy.AI
 		{
 			_states = new Dictionary<State, IEnemyAIState>()
 			{
-				{ State.Attack, new Attack() },
-				{ State.Pursuit, new Pursuit() },
-				{ State.Patrolling, new Patrolling() },
+				{ State.Movement, new Movement() },
 			};
 		}
 

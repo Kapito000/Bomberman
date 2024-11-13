@@ -1,5 +1,6 @@
 ﻿using Windows;
 using Windows.Factory;
+using Feature.Enemy.Base.StaticData;
 using Feature.Hero.StaticData;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
@@ -18,6 +19,7 @@ namespace Infrastructure.Installer
 {
 	public class ProjectInstaller : MonoInstaller
 	{
+		[SerializeField] AIData _aiData;
 		[SerializeField] HeroData _heroData;
 		[SerializeField] PhysicsData _physicsData;
 		[SerializeField] SceneNamesData _sceneNamesData;
@@ -79,6 +81,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IPhysicsData>().FromInstance(_physicsData).AsSingle();
 			Container.Bind<ISceneNameData>().FromInstance(_sceneNamesData)
 				.AsSingle();
+			Container.Bind<IAIData>().FromInstance(_aiData).AsSingle();
 		}
 
 		void BindGameStateMachine()

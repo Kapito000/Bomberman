@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using AI;
+﻿using AI;
+using Feature.Enemy.AI;
 using Feature.Enemy.Base.Component;
 using Feature.Enemy.Base.StaticData;
 using FluentBehaviourTree;
 using Infrastructure.ECS;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Feature.Enemy.Base.System
@@ -12,84 +13,42 @@ namespace Feature.Enemy.Base.System
 	public sealed class Patrolling
 	{
 		[Inject] IAIData _aiData;
+		[Inject] Tilemap _tileMap;
+		[Inject] FindPatrolPoints _findPatrolPoints;
 
 		IAIAgent _agent;
-
+		
 		public void Init(IAIAgent agent)
 		{
 			_agent = agent;
 		}
 
-		public bool HasPatrolPoints()
-		{
-			if (Agent().Has<PatrolPoints>() == false)
-				return false;
-
-			var patrolPoints = Agent().PatrolPoints();
-			if (patrolPoints == null || patrolPoints.Count == 0)
-				return false;
-
-			return true;
-		}
-
 		public bool HasCurrentPatrolPoint()
 		{
-			if (Agent().Has<CurrentPatrolPoint>() == false)
-				return false;
-
-			var currentPatrolPoint = Agent().CurrentPatrolPoint();
-			if (currentPatrolPoint == null)
-				return false;
-
-			return true;
+			return Agent().Has<CurrentDestination>();
 		}
 
 		public bool IsPatrolPointArrived()
 		{
 			Vector2 pos = Agent().Transform().position;
-			Vector2 pointPos = Agent().CurrentPatrolPoint().position;
+			Vector2 pointPos = Agent().NavMeshAgent().destination;
 			var distance = Vector2.Distance(pos, pointPos);
 			if (distance < _aiData.ArrivedDestinationDistance)
 				return true;
 			return false;
 		}
 
-		EntityWrapper Agent() =>
-			_agent.Entity;
-
 		public BehaviourTreeStatus SelectPatrolDestination()
 		{
-			var patrolPoints = Agent().PatrolPoints();
-
-			var points = new List<Transform>(patrolPoints);
-			if (Agent().Has<CurrentPatrolPoint>())
-			{
-				var currentPatrolPoint = Agent().CurrentPatrolPoint();
-				points.Remove(currentPatrolPoint);
-			}
-
-			var index = Random.Range(0, points.Count);
-			if (points[index] == null)
-			{
-				points.RemoveAll(x => x == null);
-				patrolPoints.RemoveAll(x => x == null);
-				if (points.Count == 0)
-				{
-					return BehaviourTreeStatus.Failure;
-				}
-			}
-
-			Agent().ReplaceCurrentPatrolPoint(points[index]);
-			SetDestination();
-
+			var pos = Agent().TransformPos();
+			var patrolDistance = _aiData.PatrolDistance;
+			var destination = _findPatrolPoints.CalculatePoint(pos, patrolDistance);
+			Agent().ReplaceCurrentDestination(destination);
+			Agent().NavMeshAgent().SetDestination(destination);
 			return BehaviourTreeStatus.Success;
 		}
 
-		public BehaviourTreeStatus SetDestination()
-		{
-			var point = Agent().CurrentPatrolPoint();
-			Agent().NavMeshAgent().SetDestination(point.position);
-			return BehaviourTreeStatus.Success;
-		}
+		EntityWrapper Agent() =>
+			_agent.Entity;
 	}
 }

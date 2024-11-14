@@ -33,7 +33,7 @@ namespace Feature.Enemy.AI
 			if (TryGetRandomCellIndex(availableCells, out var index) == false)
 				return pos;
 
-			var fromDir = InvertDirection((Direction)index);
+			var fromDir = InvertDirection((Direction)(index + 1));
 			return CalculatePoint(availableCells[index].Value, --length, fromDir);
 		}
 
@@ -74,7 +74,7 @@ namespace Feature.Enemy.AI
 			var result = new Vector3Int?[4];
 			for (var i = 0; i < result.Length; i++)
 			{
-				var dir = (Direction)i;
+				var dir = (Direction)(i + 1);
 				if (dir == from) continue;
 
 				var cellPosMethod = GetCellPosMethod(dir);
@@ -119,7 +119,7 @@ namespace Feature.Enemy.AI
 
 		Vector3Int Right(Vector3Int pos) =>
 			pos + Vector3Int.right;
-		
+
 		Direction InvertDirection(Direction dir)
 		{
 			switch (dir)

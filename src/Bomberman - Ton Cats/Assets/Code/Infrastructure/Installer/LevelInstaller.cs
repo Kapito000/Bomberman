@@ -4,7 +4,9 @@ using Factory.SystemFactory;
 using Feature;
 using Feature.Bomb.Factory;
 using Feature.Camera.Factory;
+using Feature.Enemy.AI;
 using Feature.Enemy.Base.Factory;
+using Feature.Enemy.Base.System;
 using Feature.Explosion.Factory;
 using Feature.Hero.Factory;
 using Feature.HUD.Factory;
@@ -40,6 +42,7 @@ namespace Infrastructure.Installer
 			BindFactoryKit();
 			BindUiFactories();
 			BindInstantiator();
+			BindAIFunctional();
 			BindSystemFactory();
 			BindDevSceneRunner();
 			BindCollisionRegistry();
@@ -56,6 +59,12 @@ namespace Infrastructure.Installer
 		{
 			_levelData.EcsRunner = _ecsRunner;
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
+		}
+
+		void BindAIFunctional()
+		{
+			Container.Bind<Patrolling>().AsSingle();
+			Container.Bind<FindPatrolPoints>().AsSingle();
 		}
 
 		void BindCollisionRegistry()

@@ -34,7 +34,6 @@ namespace Infrastructure.Installer
 			BindEntityWrapper();
 			BindAssetProvider();
 			BindGameStateMachine();
-			BindOtherInstallBindings();
 		}
 
 		void BindUIServices()
@@ -93,11 +92,6 @@ namespace Infrastructure.Installer
 			Container.Bind<IState>().To<LaunchGame>().AsSingle();
 			Container.Bind<IState>().To<GameLoop>().AsSingle();
 			Container.Bind<IState>().To<GameExit>().AsSingle();
-		}
-
-		void BindOtherInstallBindings()
-		{
-			new Feature.Enemy.Base.InstallBindings().Bind(Container);
 		}
 	}
 }

@@ -9,7 +9,6 @@ using Zenject;
 
 namespace Feature.Enemy.Base.System
 {
-	
 	public sealed class EnemyAIBrainProcessSystem : IEcsInitSystem,
 		IEcsRunSystem, IAIAgent
 	{
@@ -31,11 +30,12 @@ namespace Feature.Enemy.Base.System
 			var builder = new BehaviourTreeBuilder();
 			_patrolTree = builder
 				.Sequence("Patrolling")
-					.Condition(_patrolling.HasPatrolPoints)
 					.Selector("Select patrol point.")
 						.Condition(_patrolling.HasCurrentPatrolPoint)
 						.Do(_patrolling.SelectPatrolDestination)
 					.End()
+					// .Selector("Find new patrol points.")
+					// .End()
 					.Selector("Process an arrival on the point.")
 						.Sequence()
 							.Condition(_patrolling.IsPatrolPointArrived)

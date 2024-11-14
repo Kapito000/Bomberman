@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Feature.Enemy.Base.Component;
 using Infrastructure.ECS;
 using UnityEngine;
@@ -7,38 +6,17 @@ namespace Feature.Enemy.Base
 {
 	public static class EntityWrapperExtension
 	{
-		public static List<Transform> PatrolPoints(this EntityWrapper e)
+		public static Vector2 CurrentPatrolPoint(this EntityWrapper e)
 		{
-			ref var patrolPoints = ref e.Get<PatrolPoints>();
-			return patrolPoints.Value;
-		}
-
-		public static EntityWrapper AddPatrolPoints(this EntityWrapper e)
-		{
-			ref var patrolPoints = ref e.AddComponent<PatrolPoints>();
-			patrolPoints.Value = new List<Transform>();
-			return e;
-		}
-
-		public static EntityWrapper AddCurrentPatrolPoint(this EntityWrapper e,
-			Transform point)
-		{
-			ref var currentPatrolPoint = ref e.AddComponent<CurrentPatrolPoint>();
-			currentPatrolPoint.Value = point;
-			return e;
-		}
-		
-		public static Transform CurrentPatrolPoint(this EntityWrapper e)
-		{
-			ref var currentPatrolPoint = ref e.Get<CurrentPatrolPoint>();
+			ref var currentPatrolPoint = ref e.Get<CurrentDestination>();
 			return currentPatrolPoint.Value;
 		}
-		
-		public static Transform ReplaceCurrentPatrolPoint(this EntityWrapper e,
-			Transform point)
+
+		public static Vector2 ReplaceCurrentDestination(this EntityWrapper e,
+			Vector2 destination)
 		{
-			ref var currentPatrolPoint = ref e.ReplaceComponent<CurrentPatrolPoint>();
-			return currentPatrolPoint.Value = point;
+			ref var currentPatrolPoint = ref e.ReplaceComponent<CurrentDestination>();
+			return currentPatrolPoint.Value = destination;
 		}
 	}
 }

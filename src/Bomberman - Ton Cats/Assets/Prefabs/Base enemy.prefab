@@ -57,8 +57,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5186027129395536465, guid: c86ec699cc4c11640b248ff51936cdc7, type: 3}
-      propertyPath: m_Radius
-      value: 0.45
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5353578827993143716, guid: c86ec699cc4c11640b248ff51936cdc7, type: 3}
       propertyPath: m_Name
@@ -94,7 +94,7 @@ NavMeshAgent:
   m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 2
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0
@@ -104,7 +104,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 3
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &7566671150543030113
 MonoBehaviour:
   m_ObjectHideFlags: 0

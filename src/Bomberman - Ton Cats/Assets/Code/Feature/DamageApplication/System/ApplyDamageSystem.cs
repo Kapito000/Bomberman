@@ -21,7 +21,6 @@ namespace Feature.DamageApplication.System
 				
 				var damage = _alive.Damage();
 				_alive.AppendChangeLifePoints(-damage);
-				_alive.Remove<Damage>();
 			}
 		}
 	}

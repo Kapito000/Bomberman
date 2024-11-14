@@ -8,6 +8,7 @@ namespace Feature.DamageApplication
 		public DamageApplicationFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddUpdate<ApplyDamageSystem>();
+			AddCleanup<CleanupSystem>();
 		}
 	}
 }

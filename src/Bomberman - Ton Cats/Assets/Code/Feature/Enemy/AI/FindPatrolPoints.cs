@@ -18,7 +18,7 @@ namespace Feature.Enemy.AI
 		{
 			if (length < 0)
 			{
-				Debug.LogError($"{nameof(length)} cannot be less than 0.");
+				Debug.LogWarning($"{nameof(length)} cannot be less than 0.");
 				return pos;
 			}
 			var cellPos = _tileMap.WorldToCell(pos);
@@ -29,6 +29,8 @@ namespace Feature.Enemy.AI
 
 		Vector3Int CalculatePoint(Vector3Int pos, int length, Direction from)
 		{
+			if (length <= 0) return pos;
+
 			var availableCells = AvailableCells(pos, from);
 			if (TryGetRandomCellIndex(availableCells, out var index) == false)
 				return pos;

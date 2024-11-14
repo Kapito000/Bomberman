@@ -18,7 +18,6 @@ namespace Common.Component
 	public struct Moving { }
 	public struct Position { public Vector3 Value; }
 	public struct Direction { public Vector2 Value; }
-	public struct LifePoints { public int Value; }
 	public struct FirstBreath { }
 	public struct ForParent { public Transform Value; }
 }

@@ -1,5 +1,5 @@
-﻿using Common.Component;
-using Feature.DamageApplication.Component;
+﻿using Feature.DamageApplication.Component;
+using Feature.Life.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -20,9 +20,8 @@ namespace Feature.DamageApplication.System
 				_alive.SetEntity(alive);
 				
 				var damage = _alive.Damage();
-				var lifePoints = _alive.LifePoints();
-				_alive.SetLifePoints(lifePoints - damage);
-				_alive.SubtractDamage(damage);
+				_alive.AppendChangeLifePoints(-damage);
+				_alive.Remove<Damage>();
 			}
 		}
 	}

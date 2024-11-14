@@ -11,6 +11,7 @@ using Feature.Hero.Behaviour;
 using Feature.Hero.Component;
 using Feature.HUD.Behaviour;
 using Feature.HUD.Component;
+using Feature.Life.Component;
 using Leopotam.EcsLite;
 using MapTile;
 using UnityEngine;
@@ -53,7 +54,7 @@ namespace Infrastructure.ECS
 		public Rigidbody2D Rigidbody2D()
 		{
 			ref var rigidbody2D = ref _world
-				.GetPool<Common.Component.Rigidbody2DComponent>()
+				.GetPool<Rigidbody2DComponent>()
 				.Get(_entity);
 
 			return rigidbody2D.Value;
@@ -222,18 +223,6 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public EntityWrapper SubtractDamage(int value)
-		{
-			if (Has<Damage>() == false)
-				return this;
-			ref var damage = ref Get<Damage>();
-			damage.Value -= value;
-
-			if (damage.Value <= 0)
-				Remove<Damage>();
-			return this;
-		}
-
 		public LifePointsPanel LifePointsPanel()
 		{
 			ref var component = ref Get<LifePointsPanelComponent>();
@@ -308,6 +297,26 @@ namespace Infrastructure.ECS
 		{
 			ref var navMeshAgent = ref Get<NavMeshAgentComponent>();
 			return navMeshAgent.Value;
+		}
+
+		public int ChangeLifePoints()
+		{
+			ref var changeLifePoints = ref Get<ChangeLifePoints>();
+			return changeLifePoints.Value;
+		}
+		
+		public EntityWrapper ReplaceChangeLifePoints(int value)
+		{
+			ref var changeLifePoints = ref ReplaceComponent<ChangeLifePoints>();
+			changeLifePoints.Value = value;
+			return this;
+		}
+
+		public EntityWrapper AppendChangeLifePoints(int value)
+		{
+			ref var changeLifePoints = ref ReplaceComponent<ChangeLifePoints>();
+			changeLifePoints.Value += value;
+			return this;
 		}
 	}
 }

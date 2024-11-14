@@ -6,6 +6,7 @@ using Feature.Hero.Behaviour;
 using Feature.Hero.Component;
 using Feature.Hero.StaticData;
 using Feature.Input.Component;
+using Feature.Life.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;

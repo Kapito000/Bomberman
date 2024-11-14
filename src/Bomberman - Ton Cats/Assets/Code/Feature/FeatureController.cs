@@ -10,6 +10,7 @@ using Feature.Explosion;
 using Feature.Hero;
 using Feature.HUD;
 using Feature.Input;
+using Feature.Life;
 using Feature.UI;
 
 namespace Feature
@@ -28,6 +29,7 @@ namespace Feature
 			Add<BombFeature>();
 			Add<ExplosionFeature>();
 			Add<DamageApplicationFeature>();
+			Add<LifeFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();

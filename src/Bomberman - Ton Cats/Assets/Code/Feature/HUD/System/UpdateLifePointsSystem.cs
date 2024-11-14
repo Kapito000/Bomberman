@@ -1,6 +1,6 @@
-﻿using Common.Component;
-using Feature.Hero.Component;
+﻿using Feature.Hero.Component;
 using Feature.HUD.Component;
+using Feature.Life.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -13,7 +13,8 @@ namespace Feature.HUD.System
 		[Inject] EntityWrapper _hero;
 		[Inject] EntityWrapper _panel;
 		
-		readonly EcsFilterInject<Inc<HeroComponent, LifePoints>> _heroFilter;
+		readonly EcsFilterInject<
+			Inc<HeroComponent, LifePoints, ChangeLifePoints>> _heroFilter;
 		readonly EcsFilterInject<
 			Inc<LifePointsPanelComponent>> _lifePointsPanelFilter;
 

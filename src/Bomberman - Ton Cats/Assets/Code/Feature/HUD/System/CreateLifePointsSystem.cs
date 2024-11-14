@@ -2,6 +2,7 @@
 using Feature.Hero.Component;
 using Feature.HUD.Component;
 using Feature.HUD.Factory;
+using Feature.Life.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

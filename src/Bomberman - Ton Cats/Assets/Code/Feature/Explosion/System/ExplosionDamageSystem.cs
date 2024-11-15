@@ -34,7 +34,7 @@ namespace Feature.Explosion.System
 					    _explosion.ExplodedTargetsBuffer().Contains(pack))
 						continue;
 
-					_target.AppendDamage(Constant.c_Damage);
+					_target.AppendDamage(Constant.Damage.c_Default);
 					_explosion.ReplaceExplodedTargetsBuffer(target);
 				}
 			}

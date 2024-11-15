@@ -14,8 +14,8 @@ namespace Feature.HUD
 			AddInit<CreateLifePointsSystem>();
 			AddInit<CreateBombCounterPanelSystem>();
 			
-			AddUpdate<UpdateLifePointsSystem>();
-			AddUpdate<UpdateBombCounterPanelSystem>();
+			AddLateUpdate<UpdateLifePointsSystem>();
+			AddLateUpdate<UpdateBombCounterPanelSystem>();
 		}
 	}
 }

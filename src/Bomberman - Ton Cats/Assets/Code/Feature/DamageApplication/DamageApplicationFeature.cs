@@ -9,7 +9,13 @@ namespace Feature.DamageApplication
 		{
 			AddUpdate<UpdateDamageBufferSystemSystem>();
 			AddUpdate<DamageBufferToDamageSystem>();
+			
 			AddUpdate<ApplyDamageSystem>();
+			
+			AddUpdate<ApplyTakenDamageEffectSystem>();
+			AddUpdate<DamageEffectProcessSystem>();
+			AddUpdate<DamageEffectDurationTimerSystem>();
+			
 			AddCleanup<CleanupSystem>();
 		}
 	}

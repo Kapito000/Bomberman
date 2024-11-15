@@ -3,7 +3,6 @@ using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Extensions;
 using Feature.DamageApplication.Component;
-using UnityEngine;
 
 namespace Feature.DamageApplication
 {
@@ -47,14 +46,14 @@ namespace Feature.DamageApplication
 			damageBuffer.Value ??= new List<EcsPackedEntityWithWorld>(4);
 			return e;
 		}
-		
+
 		public static EntityWrapper AddDamageBuffer(this EntityWrapper e)
 		{
 			ref var damageBuffer = ref e.AddComponent<DamageBuffer>();
 			damageBuffer.Value ??= new List<EcsPackedEntityWithWorld>(4);
 			return e;
 		}
-		
+
 		public static EntityWrapper ReplaceToDamageBuffer(this EntityWrapper e,
 			int otherEntity)
 		{
@@ -104,6 +103,42 @@ namespace Feature.DamageApplication
 					return e;
 				}
 			}
+			return e;
+		}
+
+		public static EntityWrapper AddSpriteFlickeringPeriod(this EntityWrapper e,
+			float period)
+		{
+			ref var spriteFlickering = ref e.AddComponent<SpriteFlickeringPeriod>();
+			spriteFlickering.Value = period;
+			return e;
+		}
+		
+		public static float SpriteFlickeringPeriod(this EntityWrapper e)
+		{
+			ref var spriteFlickering = ref e.Get<SpriteFlickeringPeriod>();
+			return spriteFlickering.Value;
+		}
+
+		public static EntityWrapper AddSpriteFlickeringTimer(this EntityWrapper e,
+			float time)
+		{
+			ref var timer = ref e.AddComponent<SpriteFlickeringTimer>();
+			timer.Value = time;
+			return e;
+		}
+
+		public static float SpriteFlickeringTimer(this EntityWrapper e)
+		{
+			ref var timer = ref e.Get<SpriteFlickeringTimer>();
+			return timer.Value;
+		}
+
+		public static EntityWrapper SetSpriteFlickeringTimer(this EntityWrapper e,
+			float time)
+		{
+			ref var timer = ref e.Get<SpriteFlickeringTimer>();
+			timer.Value = time;
 			return e;
 		}
 	}

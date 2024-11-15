@@ -285,7 +285,7 @@ namespace Infrastructure.ECS
 			ref var blackboard = ref Get<BaseEnemyAIBlackboardComponent>();
 			return blackboard.Value;
 		}
-		
+
 		public EntityWrapper AddBaseEnemyAIBlackboard()
 		{
 			ref var blackboard = ref AddComponent<BaseEnemyAIBlackboardComponent>();
@@ -304,7 +304,7 @@ namespace Infrastructure.ECS
 			ref var changeLifePoints = ref Get<ChangeLifePoints>();
 			return changeLifePoints.Value;
 		}
-		
+
 		public EntityWrapper ReplaceChangeLifePoints(int value)
 		{
 			ref var changeLifePoints = ref ReplaceComponent<ChangeLifePoints>();
@@ -317,6 +317,32 @@ namespace Infrastructure.ECS
 			ref var changeLifePoints = ref ReplaceComponent<ChangeLifePoints>();
 			changeLifePoints.Value += value;
 			return this;
+		}
+
+		public EntityWrapper AddTakenDamageEffectDuration(float duration)
+		{
+			ref var effectDuration = ref AddComponent<TakenDamageEffectDuration>();
+			effectDuration.Value = duration;
+			return this;
+		}
+
+		public float TakenDamageEffectDuration()
+		{
+			ref var effectDuration = ref Get<TakenDamageEffectDuration>();
+			return effectDuration.Value;
+		}
+
+		public EntityWrapper SetTakenDamageEffectDuration(float value)
+		{
+			ref var effectDuration = ref Get<TakenDamageEffectDuration>();
+			effectDuration.Value = value;
+			return this;
+		}
+
+		public SpriteRenderer SpriteRenderer()
+		{
+			ref var spriteRendererComponent = ref Get<SpriteRendererComponent>();
+			return spriteRendererComponent.Value;
 		}
 	}
 }

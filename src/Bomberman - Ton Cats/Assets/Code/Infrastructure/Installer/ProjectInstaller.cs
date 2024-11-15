@@ -11,6 +11,7 @@ using Input;
 using Input.Character;
 using LevelData;
 using StaticData.SceneNames;
+using TimeService;
 using UnityEngine;
 using Zenject;
 
@@ -27,13 +28,19 @@ namespace Infrastructure.Installer
 		{
 			BindLevelData();
 			BindStaticData();
+			BindUIServices();
+			BindTimeService();
 			BindSceneLoader();
 			BindUIFactories();
-			BindUIServices();
 			BindInputService();
 			BindEntityWrapper();
 			BindAssetProvider();
 			BindGameStateMachine();
+		}
+
+		void BindTimeService()
+		{
+			Container.Bind<ITimeService>().To<StandardTimeService>().AsSingle();
 		}
 
 		void BindUIServices()

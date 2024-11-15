@@ -10,6 +10,7 @@ namespace Common.Component
 	[Serializable] public struct TransformComponent { public Transform Value; }
 	[Serializable] public struct SpriteLibraryComponent { public SpriteLibrary Value; }
 	[Serializable] public struct NavMeshAgentComponent { public NavMeshAgent Value; }
+	[Serializable] public struct SpriteRendererComponent { public SpriteRenderer Value; }
 	
 	public struct View { public IEntityView Value; }
 	

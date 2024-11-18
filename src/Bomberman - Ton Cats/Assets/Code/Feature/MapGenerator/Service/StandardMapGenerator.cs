@@ -1,4 +1,4 @@
-﻿namespace Feature.MapGenerator
+﻿namespace Feature.MapGenerator.Service
 {
 	public sealed class StandardMapGenerator : IMapGeneration
 	{ }

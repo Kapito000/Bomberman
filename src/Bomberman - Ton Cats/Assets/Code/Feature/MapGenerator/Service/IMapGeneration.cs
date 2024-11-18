@@ -1,6 +1,6 @@
 ﻿using Infrastructure;
 
-namespace Feature.MapGenerator
+namespace Feature.MapGenerator.Service
 {
 	public interface IMapGeneration : IService
 	{ }

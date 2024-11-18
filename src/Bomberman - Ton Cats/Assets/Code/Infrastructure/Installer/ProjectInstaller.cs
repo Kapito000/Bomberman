@@ -2,6 +2,7 @@
 using Windows.Factory;
 using Feature.Enemy.Base.StaticData;
 using Feature.Hero.StaticData;
+using Feature.MapGenerator;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
@@ -33,9 +34,15 @@ namespace Infrastructure.Installer
 			BindSceneLoader();
 			BindUIFactories();
 			BindInputService();
+			BindMapGenerator();
 			BindEntityWrapper();
 			BindAssetProvider();
 			BindGameStateMachine();
+		}
+
+		void BindMapGenerator()
+		{
+			Container.Bind<IMapGeneration>().To<StandardMapGenerator>().AsSingle();
 		}
 
 		void BindTimeService()

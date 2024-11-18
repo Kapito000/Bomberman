@@ -2,6 +2,6 @@
 
 namespace Feature.MapGenerator.Service
 {
-	public interface IMapGeneration : IService
+	public interface IMapGenerator : IService
 	{ }
 }

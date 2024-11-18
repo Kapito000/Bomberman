@@ -4,6 +4,7 @@ using Feature.Enemy.Base.StaticData;
 using Feature.Hero.StaticData;
 using Feature.MapGenerator;
 using Feature.MapGenerator.Service;
+using Feature.MapGenerator.StaticData;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
@@ -22,6 +23,7 @@ namespace Infrastructure.Installer
 	public class ProjectInstaller : MonoInstaller
 	{
 		[SerializeField] AIData _aiData;
+		[SerializeField] IMapData _mapData;
 		[SerializeField] HeroData _heroData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] DirectLinkProvider _assetProvider;
@@ -43,7 +45,7 @@ namespace Infrastructure.Installer
 
 		void BindMapGenerator()
 		{
-			Container.Bind<IMapGeneration>().To<StandardMapGenerator>().AsSingle();
+			Container.Bind<IMapGenerator>().To<StandardMapGenerator>().AsSingle();
 		}
 
 		void BindTimeService()
@@ -94,6 +96,7 @@ namespace Infrastructure.Installer
 			Container.Bind<ISceneNameData>().FromInstance(_sceneNamesData)
 				.AsSingle();
 			Container.Bind<IAIData>().FromInstance(_aiData).AsSingle();
+			Container.Bind<IMapData>().FromInstance(_mapData).AsSingle();
 		}
 
 		void BindGameStateMachine()

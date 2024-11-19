@@ -2,7 +2,6 @@
 using Extensions;
 using Factory.Kit;
 using Feature.Bomb.Component;
-using Feature.Hero.Behaviour;
 using Feature.Hero.Component;
 using Feature.Hero.StaticData;
 using Feature.Input.Component;
@@ -16,15 +15,15 @@ namespace Feature.Hero.Factory
 	public sealed class HeroFactory : IHeroFactory
 	{
 		[Inject] IHeroData _heroData;
-		[Inject] IFactoryKit _factoryKit;
+		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _heroEntity;
 
 		public int CreateHero(Vector2 pos, Quaternion rot, Transform parent)
 		{
-			var prefab = _factoryKit.AssetProvider.Hero();
-			var heroObj = _factoryKit.InstantiateService
+			var prefab = _kit.AssetProvider.Hero();
+			var heroObj = _kit.InstantiateService
 				.Instantiate(prefab, pos, rot, parent);
-			var entity = _factoryKit.EntityBehaviourFactory
+			var entity = _kit.EntityBehaviourFactory
 				.InitEntityBehaviour(heroObj);
 			_heroEntity.SetEntity(entity);
 
@@ -40,6 +39,14 @@ namespace Feature.Hero.Factory
 				;
 
 			return entity;
+		}
+
+		public int CreateHeroSpawnPoint(Vector2 pos)
+		{
+			var prefab = _kit.AssetProvider.HeroSpawnPoint();
+			var instance = _kit.InstantiateService.Instantiate(prefab, pos);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			return e;
 		}
 	}
 }

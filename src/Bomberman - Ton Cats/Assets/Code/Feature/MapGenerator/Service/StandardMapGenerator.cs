@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Feature.MapGenerator.Service.IndestructibleWallsGenerator;
 using Feature.MapGenerator.Service.OutLineWallGenerator;
+using Feature.MapGenerator.Service.PlayerSpawnGenerator;
 using Feature.MapGenerator.StaticData;
 using Gameplay.Map;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Feature.MapGenerator.Service
 	{
 		[Inject] IMapData _mapData;
 		
+		IHeroSpawnGenerator _heroSpawnGenerator;
 		IOutLineWallGenerator _outLineWallGenerator;
 		IIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
@@ -29,6 +31,7 @@ namespace Feature.MapGenerator.Service
 				.Create();
 			_outLineWallGenerator = new StandardOutLineWallGenerator();
 			_indestructibleTilesGenerator = new StandardIndestructibleTilesGenerator();
+			_heroSpawnGenerator = new StandardHeroSpawnGenerator();
 		}
 
 		public async UniTask<IMap> CreateMapAsync(IGenerateMapProgress progressReporter)
@@ -44,7 +47,8 @@ namespace Feature.MapGenerator.Service
 			MakeProgressStep();
 			CreateIndestructibleWalls(map);
 			MakeProgressStep();
-			// CreatePlayer.
+			CreatePlayerSpawnArea(map);
+			MakeProgressStep();
 			// CreateEnemies.
 			// CreateDestructibleWalls(map);
 			// CreatePowerUps
@@ -60,6 +64,11 @@ namespace Feature.MapGenerator.Service
 
 		void CreateIndestructibleWalls(IMap map) =>
 			_indestructibleTilesGenerator.Create(map);
+
+		void CreatePlayerSpawnArea(IMap map)
+		{
+			_heroSpawnGenerator.CreateSpawnArea(map);
+		}
 
 		void CreateDestructibleWalls(StandardTileMap map)
 		{

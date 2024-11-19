@@ -1,4 +1,5 @@
-﻿using Infrastructure;
+﻿using Gameplay.Map;
+using Infrastructure;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 
@@ -8,5 +9,6 @@ namespace LevelData
 	{
 		IEcsRunner EcsRunner { get; set; }
 		IDevSceneRunner DevSceneRunner { get; set; }
+		IMap Map { get; set; }
 	}
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   _camera: {fileID: 3495701177089780482, guid: 5278d9ec4c4caa940b878d2098984464, type: 3}
   _virtualCamera: {fileID: 5275231450059323486, guid: af826cf0be4df5c49af016e7f5afedf3, type: 3}
   _hero: {fileID: 771511697424430387, guid: 8c6293d2d569ffd46b13832d1774c499, type: 3}
+  _heroSpawnPoint: {fileID: 3622567681166204801, guid: 7850254af3f2ac34e91da140fc2b0f75, type: 3}
   _bomb: {fileID: 522777777130883961, guid: ef692530b47e6ac4ebc1b83a8297df86, type: 3}
   _explosion: {fileID: 4520389842868597706, guid: f2b0be94c295e7d4b88034b81dd5016a, type: 3}
   _baseEnemy: {fileID: 5150371019810778337, guid: b400a96b57938b444bda5e9f8daa434c, type: 3}

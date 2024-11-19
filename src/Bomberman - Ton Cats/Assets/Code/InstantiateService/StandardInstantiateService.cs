@@ -22,6 +22,9 @@ namespace InstantiateService
 			return instance;
 		}
 
+		public GameObject Instantiate(Object prefab, Vector2 pos) =>
+			_container.InstantiatePrefab(prefab, pos, quaternion.identity, null);
+
 		public GameObject Instantiate(Object prefab, Transform parent)
 		{
 			return _container.InstantiatePrefab(prefab, parent);

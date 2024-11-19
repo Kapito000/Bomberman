@@ -25,9 +25,9 @@ namespace Feature
 		{
 			_systemFactory = systemFactory;
 			Add<InputFeature>();
+			Add<MapGenerationFeature>();
 			Add<HeroFeature>();
 			Add<EnemyFeature>();
-			Add<MapGenerationFeature>();
 			Add<BombFeature>();
 			Add<ExplosionFeature>();
 			Add<DamageApplicationFeature>();

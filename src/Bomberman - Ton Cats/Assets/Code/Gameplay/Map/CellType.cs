@@ -3,6 +3,8 @@
 	public enum CellType
 	{
 		None,
+		Free,
 		Indestructible,
+		HeroSpawnPoint,
 	}
 }

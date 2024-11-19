@@ -6,6 +6,7 @@ namespace InstantiateService
 	public interface IInstantiateService : IService
 	{
 		GameObject Instantiate(Object prefab);
+		GameObject Instantiate(Object prefab, Vector2 pos);
 		GameObject Instantiate(Object prefab, Transform parent);
 
 		GameObject Instantiate(GameObject prefab, Vector2 pos, Transform parent);
@@ -18,7 +19,7 @@ namespace InstantiateService
 
 		TComponent Instantiate<TComponent>(Object prefab)
 			where TComponent : Component;
-		
+
 		TComponent Instantiate<TComponent>(Object prefab, Transform parent)
 			where TComponent : Component;
 	}

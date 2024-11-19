@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Feature.MapGenerator.Service.IndestructibleWallsGenerator;
 using Feature.MapGenerator.Service.OutLineWallGenerator;
 using Feature.MapGenerator.StaticData;
 using Gameplay.Map;
@@ -13,6 +14,7 @@ namespace Feature.MapGenerator.Service
 		[Inject] IMapData _mapData;
 
 		IOutLineWallGenerator _outLineWallGenerator;
+		IIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
 		AutoResetUniTaskCompletionSource<IMap> _generateMapCompletionSource;
 
@@ -21,6 +23,7 @@ namespace Feature.MapGenerator.Service
 			_generateMapCompletionSource = AutoResetUniTaskCompletionSource<IMap>
 				.Create();
 			_outLineWallGenerator = new StandardOutLineWallGenerator();
+			_indestructibleTilesGenerator = new StandardIndestructibleTilesGenerator();
 		}
 
 		public async UniTask<IMap> CreateMapAsync(IGenerateMapProgress progress)
@@ -29,7 +32,7 @@ namespace Feature.MapGenerator.Service
 			var map = new StandardTileMap(new TileGrid(size.x, size.y));
 
 			CreateWallOutLine(map);
-			// CreateIndestructibleWalls(map);
+			CreateIndestructibleWalls(map);
 			// CreatePlayer.
 			// CreateEnemies.
 			// CreateDestructibleWalls(map);
@@ -44,10 +47,8 @@ namespace Feature.MapGenerator.Service
 		void CreateWallOutLine(IMap map) =>
 			_outLineWallGenerator.Create(map);
 
-		void CreateIndestructibleWalls(StandardTileMap map)
-		{
-			throw new NotImplementedException();
-		}
+		void CreateIndestructibleWalls(IMap map) => 
+			_indestructibleTilesGenerator.Create(map);
 
 		void CreateDestructibleWalls(StandardTileMap map)
 		{

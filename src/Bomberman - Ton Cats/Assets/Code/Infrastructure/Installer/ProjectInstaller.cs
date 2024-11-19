@@ -2,7 +2,6 @@
 using Windows.Factory;
 using Feature.Enemy.Base.StaticData;
 using Feature.Hero.StaticData;
-using Feature.MapGenerator;
 using Feature.MapGenerator.Service;
 using Feature.MapGenerator.StaticData;
 using Infrastructure.AssetProvider;
@@ -13,6 +12,7 @@ using Infrastructure.SceneLoader;
 using Input;
 using Input.Character;
 using LevelData;
+using MapTile.TileProvider;
 using StaticData.SceneNames;
 using TimeService;
 using UnityEngine;
@@ -23,9 +23,10 @@ namespace Infrastructure.Installer
 	public class ProjectInstaller : MonoInstaller
 	{
 		[SerializeField] AIData _aiData;
-		[SerializeField] IMapData _mapData;
+		[SerializeField] MapData _mapData;
 		[SerializeField] HeroData _heroData;
 		[SerializeField] SceneNamesData _sceneNamesData;
+		[SerializeField] TileCollection _tileCollection;
 		[SerializeField] DirectLinkProvider _assetProvider;
 
 		public override void InstallBindings()
@@ -97,6 +98,7 @@ namespace Infrastructure.Installer
 				.AsSingle();
 			Container.Bind<IAIData>().FromInstance(_aiData).AsSingle();
 			Container.Bind<IMapData>().FromInstance(_mapData).AsSingle();
+			Container.Bind<ITileProvider>().FromInstance(_tileCollection).AsSingle();
 		}
 
 		void BindGameStateMachine()

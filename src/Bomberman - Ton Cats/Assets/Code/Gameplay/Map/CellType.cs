@@ -3,5 +3,6 @@
 	public enum CellType
 	{
 		None,
+		Indestructible,
 	}
 }

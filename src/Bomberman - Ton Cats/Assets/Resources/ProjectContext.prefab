@@ -75,7 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _aiData: {fileID: 11400000, guid: aa034e23ac655ad4c83f3f0391fec357, type: 2}
+  _mapData: {fileID: 11400000, guid: a468fdc1c8113e546b604f96023b62b7, type: 2}
   _heroData: {fileID: 11400000, guid: eb53c9d54d44aae4e8aa6ecf56b5c61f, type: 2}
-  _physicsData: {fileID: 0}
   _sceneNamesData: {fileID: 11400000, guid: d0022a8e84f23ca43b2a0e9413aaad62, type: 2}
+  _tileCollection: {fileID: 11400000, guid: 260116ef626b8464aa40ca488c3f2af4, type: 2}
   _assetProvider: {fileID: 11400000, guid: ca71632310af84646bd2153a470be011, type: 2}

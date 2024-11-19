@@ -1,11 +1,16 @@
-﻿namespace Gameplay.Map
+﻿using UnityEngine;
+
+namespace Gameplay.Map
 {
 	public sealed class TileGrid : IGrid
 	{
 		readonly Cell[,] _cells;
 
+		public Vector2Int Size { get; }
+
 		public TileGrid(int xSize, int ySize)
 		{
+			Size = new Vector2Int(xSize, ySize);
 			_cells = new Cell[xSize, ySize];
 		}
 

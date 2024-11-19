@@ -12,11 +12,16 @@ namespace Feature.MapGenerator.Service
 	public sealed class StandardMapGenerator : IMapGenerator
 	{
 		[Inject] IMapData _mapData;
-
+		
 		IOutLineWallGenerator _outLineWallGenerator;
 		IIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
 		AutoResetUniTaskCompletionSource<IMap> _generateMapCompletionSource;
+		
+		float _generateProgress;
+		IGenerateMapProgress _progressReporter;
+		
+		const float c_generateProgressStep = .1f;
 
 		public StandardMapGenerator()
 		{
@@ -26,20 +31,26 @@ namespace Feature.MapGenerator.Service
 			_indestructibleTilesGenerator = new StandardIndestructibleTilesGenerator();
 		}
 
-		public async UniTask<IMap> CreateMapAsync(IGenerateMapProgress progress)
+		public async UniTask<IMap> CreateMapAsync(IGenerateMapProgress progressReporter)
 		{
+			_generateProgress = 0;
+			_progressReporter = progressReporter;
+			
 			var size = _mapData.MapSize + new Vector2Int(2, 2);
 			var map = new StandardTileMap(new TileGrid(size.x, size.y));
+			MakeProgressStep();
 
 			CreateWallOutLine(map);
+			MakeProgressStep();
 			CreateIndestructibleWalls(map);
+			MakeProgressStep();
 			// CreatePlayer.
 			// CreateEnemies.
 			// CreateDestructibleWalls(map);
 			// CreatePowerUps
 			// BindNavMesh();
 
-			progress.Report(1);
+			progressReporter.Report(1);
 			_generateMapCompletionSource.TrySetResult(map);
 			return await _generateMapCompletionSource.Task;
 		}
@@ -47,7 +58,7 @@ namespace Feature.MapGenerator.Service
 		void CreateWallOutLine(IMap map) =>
 			_outLineWallGenerator.Create(map);
 
-		void CreateIndestructibleWalls(IMap map) => 
+		void CreateIndestructibleWalls(IMap map) =>
 			_indestructibleTilesGenerator.Create(map);
 
 		void CreateDestructibleWalls(StandardTileMap map)
@@ -58,6 +69,12 @@ namespace Feature.MapGenerator.Service
 		void BindNavMesh()
 		{
 			throw new NotImplementedException();
+		}
+
+		void MakeProgressStep()
+		{
+			_generateProgress += c_generateProgressStep;
+			_progressReporter.Report(_generateProgress);
 		}
 	}
 }

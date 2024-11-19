@@ -6,6 +6,6 @@ namespace Feature.MapGenerator.Service
 {
 	public interface IMapGenerator : IService
 	{
-		UniTask<IMap> CreateMapAsync(IGenerateMapProgress progress);
+		UniTask<IMap> CreateMapAsync(IGenerateMapProgress progressReporter);
 	}
 }

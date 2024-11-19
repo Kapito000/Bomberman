@@ -7,5 +7,6 @@ namespace Gameplay.Map
 	{
 		Vector2Int Size { get; }
 		IReadOnlyList<Vector2Int> Indestuctibles { get; }
+		bool TrySetIndestructible(int x, int y);
 	}
 }

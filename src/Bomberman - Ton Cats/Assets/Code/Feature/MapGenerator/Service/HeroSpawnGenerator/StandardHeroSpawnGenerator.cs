@@ -1,7 +1,7 @@
 ﻿using Gameplay.Map;
 using UnityEngine;
 
-namespace Feature.MapGenerator.Service.PlayerSpawnGenerator
+namespace Feature.MapGenerator.Service.HeroSpawnGenerator
 {
 	public sealed class StandardHeroSpawnGenerator : IHeroSpawnGenerator
 	{

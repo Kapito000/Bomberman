@@ -1,6 +1,6 @@
 ﻿using Gameplay.Map;
 
-namespace Feature.MapGenerator.Service.PlayerSpawnGenerator
+namespace Feature.MapGenerator.Service.HeroSpawnGenerator
 {
 	public interface IHeroSpawnGenerator
 	{

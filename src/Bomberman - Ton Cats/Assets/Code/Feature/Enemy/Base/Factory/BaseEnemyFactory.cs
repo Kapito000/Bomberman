@@ -23,5 +23,13 @@ namespace Feature.Enemy.Base.Factory
 				;
 			return entity;
 		}
+
+		public int CreateEnemySpawnPoint(Vector3 pos, Transform parent)
+		{
+			var prefab = _kit.AssetProvider.BaseEnemySpawnPoint();
+			var instance = _kit.InstantiateService.Instantiate(prefab, pos, parent);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			return e;
+		}
 	}
 }

@@ -11,18 +11,9 @@ namespace Feature.MapGenerator.System
 		[Inject] ILevelData _levelData;
 		[Inject] IMapGenerator _mapGenerator;
 
-		public async void Run(IEcsSystems systems)
+		public void Run(IEcsSystems systems)
 		{
-			_levelData.Map = await _mapGenerator.CreateMapAsync(new ProgressDebugger());
-		}
-	}
-
-	// Remove me.
-	public sealed class ProgressDebugger : IGenerateMapProgress
-	{
-		public void Report(float value)
-		{
-			Debug.Log(value);
+			_levelData.Map = _mapGenerator.CreateMap();
 		}
 	}
 }

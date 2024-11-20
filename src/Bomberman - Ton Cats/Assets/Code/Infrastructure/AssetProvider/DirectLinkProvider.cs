@@ -19,6 +19,7 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _bomb;
 		[SerializeField] GameObject _explosion;
 		[SerializeField] GameObject _baseEnemy;
+		[SerializeField] GameObject _baseEnemySpawnPoint;
 		[Header("UI")]
 		[SerializeField] Canvas _root;
 		[SerializeField] EventSystem _eventSystem;
@@ -47,5 +48,6 @@ namespace Infrastructure.AssetProvider
 		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
 		public BaseWindow WindowPrefab(WindowId id) => _windows[id];
 		GameObject IAssetProvider.BaseEnemy() => _baseEnemy;
+		public GameObject BaseEnemySpawnPoint() => _baseEnemySpawnPoint;
 	}
 }

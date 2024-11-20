@@ -8,6 +8,7 @@ namespace Gameplay.Map
 		Vector2Int Size { get; }
 		Vector2Int HeroSpawnPoint { get; }
 		IReadOnlyList<Vector2Int> Indestuctibles { get; }
+		IReadOnlyList<Vector2Int> EnemySpawnPoints { get; }
 		bool Has(int x, int y);
 		bool IsNone(int x, int y);
 		bool IsNone(Vector2Int cell);

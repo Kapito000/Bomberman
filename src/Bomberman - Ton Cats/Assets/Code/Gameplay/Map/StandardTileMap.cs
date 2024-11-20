@@ -7,10 +7,12 @@ namespace Gameplay.Map
 	{
 		readonly IGrid _grid;
 		readonly List<Vector2Int> _indestuctibles = new();
+		readonly List<Vector2Int> _enemySpawnPoints = new();
 
 		public Vector2Int Size => _grid.Size;
 		public Vector2Int HeroSpawnPoint { get; private set; }
 		public IReadOnlyList<Vector2Int> Indestuctibles => _indestuctibles;
+		public IReadOnlyList<Vector2Int> EnemySpawnPoints => _enemySpawnPoints;
 
 		public StandardTileMap(IGrid grid)
 		{
@@ -46,10 +48,11 @@ namespace Gameplay.Map
 
 		public bool TrySetEnemySpawnPoint(int x, int y)
 		{
-			if (Has(x,y) == false)
+			if (Has(x, y) == false)
 				return false;
-			
+
 			_grid[x, y].Type = CellType.EnemySpawnPoint;
+			_enemySpawnPoints.Add(new Vector2Int(x, y));
 			return true;
 		}
 

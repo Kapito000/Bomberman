@@ -10,6 +10,7 @@ namespace Feature.MapGenerator
 			AddInit<CreateMapSystem>();
 			AddInit<CreateIndestructibleTilesSystem>();
 			AddInit<CreateHeroSpawnPointSystem>();
+			AddInit<CreateEnemySpawnPointSystem>();
 		}
 	}
 }

@@ -12,6 +12,7 @@ namespace Gameplay.Map
 
 		public Vector2Int Size => _grid.Size;
 		public Vector2Int HeroSpawnPoint { get; private set; }
+		public IReadOnlyList<Vector2Int> Destuctibles => _destuctibles;
 		public IReadOnlyList<Vector2Int> Indestuctibles => _indestuctibles;
 		public IReadOnlyList<Vector2Int> EnemySpawnPoints => _enemySpawnPoints;
 

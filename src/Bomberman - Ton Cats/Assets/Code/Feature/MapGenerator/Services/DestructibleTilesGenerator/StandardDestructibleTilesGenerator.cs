@@ -21,7 +21,7 @@ namespace Feature.MapGenerator.Services.DestructibleTilesGenerator
 			foreach (var cell in availableCells)
 			{
 				if (CanPlace())
-					map.TrySetEnemySpawnPoint(cell);
+					map.TrySetDestructible(cell);
 			}
 		}
 

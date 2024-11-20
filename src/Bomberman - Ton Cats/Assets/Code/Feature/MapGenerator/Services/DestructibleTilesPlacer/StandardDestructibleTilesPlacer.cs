@@ -12,6 +12,6 @@ namespace Feature.MapGenerator.Services.DestructibleTilesPlacer
 		}
 
 		public float PlaceFrequency() =>
-			_mapData.EnemyFrequency;
+			_mapData.DestructibleFrequency;
 	}
 }

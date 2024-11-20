@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Map Data
   m_EditorClassIdentifier: 
   <MapSize>k__BackingField: {x: 15, y: 15}
-  <EnemyFrequency>k__BackingField: 0.1
+  <EnemyFrequency>k__BackingField: 0.01
+  <DestructibleFrequency>k__BackingField: 0.5
   <EnemySpawnDistanceToHero>k__BackingField: 5

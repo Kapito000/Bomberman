@@ -1,6 +1,6 @@
-﻿using Gameplay.Map;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
 using LevelData;
+using Map;
 using MapTile.TileProvider;
 using UnityEngine;
 using UnityEngine.Tilemaps;

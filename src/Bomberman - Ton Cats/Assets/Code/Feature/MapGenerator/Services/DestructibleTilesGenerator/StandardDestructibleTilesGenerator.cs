@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Feature.MapGenerator.Services.DestructibleTilesPlacer;
 using Feature.MapGenerator.StaticData;
-using Gameplay.Map;
+using Map;
 using UnityEngine;
 
 namespace Feature.MapGenerator.Services.DestructibleTilesGenerator

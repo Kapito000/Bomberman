@@ -1,6 +1,6 @@
 ﻿using Infrastructure;
 
-namespace Gameplay.Collisions
+namespace Collisions
 {
 	public interface ICollisionRegistry : IService
 	{

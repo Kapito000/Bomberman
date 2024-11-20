@@ -1,4 +1,4 @@
-﻿namespace Gameplay.Map
+﻿namespace Map
 {
 	public enum CellType
 	{

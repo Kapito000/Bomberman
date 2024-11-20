@@ -1,5 +1,5 @@
-﻿using Gameplay.Map;
-using Infrastructure;
+﻿using Infrastructure;
+using Map;
 
 namespace Feature.MapGenerator.Services
 {

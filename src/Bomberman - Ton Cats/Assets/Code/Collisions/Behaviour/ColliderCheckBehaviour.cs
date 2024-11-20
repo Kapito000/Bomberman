@@ -1,7 +1,7 @@
 ﻿using Infrastructure.ECS;
 using Zenject;
 
-namespace Gameplay.Collisions.Behaviour
+namespace Collisions.Behaviour
 {
 	public abstract class ColliderCheckBehaviour : EntityDependantBehavior
 	{

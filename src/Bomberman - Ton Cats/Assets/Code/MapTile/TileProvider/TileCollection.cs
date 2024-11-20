@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Gameplay.Map;
+using Map;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Menu = Constant.CreateAssetMenu;

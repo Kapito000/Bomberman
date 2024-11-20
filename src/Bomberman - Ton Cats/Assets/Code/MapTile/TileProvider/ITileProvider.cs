@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Gameplay.Map;
 using Infrastructure;
+using Map;
 using UnityEngine.Tilemaps;
 
 namespace MapTile.TileProvider

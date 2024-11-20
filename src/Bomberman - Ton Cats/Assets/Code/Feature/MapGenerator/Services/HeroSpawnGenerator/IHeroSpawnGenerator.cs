@@ -1,4 +1,4 @@
-﻿using Gameplay.Map;
+﻿using Map;
 
 namespace Feature.MapGenerator.Services.HeroSpawnGenerator
 {

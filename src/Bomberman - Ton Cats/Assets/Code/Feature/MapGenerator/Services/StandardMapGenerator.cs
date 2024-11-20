@@ -5,7 +5,7 @@ using Feature.MapGenerator.Services.HeroSpawnGenerator;
 using Feature.MapGenerator.Services.IndestructibleWallsGenerator;
 using Feature.MapGenerator.Services.OutLineWallGenerator;
 using Feature.MapGenerator.StaticData;
-using Gameplay.Map;
+using Map;
 using UnityEngine;
 
 namespace Feature.MapGenerator.Services

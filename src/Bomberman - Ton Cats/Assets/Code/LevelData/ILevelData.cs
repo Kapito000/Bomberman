@@ -1,7 +1,7 @@
-﻿using Gameplay.Map;
-using Infrastructure;
+﻿using Infrastructure;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
+using Map;
 
 namespace LevelData
 {

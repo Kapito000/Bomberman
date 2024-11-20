@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gameplay.Map
+namespace Map
 {
 	public sealed class StandardTileMap : IMap
 	{

@@ -1,4 +1,5 @@
-﻿using Factory.EntityBehaviourFactory;
+﻿using Collisions;
+using Factory.EntityBehaviourFactory;
 using Factory.Kit;
 using Factory.SystemFactory;
 using Feature;
@@ -11,7 +12,6 @@ using Feature.Explosion.Factory;
 using Feature.Hero.Factory;
 using Feature.HUD.Factory;
 using Feature.UI.Factory;
-using Gameplay.Collisions;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;

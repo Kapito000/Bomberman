@@ -1,5 +1,5 @@
 ﻿using Feature.MapGenerator.Services.SafeArea;
-using Gameplay.Map;
+using Map;
 using UnityEngine;
 
 namespace Feature.MapGenerator.Services.HeroSpawnGenerator

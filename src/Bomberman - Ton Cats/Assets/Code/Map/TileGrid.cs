@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gameplay.Map
+namespace Map
 {
 	public sealed class TileGrid : IGrid
 	{

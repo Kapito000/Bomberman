@@ -2,7 +2,7 @@
 using Feature.MapGenerator.Services.EnemyPlacer;
 using Feature.MapGenerator.Services.SafeArea;
 using Feature.MapGenerator.StaticData;
-using Gameplay.Map;
+using Map;
 using UnityEngine;
 
 namespace Feature.MapGenerator.Services.EnemySpawnGenerator

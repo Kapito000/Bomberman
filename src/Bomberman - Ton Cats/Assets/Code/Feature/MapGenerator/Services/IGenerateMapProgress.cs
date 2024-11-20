@@ -1,4 +1,4 @@
-﻿namespace Feature.MapGenerator.Service
+﻿namespace Feature.MapGenerator.Services
 {
 	public interface IGenerateMapProgress
 	{

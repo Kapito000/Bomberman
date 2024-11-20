@@ -6,5 +6,6 @@
 		Free,
 		Indestructible,
 		HeroSpawnPoint,
+		EnemySpawnPoint,
 	}
 }

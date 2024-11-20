@@ -1,6 +1,6 @@
 ﻿using Gameplay.Map;
 
-namespace Feature.MapGenerator.Service.OutLineWallGenerator
+namespace Feature.MapGenerator.Services.OutLineWallGenerator
 {
 	public interface IOutLineWallGenerator
 	{

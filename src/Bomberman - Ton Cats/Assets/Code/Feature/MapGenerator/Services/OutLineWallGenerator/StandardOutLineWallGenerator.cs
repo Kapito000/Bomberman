@@ -1,7 +1,7 @@
 ﻿using Gameplay.Map;
 using UnityEngine;
 
-namespace Feature.MapGenerator.Service.OutLineWallGenerator
+namespace Feature.MapGenerator.Services.OutLineWallGenerator
 {
 	public sealed class StandardOutLineWallGenerator : IOutLineWallGenerator
 	{

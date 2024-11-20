@@ -6,15 +6,18 @@ namespace Gameplay.Map
 	public interface IMap
 	{
 		Vector2Int Size { get; }
-		IReadOnlyList<Vector2Int> Indestuctibles { get; }
 		Vector2Int HeroSpawnPoint { get; }
+		IReadOnlyList<Vector2Int> Indestuctibles { get; }
 		bool Has(int x, int y);
+		bool IsNone(int x, int y);
+		bool IsNone(Vector2Int cell);
 		bool TrySetFree(int x, int y);
 		bool TrySetFree(Vector2Int cell);
 		bool TrySetIndestructible(int x, int y);
-		bool IsOccupied(int x, int y);
-		bool IsOccupied(Vector2Int cell);
 		bool TrySetHeroSpawnPoint(int x, int y);
 		bool TrySetHeroSpawnPoint(Vector2Int spawnPoint);
+		bool TrySetEnemySpawnPoint(int x, int y);
+		bool TrySetEnemySpawnPoint(Vector2Int point);
+		List<Vector2Int> CalculateNoneCells();
 	}
 }

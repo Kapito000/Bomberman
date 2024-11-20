@@ -2,7 +2,7 @@
 using Windows.Factory;
 using Feature.Enemy.Base.StaticData;
 using Feature.Hero.StaticData;
-using Feature.MapGenerator.Service;
+using Feature.MapGenerator.Services;
 using Feature.MapGenerator.StaticData;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;

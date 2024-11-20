@@ -1,4 +1,4 @@
-﻿using Feature.MapGenerator.Service;
+﻿using Feature.MapGenerator.Services;
 using Leopotam.EcsLite;
 using LevelData;
 using UnityEngine;

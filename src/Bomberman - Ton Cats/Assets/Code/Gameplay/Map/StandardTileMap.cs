@@ -5,14 +5,12 @@ namespace Gameplay.Map
 {
 	public sealed class StandardTileMap : IMap
 	{
-		List<Vector2Int> _destuctibles = new();
-
 		readonly IGrid _grid;
 		readonly List<Vector2Int> _indestuctibles = new();
 
 		public Vector2Int Size => _grid.Size;
-		public IReadOnlyList<Vector2Int> Indestuctibles => _indestuctibles;
 		public Vector2Int HeroSpawnPoint { get; private set; }
+		public IReadOnlyList<Vector2Int> Indestuctibles => _indestuctibles;
 
 		public StandardTileMap(IGrid grid)
 		{
@@ -22,16 +20,16 @@ namespace Gameplay.Map
 		public bool Has(int x, int y) =>
 			_grid.Has(x, y);
 
-		public bool IsOccupied(int x, int y)
+		public bool IsNone(int x, int y)
 		{
 			if (Has(x, y) == false)
 				return false;
 
-			return _grid[x, y].Type != CellType.None;
+			return _grid[x, y].Type == CellType.None;
 		}
 
-		public bool IsOccupied(Vector2Int cell) =>
-			IsOccupied(cell.x, cell.y);
+		public bool IsNone(Vector2Int cell) =>
+			IsNone(cell.x, cell.y);
 
 		public bool TrySetHeroSpawnPoint(int x, int y)
 		{
@@ -45,6 +43,30 @@ namespace Gameplay.Map
 
 		public bool TrySetHeroSpawnPoint(Vector2Int spawnPoint) =>
 			TrySetHeroSpawnPoint(spawnPoint.x, spawnPoint.y);
+
+		public bool TrySetEnemySpawnPoint(int x, int y)
+		{
+			if (Has(x,y) == false)
+				return false;
+			
+			_grid[x, y].Type = CellType.EnemySpawnPoint;
+			return true;
+		}
+
+		public bool TrySetEnemySpawnPoint(Vector2Int point) =>
+			TrySetEnemySpawnPoint(point.x, point.y);
+
+		public List<Vector2Int> CalculateNoneCells()
+		{
+			var noneCells = new List<Vector2Int>();
+			for (int x = 0; x < _grid.Size.x; x++)
+			for (int y = 0; y < _grid.Size.y; y++)
+			{
+				if (_grid[x, y].Type == CellType.None)
+					noneCells.Add(new Vector2Int(x, y));
+			}
+			return noneCells;
+		}
 
 		public bool TrySetFree(int x, int y)
 		{
@@ -64,7 +86,8 @@ namespace Gameplay.Map
 				return false;
 
 			_grid[x, y].Type = CellType.Indestructible;
-			_indestuctibles.Add(new Vector2Int(x, y));
+			var cell = new Vector2Int(x, y);
+			_indestuctibles.Add(cell);
 			return true;
 		}
 	}

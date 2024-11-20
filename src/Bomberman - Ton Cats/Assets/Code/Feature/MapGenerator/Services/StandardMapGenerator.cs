@@ -1,20 +1,22 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Feature.MapGenerator.Service.IndestructibleWallsGenerator;
-using Feature.MapGenerator.Service.OutLineWallGenerator;
-using Feature.MapGenerator.Service.PlayerSpawnGenerator;
+using Feature.MapGenerator.Services.EnemySpawnGenerator;
+using Feature.MapGenerator.Services.HeroSpawnGenerator;
+using Feature.MapGenerator.Services.IndestructibleWallsGenerator;
+using Feature.MapGenerator.Services.OutLineWallGenerator;
 using Feature.MapGenerator.StaticData;
 using Gameplay.Map;
 using UnityEngine;
 using Zenject;
 
-namespace Feature.MapGenerator.Service
+namespace Feature.MapGenerator.Services
 {
 	public sealed class StandardMapGenerator : IMapGenerator
 	{
 		[Inject] IMapData _mapData;
 		
 		IHeroSpawnGenerator _heroSpawnGenerator;
+		IEnemySpawnGenerator _enemySpawnGenerator;
 		IOutLineWallGenerator _outLineWallGenerator;
 		IIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
@@ -29,9 +31,10 @@ namespace Feature.MapGenerator.Service
 		{
 			_generateMapCompletionSource = AutoResetUniTaskCompletionSource<IMap>
 				.Create();
+			_heroSpawnGenerator = new StandardHeroSpawnGenerator();
+			_enemySpawnGenerator = new StandardEnemySpawnGenerator(_mapData);
 			_outLineWallGenerator = new StandardOutLineWallGenerator();
 			_indestructibleTilesGenerator = new StandardIndestructibleTilesGenerator();
-			_heroSpawnGenerator = new StandardHeroSpawnGenerator();
 		}
 
 		public async UniTask<IMap> CreateMapAsync(IGenerateMapProgress progressReporter)
@@ -49,7 +52,8 @@ namespace Feature.MapGenerator.Service
 			MakeProgressStep();
 			CreatePlayerSpawnArea(map);
 			MakeProgressStep();
-			// CreateEnemies.
+			CreateEnemies(map);
+			MakeProgressStep();
 			// CreateDestructibleWalls(map);
 			// CreatePowerUps
 			// BindNavMesh();
@@ -65,10 +69,11 @@ namespace Feature.MapGenerator.Service
 		void CreateIndestructibleWalls(IMap map) =>
 			_indestructibleTilesGenerator.Create(map);
 
-		void CreatePlayerSpawnArea(IMap map)
-		{
+		void CreatePlayerSpawnArea(IMap map) => 
 			_heroSpawnGenerator.CreateSpawnArea(map);
-		}
+
+		void CreateEnemies(IMap map) => 
+			_enemySpawnGenerator.CreateSpawnArea(map);
 
 		void CreateDestructibleWalls(StandardTileMap map)
 		{

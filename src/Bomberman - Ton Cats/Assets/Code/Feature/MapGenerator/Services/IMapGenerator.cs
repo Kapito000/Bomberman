@@ -2,7 +2,7 @@
 using Gameplay.Map;
 using Infrastructure;
 
-namespace Feature.MapGenerator.Service
+namespace Feature.MapGenerator.Services
 {
 	public interface IMapGenerator : IService
 	{

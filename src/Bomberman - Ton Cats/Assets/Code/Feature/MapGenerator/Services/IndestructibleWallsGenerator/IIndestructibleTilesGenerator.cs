@@ -1,6 +1,6 @@
 ﻿using Gameplay.Map;
 
-namespace Feature.MapGenerator.Service.IndestructibleWallsGenerator
+namespace Feature.MapGenerator.Services.IndestructibleWallsGenerator
 {
 	public interface IIndestructibleTilesGenerator
 	{

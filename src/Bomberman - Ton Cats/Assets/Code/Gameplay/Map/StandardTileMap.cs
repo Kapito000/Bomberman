@@ -6,6 +6,7 @@ namespace Gameplay.Map
 	public sealed class StandardTileMap : IMap
 	{
 		readonly IGrid _grid;
+		readonly List<Vector2Int> _destuctibles = new();
 		readonly List<Vector2Int> _indestuctibles = new();
 		readonly List<Vector2Int> _enemySpawnPoints = new();
 
@@ -82,6 +83,20 @@ namespace Gameplay.Map
 
 		public bool TrySetFree(Vector2Int cell) =>
 			TrySetFree(cell.x, cell.y);
+
+		public bool TrySetDestructible(int x, int y)
+		{
+			if (Has(x, y) == false)
+				return false;
+
+			_grid[x, y].Type = CellType.Indestructible;
+			var cell = new Vector2Int(x, y);
+			_destuctibles.Add(cell);
+			return true;
+		}
+
+		public bool TrySetDestructible(Vector2Int cell) =>
+			TrySetDestructible(cell.x, cell.y);
 
 		public bool TrySetIndestructible(int x, int y)
 		{

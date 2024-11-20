@@ -1,4 +1,5 @@
 ﻿using System;
+using Feature.MapGenerator.Services.DestructibleTilesGenerator;
 using Feature.MapGenerator.Services.EnemySpawnGenerator;
 using Feature.MapGenerator.Services.HeroSpawnGenerator;
 using Feature.MapGenerator.Services.IndestructibleWallsGenerator;
@@ -16,14 +17,16 @@ namespace Feature.MapGenerator.Services
 		IHeroSpawnGenerator _heroSpawnGenerator;
 		IEnemySpawnGenerator _enemySpawnGenerator;
 		IOutLineWallGenerator _outLineWallGenerator;
+		IDestructibleTilesGenerator _destructibleTilesGenerator;
 		IIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
 		public StandardMapGenerator(IMapData mapData)
 		{
 			_mapData = mapData;
 			_heroSpawnGenerator = new StandardHeroSpawnGenerator();
-			_enemySpawnGenerator = new StandardEnemySpawnGenerator(_mapData);
+			_enemySpawnGenerator = new StandardEnemySpawnGenerator(mapData);
 			_outLineWallGenerator = new StandardOutLineWallGenerator();
+			_destructibleTilesGenerator = new StandardDestructibleTilesGenerator(mapData);
 			_indestructibleTilesGenerator = new StandardIndestructibleTilesGenerator();
 		}
 
@@ -35,7 +38,7 @@ namespace Feature.MapGenerator.Services
 			CreateIndestructibleWalls(map);
 			CreatePlayerSpawnArea(map);
 			CreateEnemies(map);
-			// CreateDestructibleWalls(map);
+			CreateDestructibleWalls(map);
 			// CreatePowerUps
 			// BindNavMesh();
 			return map;
@@ -53,10 +56,8 @@ namespace Feature.MapGenerator.Services
 		void CreateEnemies(IMap map) =>
 			_enemySpawnGenerator.CreateSpawnArea(map);
 
-		void CreateDestructibleWalls(StandardTileMap map)
-		{
-			throw new NotImplementedException();
-		}
+		void CreateDestructibleWalls(IMap map) =>
+			_destructibleTilesGenerator.Create(map);
 
 		void BindNavMesh()
 		{

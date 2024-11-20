@@ -7,6 +7,7 @@ namespace Feature.MapGenerator.StaticData
 	{
 		Vector2Int MapSize { get; }
 		float EnemyFrequency { get; }
+		float DestructibleFrequency { get; }
 		int EnemySpawnDistanceToHero { get; }
 	}
 }

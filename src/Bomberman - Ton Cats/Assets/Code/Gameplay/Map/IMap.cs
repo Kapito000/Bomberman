@@ -14,6 +14,8 @@ namespace Gameplay.Map
 		bool IsNone(Vector2Int cell);
 		bool TrySetFree(int x, int y);
 		bool TrySetFree(Vector2Int cell);
+		bool TrySetDestructible(int x, int y);
+		bool TrySetDestructible(Vector2Int cell);
 		bool TrySetIndestructible(int x, int y);
 		bool TrySetHeroSpawnPoint(int x, int y);
 		bool TrySetHeroSpawnPoint(Vector2Int spawnPoint);

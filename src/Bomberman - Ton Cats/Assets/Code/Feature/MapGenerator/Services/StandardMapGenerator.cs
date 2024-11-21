@@ -1,5 +1,4 @@
-﻿using System;
-using Feature.MapGenerator.Services.DestructibleTilesGenerator;
+﻿using Feature.MapGenerator.Services.DestructibleTilesGenerator;
 using Feature.MapGenerator.Services.EnemySpawnGenerator;
 using Feature.MapGenerator.Services.HeroSpawnGenerator;
 using Feature.MapGenerator.Services.IndestructibleWallsGenerator;
@@ -39,8 +38,6 @@ namespace Feature.MapGenerator.Services
 			CreatePlayerSpawnArea(map);
 			CreateEnemies(map);
 			CreateDestructibleWalls(map);
-			// CreatePowerUps
-			// BindNavMesh();
 			return map;
 		}
 
@@ -58,10 +55,5 @@ namespace Feature.MapGenerator.Services
 
 		void CreateDestructibleWalls(IMap map) =>
 			_destructibleTilesGenerator.Create(map);
-
-		void BindNavMesh()
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

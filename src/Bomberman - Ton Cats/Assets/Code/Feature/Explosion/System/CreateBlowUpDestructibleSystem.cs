@@ -1,24 +1,27 @@
 ﻿using Common.Component;
+using Extensions;
 using Feature.Destruction.Component;
 using Feature.Explosion.Component;
 using Feature.Explosion.Factory;
+using Feature.Map.Component;
 using GameTileMap;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using Zenject;
 
 namespace Feature.Explosion.System
 {
 	public sealed class CreateBlowUpDestructibleSystem : IEcsRunSystem
 	{
+		[Inject] EntityWrapper _request;
+		[Inject] EntityWrapper _destroyTileRequest;
+		[Inject] IExplosionFactory _explosionFactory;
+
 		readonly EcsFilterInject<
 			Inc<CreateExplosionRequest, BlowUpDestructible, DestructibleTileCellPos,
 				Position, ForParent>> _requestFilter;
-
-		[Inject] IGameTileMap _tileMap;
-		[Inject] EntityWrapper _request;
-		[Inject] IExplosionFactory _explosionFactory;
 
 		public void Run(IEcsSystems systems)
 		{
@@ -26,7 +29,7 @@ namespace Feature.Explosion.System
 			{
 				_request.SetEntity(request);
 
-				DestroyTile();
+				DestroyTile(_request);
 				CreateDestructiblePrefab();
 
 				_request
@@ -36,10 +39,10 @@ namespace Feature.Explosion.System
 			}
 		}
 
-		void DestroyTile()
+		void DestroyTile(EntityWrapper request)
 		{
-			var cellPos = _request.DestructibleTileCellPos();
-			_tileMap.SetFree(cellPos);
+			Vector2Int cellPos = request.DestructibleTileCellPos();
+			Map.Util.RequestDestroyTile(cellPos, _destroyTileRequest);
 		}
 
 		void CreateDestructiblePrefab()

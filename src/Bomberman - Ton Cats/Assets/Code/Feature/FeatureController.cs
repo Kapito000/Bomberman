@@ -11,6 +11,7 @@ using Feature.Hero;
 using Feature.HUD;
 using Feature.Input;
 using Feature.Life;
+using Feature.Map;
 using Feature.MapGenerator;
 using Feature.UI;
 
@@ -32,6 +33,7 @@ namespace Feature
 			Add<ExplosionFeature>();
 			Add<DamageApplicationFeature>();
 			Add<LifeFeature>();
+			Add<MapFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();

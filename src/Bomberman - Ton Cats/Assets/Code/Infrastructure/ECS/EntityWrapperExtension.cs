@@ -12,6 +12,7 @@ using Feature.Hero.Component;
 using Feature.HUD.Behaviour;
 using Feature.HUD.Component;
 using Feature.Life.Component;
+using Feature.Map.Component;
 using Leopotam.EcsLite;
 using MapTile;
 using UnityEngine;
@@ -343,6 +344,19 @@ namespace Infrastructure.ECS
 		{
 			ref var spriteRendererComponent = ref Get<SpriteRendererComponent>();
 			return spriteRendererComponent.Value;
+		}
+
+		public Vector2Int TilePos()
+		{
+			ref var tilePos = ref Get<TilePos>();
+			return tilePos.Value;
+		}
+
+		public EntityWrapper AddTilePos(Vector2Int pos)
+		{
+			ref var tilePos = ref AddComponent<TilePos>();
+			tilePos.Value = pos;
+			return this;
 		}
 	}
 }

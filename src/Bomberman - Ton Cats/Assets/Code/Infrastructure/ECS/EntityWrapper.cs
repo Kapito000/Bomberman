@@ -20,6 +20,12 @@ namespace Infrastructure.ECS
 			_entity = entity;
 		}
 
+		public EntityWrapper NewEntity()
+		{
+			SetEntity(_world.NewEntity());
+			return this;
+		}
+
 		public ref TComponent AddComponent<TComponent>()
 			where TComponent : struct
 		{

@@ -4,6 +4,7 @@
 	{
 		None,
 		Free,
+		Ground,
 		Destructible,
 		Indestructible,
 		HeroSpawnPoint,

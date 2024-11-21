@@ -8,6 +8,7 @@ namespace Feature.MapGenerator
 		public MapGenerationFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateMapSystem>();
+			AddInit<CreateGroundSystem>();
 			AddInit<CreateDestructibleTilesSystem>();
 			AddInit<CreateIndestructibleTilesSystem>();
 			AddInit<CreateHeroSpawnPointSystem>();

@@ -7,9 +7,9 @@ namespace Map
 	{
 		Vector2Int Size { get; }
 		Vector2Int HeroSpawnPoint { get; }
+		IReadOnlyList<Vector2Int> Destuctibles { get; }
 		IReadOnlyList<Vector2Int> Indestuctibles { get; }
 		IReadOnlyList<Vector2Int> EnemySpawnPoints { get; }
-		IReadOnlyList<Vector2Int> Destuctibles { get; }
 		bool Has(int x, int y);
 		bool IsNone(int x, int y);
 		bool IsNone(Vector2Int cell);
@@ -23,5 +23,6 @@ namespace Map
 		bool TrySetEnemySpawnPoint(int x, int y);
 		bool TrySetEnemySpawnPoint(Vector2Int point);
 		List<Vector2Int> CalculateNoneCells();
+		IEnumerable<Vector2Int> AllCoordinates();
 	}
 }

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Tile Collection
   m_EditorClassIdentifier: 
   _tiles:
-    _keyData: 0300000002000000
+    _keyData: 040000000300000002000000
     _valueData:
     - {fileID: 11400000, guid: 42e1cf5928b2bdf4498b73fcef4db2cf, type: 2}
     - {fileID: 11400000, guid: 58ab78b058adf0040a5f4d5953daa980, type: 2}
+    - {fileID: 11400000, guid: aff6dd2b790599947b15ab8aafed700b, type: 2}

@@ -6,6 +6,7 @@ namespace GameTileMap
 {
 	public interface IGameTileMap : IService
 	{
+		void SetGroundTile(Vector2Int pos);
 		void SetDestructibleTile(Vector2Int pos);
 		void SetIndestructibleTile(Vector2Int pos);
 		Vector2 GetCellCenterWorld(Vector2Int pos);

@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Map
 {
-	public sealed class TileGrid : IGrid
+	public sealed class TileGrid : IGrid,
+		IEnumerable<Cell>, IEnumerable<Vector2Int>
 	{
 		readonly Cell[,] _cells;
 
@@ -19,5 +22,22 @@ namespace Map
 
 		public bool Has(int x, int y) =>
 			Size.x > x && Size.y > y;
+
+		IEnumerator IEnumerable.GetEnumerator() =>
+			_cells.GetEnumerator();
+
+		IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator()
+		{
+			for (int x = 0; x < Size.x; x++)
+			for (int y = 0; y < Size.y; y++)
+				yield return _cells[x, y];
+		}
+
+		IEnumerator<Vector2Int> IEnumerable<Vector2Int>.GetEnumerator()
+		{
+			for (int x = 0; x < Size.x; x++)
+			for (int y = 0; y < Size.y; y++)
+				yield return new Vector2Int(x, y);
+		}
 	}
 }

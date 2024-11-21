@@ -19,6 +19,12 @@ namespace GameTileMap
 			_groundTailMap = groundTailMap;
 		}
 
+		public void SetGroundTile(Vector2Int pos)
+		{
+			var tile = _tileProvider[CellType.Ground];
+			_groundTailMap.SetTile((Vector3Int)pos, tile);
+		}
+
 		public void SetDestructibleTile(Vector2Int pos)
 		{
 			var tile = _tileProvider[CellType.Destructible];
@@ -51,7 +57,7 @@ namespace GameTileMap
 			return tile != null;
 		}
 
-		public void SetFree(Vector2Int cellPos) => 
+		public void SetFree(Vector2Int cellPos) =>
 			_mainTailMap.SetTile((Vector3Int)cellPos, null);
 	}
 }

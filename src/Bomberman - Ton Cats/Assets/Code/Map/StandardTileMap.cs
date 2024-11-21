@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Map
@@ -109,5 +110,8 @@ namespace Map
 			_indestuctibles.Add(cell);
 			return true;
 		}
+
+		public IEnumerable<Vector2Int> AllCoordinates() =>
+			(IEnumerable<Vector2Int>)_grid;
 	}
 }

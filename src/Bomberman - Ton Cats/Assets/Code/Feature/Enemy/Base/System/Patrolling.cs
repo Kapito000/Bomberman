@@ -5,7 +5,6 @@ using Feature.Enemy.Base.StaticData;
 using FluentBehaviourTree;
 using Infrastructure.ECS;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Feature.Enemy.Base.System
@@ -13,11 +12,10 @@ namespace Feature.Enemy.Base.System
 	public sealed class Patrolling
 	{
 		[Inject] IAIData _aiData;
-		[Inject] Tilemap _tileMap;
 		[Inject] FindPatrolPoints _findPatrolPoints;
 
 		IAIAgent _agent;
-		
+
 		public void Init(IAIAgent agent)
 		{
 			_agent = agent;

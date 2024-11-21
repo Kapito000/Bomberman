@@ -1,16 +1,16 @@
 ﻿using Feature.Enemy.Base.Factory;
+using GameTileMap;
 using Leopotam.EcsLite;
 using LevelData;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Feature.MapGenerator.System
 {
 	public sealed class CreateEnemySpawnPointSystem : IEcsRunSystem
 	{
-		[Inject] Tilemap _tilemap;
 		[Inject] ILevelData _levelData;
+		[Inject] IGameTileMap _tileMap;
 		[Inject] IBaseEnemyFactory _enemyFactory;
 
 		public void Run(IEcsSystems systems)
@@ -18,7 +18,7 @@ namespace Feature.MapGenerator.System
 			var spawnPoints = _levelData.Map.EnemySpawnPoints;
 			foreach (var spawnPoint in spawnPoints)
 			{
-				var pos = _tilemap.GetCellCenterWorld((Vector3Int)spawnPoint);
+				var pos = _tileMap.GetCellCenterWorld(spawnPoint);
 				var parent = new GameObject("Enemy spawn points");
 				_enemyFactory.CreateEnemySpawnPoint(pos, parent.transform);	
 			}

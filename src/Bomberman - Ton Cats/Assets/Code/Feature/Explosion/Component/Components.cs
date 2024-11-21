@@ -9,7 +9,7 @@ namespace Feature.Explosion.Component
 	public struct ExplosionRequest { }
 	public struct CreateExplosionRequest { }
 	public struct BlowUpDestructible { public IDestructible Destructible; }
-	public struct DestructibleTileCellPos { public Vector3Int Value; }
+	public struct DestructibleTileCellPos { public Vector2Int Value; }
 	public struct ExplosionPart { public EExplosionPart Value; }
 	public struct ExplosionCenter { }
 	public struct TargetsBufferIncrementRequest { public List<int> Value; }

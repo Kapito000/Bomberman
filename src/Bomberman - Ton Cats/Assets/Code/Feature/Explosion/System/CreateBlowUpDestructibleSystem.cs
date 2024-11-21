@@ -2,10 +2,10 @@
 using Feature.Destruction.Component;
 using Feature.Explosion.Component;
 using Feature.Explosion.Factory;
+using GameTileMap;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Feature.Explosion.System
@@ -16,7 +16,7 @@ namespace Feature.Explosion.System
 			Inc<CreateExplosionRequest, BlowUpDestructible, DestructibleTileCellPos,
 				Position, ForParent>> _requestFilter;
 
-		[Inject] Tilemap _tilemap;
+		[Inject] IGameTileMap _tileMap;
 		[Inject] EntityWrapper _request;
 		[Inject] IExplosionFactory _explosionFactory;
 
@@ -39,7 +39,7 @@ namespace Feature.Explosion.System
 		void DestroyTile()
 		{
 			var cellPos = _request.DestructibleTileCellPos();
-			_tilemap.SetTile(cellPos, null);
+			_tileMap.SetFree(cellPos);
 		}
 
 		void CreateDestructiblePrefab()

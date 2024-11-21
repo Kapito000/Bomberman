@@ -18,6 +18,6 @@ namespace Map
 			ref _cells[x, y];
 
 		public bool Has(int x, int y) =>
-			_cells.GetLength(0) > x && _cells.GetLength(1) > y;
+			Size.x > x && Size.y > y;
 	}
 }

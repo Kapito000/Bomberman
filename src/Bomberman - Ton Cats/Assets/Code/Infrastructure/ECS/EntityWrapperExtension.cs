@@ -170,13 +170,13 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public Vector3Int DestructibleTileCellPos()
+		public Vector2Int DestructibleTileCellPos()
 		{
 			ref var destructibleTile = ref Get<DestructibleTileCellPos>();
 			return destructibleTile.Value;
 		}
 
-		public EntityWrapper AddDestructibleTileCellPos(Vector3Int cellPos)
+		public EntityWrapper AddDestructibleTileCellPos(Vector2Int cellPos)
 		{
 			ref var destructibleTilePos = ref AddComponent<DestructibleTileCellPos>();
 			destructibleTilePos.Value = cellPos;

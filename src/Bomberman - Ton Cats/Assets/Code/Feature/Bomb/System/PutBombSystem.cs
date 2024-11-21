@@ -1,11 +1,11 @@
 ﻿using Common.Component;
 using Feature.Bomb.Component;
 using Feature.Bomb.Factory;
+using GameTileMap;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using Zenject;
 
 namespace Feature.Bomb.System
@@ -17,7 +17,7 @@ namespace Feature.Bomb.System
 			_bombCarrierFilter;
 		readonly EcsFilterInject<Inc<BombParent, TransformComponent>> _bombParentFilter;
 
-		[Inject] Tilemap _tilemap;
+		[Inject] IGameTileMap _tileMap;
 		[Inject] IBombFactory _bombFactory;
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _bombCarrier;
@@ -36,19 +36,17 @@ namespace Feature.Bomb.System
 						continue;
 
 					_bombCarrier.SetBombNumber(bombNumber - 1);
-					var pos = CellCenterPos();
+					var bombCarrierPos = _bombCarrier.TransformPos();		
+					var pos = CellCenterPos(bombCarrierPos);
 					_bombFactory.CreateBomb(pos, parent);
 				}
 			}
 		}
 
-		Vector2 CellCenterPos()
+		Vector2 CellCenterPos(Vector2 bombCarrierPos)
 		{
-			Vector2 pos = _bombCarrier.TransformPos();
-			var cellPos = _tilemap.WorldToCell(pos);
-			pos = _tilemap.CellToWorld(cellPos);
-			pos += (Vector2)_tilemap.tileAnchor;
-			return pos;
+			var cellPos = _tileMap.WorldToCell(bombCarrierPos);
+			return _tileMap.GetCellCenterWorld(cellPos);
 		}
 	}
 }

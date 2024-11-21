@@ -1,4 +1,5 @@
 ﻿using System;
+using GameTileMap;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -7,9 +8,9 @@ namespace Feature.Enemy.AI
 {
 	public sealed class FindPatrolPoints
 	{
-		readonly Tilemap _tileMap;
+		readonly IGameTileMap _tileMap;
 
-		public FindPatrolPoints(Tilemap tileMap)
+		public FindPatrolPoints(IGameTileMap tileMap)
 		{
 			_tileMap = tileMap;
 		}
@@ -27,7 +28,7 @@ namespace Feature.Enemy.AI
 			return pointPos;
 		}
 
-		Vector3Int CalculatePoint(Vector3Int pos, int length, Direction from)
+		Vector2Int CalculatePoint(Vector2Int pos, int length, Direction from)
 		{
 			if (length <= 0) return pos;
 
@@ -39,7 +40,7 @@ namespace Feature.Enemy.AI
 			return CalculatePoint(availableCells[index].Value, --length, fromDir);
 		}
 
-		bool TryGetRandomCellIndex(Vector3Int?[] cells, out int cellIndex)
+		bool TryGetRandomCellIndex(Vector2Int?[] cells, out int cellIndex)
 		{
 			var index = Random.Range(0, cells.Length);
 
@@ -71,9 +72,9 @@ namespace Feature.Enemy.AI
 			return false;
 		}
 
-		Vector3Int?[] AvailableCells(Vector3Int cellPos, Direction from)
+		Vector2Int?[] AvailableCells(Vector2Int cellPos, Direction from)
 		{
-			var result = new Vector3Int?[4];
+			var result = new Vector2Int?[4];
 			for (var i = 0; i < result.Length; i++)
 			{
 				var dir = (Direction)(i + 1);
@@ -89,7 +90,7 @@ namespace Feature.Enemy.AI
 			return result;
 		}
 
-		Func<Vector3Int, Vector3Int> GetCellPosMethod(Direction dir)
+		Func<Vector2Int, Vector2Int> GetCellPosMethod(Direction dir)
 		{
 			switch (dir)
 			{
@@ -102,25 +103,24 @@ namespace Feature.Enemy.AI
 			return null;
 		}
 
-		bool CellFree(Vector3Int pos)
+		bool CellFree(Vector2Int pos)
 		{
-			var tile = _tileMap.GetTile(pos);
-			if (tile == null)
+			if (_tileMap.IsFree(pos))
 				return true;
 			return false;
 		}
 
-		Vector3Int Up(Vector3Int pos) =>
-			pos + Vector3Int.up;
+		Vector2Int Up(Vector2Int pos) =>
+			pos + Vector2Int.up;
 
-		Vector3Int Down(Vector3Int pos) =>
-			pos + Vector3Int.down;
+		Vector2Int Down(Vector2Int pos) =>
+			pos + Vector2Int.down;
 
-		Vector3Int Left(Vector3Int pos) =>
-			pos + Vector3Int.left;
+		Vector2Int Left(Vector2Int pos) =>
+			pos + Vector2Int.left;
 
-		Vector3Int Right(Vector3Int pos) =>
-			pos + Vector3Int.right;
+		Vector2Int Right(Vector2Int pos) =>
+			pos + Vector2Int.right;
 
 		Direction InvertDirection(Direction dir)
 		{

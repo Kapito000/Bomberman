@@ -12,6 +12,7 @@ using Feature.Explosion.Factory;
 using Feature.Hero.Factory;
 using Feature.HUD.Factory;
 using Feature.UI.Factory;
+using GameTileMap;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
@@ -28,6 +29,7 @@ namespace Infrastructure.Installer
 	public sealed class LevelInstaller : MonoInstaller, IInitializable
 	{
 		[SerializeField] Tilemap _mainTailMap;
+		[SerializeField] Tilemap _groundTailMap;
 		[SerializeField] GameEcsRunner _ecsRunner;
 
 		[Inject] ILevelData _levelData;
@@ -37,7 +39,6 @@ namespace Infrastructure.Installer
 		{
 			BindInitializable();
 			BindWorld();
-			BindTileMap();
 			BindFactories();
 			BindFactoryKit();
 			BindUiFactories();
@@ -47,6 +48,7 @@ namespace Infrastructure.Installer
 			BindDevSceneRunner();
 			BindCollisionRegistry();
 			BindFeatureController();
+			BindTileMapMediator();
 		}
 
 		public void Initialize()
@@ -61,6 +63,11 @@ namespace Infrastructure.Installer
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
 
+		void BindTileMapMediator()
+		{
+			Container.Bind<IGameTileMap>().FromMethod(CreateTileMapMediator).AsSingle();
+		}
+
 		void BindAIFunctional()
 		{
 			Container.Bind<Patrolling>().AsSingle();
@@ -70,11 +77,6 @@ namespace Infrastructure.Installer
 		void BindCollisionRegistry()
 		{
 			Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
-		}
-
-		void BindTileMap()
-		{
-			Container.BindInstance(_mainTailMap).AsSingle();
 		}
 
 		void BindUiFactories()
@@ -129,6 +131,13 @@ namespace Infrastructure.Installer
 		{
 			Container.BindInterfacesTo<LevelInstaller>().FromInstance(this)
 				.AsSingle();
+		}
+
+		IGameTileMap CreateTileMapMediator()
+		{
+			var gameTileMap = Container.Instantiate<GameTileMap.GameTileMap>(
+				new[] { _mainTailMap, _groundTailMap });
+			return gameTileMap;
 		}
 	}
 }

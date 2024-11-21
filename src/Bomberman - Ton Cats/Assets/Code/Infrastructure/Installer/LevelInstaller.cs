@@ -1,4 +1,5 @@
-﻿using Collisions;
+﻿using AI.Navigation;
+using Collisions;
 using Factory.EntityBehaviourFactory;
 using Factory.Kit;
 using Factory.SystemFactory;
@@ -20,6 +21,7 @@ using Infrastructure.GameStatus.State;
 using InstantiateService;
 using Leopotam.EcsLite;
 using LevelData;
+using NavMeshPlus.Components;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
@@ -28,9 +30,11 @@ namespace Infrastructure.Installer
 {
 	public sealed class LevelInstaller : MonoInstaller, IInitializable
 	{
-		[SerializeField] Tilemap _mainTailMap;
 		[SerializeField] Tilemap _groundTailMap;
+		[SerializeField] Tilemap _destructibleTailMap;
+		[SerializeField] Tilemap _indestructibleTailMap;
 		[SerializeField] GameEcsRunner _ecsRunner;
+		[SerializeField] NavMeshSurface _navMeshSurface;
 
 		[Inject] ILevelData _levelData;
 		[Inject] IGameStateMachine _gameStateMachine;
@@ -46,9 +50,10 @@ namespace Infrastructure.Installer
 			BindAIFunctional();
 			BindSystemFactory();
 			BindDevSceneRunner();
+			BindTileMapMediator();
+			BindNavigationSurface();
 			BindCollisionRegistry();
 			BindFeatureController();
-			BindTileMapMediator();
 		}
 
 		public void Initialize()
@@ -63,9 +68,16 @@ namespace Infrastructure.Installer
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
 
+		void BindNavigationSurface()
+		{
+			Container.Bind<NavMeshSurface>().FromInstance(_navMeshSurface).AsSingle();
+			Container.Bind<INavigationSurface>().To<AINavigationSurface>().AsSingle();
+		}
+
 		void BindTileMapMediator()
 		{
-			Container.Bind<IGameTileMap>().FromMethod(CreateTileMapMediator).AsSingle();
+			Container.Bind<IGameTileMap>().FromMethod(CreateTileMapMediator)
+				.AsSingle();
 		}
 
 		void BindAIFunctional()
@@ -136,7 +148,7 @@ namespace Infrastructure.Installer
 		IGameTileMap CreateTileMapMediator()
 		{
 			var gameTileMap = Container.Instantiate<GameTileMap.GameTileMap>(
-				new[] { _mainTailMap, _groundTailMap });
+				new[] { _groundTailMap, _destructibleTailMap, _indestructibleTailMap });
 			return gameTileMap;
 		}
 	}

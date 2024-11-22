@@ -24,6 +24,5 @@ namespace Infrastructure.AssetProvider
 		BombCounterPanel BombCounterPanel();
 		BaseWindow WindowPrefab(WindowId id);
 		GameObject BaseEnemy();
-		GameObject BaseEnemySpawnPoint();
 	}
 }

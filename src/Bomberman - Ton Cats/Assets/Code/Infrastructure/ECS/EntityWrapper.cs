@@ -9,7 +9,7 @@ namespace Infrastructure.ECS
 	{
 		int _entity;
 		readonly EcsWorld _world;
-
+		
 		public EntityWrapper(EcsWorld world)
 		{
 			_world = world;

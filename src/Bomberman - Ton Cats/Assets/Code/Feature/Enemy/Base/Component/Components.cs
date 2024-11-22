@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Feature.Enemy.AI.Blackboard;
+﻿using Feature.Enemy.AI.Blackboard;
 using UnityEngine;
 
 namespace Feature.Enemy.Base.Component
 {
+	public struct EnemyParent { public Transform Value; }
 	public struct EnemyComponent { }
 	public struct EnemySpawnPoint { }
 	public struct BaseEnemyAIBlackboardComponent { public BaseEnemyAIBlackboard Value; }

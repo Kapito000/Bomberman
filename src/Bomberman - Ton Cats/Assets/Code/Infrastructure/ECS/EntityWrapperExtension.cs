@@ -107,6 +107,13 @@ namespace Infrastructure.ECS
 			return position.Value;
 		}
 
+		public EntityWrapper AddPosition(Vector3 value)
+		{
+			ref var position = ref AddComponent<Position>();
+			position.Value = value;
+			return this;
+		}
+
 		public void SetPosition(Vector2 pos)
 		{
 			ref var position = ref Get<Position>();
@@ -357,6 +364,19 @@ namespace Infrastructure.ECS
 			ref var tilePos = ref AddComponent<TilePos>();
 			tilePos.Value = pos;
 			return this;
+		}
+
+		public EntityWrapper AddEnemyParent(Transform value)
+		{
+			ref var enemyPatent = ref AddComponent<EnemyParent>();
+			enemyPatent.Value = value;
+			return this;
+		}
+		
+		public Transform EnemyParent()
+		{
+			ref var enemyPatent = ref Get<EnemyParent>();
+			return enemyPatent.Value;
 		}
 	}
 }

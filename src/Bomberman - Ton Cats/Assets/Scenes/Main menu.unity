@@ -210,6 +210,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4812299907293430026, guid: 79ce06b3cc4e0334ca4a33c0ed511e85, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812299907293430026, guid: 79ce06b3cc4e0334ca4a33c0ed511e85, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812299907293430026, guid: 79ce06b3cc4e0334ca4a33c0ed511e85, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812299907293430026, guid: 79ce06b3cc4e0334ca4a33c0ed511e85, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5176740083266038201, guid: 79ce06b3cc4e0334ca4a33c0ed511e85, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25

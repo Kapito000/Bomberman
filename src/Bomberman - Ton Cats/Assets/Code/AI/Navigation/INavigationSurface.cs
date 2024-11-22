@@ -3,5 +3,6 @@
 	public interface INavigationSurface
 	{
 		void Bake();
+		void Update();
 	}
 }

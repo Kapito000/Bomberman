@@ -6,7 +6,8 @@ namespace Feature.Map
 {
 	public static class Util
 	{
-		public static void RequestDestroyTile(Vector2Int cellPos, EntityWrapper destroyTileRequest)
+		public static void RequestDestroyTile(Vector2Int cellPos,
+			EntityWrapper destroyTileRequest)
 		{
 			destroyTileRequest
 				.NewEntity()

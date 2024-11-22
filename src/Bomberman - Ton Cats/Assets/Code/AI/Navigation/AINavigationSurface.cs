@@ -11,5 +11,10 @@ namespace AI.Navigation
 		{
 			_navMeshSurface.BuildNavMesh();
 		}
+
+		public void Update()
+		{
+			_navMeshSurface.UpdateNavMesh(_navMeshSurface.navMeshData);
+		}
 	}
 }

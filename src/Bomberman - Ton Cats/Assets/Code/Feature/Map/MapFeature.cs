@@ -8,6 +8,9 @@ namespace Feature.Map
 		public MapFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddUpdate<DestroyTileSystem>();
+			AddUpdate<RebakeNavigationSurfaceSystem>();
+			
+			AddCleanup<CleanupSystem>();
 		}
 	}
 }

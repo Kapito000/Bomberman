@@ -1,11 +1,16 @@
 ﻿using NavMeshPlus.Components;
-using Zenject;
 
 namespace AI.Navigation
 {
 	public sealed class AINavigationSurface : INavigationSurface
 	{
-		[Inject] NavMeshSurface _navMeshSurface;
+		readonly NavMeshSurface _navMeshSurface;
+
+		public AINavigationSurface(NavMeshSurface navMeshSurface)
+		{
+			_navMeshSurface = navMeshSurface;
+			navMeshSurface.hideEditorLogs = true;
+		}
 
 		public void Bake()
 		{

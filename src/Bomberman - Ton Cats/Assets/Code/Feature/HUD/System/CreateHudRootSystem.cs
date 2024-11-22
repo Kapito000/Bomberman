@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Feature.HUD.System
 {
-	public sealed class CreateHudRootSystem : EcsSystem, IEcsRunSystem
+	public sealed class CreateHudRootSystem : IEcsRunSystem
 	{
 		[Inject] IHudFactory _hudFactory;
 		[Inject] EntityWrapper _uiRootEntity;

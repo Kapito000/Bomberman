@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Feature.Bomb.System
 {
-	public sealed class PutBombSystem : EcsSystem, IEcsRunSystem
+	public sealed class PutBombSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
 				Inc<BombCarrier, BombNumber, PutBombRequest, TransformComponent>>

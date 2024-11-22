@@ -1,12 +1,12 @@
 ﻿using Feature.UI.Factory;
-using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Zenject;
 
 namespace Feature.UI.System
 {
-	public sealed class CreateRootCanvasSystem : EcsSystem, IEcsRunSystem
+	public sealed class CreateRootCanvasSystem : IEcsRunSystem
 	{
+		[Inject] EcsWorld _world;
 		[Inject] IUiFactory _uiFactory;
 		
 		public void Run(IEcsSystems systems)

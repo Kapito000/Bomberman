@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Feature.Bomb.System
 {
-	public sealed class CreateBombParentSystem : EcsSystem, IEcsRunSystem
+	public sealed class CreateBombParentSystem : IEcsRunSystem
 	{
 		[Inject] IBombFactory _bombFactory;
 		

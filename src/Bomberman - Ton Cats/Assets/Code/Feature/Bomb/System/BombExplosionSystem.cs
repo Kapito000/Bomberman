@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Feature.Bomb.System
 {
-	public sealed class BombExplosionSystem : EcsSystem, IEcsRunSystem
+	public sealed class BombExplosionSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _bomb;
 		[Inject] IExplosionFactory _explosionFactory;

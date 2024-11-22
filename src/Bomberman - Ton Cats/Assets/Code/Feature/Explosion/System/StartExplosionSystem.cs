@@ -12,8 +12,9 @@ using Transform = UnityEngine.Transform;
 
 namespace Feature.Explosion.System
 {
-	public sealed class StartExplosionSystem : EcsSystem, IEcsRunSystem
+	public sealed class StartExplosionSystem : IEcsRunSystem
 	{
+		[Inject] EcsWorld _world;
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _createRequest;
 		[Inject] EntityWrapper _explosionRequest;

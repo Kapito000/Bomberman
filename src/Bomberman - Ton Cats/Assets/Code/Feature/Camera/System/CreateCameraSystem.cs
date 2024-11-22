@@ -1,16 +1,15 @@
-﻿using Common;
-using Common.Component;
+﻿using Common.Component;
 using Extensions;
 using Feature.Camera.Factory;
-using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
 namespace Feature.Camera.System
 {
-	public sealed class CreateCameraSystem : EcsSystem, IEcsRunSystem
+	public sealed class CreateCameraSystem : IEcsRunSystem
 	{
+		[Inject] EcsWorld _world;
 		[Inject] ICameraFactory _cameraFactory;
 
 		readonly EcsFilterInject<Inc<Hero.Component.HeroComponent, TransformComponent>> _filter;

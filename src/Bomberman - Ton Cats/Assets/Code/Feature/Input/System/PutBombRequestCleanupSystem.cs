@@ -1,13 +1,15 @@
 ﻿using Extensions;
 using Feature.Bomb.Component;
-using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Zenject;
 
 namespace Feature.Input.System
 {
-	public sealed class PutBombRequestCleanupSystem : EcsSystem, IEcsRunSystem
+	public sealed class PutBombRequestCleanupSystem : IEcsRunSystem
 	{
+		[Inject] EcsWorld _world;
+		
 		readonly EcsFilterInject<Inc<PutBombRequest>> _filter;
 		
 		public void Run(IEcsSystems systems)

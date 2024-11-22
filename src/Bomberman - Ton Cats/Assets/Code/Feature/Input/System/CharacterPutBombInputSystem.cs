@@ -11,9 +11,10 @@ using Zenject;
 
 namespace Feature.Input.System
 {
-	public sealed class CharacterPutBombInputSystem : EcsSystem, IEcsRunSystem,
+	public sealed class CharacterPutBombInputSystem : IEcsRunSystem,
 		IDisposable
 	{
+		[Inject] EcsWorld _world;
 		[Inject] ICharacterInput _characterInput;
 
 		readonly EcsFilterInject<

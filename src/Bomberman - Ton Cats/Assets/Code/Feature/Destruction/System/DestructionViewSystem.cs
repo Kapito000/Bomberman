@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Feature.Destruction.System
 {
-	public sealed class DestructionViewSystem : EcsSystem, IEcsRunSystem
+	public sealed class DestructionViewSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _destroyed;
 

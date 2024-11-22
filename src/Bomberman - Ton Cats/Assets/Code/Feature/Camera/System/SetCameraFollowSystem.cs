@@ -1,13 +1,15 @@
 ﻿using Extensions;
 using Feature.Camera.Component;
-using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Zenject;
 
 namespace Feature.Camera.System
 {
-	public sealed class SetCameraFollowSystem : EcsSystem, IEcsRunSystem
+	public sealed class SetCameraFollowSystem : IEcsRunSystem
 	{
+		[Inject] EcsWorld _world;
+		
 		readonly EcsFilterInject<Inc<VirtualCamera, FollowTarget>> _filter;
 
 		public void Run(IEcsSystems systems)

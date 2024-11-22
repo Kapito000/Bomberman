@@ -12,8 +12,9 @@ using Zenject;
 
 namespace Feature.Hero.System
 {
-	public sealed class SpawnHeroSystem : EcsSystem, IEcsRunSystem
+	public sealed class SpawnHeroSystem : IEcsRunSystem
 	{
+		[Inject] EcsWorld _world;
 		[Inject] IHeroData _heroData;
 		[Inject] IHeroFactory _heroFactory;
 

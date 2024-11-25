@@ -1,7 +1,7 @@
-﻿using Feature.MapGenerator.Services;
+﻿using Feature.Map.MapController;
+using Feature.MapGenerator.Services;
 using Leopotam.EcsLite;
 using LevelData;
-using MapController;
 using Zenject;
 
 namespace Feature.MapGenerator.System

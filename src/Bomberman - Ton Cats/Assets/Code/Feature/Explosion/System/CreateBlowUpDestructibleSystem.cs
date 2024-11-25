@@ -2,6 +2,7 @@
 using Feature.Destruction.Component;
 using Feature.Explosion.Component;
 using Feature.Explosion.Factory;
+using Feature.Map.MapController;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -13,7 +14,7 @@ namespace Feature.Explosion.System
 	public sealed class CreateBlowUpDestructibleSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _request;
-		[Inject] EntityWrapper _destroyTileRequest;
+		[Inject] IMapController _mapController;
 		[Inject] IExplosionFactory _explosionFactory;
 
 		readonly EcsFilterInject<
@@ -39,7 +40,7 @@ namespace Feature.Explosion.System
 		void DestroyTile(EntityWrapper request)
 		{
 			Vector2Int cellPos = request.DestructibleTileCellPos();
-			Map.Util.RequestDestroyTile(cellPos, _destroyTileRequest);
+			_mapController.DestroyTile(cellPos);
 		}
 
 		void CreateDestructiblePrefab()

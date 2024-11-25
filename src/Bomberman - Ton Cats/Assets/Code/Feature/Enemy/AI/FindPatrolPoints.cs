@@ -1,5 +1,5 @@
 ﻿using System;
-using MapController;
+using Feature.Map.MapController;
 using MapView;
 using UnityEngine;
 using UnityEngine.Tilemaps;

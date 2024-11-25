@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
+using Feature.Map.Component;
+using Infrastructure.ECS;
+using Leopotam.EcsLite;
 using Map;
 using MapView;
 using UnityEngine;
 using Zenject;
 
-namespace MapController
+namespace Feature.Map.MapController
 {
 	public sealed class StandardMapController : IMapController
 	{
+		[Inject] EcsWorld _world;
 		[Inject] IMapView _mapView;
+		[Inject] EntityWrapper _entity;
 
 		IMap _map;
 
@@ -70,6 +75,14 @@ namespace MapController
 
 		public CellType CellType(Vector2Int pos) =>
 			_map.GetCellType(pos);
+
+		public void DestroyTile(Vector2Int cellPos)
+		{
+			_entity.NewEntity()
+				.Add<DestroyedTile>()
+				.AddTilePos(cellPos)
+				;
+		}
 
 		void CastCannotModifyMapMessage() =>
 			Debug.LogWarning("Cannot to modify map.");

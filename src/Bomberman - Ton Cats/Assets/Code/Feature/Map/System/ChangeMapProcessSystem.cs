@@ -1,8 +1,8 @@
 ﻿using Feature.Map.Component;
+using Feature.Map.MapController;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using MapController;
 using Zenject;
 
 namespace Feature.Map.System

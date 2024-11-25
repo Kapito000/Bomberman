@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Infrastructure.ECS;
 using Map;
 using UnityEngine;
 
-namespace MapController
+namespace Feature.Map.MapController
 {
 	public interface IMapController
 	{
@@ -19,5 +20,6 @@ namespace MapController
 		Vector2 GetCellCenterWorld(Vector2Int cellPos);
 		CellType CellType(Vector2Int pos);
 		IEnumerable<Vector2Int> AllCoordinates();
+		void DestroyTile(Vector2Int cellPos);
 	}
 }

@@ -1,12 +1,12 @@
 ﻿using Common.Component;
 using Feature.Destruction.Component;
 using Feature.Explosion.Component;
+using Feature.Map.MapController;
 using Infrastructure.ECS;
 using InstantiateService;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Map;
-using MapController;
 using UnityEngine;
 using Zenject;
 

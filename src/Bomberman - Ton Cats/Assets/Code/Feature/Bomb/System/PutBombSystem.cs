@@ -1,10 +1,10 @@
 ﻿using Common.Component;
 using Feature.Bomb.Component;
 using Feature.Bomb.Factory;
+using Feature.Map.MapController;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using MapController;
 using MapView;
 using UnityEngine;
 using Zenject;

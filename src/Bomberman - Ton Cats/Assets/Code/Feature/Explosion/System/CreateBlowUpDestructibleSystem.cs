@@ -4,7 +4,6 @@ using Feature.Destruction.Component;
 using Feature.Explosion.Component;
 using Feature.Explosion.Factory;
 using Feature.Map.Component;
-using GameTileMap;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

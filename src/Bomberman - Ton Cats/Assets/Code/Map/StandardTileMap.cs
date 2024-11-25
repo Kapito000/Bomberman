@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Map
@@ -110,6 +109,9 @@ namespace Map
 			_indestuctibles.Add(cell);
 			return true;
 		}
+
+		public bool TrySetIndestructible(Vector2Int cell) =>
+			TrySetIndestructible(cell.x, cell.y);
 
 		public IEnumerable<Vector2Int> AllCoordinates() =>
 			(IEnumerable<Vector2Int>)_grid;

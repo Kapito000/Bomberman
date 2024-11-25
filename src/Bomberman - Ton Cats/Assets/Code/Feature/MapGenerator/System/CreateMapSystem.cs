@@ -1,7 +1,6 @@
 ﻿using Feature.MapGenerator.Services;
 using Leopotam.EcsLite;
 using LevelData;
-using UnityEngine;
 using Zenject;
 
 namespace Feature.MapGenerator.System

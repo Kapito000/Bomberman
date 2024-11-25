@@ -2,6 +2,7 @@
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using MapController;
 using MapView;
 using Zenject;
 
@@ -10,8 +11,8 @@ namespace Feature.Map.System
 	public sealed class DestroyTileSystem : IEcsRunSystem
 	{
 		[Inject] EcsWorld _world;
-		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _destroyRequest;
+		[Inject] IMapController _mapController;
 
 		readonly EcsFilterInject<Inc<DestroyedTile, TilePos>> _destroyedTileFilter;
 
@@ -21,7 +22,7 @@ namespace Feature.Map.System
 			{
 				_destroyRequest.SetEntity(e);
 				var cellPos = _destroyRequest.TilePos();
-				_mapView.SetFree(cellPos);
+				_mapController.View.SetFree(cellPos);
 			}
 		}
 	}

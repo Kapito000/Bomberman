@@ -20,6 +20,7 @@ using Infrastructure.GameStatus.State;
 using InstantiateService;
 using Leopotam.EcsLite;
 using LevelData;
+using MapController;
 using MapView;
 using NavMeshPlus.Components;
 using UnityEngine;
@@ -43,14 +44,15 @@ namespace Infrastructure.Installer
 		{
 			BindInitializable();
 			BindWorld();
+			BindMapView();
 			BindFactories();
 			BindFactoryKit();
 			BindUiFactories();
 			BindInstantiator();
 			BindAIFunctional();
+			BindMapController();
 			BindSystemFactory();
 			BindDevSceneRunner();
-			BindMapView();
 			BindNavigationSurface();
 			BindCollisionRegistry();
 			BindFeatureController();
@@ -68,6 +70,11 @@ namespace Infrastructure.Installer
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
 
+		void BindMapController()
+		{
+			Container.Bind<IMapController>().To<StandardMapController>().AsSingle();
+		}
+
 		void BindNavigationSurface()
 		{
 			Container.Bind<NavMeshSurface>().FromInstance(_navMeshSurface).AsSingle();
@@ -76,7 +83,8 @@ namespace Infrastructure.Installer
 
 		void BindMapView()
 		{
-			Container.Bind<IMapView>().FromMethod(CreateMapView).AsSingle();
+			Container.Bind<IMapView>().FromMethod(CreateMapView).AsSingle()
+				.WhenInjectedInto<IMapController>();
 		}
 
 		void BindAIFunctional()

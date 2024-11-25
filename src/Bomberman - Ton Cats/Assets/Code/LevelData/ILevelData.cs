@@ -9,6 +9,5 @@ namespace LevelData
 	{
 		IEcsRunner EcsRunner { get; set; }
 		IDevSceneRunner DevSceneRunner { get; set; }
-		IMap Map { get; set; }
 	}
 }

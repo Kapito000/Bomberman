@@ -5,6 +5,7 @@ using Infrastructure.ECS;
 using InstantiateService;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using MapController;
 using MapTile;
 using MapView;
 using Zenject;
@@ -13,8 +14,8 @@ namespace Feature.Explosion.System
 {
 	public sealed class ScanExplosionAreaSystem : IEcsRunSystem
 	{
-		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _request;
+		[Inject] IMapController _mapController;
 		[Inject] IInstantiateService _instantiateService;
 
 		readonly EcsFilterInject<Inc<CreateExplosionRequest, Position>> _filter;
@@ -26,8 +27,8 @@ namespace Feature.Explosion.System
 				_request.SetEntity(request);
 
 				var pos = _request.Position();
-				var cellPos = _mapView.WorldToCell(pos);
-				if (_mapView.TryGetTile(cellPos, out var tile) == false)
+				var cellPos = _mapController.View.WorldToCell(pos);
+				if (_mapController.View.TryGetTile(cellPos, out var tile) == false)
 					continue;
 
 				if (tile is IDestructible destructible)

@@ -1,6 +1,7 @@
 ﻿using Feature.MapGenerator.Services;
 using Leopotam.EcsLite;
 using LevelData;
+using MapController;
 using Zenject;
 
 namespace Feature.MapGenerator.System
@@ -9,10 +10,12 @@ namespace Feature.MapGenerator.System
 	{
 		[Inject] ILevelData _levelData;
 		[Inject] IMapGenerator _mapGenerator;
+		[Inject] IMapController _mapController;
 
 		public void Run(IEcsSystems systems)
 		{
-			_levelData.Map = _mapGenerator.CreateMap();
+			var map = _mapGenerator.CreateMap();
+			_mapController.SetMap(map);
 		}
 	}
 }

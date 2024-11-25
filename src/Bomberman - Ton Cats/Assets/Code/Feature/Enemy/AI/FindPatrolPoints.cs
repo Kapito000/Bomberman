@@ -1,4 +1,5 @@
 ﻿using System;
+using MapController;
 using MapView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,11 +9,11 @@ namespace Feature.Enemy.AI
 {
 	public sealed class FindPatrolPoints
 	{
-		readonly IMapView _mapView;
+		readonly IMapController _mapController;
 
-		public FindPatrolPoints(IMapView mapView)
+		public FindPatrolPoints(IMapController mapController)
 		{
-			_mapView = mapView;
+			_mapController = mapController;
 		}
 
 		public Vector2 CalculatePoint(Vector2 pos, int length)
@@ -22,9 +23,9 @@ namespace Feature.Enemy.AI
 				Debug.LogWarning($"{nameof(length)} cannot be less than 0.");
 				return pos;
 			}
-			var cellPos = _mapView.WorldToCell(pos);
+			var cellPos = _mapController.View.WorldToCell(pos);
 			var pointCellPos = CalculatePoint(cellPos, length, Direction.None);
-			var pointPos = _mapView.GetCellCenterWorld(pointCellPos);
+			var pointPos = _mapController.View.GetCellCenterWorld(pointCellPos);
 			return pointPos;
 		}
 
@@ -105,7 +106,7 @@ namespace Feature.Enemy.AI
 
 		bool CellFree(Vector2Int pos)
 		{
-			if (_mapView.IsFree(pos))
+			if (_mapController.View.IsFree(pos))
 				return true;
 			return false;
 		}

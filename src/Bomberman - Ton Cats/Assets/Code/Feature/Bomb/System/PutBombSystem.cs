@@ -4,6 +4,7 @@ using Feature.Bomb.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using MapController;
 using MapView;
 using UnityEngine;
 using Zenject;
@@ -17,10 +18,10 @@ namespace Feature.Bomb.System
 			_bombCarrierFilter;
 		readonly EcsFilterInject<Inc<BombParent, TransformComponent>> _bombParentFilter;
 
-		[Inject] IMapView _mapView;
 		[Inject] IBombFactory _bombFactory;
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _bombCarrier;
+		[Inject] IMapController _mapController;
 
 		public void Run(IEcsSystems systems)
 		{
@@ -45,8 +46,8 @@ namespace Feature.Bomb.System
 
 		Vector2 CellCenterPos(Vector2 bombCarrierPos)
 		{
-			var cellPos = _mapView.WorldToCell(bombCarrierPos);
-			return _mapView.GetCellCenterWorld(cellPos);
+			var cellPos = _mapController.View.WorldToCell(bombCarrierPos);
+			return _mapController.View.GetCellCenterWorld(cellPos);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using Leopotam.EcsLite;
 using LevelData;
+using MapController;
 using MapView;
 using Zenject;
 
@@ -7,14 +8,13 @@ namespace Feature.MapGenerator.System
 {
 	public sealed class CreateIndestructibleTilesSystem : IEcsRunSystem
 	{
-		[Inject] IMapView _mapView;
 		[Inject] ILevelData _levelData;
+		[Inject] IMapController _mapController;
 
 		public void Run(IEcsSystems systems)
 		{
-			var map = _levelData.Map;
-			foreach (var indestructible in map.Indestuctibles)
-				_mapView.SetIndestructibleTile(indestructible);
+			foreach (var indestructible in _mapController.Indestuctibles)
+				_mapController.View.SetIndestructibleTile(indestructible);
 		}
 	}
 }

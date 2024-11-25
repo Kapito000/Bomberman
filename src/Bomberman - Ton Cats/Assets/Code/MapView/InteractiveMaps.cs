@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace GameTileMap
+namespace MapView
 {
 	public sealed class InteractiveMaps
 	{

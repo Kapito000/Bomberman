@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
 
-namespace GameTileMap
+namespace MapView
 {
-	public sealed class GameMap : IGameMap
+	public sealed class MapView : IMapView
 	{
 		[Inject] ITileProvider _tileProvider;
 
@@ -15,13 +15,12 @@ namespace GameTileMap
 		readonly Tilemap _indestructibleTailMap;
 		readonly InteractiveMaps _interactive;
 
-		public GameMap(Tilemap ground, Tilemap destructible,
-			Tilemap indestructible)
+		public MapView(Tilemap ground, Tilemap destructible, Tilemap indestructible)
 		{
 			_groundTailMap = ground;
 			_destructibleTailMap = destructible;
 			_indestructibleTailMap = indestructible;
-			
+
 			_interactive = new InteractiveMaps(
 				_destructibleTailMap, _indestructibleTailMap);
 		}
@@ -64,7 +63,9 @@ namespace GameTileMap
 			return tile != null;
 		}
 
-		public void SetFree(Vector2Int cellPos) =>
+		public void SetFree(Vector2Int cellPos)
+		{
 			_interactive.SetFree(cellPos);
+		}
 	}
 }

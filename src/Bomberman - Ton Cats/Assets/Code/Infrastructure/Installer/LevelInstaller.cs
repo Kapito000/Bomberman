@@ -13,7 +13,6 @@ using Feature.Explosion.Factory;
 using Feature.Hero.Factory;
 using Feature.HUD.Factory;
 using Feature.UI.Factory;
-using GameTileMap;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
@@ -21,6 +20,7 @@ using Infrastructure.GameStatus.State;
 using InstantiateService;
 using Leopotam.EcsLite;
 using LevelData;
+using MapView;
 using NavMeshPlus.Components;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -50,7 +50,7 @@ namespace Infrastructure.Installer
 			BindAIFunctional();
 			BindSystemFactory();
 			BindDevSceneRunner();
-			BindTileMapMediator();
+			BindMapView();
 			BindNavigationSurface();
 			BindCollisionRegistry();
 			BindFeatureController();
@@ -74,10 +74,9 @@ namespace Infrastructure.Installer
 			Container.Bind<INavigationSurface>().To<AINavigationSurface>().AsSingle();
 		}
 
-		void BindTileMapMediator()
+		void BindMapView()
 		{
-			Container.Bind<IGameMap>().FromMethod(CreateTileMapMediator)
-				.AsSingle();
+			Container.Bind<IMapView>().FromMethod(CreateMapView).AsSingle();
 		}
 
 		void BindAIFunctional()
@@ -145,9 +144,9 @@ namespace Infrastructure.Installer
 				.AsSingle();
 		}
 
-		IGameMap CreateTileMapMediator()
+		IMapView CreateMapView()
 		{
-			var gameTileMap = Container.Instantiate<GameTileMap.GameMap>(
+			var gameTileMap = Container.Instantiate<MapView.MapView>(
 				new[] { _groundTailMap, _destructibleTailMap, _indestructibleTailMap });
 			return gameTileMap;
 		}

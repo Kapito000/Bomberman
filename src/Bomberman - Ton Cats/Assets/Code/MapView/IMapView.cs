@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace GameTileMap
+namespace MapView
 {
-	public interface IGameMap : IService
+	public interface IMapView : IService
 	{
 		void SetGroundTile(Vector2Int pos);
 		void SetDestructibleTile(Vector2Int pos);

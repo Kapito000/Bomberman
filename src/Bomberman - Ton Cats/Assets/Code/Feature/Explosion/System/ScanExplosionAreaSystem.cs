@@ -1,19 +1,19 @@
 ﻿using Common.Component;
 using Feature.Destruction.Component;
 using Feature.Explosion.Component;
-using GameTileMap;
 using Infrastructure.ECS;
 using InstantiateService;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using MapTile;
+using MapView;
 using Zenject;
 
 namespace Feature.Explosion.System
 {
 	public sealed class ScanExplosionAreaSystem : IEcsRunSystem
 	{
-		[Inject] IGameMap _gameMap;
+		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _request;
 		[Inject] IInstantiateService _instantiateService;
 
@@ -26,8 +26,8 @@ namespace Feature.Explosion.System
 				_request.SetEntity(request);
 
 				var pos = _request.Position();
-				var cellPos = _gameMap.WorldToCell(pos);
-				if (_gameMap.TryGetTile(cellPos, out var tile) == false)
+				var cellPos = _mapView.WorldToCell(pos);
+				if (_mapView.TryGetTile(cellPos, out var tile) == false)
 					continue;
 
 				if (tile is IDestructible destructible)

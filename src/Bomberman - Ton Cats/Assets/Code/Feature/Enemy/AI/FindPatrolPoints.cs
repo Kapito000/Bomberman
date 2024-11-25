@@ -1,5 +1,5 @@
 ﻿using System;
-using GameTileMap;
+using MapView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -8,11 +8,11 @@ namespace Feature.Enemy.AI
 {
 	public sealed class FindPatrolPoints
 	{
-		readonly IGameMap _gameMap;
+		readonly IMapView _mapView;
 
-		public FindPatrolPoints(IGameMap gameMap)
+		public FindPatrolPoints(IMapView mapView)
 		{
-			_gameMap = gameMap;
+			_mapView = mapView;
 		}
 
 		public Vector2 CalculatePoint(Vector2 pos, int length)
@@ -22,9 +22,9 @@ namespace Feature.Enemy.AI
 				Debug.LogWarning($"{nameof(length)} cannot be less than 0.");
 				return pos;
 			}
-			var cellPos = _gameMap.WorldToCell(pos);
+			var cellPos = _mapView.WorldToCell(pos);
 			var pointCellPos = CalculatePoint(cellPos, length, Direction.None);
-			var pointPos = _gameMap.GetCellCenterWorld(pointCellPos);
+			var pointPos = _mapView.GetCellCenterWorld(pointCellPos);
 			return pointPos;
 		}
 
@@ -105,7 +105,7 @@ namespace Feature.Enemy.AI
 
 		bool CellFree(Vector2Int pos)
 		{
-			if (_gameMap.IsFree(pos))
+			if (_mapView.IsFree(pos))
 				return true;
 			return false;
 		}

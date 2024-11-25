@@ -5,9 +5,9 @@ using Infrastructure.ECS;
 using InstantiateService;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Map;
 using MapController;
-using MapTile;
-using MapView;
+using UnityEngine;
 using Zenject;
 
 namespace Feature.Explosion.System
@@ -27,18 +27,25 @@ namespace Feature.Explosion.System
 				_request.SetEntity(request);
 
 				var pos = _request.Position();
-				var cellPos = _mapController.View.WorldToCell(pos);
-				if (_mapController.View.TryGetTile(cellPos, out var tile) == false)
+				var cellPos = _mapController.WorldToCell(pos);
+				var cellType = _mapController.CellType(cellPos);
+				if (cellType == CellType.Free)
 					continue;
 
-				if (tile is IDestructible destructible)
+				if (cellType == CellType.None)
+				{
+					Debug.LogWarning("Found \"None\" cell.");
+					continue;
+				}
+
+				if (cellType == CellType.Destructible)
 				{
 					_request
-						.AddBlowUpDestructible(destructible)
+						.AddBlowUpDestructible()
 						.AddDestructibleTileCellPos(cellPos)
 						;
 				}
-				else if (tile is IIndestructible)
+				else if (cellType == CellType.Indestructible)
 				{
 					_request
 						.Add<Destructed>()

@@ -19,6 +19,8 @@ namespace Feature.MapGenerator.Services
 		IDestructibleTilesGenerator _destructibleTilesGenerator;
 		IIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
+		public IMap Map { get; private set; }
+
 		public StandardMapGenerator(IMapData mapData)
 		{
 			_mapData = mapData;
@@ -32,13 +34,20 @@ namespace Feature.MapGenerator.Services
 		public IMap CreateMap()
 		{
 			var size = _mapData.MapSize + new Vector2Int(2, 2);
-			var map = new StandardTileMap(new TileGrid(size.x, size.y));
-			CreateWallOutLine(map);
-			CreateIndestructibleWalls(map);
-			CreatePlayerSpawnArea(map);
-			CreateEnemies(map);
-			CreateDestructibleWalls(map);
-			return map;
+			Map = new StandardTileMap(new TileGrid(size.x, size.y));
+			CreateWallOutLine(Map);
+			CreateIndestructibleWalls(Map);
+			CreatePlayerSpawnArea(Map);
+			CreateEnemies(Map);
+			CreateDestructibleWalls(Map);
+			SetNoneAsFree(Map);
+			return Map;
+		}
+
+		public IMap CleanMap()
+		{
+			var size = Map.Size;
+			return new StandardTileMap(new TileGrid(size.x, size.y));
 		}
 
 		void CreateWallOutLine(IMap map) =>
@@ -55,5 +64,12 @@ namespace Feature.MapGenerator.Services
 
 		void CreateDestructibleWalls(IMap map) =>
 			_destructibleTilesGenerator.Create(map);
+
+		void SetNoneAsFree(IMap map)
+		{
+			var noneCells = map.CalculateNoneCells();
+			foreach (Vector2Int noneCell in noneCells)
+				map.TrySetFree(noneCell);
+		}
 	}
 }

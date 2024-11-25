@@ -1,19 +1,21 @@
-﻿using Leopotam.EcsLite;
+﻿using Feature.MapGenerator.Services;
+using Leopotam.EcsLite;
 using LevelData;
-using MapController;
+using MapView;
 using Zenject;
 
 namespace Feature.MapGenerator.System
 {
 	public sealed class CreateGroundSystem : IEcsRunSystem
 	{
+		[Inject] IMapView _mapView;
 		[Inject] ILevelData _levelData;
-		[Inject] IMapController _mapController;
+		[Inject] IMapGenerator _mapGenerator;
 
 		public void Run(IEcsSystems systems)
 		{
-			foreach (var coordinate in _mapController.AllCoordinates())
-				_mapController.View.SetGroundTile(coordinate);
+			foreach (var coordinate in _mapGenerator.Map.AllCoordinates())
+				_mapView.SetGroundTile(coordinate);
 		}
 	}
 }

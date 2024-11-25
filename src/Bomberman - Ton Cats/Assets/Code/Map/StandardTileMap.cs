@@ -35,6 +35,17 @@ namespace Map
 		public bool IsNone(Vector2Int cell) =>
 			IsNone(cell.x, cell.y);
 
+		public bool IsFree(Vector2Int cell) =>
+			IsFree(cell.x, cell.y);
+
+		public bool IsFree(int x, int y)
+		{
+			if (Has(x, y) == false)
+				return false;
+
+			return _grid[x, y].Type == CellType.Free;
+		}
+
 		public bool TrySetHeroSpawnPoint(int x, int y)
 		{
 			if (Has(x, y) == false)
@@ -90,7 +101,7 @@ namespace Map
 			if (Has(x, y) == false)
 				return false;
 
-			_grid[x, y].Type = CellType.Indestructible;
+			_grid[x, y].Type = CellType.Destructible;
 			var cell = new Vector2Int(x, y);
 			_destuctibles.Add(cell);
 			return true;
@@ -115,5 +126,8 @@ namespace Map
 
 		public IEnumerable<Vector2Int> AllCoordinates() =>
 			(IEnumerable<Vector2Int>)_grid;
+
+		public CellType GetCellType(Vector2Int pos) =>
+			_grid[pos.x, pos.y].Type;
 	}
 }

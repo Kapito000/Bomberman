@@ -83,8 +83,7 @@ namespace Infrastructure.Installer
 
 		void BindMapView()
 		{
-			Container.Bind<IMapView>().FromMethod(CreateMapView).AsSingle()
-				.WhenInjectedInto<IMapController>();
+			Container.Bind<IMapView>().FromMethod(CreateMapView).AsSingle();
 		}
 
 		void BindAIFunctional()

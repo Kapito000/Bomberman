@@ -3,7 +3,6 @@ using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using MapController;
-using MapView;
 using Zenject;
 
 namespace Feature.Map.System
@@ -22,7 +21,7 @@ namespace Feature.Map.System
 			{
 				_destroyRequest.SetEntity(e);
 				var cellPos = _destroyRequest.TilePos();
-				_mapController.View.SetFree(cellPos);
+				_mapController.SetFree(cellPos);
 			}
 		}
 	}

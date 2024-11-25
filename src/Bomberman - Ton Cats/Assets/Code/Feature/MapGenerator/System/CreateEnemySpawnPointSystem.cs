@@ -1,24 +1,26 @@
 ﻿using Feature.Enemy.Base.Factory;
+using Feature.MapGenerator.Services;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
-using MapController;
+using MapView;
 using Zenject;
 
 namespace Feature.MapGenerator.System
 {
 	public sealed class CreateEnemySpawnPointSystem : IEcsRunSystem
 	{
+		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _enemyParent;
-		[Inject] IMapController _mapController;
+		[Inject] IMapGenerator _mapGenerator;
 		[Inject] IBaseEnemyFactory _enemyFactory;
 
 		public void Run(IEcsSystems systems)
 		{
-			var spawnPoints = _mapController.EnemySpawnPoints;
-			foreach (var spawnPoint in spawnPoints)
+			var spawnPoints = _mapGenerator.Map.EnemySpawnPoints;
+			foreach (var spawnPointPos in spawnPoints)
 			{
-				var pos = _mapController.View.GetCellCenterWorld(spawnPoint);
-				_enemyFactory.CreateEnemySpawnPoint(pos);	
+				var pos = _mapView.GetCellCenterWorld(spawnPointPos);
+				_enemyFactory.CreateEnemySpawnPoint(pos);
 			}
 		}
 	}

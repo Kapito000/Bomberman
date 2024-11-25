@@ -23,9 +23,9 @@ namespace Feature.Enemy.AI
 				Debug.LogWarning($"{nameof(length)} cannot be less than 0.");
 				return pos;
 			}
-			var cellPos = _mapController.View.WorldToCell(pos);
+			var cellPos = _mapController.WorldToCell(pos);
 			var pointCellPos = CalculatePoint(cellPos, length, Direction.None);
-			var pointPos = _mapController.View.GetCellCenterWorld(pointCellPos);
+			var pointPos = _mapController.GetCellCenterWorld(pointCellPos);
 			return pointPos;
 		}
 
@@ -106,7 +106,7 @@ namespace Feature.Enemy.AI
 
 		bool CellFree(Vector2Int pos)
 		{
-			if (_mapController.View.IsFree(pos))
+			if (_mapController.IsFree(pos))
 				return true;
 			return false;
 		}

@@ -46,8 +46,8 @@ namespace Feature.Bomb.System
 
 		Vector2 CellCenterPos(Vector2 bombCarrierPos)
 		{
-			var cellPos = _mapController.View.WorldToCell(bombCarrierPos);
-			return _mapController.View.GetCellCenterWorld(cellPos);
+			var cellPos = _mapController.WorldToCell(bombCarrierPos);
+			return _mapController.GetCellCenterWorld(cellPos);
 		}
 	}
 }

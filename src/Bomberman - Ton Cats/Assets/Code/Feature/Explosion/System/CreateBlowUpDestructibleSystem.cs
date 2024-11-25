@@ -1,9 +1,7 @@
 ﻿using Common.Component;
-using Extensions;
 using Feature.Destruction.Component;
 using Feature.Explosion.Component;
 using Feature.Explosion.Factory;
-using Feature.Map.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -46,10 +44,9 @@ namespace Feature.Explosion.System
 
 		void CreateDestructiblePrefab()
 		{
-			var prefab = _request.BlowUpDestructibleTile().DestructiblePrefab;
 			var pos = _request.Position();
 			var parent = _request.ForParent();
-			_explosionFactory.CreateDestructibleTile(prefab, pos, parent);
+			_explosionFactory.CreateDestructibleTile(pos, parent);
 		}
 	}
 }

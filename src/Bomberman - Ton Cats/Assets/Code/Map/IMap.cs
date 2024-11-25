@@ -13,6 +13,8 @@ namespace Map
 		bool Has(int x, int y);
 		bool IsNone(int x, int y);
 		bool IsNone(Vector2Int cell);
+		bool IsFree(int x, int y);
+		bool IsFree(Vector2Int cell);
 		bool TrySetFree(int x, int y);
 		bool TrySetFree(Vector2Int cell);
 		bool TrySetDestructible(int x, int y);
@@ -25,5 +27,6 @@ namespace Map
 		bool TrySetEnemySpawnPoint(Vector2Int point);
 		List<Vector2Int> CalculateNoneCells();
 		IEnumerable<Vector2Int> AllCoordinates();
+		CellType GetCellType(Vector2Int pos);
 	}
 }

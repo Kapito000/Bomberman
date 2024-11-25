@@ -7,6 +7,7 @@ namespace Feature.Map
 	{
 		public MapFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
+			AddUpdate<ChangeMapProcessSystem>();
 			AddUpdate<DestroyTileSystem>();
 			AddUpdate<RebakeNavigationSurfaceSystem>();
 			

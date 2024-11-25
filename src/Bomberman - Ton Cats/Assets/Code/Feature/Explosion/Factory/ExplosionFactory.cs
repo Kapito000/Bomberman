@@ -48,9 +48,9 @@ namespace Feature.Explosion.Factory
 			return entity;
 		}
 		
-		public void CreateDestructibleTile(GameObject prefab, Vector2 pos,
-			Transform parent)
+		public void CreateDestructibleTile(Vector2 pos, Transform parent)
 		{
+			var prefab = _kit.AssetProvider.DestructibleTile();
 			_kit.InstantiateService.Instantiate(prefab, pos, parent);
 		}
 

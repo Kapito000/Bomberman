@@ -152,12 +152,6 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public IDestructible BlowUpDestructibleTile()
-		{
-			ref var blowUpDestructible = ref Get<BlowUpDestructible>();
-			return blowUpDestructible.Destructible;
-		}
-
 		public EExplosionPart ExplosionPart()
 		{
 			ref var explosionPart = ref Get<ExplosionPart>();
@@ -171,10 +165,9 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public EntityWrapper AddBlowUpDestructible(IDestructible destructible)
+		public EntityWrapper AddBlowUpDestructible()
 		{
-			ref var blowUpDestructible = ref AddComponent<BlowUpDestructible>();
-			blowUpDestructible.Destructible = destructible;
+			Add<BlowUpDestructible>();
 			return this;
 		}
 
@@ -188,13 +181,6 @@ namespace Infrastructure.ECS
 		{
 			ref var destructibleTilePos = ref AddComponent<DestructibleTileCellPos>();
 			destructibleTilePos.Value = cellPos;
-			return this;
-		}
-
-		public EntityWrapper SetBlowUpDestructible(IDestructible destructible)
-		{
-			ref var blowUpDestructible = ref Get<BlowUpDestructible>();
-			blowUpDestructible.Destructible = destructible;
 			return this;
 		}
 
@@ -372,7 +358,7 @@ namespace Infrastructure.ECS
 			enemyPatent.Value = value;
 			return this;
 		}
-		
+
 		public Transform EnemyParent()
 		{
 			ref var enemyPatent = ref Get<EnemyParent>();

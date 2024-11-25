@@ -18,6 +18,7 @@ namespace Map
 		bool TrySetDestructible(int x, int y);
 		bool TrySetDestructible(Vector2Int cell);
 		bool TrySetIndestructible(int x, int y);
+		bool TrySetIndestructible(Vector2Int cell);
 		bool TrySetHeroSpawnPoint(int x, int y);
 		bool TrySetHeroSpawnPoint(Vector2Int spawnPoint);
 		bool TrySetEnemySpawnPoint(int x, int y);

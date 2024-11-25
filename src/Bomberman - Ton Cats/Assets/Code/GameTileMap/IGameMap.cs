@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 
 namespace GameTileMap
 {
-	public interface IGameTileMap : IService
+	public interface IGameMap : IService
 	{
 		void SetGroundTile(Vector2Int pos);
 		void SetDestructibleTile(Vector2Int pos);

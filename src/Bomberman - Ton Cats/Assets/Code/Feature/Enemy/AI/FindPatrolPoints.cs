@@ -8,11 +8,11 @@ namespace Feature.Enemy.AI
 {
 	public sealed class FindPatrolPoints
 	{
-		readonly IGameTileMap _tileMap;
+		readonly IGameMap _gameMap;
 
-		public FindPatrolPoints(IGameTileMap tileMap)
+		public FindPatrolPoints(IGameMap gameMap)
 		{
-			_tileMap = tileMap;
+			_gameMap = gameMap;
 		}
 
 		public Vector2 CalculatePoint(Vector2 pos, int length)
@@ -22,9 +22,9 @@ namespace Feature.Enemy.AI
 				Debug.LogWarning($"{nameof(length)} cannot be less than 0.");
 				return pos;
 			}
-			var cellPos = _tileMap.WorldToCell(pos);
+			var cellPos = _gameMap.WorldToCell(pos);
 			var pointCellPos = CalculatePoint(cellPos, length, Direction.None);
-			var pointPos = _tileMap.GetCellCenterWorld(pointCellPos);
+			var pointPos = _gameMap.GetCellCenterWorld(pointCellPos);
 			return pointPos;
 		}
 
@@ -105,7 +105,7 @@ namespace Feature.Enemy.AI
 
 		bool CellFree(Vector2Int pos)
 		{
-			if (_tileMap.IsFree(pos))
+			if (_gameMap.IsFree(pos))
 				return true;
 			return false;
 		}

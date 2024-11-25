@@ -76,7 +76,7 @@ namespace Infrastructure.Installer
 
 		void BindTileMapMediator()
 		{
-			Container.Bind<IGameTileMap>().FromMethod(CreateTileMapMediator)
+			Container.Bind<IGameMap>().FromMethod(CreateTileMapMediator)
 				.AsSingle();
 		}
 
@@ -145,9 +145,9 @@ namespace Infrastructure.Installer
 				.AsSingle();
 		}
 
-		IGameTileMap CreateTileMapMediator()
+		IGameMap CreateTileMapMediator()
 		{
-			var gameTileMap = Container.Instantiate<GameTileMap.GameTileMap>(
+			var gameTileMap = Container.Instantiate<GameTileMap.GameMap>(
 				new[] { _groundTailMap, _destructibleTailMap, _indestructibleTailMap });
 			return gameTileMap;
 		}

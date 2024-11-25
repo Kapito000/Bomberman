@@ -17,7 +17,7 @@ namespace Feature.Bomb.System
 			_bombCarrierFilter;
 		readonly EcsFilterInject<Inc<BombParent, TransformComponent>> _bombParentFilter;
 
-		[Inject] IGameTileMap _tileMap;
+		[Inject] IGameMap _gameMap;
 		[Inject] IBombFactory _bombFactory;
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _bombCarrier;
@@ -45,8 +45,8 @@ namespace Feature.Bomb.System
 
 		Vector2 CellCenterPos(Vector2 bombCarrierPos)
 		{
-			var cellPos = _tileMap.WorldToCell(bombCarrierPos);
-			return _tileMap.GetCellCenterWorld(cellPos);
+			var cellPos = _gameMap.WorldToCell(bombCarrierPos);
+			return _gameMap.GetCellCenterWorld(cellPos);
 		}
 	}
 }

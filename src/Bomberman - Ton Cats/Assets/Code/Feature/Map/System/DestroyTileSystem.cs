@@ -10,7 +10,7 @@ namespace Feature.Map.System
 	public sealed class DestroyTileSystem : IEcsRunSystem
 	{
 		[Inject] EcsWorld _world;
-		[Inject] IGameTileMap _tileMap;
+		[Inject] IGameMap _gameMap;
 		[Inject] EntityWrapper _destroyRequest;
 
 		readonly EcsFilterInject<Inc<DestroyedTile, TilePos>> _destroyedTileFilter;
@@ -21,7 +21,7 @@ namespace Feature.Map.System
 			{
 				_destroyRequest.SetEntity(e);
 				var cellPos = _destroyRequest.TilePos();
-				_tileMap.SetFree(cellPos);
+				_gameMap.SetFree(cellPos);
 			}
 		}
 	}

@@ -10,7 +10,7 @@ namespace Feature.MapGenerator.System
 	public sealed class CreateEnemySpawnPointSystem : IEcsRunSystem
 	{
 		[Inject] ILevelData _levelData;
-		[Inject] IGameTileMap _tileMap;
+		[Inject] IGameMap _gameMap;
 		[Inject] EntityWrapper _enemyParent;
 		[Inject] IBaseEnemyFactory _enemyFactory;
 
@@ -19,7 +19,7 @@ namespace Feature.MapGenerator.System
 			var spawnPoints = _levelData.Map.EnemySpawnPoints;
 			foreach (var spawnPoint in spawnPoints)
 			{
-				var pos = _tileMap.GetCellCenterWorld(spawnPoint);
+				var pos = _gameMap.GetCellCenterWorld(spawnPoint);
 				_enemyFactory.CreateEnemySpawnPoint(pos);	
 			}
 		}

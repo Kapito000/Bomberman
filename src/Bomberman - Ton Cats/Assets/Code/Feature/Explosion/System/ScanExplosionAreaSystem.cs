@@ -13,7 +13,7 @@ namespace Feature.Explosion.System
 {
 	public sealed class ScanExplosionAreaSystem : IEcsRunSystem
 	{
-		[Inject] IGameTileMap _tileMap;
+		[Inject] IGameMap _gameMap;
 		[Inject] EntityWrapper _request;
 		[Inject] IInstantiateService _instantiateService;
 
@@ -26,8 +26,8 @@ namespace Feature.Explosion.System
 				_request.SetEntity(request);
 
 				var pos = _request.Position();
-				var cellPos = _tileMap.WorldToCell(pos);
-				if (_tileMap.TryGetTile(cellPos, out var tile) == false)
+				var cellPos = _gameMap.WorldToCell(pos);
+				if (_gameMap.TryGetTile(cellPos, out var tile) == false)
 					continue;
 
 				if (tile is IDestructible destructible)

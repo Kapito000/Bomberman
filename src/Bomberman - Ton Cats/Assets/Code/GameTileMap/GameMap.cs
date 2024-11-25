@@ -6,7 +6,7 @@ using Zenject;
 
 namespace GameTileMap
 {
-	public sealed class GameTileMap : IGameTileMap
+	public sealed class GameMap : IGameMap
 	{
 		[Inject] ITileProvider _tileProvider;
 
@@ -15,7 +15,7 @@ namespace GameTileMap
 		readonly Tilemap _indestructibleTailMap;
 		readonly InteractiveMaps _interactive;
 
-		public GameTileMap(Tilemap ground, Tilemap destructible,
+		public GameMap(Tilemap ground, Tilemap destructible,
 			Tilemap indestructible)
 		{
 			_groundTailMap = ground;

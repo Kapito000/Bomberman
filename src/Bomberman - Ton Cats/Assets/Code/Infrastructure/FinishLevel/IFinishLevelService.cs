@@ -2,6 +2,7 @@
 {
 	public interface IFinishLevelService : IService
 	{
-		bool CanFinishLevel { get; }
+		bool GameOver { get; }
+		bool LevelComplete { get; }
 	}
 }

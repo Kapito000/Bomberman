@@ -7,6 +7,8 @@ namespace Infrastructure.FinishLevel
 	{
 		readonly IGameOverCondition[] _gameOverConditions;
 
+		public bool GameOver => _gameOverConditions.Any(x => x.Value);
+		public bool LevelComplete => false;
 		public bool CanFinishLevel => _gameOverConditions.Any(x => x.Value);
 
 		public FinishLevelService(IGameOverCondition[] gameOverConditions)

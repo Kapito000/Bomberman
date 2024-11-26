@@ -1,6 +1,8 @@
-﻿using Infrastructure.FinishLevel;
+﻿using Gameplay.FinishLevel.Component;
+using Infrastructure;
+using Infrastructure.FinishLevel;
 using Leopotam.EcsLite;
-using UnityEngine;
+using Leopotam.EcsLite.Di;
 using Zenject;
 
 namespace Gameplay.FinishLevel.System
@@ -9,12 +11,26 @@ namespace Gameplay.FinishLevel.System
 	{
 		[Inject] IFinishLevelService _finishLevelServiceService;
 
+		readonly EcsFilterInject<Inc<FinishLevelObserver>> _finishLevelObserver;
+
 		public void Run(IEcsSystems systems)
 		{
-			if (_finishLevelServiceService.CanFinishLevel == false)
-				return;
+			foreach (var e in _finishLevelObserver.Value)
+			{
+				if (_finishLevelServiceService.GameOver)
+				{
+					ActionImitation.Execute("Pause game.");
+					ActionImitation.Execute("Call the game over UI.");
+					continue;
+				}
 
-			Debug.Log("Process the finish level.");
+				if (_finishLevelServiceService.LevelComplete)
+				{
+					ActionImitation.Execute("Pause game.");
+					ActionImitation.Execute("Call the leve complete UI.");
+					continue;
+				}
+			}
 		}
 	}
 }

@@ -1,0 +1,3 @@
+﻿namespace Gameplay.EndGame.Component
+{
+}

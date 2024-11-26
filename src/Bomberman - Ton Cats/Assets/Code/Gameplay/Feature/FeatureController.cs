@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.EndGame;
 using Gameplay.Feature.Bomb;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.Collisions;
-using Gameplay.Feature.Collisions.System;
 using Gameplay.Feature.DamageApplication;
 using Gameplay.Feature.Destruction;
 using Gameplay.Feature.Enemy;
@@ -37,6 +37,7 @@ namespace Gameplay.Feature
 			Add<DamageApplicationFeature>();
 			Add<LifeFeature>();
 			Add<MapFeature>();
+			Add<EndGameFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();

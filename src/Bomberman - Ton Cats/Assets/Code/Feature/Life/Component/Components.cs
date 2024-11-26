@@ -1,5 +1,7 @@
-﻿namespace Feature.Life.Component
+﻿using System;
+
+namespace Feature.Life.Component
 {
-	public struct LifePoints { public int Value; }
+	[Serializable] public struct LifePoints { public int Value; }
 	public struct ChangeLifePoints { public int Value; }
 }

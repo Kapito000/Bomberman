@@ -1,5 +1,4 @@
-﻿using Common.Component;
-using Extensions;
+﻿using Extensions;
 using Feature.Explosion.Component;
 using Feature.Life.Component;
 using Infrastructure.ECS;
@@ -24,7 +23,8 @@ namespace Feature.Explosion.System
 				_explosion.SetEntity(explosion);
 				foreach (var pack in _explosion.TargetsBuffer())
 				{
-					if (pack.Unpack(out var target) == false) continue;
+					if (pack.Unpack(out var target) == false)
+						continue;
 
 					_target.SetEntity(target);
 					if (_target.Has<LifePoints>() == false)

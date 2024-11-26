@@ -1,5 +1,6 @@
 ﻿using Windows;
 using Windows.Factory;
+using Collisions;
 using Feature.Enemy.Base.StaticData;
 using Feature.Hero.StaticData;
 using Feature.MapGenerator.Services;
@@ -13,6 +14,7 @@ using Input;
 using Input.Character;
 using LevelData;
 using MapTile.TileProvider;
+using Physics;
 using StaticData.SceneNames;
 using TimeService;
 using UnityEngine;
@@ -41,7 +43,19 @@ namespace Infrastructure.Installer
 			BindMapGenerator();
 			BindEntityWrapper();
 			BindAssetProvider();
+			BindPhysicsService();
 			BindGameStateMachine();
+			BindCollisionRegistry();
+		}
+
+		void BindCollisionRegistry()
+		{
+			Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
+		}
+		
+		void BindPhysicsService()
+		{
+			Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
 		}
 
 		void BindMapGenerator()

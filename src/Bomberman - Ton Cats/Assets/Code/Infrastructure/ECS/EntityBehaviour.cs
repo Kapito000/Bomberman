@@ -14,6 +14,12 @@ namespace Infrastructure.ECS
 
 		EcsPackedEntity _packedEntity;
 
+		void OnDestroy()
+		{
+			Dispose();
+			OnDestroyed();
+		}
+
 		public void AddToEcs(out int entity)
 		{
 			entity = _world.NewEntity();
@@ -36,9 +42,12 @@ namespace Infrastructure.ECS
 
 		public void Dispose()
 		{
-			foreach (Collider2D collider2d in GetComponentsInChildren<Collider2D>(includeInactive: true)) 
+			foreach (var collider2d in GetComponentsInChildren<Collider2D>(includeInactive: true))
 				_collisionRegistry.Unregister(collider2d.GetInstanceID());
 		}
+
+		protected virtual void OnDestroyed()
+		{ }
 
 		void SetEntity(int entity)
 		{

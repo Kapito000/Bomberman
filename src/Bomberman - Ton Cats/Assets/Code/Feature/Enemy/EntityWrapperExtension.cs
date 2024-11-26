@@ -1,8 +1,9 @@
 using Feature.Enemy.Base.Component;
+using Feature.Enemy.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 
-namespace Feature.Enemy.Base
+namespace Feature.Enemy
 {
 	public static class EntityWrapperExtension
 	{
@@ -17,6 +18,12 @@ namespace Feature.Enemy.Base
 		{
 			ref var currentPatrolPoint = ref e.ReplaceComponent<CurrentDestination>();
 			return currentPatrolPoint.Value = destination;
+		}
+
+		public static float AttackRadius(this EntityWrapper e)
+		{
+			ref var attackRadius = ref e.Get<AttackRadius>();
+			return attackRadius.Value;
 		}
 	}
 }

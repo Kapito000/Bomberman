@@ -1,5 +1,4 @@
 ﻿using AI.Navigation;
-using Collisions;
 using Factory.EntityBehaviourFactory;
 using Factory.Kit;
 using Factory.SystemFactory;
@@ -54,7 +53,6 @@ namespace Infrastructure.Installer
 			BindSystemFactory();
 			BindDevSceneRunner();
 			BindNavigationSurface();
-			BindCollisionRegistry();
 			BindFeatureController();
 		}
 
@@ -66,6 +64,7 @@ namespace Infrastructure.Installer
 
 		void InitLevelData()
 		{
+			_levelData.World = Container.Resolve<EcsWorld>();
 			_levelData.EcsRunner = _ecsRunner;
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
@@ -90,11 +89,6 @@ namespace Infrastructure.Installer
 		{
 			Container.Bind<Patrolling>().AsSingle();
 			Container.Bind<FindPatrolPoints>().AsSingle();
-		}
-
-		void BindCollisionRegistry()
-		{
-			Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
 		}
 
 		void BindUiFactories()

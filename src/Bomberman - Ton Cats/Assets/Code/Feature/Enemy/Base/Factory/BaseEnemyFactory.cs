@@ -1,6 +1,7 @@
 ﻿using Factory.Kit;
 using Feature.Destruction.Component;
 using Feature.Enemy.Base.Component;
+using Feature.Enemy.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace Feature.Enemy.Base.Factory
 			_entity.SetEntity(entity);
 			_entity
 				.Add<EnemyComponent>()
+				.Add<AttackHeroAbility>()
 				.AddBaseEnemyAIBlackboard()
 				;
 			return entity;

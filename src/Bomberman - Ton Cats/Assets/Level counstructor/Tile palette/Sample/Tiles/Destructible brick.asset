@@ -34,4 +34,3 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 2
-  <DestructiblePrefab>k__BackingField: {fileID: 4954203463075040424, guid: dfaa6b8ca3608ce4b9c4b19e8271c4ca, type: 3}

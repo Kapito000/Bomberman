@@ -1,13 +1,13 @@
-﻿using Gameplay.EndGame.Component;
-using Gameplay.Feature.Hero.Component;
+﻿using Gameplay.Feature.Hero.Component;
 using Gameplay.Feature.Life.Component;
+using Gameplay.FinishLevel.Component;
 using Infrastructure.ECS;
 using Infrastructure.FinishLevel.Condition;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.EndGame.System
+namespace Gameplay.FinishLevel.System
 {
 	public sealed class HeroHealthObserveSystem : IEcsRunSystem
 	{

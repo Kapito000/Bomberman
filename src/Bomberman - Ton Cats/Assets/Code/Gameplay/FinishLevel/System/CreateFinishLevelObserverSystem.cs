@@ -1,8 +1,8 @@
-﻿using Gameplay.EndGame.Factory;
+﻿using Gameplay.FinishLevel.Factory;
 using Leopotam.EcsLite;
 using Zenject;
 
-namespace Gameplay.EndGame.System
+namespace Gameplay.FinishLevel.System
 {
 	public sealed class CreateFinishLevelObserverSystem : IEcsRunSystem
 	{

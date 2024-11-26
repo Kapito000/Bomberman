@@ -1,5 +1,4 @@
 ﻿using Gameplay.AI.Navigation;
-using Gameplay.EndGame.Factory;
 using Gameplay.Feature;
 using Gameplay.Feature.Bomb.Factory;
 using Gameplay.Feature.Camera.Factory;
@@ -11,6 +10,7 @@ using Gameplay.Feature.Hero.Factory;
 using Gameplay.Feature.HUD.Factory;
 using Gameplay.Feature.Map.MapController;
 using Gameplay.Feature.UI.Factory;
+using Gameplay.FinishLevel.Factory;
 using Gameplay.LevelData;
 using Gameplay.MapView;
 using Infrastructure.Boot;

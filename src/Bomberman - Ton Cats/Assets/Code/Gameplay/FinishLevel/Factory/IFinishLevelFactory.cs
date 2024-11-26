@@ -1,6 +1,6 @@
 ﻿using Infrastructure.Factory;
 
-namespace Gameplay.EndGame.Factory
+namespace Gameplay.FinishLevel.Factory
 {
 	public interface IFinishLevelFactory : IFactory
 	{

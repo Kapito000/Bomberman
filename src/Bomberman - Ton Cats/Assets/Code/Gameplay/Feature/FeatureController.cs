@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Gameplay.EndGame;
 using Gameplay.Feature.Bomb;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.Collisions;
@@ -15,6 +14,7 @@ using Gameplay.Feature.Life;
 using Gameplay.Feature.Map;
 using Gameplay.Feature.MapGenerator;
 using Gameplay.Feature.UI;
+using Gameplay.FinishLevel;
 using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature
@@ -40,7 +40,7 @@ namespace Gameplay.Feature
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();
-			Add<EndGameFeature>();
+			Add<FinishLevelFeature>();
 			Add<DestructionFeature>();
 		}
 

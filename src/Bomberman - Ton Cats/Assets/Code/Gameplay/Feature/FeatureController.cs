@@ -37,10 +37,10 @@ namespace Gameplay.Feature
 			Add<DamageApplicationFeature>();
 			Add<LifeFeature>();
 			Add<MapFeature>();
-			Add<EndGameFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();
+			Add<EndGameFeature>();
 			Add<DestructionFeature>();
 		}
 

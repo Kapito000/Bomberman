@@ -1,4 +1,5 @@
 ﻿using Gameplay.AI.Navigation;
+using Gameplay.EndGame.Factory;
 using Gameplay.Feature;
 using Gameplay.Feature.Bomb.Factory;
 using Gameplay.Feature.Camera.Factory;
@@ -122,6 +123,7 @@ namespace Infrastructure.Installer
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 			Container.Bind<IExplosionFactory>().To<ExplosionFactory>().AsSingle();
 			Container.Bind<IBaseEnemyFactory>().To<BaseEnemyFactory>().AsSingle();
+			Container.Bind<IFinishLevelFactory>().To<FinishLevelFactory>().AsSingle();
 		}
 
 		void BindFeatureController()

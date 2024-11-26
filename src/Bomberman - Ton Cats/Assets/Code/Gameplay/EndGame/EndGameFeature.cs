@@ -7,6 +7,8 @@ namespace Gameplay.EndGame
 	{
 		public EndGameFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
+			AddInit<CreateFinishLevelObserverSystem>();
+			
 			AddUpdate<EndGameSystem>();
 		}
 	}

@@ -1,5 +1,4 @@
 using Gameplay.Feature.Enemy.Base.Component;
-using Gameplay.Feature.Enemy.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 
@@ -18,12 +17,6 @@ namespace Gameplay.Feature.Enemy
 		{
 			ref var currentPatrolPoint = ref e.ReplaceComponent<CurrentDestination>();
 			return currentPatrolPoint.Value = destination;
-		}
-
-		public static float AttackRadius(this EntityWrapper e)
-		{
-			ref var attackRadius = ref e.Get<AttackRadius>();
-			return attackRadius.Value;
 		}
 	}
 }

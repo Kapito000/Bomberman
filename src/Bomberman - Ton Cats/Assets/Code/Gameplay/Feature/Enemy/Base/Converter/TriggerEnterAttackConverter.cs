@@ -3,6 +3,6 @@ using Infrastructure.ECS;
 
 namespace Gameplay.Feature.Enemy.Base.Converter
 {
-	public sealed class AttackRadiusConverter : Converter<AttackRadius>
+	public sealed class TriggerEnterAttackConverter : Converter<TriggerEnterAttack>
 	{ }
 }

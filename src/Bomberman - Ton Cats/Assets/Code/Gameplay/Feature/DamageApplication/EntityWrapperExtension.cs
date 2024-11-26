@@ -3,6 +3,7 @@ using Extensions;
 using Gameplay.Feature.DamageApplication.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Gameplay.Feature.DamageApplication
 {
@@ -113,7 +114,7 @@ namespace Gameplay.Feature.DamageApplication
 			spriteFlickering.Value = period;
 			return e;
 		}
-		
+
 		public static float SpriteFlickeringPeriod(this EntityWrapper e)
 		{
 			ref var spriteFlickering = ref e.Get<SpriteFlickeringPeriod>();

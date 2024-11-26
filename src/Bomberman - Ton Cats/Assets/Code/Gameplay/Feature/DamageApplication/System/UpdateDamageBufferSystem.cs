@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Gameplay.Feature.DamageApplication.System
 {
-	public sealed class UpdateDamageBufferSystemSystem : IEcsRunSystem
+	public sealed class UpdateDamageBufferSystem : IEcsRunSystem
 	{
 		[Inject] EcsWorld _world;
 		[Inject] EntityWrapper _buffer;

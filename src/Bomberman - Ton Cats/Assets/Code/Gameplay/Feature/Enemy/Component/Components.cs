@@ -1,7 +1,5 @@
-﻿using System;
-
-namespace Gameplay.Feature.Enemy.Component
+﻿namespace Gameplay.Feature.Enemy.Component
 {
-	[Serializable] public struct AttackRadius { public float Value; }
+	public struct TriggerEnterAttack { }
 	public struct AttackHeroAbility { }
 }

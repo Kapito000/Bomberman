@@ -1,4 +1,4 @@
-﻿using Gameplay.Collisions.Behaviour;
+﻿using Gameplay.Feature.Collisions.Behaviour;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;

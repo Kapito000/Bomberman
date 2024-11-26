@@ -7,7 +7,7 @@ namespace Gameplay.Feature.DamageApplication
 	{
 		public DamageApplicationFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
-			AddUpdate<UpdateDamageBufferSystemSystem>();
+			AddUpdate<UpdateDamageBufferSystem>();
 			AddUpdate<DamageBufferToDamageSystem>();
 			
 			AddUpdate<ApplyDamageSystem>();

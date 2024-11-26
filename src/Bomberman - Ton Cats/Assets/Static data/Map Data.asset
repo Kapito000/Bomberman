@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e240562ea4a42049ba657fe4e4312c1, type: 3}
   m_Name: Map Data
   m_EditorClassIdentifier: 
-  <MapSize>k__BackingField: {x: 31, y: 31}
-  <EnemyFrequency>k__BackingField: 0.02
-  <DestructibleFrequency>k__BackingField: 0.3
+  <MapSize>k__BackingField: {x: 9, y: 9}
+  <EnemyFrequency>k__BackingField: 0.1
+  <DestructibleFrequency>k__BackingField: 0
   <EnemySpawnDistanceToHero>k__BackingField: 5

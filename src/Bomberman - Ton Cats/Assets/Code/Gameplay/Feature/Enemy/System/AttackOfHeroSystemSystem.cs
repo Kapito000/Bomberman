@@ -1,4 +1,7 @@
-﻿using Common.Component;
+﻿using Extensions;
+using Gameplay.Feature.Collisions;
+using Gameplay.Feature.Collisions.Component;
+using Gameplay.Feature.DamageApplication;
 using Gameplay.Feature.Enemy.Component;
 using Gameplay.Feature.Hero.Component;
 using Gameplay.Feature.Life.Component;
@@ -17,24 +20,27 @@ namespace Gameplay.Feature.Enemy.System
 		[Inject] IPhysicsService _physicsService;
 
 		readonly EcsFilterInject<
-			Inc<AttackHeroAbility, AttackRadius, TransformComponent>> _attackerFilter;
+				Inc<AttackHeroAbility, TriggerEnterAttack, TriggerEnterBuffer>>
+			_attackerFilter;
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var attacker in _attackerFilter.Value)
 			{
 				_attacker.SetEntity(attacker);
-				var pos = _attacker.TransformPos();
-				var attackRadius = _attacker.AttackRadius();
-				foreach (var other in _physicsService.OverlapCircle(pos, attackRadius))
+				var triggerBuffer = _attacker.TriggerEnterBuffer();
+				foreach (var pack in triggerBuffer)
 				{
-					_victim.SetEntity(other);
+					if (pack.Unpack(out var otherEntity) == false)
+						continue;
+
+					_victim.SetEntity(otherEntity);
 
 					if (_victim.Has<HeroComponent>() == false ||
 					    _victim.Has<LifePoints>() == false)
 						continue;
-					
-					_victim.AppendDamage(Constant.Damage.c_Default);
+
+					_attacker.ReplaceToDamageBuffer(otherEntity);
 				}
 			}
 		}

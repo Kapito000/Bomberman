@@ -202,13 +202,6 @@ namespace Infrastructure.ECS
 			return damage.Value;
 		}
 
-		public EntityWrapper ReplaceDamage(int value)
-		{
-			ref var damage = ref ReplaceComponent<Damage>();
-			damage.Value = value;
-			return this;
-		}
-
 		public EntityWrapper AppendDamage(int value)
 		{
 			ref var damage = ref ReplaceComponent<Damage>();
@@ -296,13 +289,6 @@ namespace Infrastructure.ECS
 		{
 			ref var changeLifePoints = ref Get<ChangeLifePoints>();
 			return changeLifePoints.Value;
-		}
-
-		public EntityWrapper ReplaceChangeLifePoints(int value)
-		{
-			ref var changeLifePoints = ref ReplaceComponent<ChangeLifePoints>();
-			changeLifePoints.Value = value;
-			return this;
 		}
 
 		public EntityWrapper AppendChangeLifePoints(int value)

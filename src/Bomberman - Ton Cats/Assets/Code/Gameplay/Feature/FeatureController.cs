@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Gameplay.Feature.Bomb;
 using Gameplay.Feature.Camera;
+using Gameplay.Feature.Collisions;
+using Gameplay.Feature.Collisions.System;
 using Gameplay.Feature.DamageApplication;
 using Gameplay.Feature.Destruction;
 using Gameplay.Feature.Enemy;
@@ -27,6 +29,7 @@ namespace Gameplay.Feature
 			_systemFactory = systemFactory;
 			Add<InputFeature>();
 			Add<MapGenerationFeature>();
+			Add<CollisionsFeature>();
 			Add<HeroFeature>();
 			Add<EnemyFeature>();
 			Add<BombFeature>();

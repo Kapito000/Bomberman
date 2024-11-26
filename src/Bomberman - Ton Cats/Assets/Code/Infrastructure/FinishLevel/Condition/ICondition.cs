@@ -1,4 +1,4 @@
-namespace Infrastructure.FinishLevel
+namespace Infrastructure.FinishLevel.Condition
 {
 	public interface ICondition
 	{

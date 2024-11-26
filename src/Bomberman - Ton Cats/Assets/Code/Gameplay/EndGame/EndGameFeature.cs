@@ -9,6 +9,7 @@ namespace Gameplay.EndGame
 		{
 			AddInit<CreateFinishLevelObserverSystem>();
 			
+			AddUpdate<HeroHealthObserveSystem>();
 			AddUpdate<EndGameSystem>();
 		}
 	}

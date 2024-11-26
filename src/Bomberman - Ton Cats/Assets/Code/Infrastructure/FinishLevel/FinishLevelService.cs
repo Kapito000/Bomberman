@@ -1,14 +1,17 @@
+using System.Linq;
+using Infrastructure.FinishLevel.Condition;
+
 namespace Infrastructure.FinishLevel
 {
 	public sealed class FinishLevelService : IFinishLevelService
 	{
-		ICondition[] _conditions;
+		readonly IGameOverCondition[] _gameOverConditions;
 
-		public bool CanFinishLevel { get; } = false;
+		public bool CanFinishLevel => _gameOverConditions.Any(x => x.Value);
 
-		public FinishLevelService()
+		public FinishLevelService(IGameOverCondition[] gameOverConditions)
 		{
-			_conditions = new ICondition[] { };
+			_gameOverConditions = gameOverConditions;
 		}
 	}
 }

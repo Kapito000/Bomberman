@@ -14,6 +14,7 @@ using Gameplay.Windows.Factory;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.FinishLevel;
+using Infrastructure.FinishLevel.Condition;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.SceneLoader;
@@ -53,6 +54,7 @@ namespace Infrastructure.Installer
 		void BindFinishLevelService()
 		{
 			Container.Bind<IFinishLevelService>().To<FinishLevelService>().AsSingle();
+			Container.BindInterfacesTo<HeroHealthCondition>().AsSingle();
 		}
 
 		void BindCollisionRegistry()

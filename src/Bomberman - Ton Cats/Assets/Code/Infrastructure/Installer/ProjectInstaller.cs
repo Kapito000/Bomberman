@@ -13,6 +13,7 @@ using Gameplay.Windows;
 using Gameplay.Windows.Factory;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
+using Infrastructure.FinishLevel;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.SceneLoader;
@@ -43,9 +44,15 @@ namespace Infrastructure.Installer
 			BindMapGenerator();
 			BindEntityWrapper();
 			BindAssetProvider();
+			BindFinishLevelService();
 			BindPhysicsService();
 			BindGameStateMachine();
 			BindCollisionRegistry();
+		}
+
+		void BindFinishLevelService()
+		{
+			Container.Bind<IFinishLevelService>().To<FinishLevelService>().AsSingle();
 		}
 
 		void BindCollisionRegistry()

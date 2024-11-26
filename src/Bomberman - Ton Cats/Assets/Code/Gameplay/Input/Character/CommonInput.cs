@@ -1,5 +1,4 @@
-﻿using Input;
-using Zenject;
+﻿using Zenject;
 
 namespace Gameplay.Input.Character
 {

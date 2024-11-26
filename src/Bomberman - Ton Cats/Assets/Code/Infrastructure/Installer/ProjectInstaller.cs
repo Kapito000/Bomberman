@@ -3,6 +3,7 @@ using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.Hero.StaticData;
 using Gameplay.Feature.MapGenerator.Services;
 using Gameplay.Feature.MapGenerator.StaticData;
+using Gameplay.Input;
 using Gameplay.Input.Character;
 using Gameplay.LevelData;
 using Gameplay.MapTile.TileProvider;
@@ -16,7 +17,6 @@ using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.SceneLoader;
 using Infrastructure.TimeService;
-using Input;
 using UnityEngine;
 using Zenject;
 

@@ -1,6 +1,6 @@
-﻿using Windows;
-using Cinemachine;
-using Feature.HUD.Behaviour;
+﻿using Cinemachine;
+using Gameplay.Feature.HUD.Behaviour;
+using Gameplay.Windows;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

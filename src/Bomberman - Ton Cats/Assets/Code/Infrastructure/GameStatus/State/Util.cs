@@ -1,4 +1,4 @@
-﻿using LevelData;
+﻿using Gameplay.LevelData;
 
 namespace Infrastructure.GameStatus.State
 {

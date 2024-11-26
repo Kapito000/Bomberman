@@ -1,4 +1,4 @@
-﻿using Feature.MainMenu;
+﻿using Gameplay.Feature.MainMenu;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Zenject;

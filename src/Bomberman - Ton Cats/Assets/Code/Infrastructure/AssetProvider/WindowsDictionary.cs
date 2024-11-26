@@ -1,6 +1,6 @@
 ﻿using System;
-using Windows;
 using Common;
+using Gameplay.Windows;
 
 namespace Infrastructure.AssetProvider
 {

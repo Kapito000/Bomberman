@@ -1,6 +1,6 @@
-﻿using Infrastructure.GameStatus;
+﻿using Gameplay.StaticData.SceneNames;
+using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
-using StaticData.SceneNames;
 using Zenject;
 
 namespace Infrastructure

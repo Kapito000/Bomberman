@@ -1,5 +1,5 @@
 ﻿using System;
-using Factory.SystemFactory;
+using Infrastructure.Factory.SystemFactory;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 

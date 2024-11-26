@@ -1,6 +1,6 @@
 ﻿using Cinemachine;
 using Common.Component;
-using Feature.Camera.Component;
+using Gameplay.Feature.Camera.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using UnityEngine;

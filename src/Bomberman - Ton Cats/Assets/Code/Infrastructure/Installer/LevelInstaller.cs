@@ -1,26 +1,26 @@
-﻿using AI.Navigation;
-using Factory.EntityBehaviourFactory;
-using Factory.Kit;
-using Factory.SystemFactory;
-using Feature;
-using Feature.Bomb.Factory;
-using Feature.Camera.Factory;
-using Feature.Enemy.AI;
-using Feature.Enemy.Base.Factory;
-using Feature.Enemy.Base.System;
-using Feature.Explosion.Factory;
-using Feature.Hero.Factory;
-using Feature.HUD.Factory;
-using Feature.Map.MapController;
-using Feature.UI.Factory;
+﻿using Gameplay.AI.Navigation;
+using Gameplay.Feature;
+using Gameplay.Feature.Bomb.Factory;
+using Gameplay.Feature.Camera.Factory;
+using Gameplay.Feature.Enemy.AI;
+using Gameplay.Feature.Enemy.Base.Factory;
+using Gameplay.Feature.Enemy.Base.System;
+using Gameplay.Feature.Explosion.Factory;
+using Gameplay.Feature.Hero.Factory;
+using Gameplay.Feature.HUD.Factory;
+using Gameplay.Feature.Map.MapController;
+using Gameplay.Feature.UI.Factory;
+using Gameplay.LevelData;
+using Gameplay.MapView;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
+using Infrastructure.Factory.EntityBehaviourFactory;
+using Infrastructure.Factory.Kit;
+using Infrastructure.Factory.SystemFactory;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
-using InstantiateService;
+using Infrastructure.InstantiateService;
 using Leopotam.EcsLite;
-using LevelData;
-using MapView;
 using NavMeshPlus.Components;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -147,7 +147,7 @@ namespace Infrastructure.Installer
 
 		IMapView CreateMapView()
 		{
-			var gameTileMap = Container.Instantiate<MapView.MapView>(
+			var gameTileMap = Container.Instantiate<MapView>(
 				new[] { _groundTailMap, _destructibleTailMap, _indestructibleTailMap });
 			return gameTileMap;
 		}

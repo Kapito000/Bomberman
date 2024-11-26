@@ -1,4 +1,5 @@
-﻿using Infrastructure.GameStatus.State;
+﻿using Common;
+using Infrastructure.GameStatus.State;
 using Zenject;
 
 namespace Infrastructure.GameStatus

@@ -1,8 +1,8 @@
 ﻿using AB_Utility.FromSceneToEntityConverter;
-using Factory.SystemFactory;
-using Feature;
+using Gameplay.Feature;
+using Gameplay.LevelData;
+using Infrastructure.Factory.SystemFactory;
 using Leopotam.EcsLite;
-using LevelData;
 using UnityEngine;
 using Zenject;
 

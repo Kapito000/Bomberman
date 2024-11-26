@@ -1,5 +1,5 @@
 ﻿using Extensions;
-using Feature.Destruction.Component;
+using Gameplay.Feature.Destruction.Component;
 using Leopotam.EcsLite;
 using UnityEngine;
 

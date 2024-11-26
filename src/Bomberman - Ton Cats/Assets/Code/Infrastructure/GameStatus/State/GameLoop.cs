@@ -1,4 +1,4 @@
-﻿using Input.Character;
+﻿using Gameplay.Input.Character;
 using Zenject;
 
 namespace Infrastructure.GameStatus.State

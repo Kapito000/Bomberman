@@ -1,5 +1,5 @@
-﻿using Infrastructure.SceneLoader;
-using Input.Character;
+﻿using Gameplay.Input.Character;
+using Infrastructure.SceneLoader;
 using Zenject;
 
 namespace Infrastructure.GameStatus.State

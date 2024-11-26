@@ -1,4 +1,4 @@
-﻿using Feature.Hero.Component;
+﻿using Gameplay.Feature.Hero.Component;
 using Infrastructure.ECS;
 
 namespace Common.Converter

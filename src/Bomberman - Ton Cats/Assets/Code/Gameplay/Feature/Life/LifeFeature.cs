@@ -8,7 +8,8 @@ namespace Gameplay.Feature.Life
 		public LifeFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddUpdate<ChangeLifePointsSystem>();
-			
+			AddUpdate<DeathSystem>();
+
 			AddCleanup<CleanupSystem>();
 		}
 	}

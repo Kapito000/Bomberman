@@ -8,30 +8,41 @@ namespace Gameplay.Feature.UI.Factory
 {
 	public sealed class UiFactory : IUiFactory
 	{
-		[Inject] IFactoryKit _factoryKit;
+		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _entity;
 
 		public int CreateRootCanvas()
 		{
-			var prefab = _factoryKit.AssetProvider.UiRoot();
-			var instance = _factoryKit.InstantiateService.Instantiate(prefab);
-			var entity = _factoryKit.EntityBehaviourFactory
-				.InitEntityBehaviour(instance);
-			_entity.SetEntity(entity);
+			var prefab = _kit.AssetProvider.UiRoot();
+			var instance = _kit.InstantiateService.Instantiate(prefab);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			_entity.SetEntity(e);
 
-			var transform = instance.GetComponent<Transform>();
 			_entity
 				.Add<UiRoot>()
-				.AddTransform(transform);
+				.AddTransform(instance.transform);
 			;
+			return e;
+		}
 
-			return entity;
+		public int WindowsRoot(Transform parent)
+		{
+			var prefab = _kit.AssetProvider.WindowsRoot();
+			var instance = _kit.InstantiateService.Instantiate(prefab);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+
+			_entity.SetEntity(e);
+			_entity
+				.Add<WindowsRoot>()
+				.AddTransform(instance.transform);
+			;
+			return e;
 		}
 
 		public void EventSystem()
 		{
-			var prefab = _factoryKit.AssetProvider.EventSystem();
-			_factoryKit.InstantiateService.Instantiate(prefab);
+			var prefab = _kit.AssetProvider.EventSystem();
+			_kit.InstantiateService.Instantiate(prefab);
 		}
 	}
 }

@@ -25,5 +25,6 @@ namespace Infrastructure.AssetProvider
 		BaseWindow WindowPrefab(WindowId id);
 		GameObject BaseEnemy();
 		GameObject DestructibleTile();
+		GameObject WindowsRoot();
 	}
 }

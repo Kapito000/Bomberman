@@ -8,6 +8,7 @@ namespace Gameplay.Feature.UI
 		public UiFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateRootCanvasSystem>();
+			AddInit<CreateWindowsRootSystem>();
 		}
 	}
 }

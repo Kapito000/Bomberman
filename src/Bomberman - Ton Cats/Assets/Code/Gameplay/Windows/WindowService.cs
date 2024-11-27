@@ -17,10 +17,14 @@ namespace Gameplay.Windows
 			foreach (var id in ids)
 			{
 				if (_poolWindows.ContainsKey(id))
+				{
+					Debug.LogWarning($"The try to create window \"{id}\" twice.");
 					continue;
+				}
 
 				var window = _windowFactory.CreateWindow(id, parent);
 				_poolWindows[id] = window;
+				window.Hide();
 			}
 		}
 
@@ -31,7 +35,8 @@ namespace Gameplay.Windows
 
 			if (_poolWindows.TryGetValue(windowId, out var window) == false)
 			{
-				Debug.LogWarning($"Cannot open \"{windowId}\" windows.");
+				Debug.LogWarning($"Cannot open \"{windowId}\" windows. " +
+					$"The window has not created.");
 				return;
 			}
 
@@ -42,10 +47,7 @@ namespace Gameplay.Windows
 		public void Close(WindowId windowId)
 		{
 			if (_openedWindows.TryGetValue(windowId, out var window) == false)
-			{
-				Debug.LogWarning($"Cannot close \"{windowId}\" windows.");
 				return;
-			}
 
 			window.Hide();
 			_openedWindows.Remove(windowId);

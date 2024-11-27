@@ -28,7 +28,7 @@ namespace Gameplay.Feature.UI.Factory
 		public int WindowsRoot(Transform parent)
 		{
 			var prefab = _kit.AssetProvider.WindowsRoot();
-			var instance = _kit.InstantiateService.Instantiate(prefab);
+			var instance = _kit.InstantiateService.Instantiate(prefab, parent);
 			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 
 			_entity.SetEntity(e);

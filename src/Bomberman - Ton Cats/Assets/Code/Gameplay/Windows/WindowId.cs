@@ -3,5 +3,7 @@
 	public enum WindowId
 	{
 		MainMenu,
+		GameOver,
+		LevelComplete,
 	}
 }

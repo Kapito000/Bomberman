@@ -60,7 +60,7 @@ namespace Infrastructure.Installer
 		public void Initialize()
 		{
 			InitLevelData();
-			ResolveDiContainerDependences();
+			Util.ResolveDiContainerDependences(Container);
 			_gameStateMachine.Enter<LaunchGame>();
 		}
 
@@ -147,12 +147,6 @@ namespace Infrastructure.Installer
 			var gameTileMap = Container.Instantiate<MapView>(
 				new[] { _groundTailMap, _destructibleTailMap, _indestructibleTailMap });
 			return gameTileMap;
-		}
-
-		void ResolveDiContainerDependences()
-		{
-			Container.Resolve<IDiContainerDependence[]>()
-				.ForEach(x => x.SetContainer(Container));
 		}
 	}
 }

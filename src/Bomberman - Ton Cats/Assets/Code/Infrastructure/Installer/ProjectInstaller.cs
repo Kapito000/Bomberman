@@ -14,8 +14,6 @@ using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.Factory.EntityBehaviourFactory;
 using Infrastructure.Factory.Kit;
-using Infrastructure.FinishLevel;
-using Infrastructure.FinishLevel.Condition;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.InstantiateService;

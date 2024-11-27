@@ -130,6 +130,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IState>().To<MainMenu>().AsSingle();
 			Container.Bind<IState>().To<LaunchGame>().AsSingle();
 			Container.Bind<IState>().To<GameLoop>().AsSingle();
+			Container.Bind<IState>().To<GamePause>().AsSingle();
 			Container.Bind<IState>().To<GameExit>().AsSingle();
 		}
 

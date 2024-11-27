@@ -2,6 +2,7 @@ using System.Linq;
 using Gameplay.StaticData.SceneNames;
 using Infrastructure.FinishLevel.Condition;
 using Infrastructure.GameStatus;
+using Infrastructure.GameStatus.State;
 using Zenject;
 
 namespace Infrastructure.FinishLevel
@@ -20,6 +21,11 @@ namespace Infrastructure.FinishLevel
 		public bool GameOver(int observerEntity)
 		{
 			return _gameOverConditions.Any(x => x.Check(observerEntity));
+		}
+
+		public void LaunchGamePause()
+		{
+			_gameStateMachine.Enter<GamePause>();
 		}
 
 		public bool LevelComplete(int observerEntity)

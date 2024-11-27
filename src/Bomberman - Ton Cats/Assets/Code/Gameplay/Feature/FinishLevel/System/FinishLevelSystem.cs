@@ -1,6 +1,5 @@
 ﻿using Gameplay.Feature.FinishLevel.Component;
 using Gameplay.Windows;
-using Infrastructure;
 using Infrastructure.FinishLevel;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -21,7 +20,7 @@ namespace Gameplay.Feature.FinishLevel.System
 			{
 				if (_finishLevelService.GameOver(observerEntity))
 				{
-					ActionImitation.Execute("Pause game.");
+					_finishLevelService.LaunchGamePause();
 					_windowService.Open(WindowId.GameOver);
 					continue;
 				}

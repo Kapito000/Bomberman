@@ -5,5 +5,6 @@
 		bool GameOver(int observerEntity);
 		bool LevelComplete(int observerEntity);
 		void SwitchGameToMainMenu();
+		void LaunchGamePause();
 	}
 }

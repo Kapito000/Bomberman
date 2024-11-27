@@ -7,6 +7,7 @@ namespace Gameplay.Windows.Factory
 	public class WindowFactory : IWindowFactory
 	{
 		[Inject] IFactoryKit _kit;
+		
 		RectTransform _uiRoot;
 
 		public void SetUIRoot(RectTransform uiRoot) =>

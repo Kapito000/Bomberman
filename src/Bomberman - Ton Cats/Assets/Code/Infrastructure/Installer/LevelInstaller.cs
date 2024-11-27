@@ -13,6 +13,7 @@ using Gameplay.Feature.UI.Factory;
 using Gameplay.FinishLevel.Factory;
 using Gameplay.LevelData;
 using Gameplay.MapView;
+using Gameplay.Windows;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.Factory.EntityBehaviourFactory;
@@ -47,12 +48,12 @@ namespace Infrastructure.Installer
 			BindMapView();
 			BindFactories();
 			BindFactoryKit();
-			BindUiFactories();
 			BindInstantiator();
 			BindAIFunctional();
 			BindMapController();
 			BindSystemFactory();
 			BindDevSceneRunner();
+			BindWindowServices();
 			BindNavigationSurface();
 			BindFeatureController();
 		}
@@ -70,6 +71,11 @@ namespace Infrastructure.Installer
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
 
+		void BindWindowServices()
+		{
+			Container.Bind<IWindowService>().To<WindowService>().AsSingle();
+		}
+		
 		void BindMapController()
 		{
 			Container.Bind<IMapController>().To<StandardMapController>().AsSingle();
@@ -92,12 +98,6 @@ namespace Infrastructure.Installer
 			Container.Bind<FindPatrolPoints>().AsSingle();
 		}
 
-		void BindUiFactories()
-		{
-			Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
-			Container.Bind<IHudFactory>().To<HudFactory>().AsSingle();
-		}
-
 		void BindDevSceneRunner()
 		{
 			Container.Bind<IDevSceneRunner>().FromComponentInHierarchy().AsSingle();
@@ -118,6 +118,8 @@ namespace Infrastructure.Installer
 		{
 			Container.Bind<IEntityBehaviourFactory>().To<EntityBehaviourFactory>()
 				.AsSingle();
+			Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
+			Container.Bind<IHudFactory>().To<HudFactory>().AsSingle();
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
 			Container.Bind<IBombFactory>().To<BombFactory>().AsSingle();
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();

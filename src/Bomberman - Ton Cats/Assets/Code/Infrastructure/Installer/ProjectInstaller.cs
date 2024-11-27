@@ -37,7 +37,6 @@ namespace Infrastructure.Installer
 		{
 			BindLevelData();
 			BindStaticData();
-			BindUIServices();
 			BindTimeService();
 			BindSceneLoader();
 			BindUIFactories();
@@ -75,11 +74,6 @@ namespace Infrastructure.Installer
 		void BindTimeService()
 		{
 			Container.Bind<ITimeService>().To<StandardTimeService>().AsSingle();
-		}
-
-		void BindUIServices()
-		{
-			Container.Bind<IWindowService>().To<WindowService>().AsSingle();
 		}
 
 		void BindUIFactories()

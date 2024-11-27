@@ -23,7 +23,6 @@ using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Leopotam.EcsLite;
 using NavMeshPlus.Components;
-using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;

@@ -8,15 +8,10 @@ namespace Gameplay.Windows.Factory
 	{
 		[Inject] IFactoryKit _kit;
 		
-		RectTransform _uiRoot;
-
-		public void SetUIRoot(RectTransform uiRoot) =>
-			_uiRoot = uiRoot;
-
-		public BaseWindow CreateWindow(WindowId windowId)
+		public BaseWindow CreateWindow(WindowId windowId, Transform parent)
 		{
 			return _kit.InstantiateService
-				.Instantiate<BaseWindow>(PrefabFor(windowId), _uiRoot);
+				.Instantiate<BaseWindow>(PrefabFor(windowId), parent);
 		}
 
 		BaseWindow PrefabFor(WindowId id) =>

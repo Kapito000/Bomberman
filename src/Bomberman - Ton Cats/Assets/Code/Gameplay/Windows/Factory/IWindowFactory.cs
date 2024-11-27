@@ -5,7 +5,6 @@ namespace Gameplay.Windows.Factory
 {
 	public interface IWindowFactory : IFactory
 	{
-		public void SetUIRoot(RectTransform uiRoot);
-		public BaseWindow CreateWindow(WindowId windowId);
+		public BaseWindow CreateWindow(WindowId windowId, Transform parent);
 	}
 }

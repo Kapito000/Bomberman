@@ -9,15 +9,30 @@ namespace Gameplay.Windows
 	{
 		[Inject] IWindowFactory _windowFactory;
 
-		readonly List<BaseWindow> _openedWindows = new();
+		readonly Dictionary<WindowId, BaseWindow> _poolWindows = new();
+		readonly Dictionary<WindowId, BaseWindow> _openedWindows = new();
 
-		public void Open(WindowId windowId) =>
-			_openedWindows.Add(_windowFactory.CreateWindow(windowId));
+		public void Create(Transform parent, params WindowId[] ids)
+		{
+			foreach (var id in ids)
+			{
+				if (_poolWindows.ContainsKey(id))
+					continue;
+
+				var window = _windowFactory.CreateWindow(id, parent);
+				_poolWindows[id] = window;
+			}
+		}
+
+		public void Open(WindowId windowId)
+		{
+			_openedWindows.Add(windowId, _windowFactory.CreateWindow(windowId));
+		}
 
 		public void Close(WindowId windowId)
 		{
-			BaseWindow window = _openedWindows.Find(x => x.Id == windowId);
-			_openedWindows.Remove(window);
+			BaseWindow window = _openedWindows[windowId];
+			_openedWindows.Remove(windowId);
 			Object.Destroy(window.gameObject);
 		}
 	}

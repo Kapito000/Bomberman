@@ -9,6 +9,7 @@ namespace Gameplay.Feature.UI
 		{
 			AddInit<CreateRootCanvasSystem>();
 			AddInit<CreateWindowsRootSystem>();
+			AddInit<CreateWindowsSystem>();
 		}
 	}
 }

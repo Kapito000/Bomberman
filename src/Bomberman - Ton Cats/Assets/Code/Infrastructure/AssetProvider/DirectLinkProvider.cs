@@ -24,6 +24,7 @@ namespace Infrastructure.AssetProvider
 		[Header("UI")]
 		[SerializeField] Canvas _root;
 		[SerializeField] EventSystem _eventSystem;
+		[SerializeField] GameObject _windowsRoot;
 		[SerializeField] WindowsDictionary _windows;
 		[Header("HUD")]
 		[SerializeField] Canvas _hudRoot;
@@ -50,5 +51,6 @@ namespace Infrastructure.AssetProvider
 		public BaseWindow WindowPrefab(WindowId id) => _windows[id];
 		GameObject IAssetProvider.BaseEnemy() => _baseEnemy;
 		public GameObject DestructibleTile() => _destructibleTile;
+		public GameObject WindowsRoot() => _windowsRoot;
 	}
 }

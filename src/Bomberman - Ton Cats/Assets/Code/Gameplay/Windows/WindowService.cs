@@ -26,14 +26,29 @@ namespace Gameplay.Windows
 
 		public void Open(WindowId windowId)
 		{
-			_openedWindows.Add(windowId, _windowFactory.CreateWindow(windowId));
+			if (_openedWindows.ContainsKey(windowId))
+				return;
+
+			if (_poolWindows.TryGetValue(windowId, out var window) == false)
+			{
+				Debug.LogWarning($"Cannot open \"{windowId}\" windows.");
+				return;
+			}
+
+			window.Show();
+			_openedWindows[windowId] = window;
 		}
 
 		public void Close(WindowId windowId)
 		{
-			BaseWindow window = _openedWindows[windowId];
+			if (_openedWindows.TryGetValue(windowId, out var window) == false)
+			{
+				Debug.LogWarning($"Cannot close \"{windowId}\" windows.");
+				return;
+			}
+
+			window.Hide();
 			_openedWindows.Remove(windowId);
-			Object.Destroy(window.gameObject);
 		}
 	}
 }

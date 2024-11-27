@@ -1,7 +1,7 @@
-﻿using Gameplay.FinishLevel.System;
+﻿using Gameplay.Feature.FinishLevel.System;
 using Infrastructure.Factory.SystemFactory;
 
-namespace Gameplay.FinishLevel
+namespace Gameplay.Feature.FinishLevel
 {
 	public sealed class FinishLevelFeature : Infrastructure.ECS.Feature
 	{

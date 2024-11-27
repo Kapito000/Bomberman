@@ -1,8 +1,8 @@
-using Gameplay.FinishLevel.Component;
+using Gameplay.Feature.FinishLevel.Component;
 using Infrastructure.ECS;
 using Zenject;
 
-namespace Gameplay.FinishLevel.Factory
+namespace Gameplay.Feature.FinishLevel.Factory
 {
 	public sealed class FinishLevelFactory : IFinishLevelFactory
 	{

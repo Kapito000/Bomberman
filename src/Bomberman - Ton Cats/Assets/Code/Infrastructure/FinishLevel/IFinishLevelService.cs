@@ -2,7 +2,8 @@
 {
 	public interface IFinishLevelService : IService
 	{
-		bool GameOver { get; }
-		bool LevelComplete { get; }
+		bool GameOver(int observerEntity);
+		bool LevelComplete(int observerEntity);
+		void SwitchGameToMainMenu();
 	}
 }

@@ -32,7 +32,7 @@ namespace Gameplay.Feature.UI.System
 			return new[]
 			{
 				WindowId.GameOver,
-				WindowId.LevelComplete
+				// WindowId.LevelComplete
 			};
 		}
 	}

@@ -4,9 +4,15 @@ using Zenject;
 
 namespace Infrastructure.InstantiateService
 {
-	public sealed class StandardInstantiateService : IInstantiateService
+	public sealed class StandardInstantiateService : IInstantiateService,
+		IDiContainerDependence
 	{
 		[Inject] DiContainer _container;
+
+		public void SetContainer(DiContainer container)
+		{
+			_container = container;
+		}
 
 		public TComponent Instantiate<TComponent>(Object prefab)
 			where TComponent : Component =>

@@ -2,7 +2,7 @@
 using Infrastructure.GameStatus;
 using Zenject;
 
-namespace Gameplay.Feature.MainMenu
+namespace Gameplay.MainMenu
 {
 	public sealed class MainMenuService : IMainMenuService
 	{

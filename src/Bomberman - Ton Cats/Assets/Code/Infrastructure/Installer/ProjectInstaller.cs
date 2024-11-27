@@ -9,14 +9,16 @@ using Gameplay.LevelData;
 using Gameplay.MapTile.TileProvider;
 using Gameplay.Physics;
 using Gameplay.StaticData.SceneNames;
-using Gameplay.Windows;
 using Gameplay.Windows.Factory;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
+using Infrastructure.Factory.EntityBehaviourFactory;
+using Infrastructure.Factory.Kit;
 using Infrastructure.FinishLevel;
 using Infrastructure.FinishLevel.Condition;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
+using Infrastructure.InstantiateService;
 using Infrastructure.SceneLoader;
 using Infrastructure.TimeService;
 using UnityEngine;
@@ -37,6 +39,7 @@ namespace Infrastructure.Installer
 		{
 			BindLevelData();
 			BindStaticData();
+			BindFactoryKit();
 			BindTimeService();
 			BindSceneLoader();
 			BindUIFactories();
@@ -44,23 +47,24 @@ namespace Infrastructure.Installer
 			BindMapGenerator();
 			BindEntityWrapper();
 			BindAssetProvider();
-			BindFinishLevelService();
 			BindPhysicsService();
 			BindGameStateMachine();
 			BindCollisionRegistry();
+			BindInstantiateService();
+			BindEntityBehaviourFactory();
 		}
 
-		void BindFinishLevelService()
+		void BindEntityBehaviourFactory()
 		{
-			Container.Bind<IFinishLevelService>().To<FinishLevelService>().AsSingle();
-			Container.BindInterfacesTo<HeroHealthCondition>().AsSingle();
+			Container.Bind<IEntityBehaviourFactory>().To<EntityBehaviourFactory>()
+				.AsSingle();
 		}
 
 		void BindCollisionRegistry()
 		{
 			Container.Bind<ICollisionRegistry>().To<CollisionRegistry>().AsSingle();
 		}
-		
+
 		void BindPhysicsService()
 		{
 			Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
@@ -129,6 +133,19 @@ namespace Infrastructure.Installer
 			Container.Bind<IState>().To<LaunchGame>().AsSingle();
 			Container.Bind<IState>().To<GameLoop>().AsSingle();
 			Container.Bind<IState>().To<GameExit>().AsSingle();
+		}
+
+		void BindInstantiateService()
+		{
+			Container
+				.Bind(typeof(IInstantiateService), typeof(IDiContainerDependence))
+				.To<StandardInstantiateService>()
+				.AsSingle();
+		}
+
+		void BindFactoryKit()
+		{
+			Container.Bind<IFactoryKit>().To<FactoryKit>().AsSingle();
 		}
 	}
 }

@@ -1,10 +1,10 @@
-﻿using Gameplay.Feature.MainMenu;
+﻿using Gameplay.MainMenu;
 using Gameplay.Windows;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Gameplay.Feature.UI.MainMenu
+namespace Gameplay.Feature.UI.Windows
 {
 	public sealed class MainMenuWindow : BaseWindow
 	{

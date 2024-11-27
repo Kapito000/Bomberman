@@ -7,6 +7,7 @@ using Gameplay.Feature.DamageApplication;
 using Gameplay.Feature.Destruction;
 using Gameplay.Feature.Enemy;
 using Gameplay.Feature.Explosion;
+using Gameplay.Feature.FinishLevel;
 using Gameplay.Feature.Hero;
 using Gameplay.Feature.HUD;
 using Gameplay.Feature.Input;
@@ -14,7 +15,6 @@ using Gameplay.Feature.Life;
 using Gameplay.Feature.Map;
 using Gameplay.Feature.MapGenerator;
 using Gameplay.Feature.UI;
-using Gameplay.FinishLevel;
 using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature

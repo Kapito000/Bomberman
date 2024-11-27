@@ -1,6 +1,6 @@
 ﻿using Infrastructure;
 
-namespace Gameplay.Feature.MainMenu
+namespace Gameplay.MainMenu
 {
 	public interface IMainMenuService : IService
 	{

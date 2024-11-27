@@ -6,24 +6,24 @@ using Gameplay.Feature.Enemy.AI;
 using Gameplay.Feature.Enemy.Base.Factory;
 using Gameplay.Feature.Enemy.Base.System;
 using Gameplay.Feature.Explosion.Factory;
+using Gameplay.Feature.FinishLevel.Factory;
 using Gameplay.Feature.Hero.Factory;
 using Gameplay.Feature.HUD.Factory;
 using Gameplay.Feature.Map.MapController;
 using Gameplay.Feature.UI.Factory;
-using Gameplay.FinishLevel.Factory;
 using Gameplay.LevelData;
 using Gameplay.MapView;
 using Gameplay.Windows;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
-using Infrastructure.Factory.EntityBehaviourFactory;
-using Infrastructure.Factory.Kit;
 using Infrastructure.Factory.SystemFactory;
+using Infrastructure.FinishLevel;
+using Infrastructure.FinishLevel.Condition;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
-using Infrastructure.InstantiateService;
 using Leopotam.EcsLite;
 using NavMeshPlus.Components;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
@@ -47,8 +47,6 @@ namespace Infrastructure.Installer
 			BindWorld();
 			BindMapView();
 			BindFactories();
-			BindFactoryKit();
-			BindInstantiator();
 			BindAIFunctional();
 			BindMapController();
 			BindSystemFactory();
@@ -56,11 +54,13 @@ namespace Infrastructure.Installer
 			BindWindowServices();
 			BindNavigationSurface();
 			BindFeatureController();
+			BindFinishLevelService();
 		}
 
 		public void Initialize()
 		{
 			InitLevelData();
+			ResolveDiContainerDependences();
 			_gameStateMachine.Enter<LaunchGame>();
 		}
 
@@ -71,11 +71,17 @@ namespace Infrastructure.Installer
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
 
+		void BindFinishLevelService()
+		{
+			Container.Bind<IFinishLevelService>().To<FinishLevelService>().AsSingle();
+			Container.BindInterfacesTo<HeroHealthCondition>().AsSingle();
+		}
+		
 		void BindWindowServices()
 		{
 			Container.Bind<IWindowService>().To<WindowService>().AsSingle();
 		}
-		
+
 		void BindMapController()
 		{
 			Container.Bind<IMapController>().To<StandardMapController>().AsSingle();
@@ -103,21 +109,8 @@ namespace Infrastructure.Installer
 			Container.Bind<IDevSceneRunner>().FromComponentInHierarchy().AsSingle();
 		}
 
-		void BindInstantiator()
-		{
-			Container.Bind<IInstantiateService>().To<StandardInstantiateService>()
-				.AsSingle();
-		}
-
-		void BindFactoryKit()
-		{
-			Container.Bind<IFactoryKit>().To<FactoryKit>().AsSingle();
-		}
-
 		void BindFactories()
 		{
-			Container.Bind<IEntityBehaviourFactory>().To<EntityBehaviourFactory>()
-				.AsSingle();
 			Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
 			Container.Bind<IHudFactory>().To<HudFactory>().AsSingle();
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
@@ -154,6 +147,12 @@ namespace Infrastructure.Installer
 			var gameTileMap = Container.Instantiate<MapView>(
 				new[] { _groundTailMap, _destructibleTailMap, _indestructibleTailMap });
 			return gameTileMap;
+		}
+
+		void ResolveDiContainerDependences()
+		{
+			Container.Resolve<IDiContainerDependence[]>()
+				.ForEach(x => x.SetContainer(Container));
 		}
 	}
 }

@@ -5,7 +5,7 @@ namespace Gameplay.Windows
 	public abstract class BaseWindow : MonoBehaviour
 	{
 		WindowId _id;
-		
+
 		public WindowId Id
 		{
 			get => _id;
@@ -21,6 +21,12 @@ namespace Gameplay.Windows
 
 		void OnDestroy() =>
 			Cleanup();
+
+		public virtual void Show()
+		{ }
+
+		public virtual void Hide()
+		{ }
 
 		protected virtual void Initialize()
 		{ }

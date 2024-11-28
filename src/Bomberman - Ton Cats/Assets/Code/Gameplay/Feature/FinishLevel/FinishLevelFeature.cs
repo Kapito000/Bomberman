@@ -10,6 +10,7 @@ namespace Gameplay.Feature.FinishLevel
 			AddInit<CreateFinishLevelObserverSystem>();
 			
 			AddUpdate<HeroHealthObserveSystem>();
+			AddUpdate<GameTimerObserverSystem>();
 			AddUpdate<FinishLevelSystem>();
 		}
 	}

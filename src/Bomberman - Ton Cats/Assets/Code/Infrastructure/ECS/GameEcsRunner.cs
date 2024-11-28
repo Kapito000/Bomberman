@@ -1,4 +1,5 @@
-﻿using AB_Utility.FromSceneToEntityConverter;
+﻿using System;
+using AB_Utility.FromSceneToEntityConverter;
 using Gameplay.Feature;
 using Gameplay.LevelData;
 using Infrastructure.Factory.SystemFactory;
@@ -54,7 +55,19 @@ namespace Infrastructure.ECS
 		{
 			_features.Dispose();
 			_supprotiveSystems?.Destroy();
+#if !UNITY_EDITOR
 			_world?.Destroy();
+#endif
+#if UNITY_EDITOR
+			try
+			{
+				_world?.Destroy();
+			}
+			catch (Exception e)
+			{
+				Debug.LogWarning($"Need to refactoring the ECS debug plugin.\n" + e);
+			}
+#endif
 		}
 	}
 }

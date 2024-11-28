@@ -26,7 +26,7 @@ namespace Gameplay.Feature.FinishLevel.System
 				_observer.SetEntity(observer);
 				var lifePoints = _hero.LifePoints();
 				if (lifePoints <= Constant.Life.c_MinLifePoints)
-					_observer.Add<HeroDead>();
+					_observer.Replace<HeroDead>();
 			}
 		}
 	}

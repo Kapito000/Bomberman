@@ -74,6 +74,7 @@ namespace Infrastructure.Installer
 		{
 			Container.Bind<IFinishLevelService>().To<FinishLevelService>().AsSingle();
 			Container.BindInterfacesTo<HeroHealthCondition>().AsSingle();
+			Container.BindInterfacesTo<GameTimerCondition>().AsSingle();
 		}
 		
 		void BindWindowServices()

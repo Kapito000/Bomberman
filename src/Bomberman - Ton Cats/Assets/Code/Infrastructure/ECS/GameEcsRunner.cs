@@ -55,6 +55,11 @@ namespace Infrastructure.ECS
 		{
 			_features.Dispose();
 			_supprotiveSystems?.Destroy();
+			DestroyWorld();
+		}
+
+		void DestroyWorld()
+		{
 #if !UNITY_EDITOR
 			_world?.Destroy();
 #endif
@@ -65,7 +70,8 @@ namespace Infrastructure.ECS
 			}
 			catch (Exception e)
 			{
-				Debug.LogWarning($"Need to refactoring the ECS debug plugin.\n" + e);
+				Debug.LogWarning($"Need to refactoring the " +
+					$"\"Mitfart.LeoECSLite.UnityIntegration\".\n" + e);
 			}
 #endif
 		}

@@ -1,7 +1,6 @@
 ﻿using Extensions;
 using Gameplay.Feature.Destruction.Component;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Infrastructure.ECS
 {
@@ -10,7 +9,7 @@ namespace Infrastructure.ECS
 		int _entity;
 		readonly EcsWorld _world;
 
-		public int Value => _entity;
+		public int Enity => _entity;
 		
 		public EntityWrapper(EcsWorld world)
 		{

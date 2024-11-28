@@ -13,6 +13,7 @@ using Gameplay.Feature.HUD.Behaviour;
 using Gameplay.Feature.HUD.Component;
 using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
+using Gameplay.Feature.Timer.Component;
 using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.AI;
@@ -348,6 +349,13 @@ namespace Infrastructure.ECS
 		{
 			ref var enemyPatent = ref Get<EnemyParent>();
 			return enemyPatent.Value;
+		}
+
+		public EntityWrapper AddGameTimer(float value)
+		{
+			ref var gameTimer = ref AddComponent<GameTimer>();
+			gameTimer.Value = value;
+			return this;
 		}
 	}
 }

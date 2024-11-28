@@ -12,7 +12,7 @@ namespace Gameplay.Feature.FinishLevel.Factory
 		{
 			return _entity.NewEntity()
 				.Add<FinishLevelObserver>()
-				.Value;
+				.Enity;
 		}
 	}
 }

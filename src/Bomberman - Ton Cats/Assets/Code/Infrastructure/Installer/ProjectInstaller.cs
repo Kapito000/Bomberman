@@ -3,6 +3,8 @@ using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.Hero.StaticData;
 using Gameplay.Feature.MapGenerator.Services;
 using Gameplay.Feature.MapGenerator.StaticData;
+using Gameplay.Feature.Timer.Component;
+using Gameplay.Feature.Timer.StaticData;
 using Gameplay.Input;
 using Gameplay.Input.Character;
 using Gameplay.LevelData;
@@ -35,6 +37,7 @@ namespace Infrastructure.Installer
 
 		public override void InstallBindings()
 		{
+			GameTimerData();
 			BindLevelData();
 			BindStaticData();
 			BindFactoryKit();
@@ -50,6 +53,11 @@ namespace Infrastructure.Installer
 			BindCollisionRegistry();
 			BindInstantiateService();
 			BindEntityBehaviourFactory();
+		}
+
+		void GameTimerData()
+		{
+			Container.Bind<IGameTimerData>().To<GameTimerData>().AsSingle();
 		}
 
 		void BindEntityBehaviourFactory()

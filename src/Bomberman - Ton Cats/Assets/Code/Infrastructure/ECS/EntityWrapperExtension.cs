@@ -351,9 +351,22 @@ namespace Infrastructure.ECS
 			return enemyPatent.Value;
 		}
 
+		public float GameTimer()
+		{
+			ref var gameTimer = ref Get<GameTimer>();
+			return gameTimer.Value;
+		}
+		
 		public EntityWrapper AddGameTimer(float value)
 		{
 			ref var gameTimer = ref AddComponent<GameTimer>();
+			gameTimer.Value = value;
+			return this;
+		}
+		
+		public EntityWrapper SetGameTimer(float value)
+		{
+			ref var gameTimer = ref Get<GameTimer>();
 			gameTimer.Value = value;
 			return this;
 		}

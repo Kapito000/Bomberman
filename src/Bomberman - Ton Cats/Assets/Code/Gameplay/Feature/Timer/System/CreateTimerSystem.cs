@@ -1,4 +1,5 @@
-﻿using Gameplay.Feature.Timer.StaticData;
+﻿using Gameplay.Feature.Timer.Component;
+using Gameplay.Feature.Timer.StaticData;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Zenject;
@@ -13,7 +14,10 @@ namespace Gameplay.Feature.Timer.System
 		public void Run(IEcsSystems systems)
 		{
 			var timerValue = _gameTimerData.Value;
-			_timer.NewEntity().AddGameTimer(timerValue);
+			_timer.NewEntity()
+				.AddGameTimer(timerValue)
+				.Add<RunningGameTimer>()
+				;
 		}
 	}
 }

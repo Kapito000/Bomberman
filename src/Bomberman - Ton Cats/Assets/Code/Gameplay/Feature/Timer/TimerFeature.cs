@@ -1,4 +1,5 @@
-﻿using Infrastructure.Factory.SystemFactory;
+﻿using Gameplay.Feature.Timer.System;
+using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature.Timer
 {

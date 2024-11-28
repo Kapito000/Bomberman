@@ -3,7 +3,7 @@ using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Zenject;
 
-namespace Gameplay.Feature.Timer
+namespace Gameplay.Feature.Timer.System
 {
 	public sealed class CreateTimerSystem : IEcsRunSystem
 	{

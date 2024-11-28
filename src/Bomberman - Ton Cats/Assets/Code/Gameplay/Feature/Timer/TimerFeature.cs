@@ -7,7 +7,7 @@ namespace Gameplay.Feature.Timer
 	{
 		public TimerFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
-			AddInit<CreateTimerSystem>();
+			AddInit<CreateGameTimerSystem>();
 			
 			AddUpdate<GameTimerCounterSystem>();
 		}

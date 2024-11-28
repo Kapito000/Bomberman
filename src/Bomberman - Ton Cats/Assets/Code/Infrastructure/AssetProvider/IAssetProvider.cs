@@ -1,5 +1,7 @@
 ﻿using Cinemachine;
-using Gameplay.Feature.HUD.Behaviour;
+using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
+using Gameplay.Feature.HUD.Feature.Life.Behaviour;
+using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Windows;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,5 +28,6 @@ namespace Infrastructure.AssetProvider
 		GameObject BaseEnemy();
 		GameObject DestructibleTile();
 		GameObject WindowsRoot();
+		GameTimerDisplay GameTimerDisplay();
 	}
 }

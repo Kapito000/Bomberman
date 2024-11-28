@@ -1,5 +1,7 @@
 ﻿using Cinemachine;
-using Gameplay.Feature.HUD.Behaviour;
+using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
+using Gameplay.Feature.HUD.Feature.Life.Behaviour;
+using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Windows;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -33,6 +35,7 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _characterJoystick;
 		[SerializeField] LifePointsPanel _lifePointsPanel;
 		[SerializeField] BombCounterPanel _bombCounterPanel;
+		[SerializeField] GameTimerDisplay _gameTimerDisplay;
 
 		public Camera Camera() => _camera;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
@@ -49,8 +52,9 @@ namespace Infrastructure.AssetProvider
 		public LifePointsPanel LifePointsPanel() => _lifePointsPanel;
 		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
 		public BaseWindow WindowPrefab(WindowId id) => _windows[id];
-		GameObject IAssetProvider.BaseEnemy() => _baseEnemy;
+		public GameObject BaseEnemy() => _baseEnemy;
 		public GameObject DestructibleTile() => _destructibleTile;
 		public GameObject WindowsRoot() => _windowsRoot;
+		public GameTimerDisplay GameTimerDisplay() => _gameTimerDisplay;
 	}
 }

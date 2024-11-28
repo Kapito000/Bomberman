@@ -1,7 +1,9 @@
 ﻿using Common.Component;
 using Extensions;
-using Gameplay.Feature.HUD.Behaviour;
 using Gameplay.Feature.HUD.Component;
+using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
+using Gameplay.Feature.HUD.Feature.Life.Behaviour;
+using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using UnityEngine;
@@ -53,6 +55,19 @@ namespace Gameplay.Feature.HUD.Factory
 				.Add<UpperPanel>()
 				.AddTransform(instance.transform);
 			;
+			return e;
+		}
+
+		public int CreateTimerDisplay(Transform parent)
+		{
+			var prefab = _kit.AssetProvider.GameTimerDisplay();
+			var instance = _kit.InstantiateService
+				.Instantiate<GameTimerDisplay>(prefab, parent);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance.gameObject);
+			_entity.SetEntity(e);
+			_entity
+				.AddGameTimerDisplay(instance)
+				;
 			return e;
 		}
 

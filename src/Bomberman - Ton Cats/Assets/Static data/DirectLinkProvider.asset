@@ -34,3 +34,4 @@ MonoBehaviour:
   _characterJoystick: {fileID: 186695312122789468, guid: fa117ee6c85273a498a7aa54c49a092c, type: 3}
   _lifePointsPanel: {fileID: 8672611766286454625, guid: 1b687938ee2272843b2647ab28065b3b, type: 3}
   _bombCounterPanel: {fileID: 4247654622214523650, guid: 7ee57565c2b4f3c43857624de142121d, type: 3}
+  _gameTimerDisplay: {fileID: 8544459088435423952, guid: d0d9aed9aea37fd4ca2bdd6f21c7dd6d, type: 3}

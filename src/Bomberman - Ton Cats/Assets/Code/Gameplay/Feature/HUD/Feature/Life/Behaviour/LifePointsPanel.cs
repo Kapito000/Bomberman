@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Gameplay.Feature.HUD.Behaviour
+namespace Gameplay.Feature.HUD.Feature.Life.Behaviour
 {
 	public sealed class LifePointsPanel : MonoBehaviour
 	{

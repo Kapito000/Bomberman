@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Gameplay.Feature.Timer.System
 {
-	public sealed class CreateTimerSystem : IEcsRunSystem
+	public sealed class CreateGameTimerSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _timer;
 		[Inject] IGameTimerData _gameTimerData;

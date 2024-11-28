@@ -8,7 +8,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.HUD.System
+namespace Gameplay.Feature.HUD.Feature.Bomb.System
 {
 	public sealed class CreateBombCounterPanelSystem : IEcsRunSystem
 	{

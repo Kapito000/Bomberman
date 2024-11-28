@@ -9,8 +9,10 @@ using Gameplay.Feature.Explosion;
 using Gameplay.Feature.Explosion.Component;
 using Gameplay.Feature.Hero.Behaviour;
 using Gameplay.Feature.Hero.Component;
-using Gameplay.Feature.HUD.Behaviour;
 using Gameplay.Feature.HUD.Component;
+using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
+using Gameplay.Feature.HUD.Feature.Life.Behaviour;
+using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Timer.Component;
@@ -356,18 +358,31 @@ namespace Infrastructure.ECS
 			ref var gameTimer = ref Get<GameTimer>();
 			return gameTimer.Value;
 		}
-		
+
 		public EntityWrapper AddGameTimer(float value)
 		{
 			ref var gameTimer = ref AddComponent<GameTimer>();
 			gameTimer.Value = value;
 			return this;
 		}
-		
+
 		public EntityWrapper SetGameTimer(float value)
 		{
 			ref var gameTimer = ref Get<GameTimer>();
 			gameTimer.Value = value;
+			return this;
+		}
+
+		public GameTimerDisplay GameTimerDisplay()
+		{
+			ref var component = ref Get<GameTimerDisplayComponent>();
+			return component.Value;
+		}
+
+		public EntityWrapper AddGameTimerDisplay(GameTimerDisplay gameTimerDisplay)
+		{
+			ref var component = ref AddComponent<GameTimerDisplayComponent>();
+			component.Value = gameTimerDisplay;
 			return this;
 		}
 	}

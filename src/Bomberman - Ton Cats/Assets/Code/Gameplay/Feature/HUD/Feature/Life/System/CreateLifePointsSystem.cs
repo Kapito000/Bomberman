@@ -8,7 +8,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.HUD.System
+namespace Gameplay.Feature.HUD.Feature.Life.System
 {
 	public sealed class CreateLifePointsSystem : IEcsRunSystem
 	{

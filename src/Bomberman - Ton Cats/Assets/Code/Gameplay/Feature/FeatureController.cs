@@ -14,6 +14,7 @@ using Gameplay.Feature.Input;
 using Gameplay.Feature.Life;
 using Gameplay.Feature.Map;
 using Gameplay.Feature.MapGenerator;
+using Gameplay.Feature.Timer;
 using Gameplay.Feature.UI;
 using Infrastructure.Factory.SystemFactory;
 
@@ -37,6 +38,7 @@ namespace Gameplay.Feature
 			Add<DamageApplicationFeature>();
 			Add<LifeFeature>();
 			Add<MapFeature>();
+			Add<TimerFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();

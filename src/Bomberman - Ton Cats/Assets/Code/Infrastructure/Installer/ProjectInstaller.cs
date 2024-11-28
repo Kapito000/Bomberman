@@ -31,6 +31,7 @@ namespace Infrastructure.Installer
 		[SerializeField] AIData _aiData;
 		[SerializeField] MapData _mapData;
 		[SerializeField] HeroData _heroData;
+		[SerializeField] GameTimerData _gameTimerData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
 		[SerializeField] DirectLinkProvider _assetProvider;
@@ -57,7 +58,7 @@ namespace Infrastructure.Installer
 
 		void GameTimerData()
 		{
-			Container.Bind<IGameTimerData>().To<GameTimerData>().AsSingle();
+			Container.Bind<IGameTimerData>().FromInstance(_gameTimerData).AsSingle();
 		}
 
 		void BindEntityBehaviourFactory()

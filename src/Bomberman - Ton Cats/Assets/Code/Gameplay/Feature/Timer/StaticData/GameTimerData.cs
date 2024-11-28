@@ -7,6 +7,6 @@ namespace Gameplay.Feature.Timer.StaticData
 	[CreateAssetMenu(menuName = Menu.Path.c_StaticData + nameof(GameTimer))]
 	public sealed class GameTimerData : ScriptableObject, IGameTimerData
 	{
-		[SerializeField] public float Value { get; private set; } = 180f;
+		[field: SerializeField] public float Value { get; private set; } = 180f;
 	}
 }

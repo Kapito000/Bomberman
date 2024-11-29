@@ -25,10 +25,10 @@ namespace Gameplay.Feature.MapGenerator.Services.HeroSpawnGenerator
 		void CreateSafeArea(IMap map, Vector2Int spawnPoint)
 		{
 			var safeCells = _safeAreaCalculator.SafeArea(spawnPoint);
-			foreach (var cell in safeCells)
+			foreach (var pos in safeCells)
 			{
-				if (map.IsNone(cell))
-					map.TrySetFree(cell);
+				if (map.GetCellType(pos) == CellType.None)
+					map.TrySetCell(CellType.Free, pos);
 			}
 		}
 	}

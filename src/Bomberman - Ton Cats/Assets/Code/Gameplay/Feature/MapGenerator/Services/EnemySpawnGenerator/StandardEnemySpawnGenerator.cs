@@ -37,7 +37,7 @@ namespace Gameplay.Feature.MapGenerator.Services.EnemySpawnGenerator
 				{
 					var point = availableSpawnPoints[i];
 					spawnPoints.Add(point);
-					map.TrySetEnemySpawnPoint(point);
+					map.TrySetCell(CellType.EnemySpawnPoint, point);
 					availableSpawnPoints.RemoveAt(i);
 				}
 			}
@@ -58,15 +58,16 @@ namespace Gameplay.Feature.MapGenerator.Services.EnemySpawnGenerator
 				var safeCells = _safeAreaCalculator.SafeArea(point);
 				foreach (var cell in safeCells)
 				{
-					if (map.IsNone(cell))
-						map.TrySetFree(cell);
+					if (map.GetCellType(cell) == CellType.None)
+						map.TrySetCell(CellType.Free, cell);
 				}
 			}
 		}
 
 		List<Vector2Int> AvailableSpawnPoints(IMap map)
 		{
-			List<Vector2Int> result = new List<Vector2Int>(map.CalculateNoneCells());
+			var noneCells = map.AllCoordinates(CellType.None);
+			List<Vector2Int> result = new List<Vector2Int>(noneCells);
 			RemovesByHeroSpawnPoint(map, result);
 			return result;
 		}

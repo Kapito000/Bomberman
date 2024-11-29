@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Gameplay.Map
@@ -6,128 +7,52 @@ namespace Gameplay.Map
 	public sealed class StandardTileMap : IMap
 	{
 		readonly IGrid _grid;
-		readonly List<Vector2Int> _destuctibles = new();
-		readonly List<Vector2Int> _indestuctibles = new();
-		readonly List<Vector2Int> _enemySpawnPoints = new();
 
 		public Vector2Int Size => _grid.Size;
 		public Vector2Int HeroSpawnPoint { get; private set; }
-		public IReadOnlyList<Vector2Int> Destuctibles => _destuctibles;
-		public IReadOnlyList<Vector2Int> Indestuctibles => _indestuctibles;
-		public IReadOnlyList<Vector2Int> EnemySpawnPoints => _enemySpawnPoints;
 
 		public StandardTileMap(IGrid grid)
 		{
 			_grid = grid;
 		}
 
-		public bool Has(int x, int y) =>
-			_grid.Has(x, y);
+		public bool Has(Vector2Int pos) =>
+			_grid.Has(pos);
 
-		public bool IsNone(int x, int y)
+		public bool Has(CellType type, Vector2Int pos)
 		{
-			if (Has(x, y) == false)
+			if (Has(pos) == false)
 				return false;
 
-			return _grid[x, y].Type == CellType.None;
+			return _grid[pos].Type == type;
 		}
 
-		public bool IsNone(Vector2Int cell) =>
-			IsNone(cell.x, cell.y);
-
-		public bool IsFree(Vector2Int cell) =>
-			IsFree(cell.x, cell.y);
-
-		public bool IsFree(int x, int y)
+		public bool TrySetCell(CellType type, Vector2Int pos)
 		{
-			if (Has(x, y) == false)
+			if (Has(pos) == false)
 				return false;
 
-			return _grid[x, y].Type == CellType.Free;
-		}
-
-		public bool TrySetHeroSpawnPoint(int x, int y)
-		{
-			if (Has(x, y) == false)
-				return false;
-
-			_grid[x, y].Type = CellType.HeroSpawnPoint;
-			HeroSpawnPoint = new Vector2Int(x, y);
+			_grid[pos].Type = type;
 			return true;
 		}
-
-		public bool TrySetHeroSpawnPoint(Vector2Int spawnPoint) =>
-			TrySetHeroSpawnPoint(spawnPoint.x, spawnPoint.y);
-
-		public bool TrySetEnemySpawnPoint(int x, int y)
+		
+		public bool TrySetHeroSpawnPoint(Vector2Int pos)
 		{
-			if (Has(x, y) == false)
+			if (Has(pos) == false)
 				return false;
 
-			_grid[x, y].Type = CellType.EnemySpawnPoint;
-			_enemySpawnPoints.Add(new Vector2Int(x, y));
+			_grid[pos].Type = CellType.HeroSpawnPoint;
+			HeroSpawnPoint = pos;
 			return true;
 		}
-
-		public bool TrySetEnemySpawnPoint(Vector2Int point) =>
-			TrySetEnemySpawnPoint(point.x, point.y);
-
-		public List<Vector2Int> CalculateNoneCells()
-		{
-			var noneCells = new List<Vector2Int>();
-			for (int x = 0; x < _grid.Size.x; x++)
-			for (int y = 0; y < _grid.Size.y; y++)
-			{
-				if (_grid[x, y].Type == CellType.None)
-					noneCells.Add(new Vector2Int(x, y));
-			}
-			return noneCells;
-		}
-
-		public bool TrySetFree(int x, int y)
-		{
-			if (Has(x, y) == false)
-				return false;
-
-			_grid[x, y].Type = CellType.Free;
-			return true;
-		}
-
-		public bool TrySetFree(Vector2Int cell) =>
-			TrySetFree(cell.x, cell.y);
-
-		public bool TrySetDestructible(int x, int y)
-		{
-			if (Has(x, y) == false)
-				return false;
-
-			_grid[x, y].Type = CellType.Destructible;
-			var cell = new Vector2Int(x, y);
-			_destuctibles.Add(cell);
-			return true;
-		}
-
-		public bool TrySetDestructible(Vector2Int cell) =>
-			TrySetDestructible(cell.x, cell.y);
-
-		public bool TrySetIndestructible(int x, int y)
-		{
-			if (Has(x, y) == false)
-				return false;
-
-			_grid[x, y].Type = CellType.Indestructible;
-			var cell = new Vector2Int(x, y);
-			_indestuctibles.Add(cell);
-			return true;
-		}
-
-		public bool TrySetIndestructible(Vector2Int cell) =>
-			TrySetIndestructible(cell.x, cell.y);
-
-		public IEnumerable<Vector2Int> AllCoordinates() =>
-			(IEnumerable<Vector2Int>)_grid;
 
 		public CellType GetCellType(Vector2Int pos) =>
 			_grid[pos.x, pos.y].Type;
+
+		public IEnumerable<Vector2Int> AllCoordinates() => _grid;
+
+		public IEnumerable<Vector2Int> AllCoordinates(CellType type) =>
+			((IEnumerable<Vector2Int>)_grid)
+			.Where(pos => _grid[pos].Type == type);
 	}
 }

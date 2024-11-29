@@ -13,16 +13,16 @@ namespace Gameplay.Feature.MapGenerator.Services.OutLineWallGenerator
 			var lowerWall = 0;
 			for (var x = 0; x < map.Size.x; x++)
 			{
-				map.TrySetIndestructible(x, upperWall);
-				map.TrySetIndestructible(x, lowerWall);
+				map.TrySetCell(CellType.Indestructible, x, upperWall);
+				map.TrySetCell(CellType.Indestructible, x, lowerWall);
 			}
 
 			var leftWall = 0;
 			var rightWall = map.Size.x - 1;
 			for (int y = 1; y < map.Size.y - 1; y++)
 			{
-				map.TrySetIndestructible(leftWall, y);
-				map.TrySetIndestructible(rightWall, y);
+				map.TrySetCell(CellType.Indestructible, leftWall, y);
+				map.TrySetCell(CellType.Indestructible, rightWall, y);
 			}
 		}
 

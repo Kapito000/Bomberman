@@ -67,9 +67,9 @@ namespace Gameplay.Feature.MapGenerator.Services
 
 		void SetNoneAsFree(IMap map)
 		{
-			var noneCells = map.CalculateNoneCells();
+			var noneCells = map.AllCoordinates(CellType.None);
 			foreach (Vector2Int noneCell in noneCells)
-				map.TrySetFree(noneCell);
+				map.TrySetCell(CellType.Free, noneCell);
 		}
 	}
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Map
 {
-	public sealed class TileGrid : IGrid,
-		IEnumerable<Cell>, IEnumerable<Vector2Int>
+	public sealed class TileGrid : IGrid
 	{
 		readonly Cell[,] _cells;
 
@@ -20,8 +19,14 @@ namespace Gameplay.Map
 		public ref Cell this[int x, int y] =>
 			ref _cells[x, y];
 
+		public ref Cell this[Vector2Int pos] =>
+			ref _cells[pos.x, pos.y];
+
 		public bool Has(int x, int y) =>
 			Size.x > x && Size.y > y;
+
+		public bool Has(Vector2Int pos) =>
+			Has(pos.x, pos.y);
 
 		IEnumerator IEnumerable.GetEnumerator() =>
 			_cells.GetEnumerator();

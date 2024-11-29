@@ -17,16 +17,15 @@ namespace Gameplay.Feature.MapGenerator.Services.DestructibleTilesGenerator
 
 		public void Create(IMap map)
 		{
-			var availableCells = AvailableCells(map);
-			foreach (var cell in availableCells)
+			foreach (var cell in AvailableCells(map))
 			{
 				if (CanPlace())
-					map.TrySetDestructible(cell);
+					map.TrySetCell(CellType.Destructible, cell);
 			}
 		}
 
-		List<Vector2Int> AvailableCells(IMap map) =>
-			map.CalculateNoneCells();
+		IEnumerable<Vector2Int> AvailableCells(IMap map) =>
+			map.AllCoordinates(CellType.None);
 
 		bool CanPlace()
 		{

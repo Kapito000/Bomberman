@@ -1,5 +1,6 @@
 ﻿using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Map.MapController;
+using Gameplay.Map;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -21,7 +22,7 @@ namespace Gameplay.Feature.Map.System
 			{
 				_destroyRequest.SetEntity(e);
 				var cellPos = _destroyRequest.TilePos();
-				_mapController.SetFree(cellPos);
+				_mapController.TrySetCell(CellType.Free, cellPos);
 			}
 		}
 	}

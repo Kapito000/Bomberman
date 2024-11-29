@@ -19,50 +19,31 @@ namespace Gameplay.Feature.Map.MapController
 
 		public Vector2Int Size => _map.Size;
 		public Vector2Int HeroSpawnPoint => _map.HeroSpawnPoint;
-		public IReadOnlyList<Vector2Int> Destuctibles => _map.Destuctibles;
-		public IReadOnlyList<Vector2Int> Indestuctibles => _map.Indestuctibles;
-		public IReadOnlyList<Vector2Int> EnemySpawnPoints => _map.EnemySpawnPoints;
 
-		public bool IsFree(Vector2Int pos) =>
-			_map.IsFree(pos);
+		public bool IsFree(Vector2Int pos)
+		{
+			var type = _map.GetCellType(pos);
+			return type == CellType.Free;
+		}
 
 		public void SetMap(IMap map)
 		{
 			_map = map;
 		}
 
-		public void SetFree(Vector2Int cell)
+		public void TrySetCell(CellType type, Vector2Int pos)
 		{
-			if (_map.TrySetFree(cell) == false)
+			if (_map.TrySetCell(type, pos) == false)
 			{
 				CastCannotModifyMapMessage();
 				return;
 			}
 
-			_mapView.SetFree(cell);
+			_mapView.SetFree(pos);
 		}
 
-		public void SetDestructible(Vector2Int cell)
-		{
-			if (_map.TrySetDestructible(cell) == false)
-			{
-				CastCannotModifyMapMessage();
-				return;
-			}
-
-			_mapView.SetDestructibleTile(cell);
-		}
-
-		public void SetIndestructible(Vector2Int cell)
-		{
-			if (_map.TrySetIndestructible(cell) == false)
-			{
-				CastCannotModifyMapMessage();
-				return;
-			}
-
-			_mapView.SetIndestructibleTile(cell);
-		}
+		public IEnumerable<Vector2Int> Destuctibles() =>
+			_map.AllCoordinates(CellType.Destructible);
 
 		public IEnumerable<Vector2Int> AllCoordinates() =>
 			_map.AllCoordinates();
@@ -73,7 +54,7 @@ namespace Gameplay.Feature.Map.MapController
 		public Vector2 GetCellCenterWorld(Vector2Int cellPos) =>
 			_mapView.GetCellCenterWorld(cellPos);
 
-		public CellType CellType(Vector2Int pos) =>
+		public CellType GetCellType(Vector2Int pos) =>
 			_map.GetCellType(pos);
 
 		public void DestroyTile(Vector2Int cellPos)

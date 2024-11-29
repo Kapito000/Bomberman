@@ -1,5 +1,6 @@
 ﻿using Gameplay.Feature.Enemy.Base.Factory;
 using Gameplay.Feature.MapGenerator.Services;
+using Gameplay.Map;
 using Gameplay.MapView;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
@@ -16,7 +17,8 @@ namespace Gameplay.Feature.MapGenerator.System
 
 		public void Run(IEcsSystems systems)
 		{
-			var spawnPoints = _mapGenerator.Map.EnemySpawnPoints;
+			var spawnPoints = _mapGenerator.Map
+				.AllCoordinates(CellType.EnemySpawnPoint);
 			foreach (var spawnPointPos in spawnPoints)
 			{
 				var pos = _mapView.GetCellCenterWorld(spawnPointPos);

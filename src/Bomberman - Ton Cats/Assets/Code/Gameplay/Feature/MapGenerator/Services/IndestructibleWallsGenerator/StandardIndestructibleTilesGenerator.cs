@@ -11,7 +11,7 @@ namespace Gameplay.Feature.MapGenerator.Services.IndestructibleWallsGenerator
 			for (int y = 1; y < map.Size.y - 1; y++)
 			{
 				if (x % 2 == 0 && y % 2 == 0)
-					map.TrySetIndestructible(x, y);
+					map.TrySetCell(CellType.Indestructible, x, y);
 			}
 		}
 	}

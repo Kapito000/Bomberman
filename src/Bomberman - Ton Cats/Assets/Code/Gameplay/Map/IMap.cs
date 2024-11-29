@@ -7,26 +7,12 @@ namespace Gameplay.Map
 	{
 		Vector2Int Size { get; }
 		Vector2Int HeroSpawnPoint { get; }
-		IReadOnlyList<Vector2Int> Destuctibles { get; }
-		IReadOnlyList<Vector2Int> Indestuctibles { get; }
-		IReadOnlyList<Vector2Int> EnemySpawnPoints { get; }
-		bool Has(int x, int y);
-		bool IsNone(int x, int y);
-		bool IsNone(Vector2Int cell);
-		bool IsFree(int x, int y);
-		bool IsFree(Vector2Int cell);
-		bool TrySetFree(int x, int y);
-		bool TrySetFree(Vector2Int cell);
-		bool TrySetDestructible(int x, int y);
-		bool TrySetDestructible(Vector2Int cell);
-		bool TrySetIndestructible(int x, int y);
-		bool TrySetIndestructible(Vector2Int cell);
-		bool TrySetHeroSpawnPoint(int x, int y);
-		bool TrySetHeroSpawnPoint(Vector2Int spawnPoint);
-		bool TrySetEnemySpawnPoint(int x, int y);
-		bool TrySetEnemySpawnPoint(Vector2Int point);
-		List<Vector2Int> CalculateNoneCells();
-		IEnumerable<Vector2Int> AllCoordinates();
+		bool Has(Vector2Int pos);
+		bool Has(CellType type, Vector2Int pos);
+		bool TrySetCell(CellType type, Vector2Int pos);
+		bool TrySetHeroSpawnPoint(Vector2Int pos);
 		CellType GetCellType(Vector2Int pos);
+		IEnumerable<Vector2Int> AllCoordinates();
+		IEnumerable<Vector2Int> AllCoordinates(CellType type);
 	}
 }

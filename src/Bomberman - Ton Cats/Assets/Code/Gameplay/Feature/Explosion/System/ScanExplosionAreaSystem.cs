@@ -28,7 +28,7 @@ namespace Gameplay.Feature.Explosion.System
 
 				var pos = _request.Position();
 				var cellPos = _mapController.WorldToCell(pos);
-				var cellType = _mapController.CellType(cellPos);
+				var cellType = _mapController.GetCellType(cellPos);
 				if (cellType == CellType.Free)
 					continue;
 

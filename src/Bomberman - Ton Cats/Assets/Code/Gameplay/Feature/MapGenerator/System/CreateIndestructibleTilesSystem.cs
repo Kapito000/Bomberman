@@ -1,5 +1,6 @@
 ﻿using Gameplay.Feature.MapGenerator.Services;
 using Gameplay.LevelData;
+using Gameplay.Map;
 using Gameplay.MapView;
 using Leopotam.EcsLite;
 using Zenject;
@@ -14,7 +15,9 @@ namespace Gameplay.Feature.MapGenerator.System
 
 		public void Run(IEcsSystems systems)
 		{
-			foreach (var cellPos in _mapGenerator.Map.Indestuctibles)
+			var indestructibles = _mapGenerator.Map
+				.AllCoordinates(CellType.Indestructible);
+			foreach (var cellPos in indestructibles)
 				_mapView.SetIndestructibleTile(cellPos);
 		}
 	}

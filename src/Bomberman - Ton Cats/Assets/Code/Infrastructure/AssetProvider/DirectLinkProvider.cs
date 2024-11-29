@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿using System.Collections.Generic;
+using Cinemachine;
 using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
 using Gameplay.Feature.HUD.Feature.Life.Behaviour;
 using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
@@ -59,5 +60,6 @@ namespace Infrastructure.AssetProvider
 		public GameTimerDisplay GameTimerDisplay() => _gameTimerDisplay;
 		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
+		public Dictionary<WindowId, BaseWindow> AllWindows => _windows;
 	}
 }

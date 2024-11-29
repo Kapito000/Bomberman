@@ -25,12 +25,12 @@ namespace Gameplay.Feature.FinishLevel.System
 					continue;
 				}
 
-				// if (_finishLevelService.LevelComplete(observerEntity))
-				// {
-					// ActionImitation.Execute("Pause game.");
-					// ActionImitation.Execute("Call the leve complete UI.");
-					// continue;
-				// }
+				if (_finishLevelService.LevelComplete(observerEntity))
+				{
+					_finishLevelService.LaunchGamePause();
+					_windowService.Open(WindowId.LevelComplete);
+					continue;
+				}
 			}
 		}
 	}

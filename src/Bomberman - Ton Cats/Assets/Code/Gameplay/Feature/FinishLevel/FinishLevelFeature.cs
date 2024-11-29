@@ -10,8 +10,12 @@ namespace Gameplay.Feature.FinishLevel
 			AddInit<CreateFinishLevelObserverSystem>();
 			AddInit<CreateFinishLevelDoorSystem>();
 			
+			AddUpdate<EnterToFinishLevelDoorProcessSystem>();
+			AddUpdate<ExitFormFinishLevelDoorProcessSystem>();
+			
 			AddUpdate<HeroHealthObserveSystem>();
 			AddUpdate<GameTimerObserverSystem>();
+			
 			AddUpdate<FinishLevelSystem>();
 		}
 	}

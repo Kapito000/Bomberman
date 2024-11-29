@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level complete
       objectReference: {fileID: 0}
+    - target: {fileID: 7649830443655831178, guid: 7e24e139298008747b2115c5776b0d09, type: 3}
+      propertyPath: _windowId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8139086291008717143, guid: 7e24e139298008747b2115c5776b0d09, type: 3}
       propertyPath: m_text
       value: Go to main menu button

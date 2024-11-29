@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿using System.Collections.Generic;
+using Cinemachine;
 using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
 using Gameplay.Feature.HUD.Feature.Life.Behaviour;
 using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
@@ -30,5 +31,6 @@ namespace Infrastructure.AssetProvider
 		GameObject WindowsRoot();
 		GameTimerDisplay GameTimerDisplay();
 		GameObject FinishLevelDoor();
+		Dictionary<WindowId, BaseWindow> AllWindows { get; }
 	}
 }

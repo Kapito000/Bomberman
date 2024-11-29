@@ -9,6 +9,7 @@ using Zenject;
 
 namespace Gameplay.Feature.FinishLevel.System
 {
+	
 	public sealed class CreateFinishLevelDoorSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _spawnRequest;

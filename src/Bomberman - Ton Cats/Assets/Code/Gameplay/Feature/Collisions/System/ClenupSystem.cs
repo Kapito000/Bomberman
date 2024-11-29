@@ -9,12 +9,15 @@ namespace Gameplay.Feature.Collisions.System
 	{
 		[Inject] EcsWorld _world;
 
+		readonly EcsFilterInject<Inc<TriggerExitBuffer>> _triggerExitBufferFilter;
 		readonly EcsFilterInject<Inc<TriggerEnterBuffer>> _triggerEnterBufferFilter;
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var e in _triggerEnterBufferFilter.Value)
 				_world.GetPool<TriggerEnterBuffer>().Del(e);
+			foreach (var e in _triggerEnterBufferFilter.Value)
+				_world.GetPool<TriggerExitBuffer>().Del(e);
 		}
 	}
 }

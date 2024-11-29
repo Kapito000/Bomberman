@@ -1,17 +1,17 @@
-using Gameplay.Feature.FinishLevel.Component;
+﻿using Gameplay.Feature.FinishLevel.Component;
 using Infrastructure.ECS;
 using Zenject;
 
 namespace Infrastructure.FinishLevel.Condition
 {
-	public sealed class HeroHealthCondition : IGameOverCondition
+	public sealed class HeroEnteredIntoFinishLevelDoor : ILevelCompleteCondition
 	{
 		[Inject] EntityWrapper _observer;
 
 		public bool Check(int observerEntity)
 		{
 			_observer.SetEntity(observerEntity);
-			return _observer.Has<HeroDead>();
+			return _observer.Has<HeroInFinishLevelDoor>();
 		}
 	}
 }

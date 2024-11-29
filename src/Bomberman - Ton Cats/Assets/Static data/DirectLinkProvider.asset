@@ -25,10 +25,11 @@ MonoBehaviour:
   _eventSystem: {fileID: 176851465483218010, guid: a3c37fa5708cd3944a3f5bb8921fd59e, type: 3}
   _windowsRoot: {fileID: 4030447168085231578, guid: 33fdfcae503e41e4d9bde70373328093, type: 3}
   _windows:
-    _keyData: 0000000001000000
+    _keyData: 000000000100000002000000
     _valueData:
     - {fileID: 1728174686819343289, guid: 79ce06b3cc4e0334ca4a33c0ed511e85, type: 3}
-    - {fileID: 3804943349989032666, guid: cfa886046fac29841b983e0103e37735, type: 3}
+    - {fileID: 6570180536727888626, guid: cfa886046fac29841b983e0103e37735, type: 3}
+    - {fileID: 6274013183545169145, guid: c27d413c4c1b39a42b712ba71b8fcc5a, type: 3}
   _hudRoot: {fileID: 8017098716089676229, guid: faa23bd9d87b9194dbb9532caf1f2fdb, type: 3}
   _upperPanel: {fileID: 8391452172291091251, guid: 753c2ee5865d4114c889ada63cc2d3fc, type: 3}
   _putBombButton: {fileID: 186695312122789468, guid: f1b6b89e894823644b7ae9b2b4eaa415, type: 3}

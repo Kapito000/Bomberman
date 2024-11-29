@@ -22,9 +22,38 @@ namespace Gameplay.Feature.Collisions
 			return e;
 		}
 
-		public static bool HasInTriggerEnterBuffer(this EntityWrapper e, int otherEntity)
+		public static EntityWrapper AddToTriggerExitBuffer(this EntityWrapper e,
+			int otherEntity)
+		{
+			ref var buffer = ref e.ReplaceComponent<TriggerExitBuffer>();
+			buffer.Value ??= new List<EcsPackedEntityWithWorld>(4);
+
+			if (e.HasInTriggerExitBuffer(otherEntity))
+				return e;
+
+			var newPackedOther = e.World().PackEntityWithWorld(otherEntity);
+			buffer.Value.Add(newPackedOther);
+			return e;
+		}
+
+		public static bool HasInTriggerEnterBuffer(this EntityWrapper e,
+			int otherEntity)
 		{
 			var buffer = e.TriggerEnterBuffer();
+			foreach (var pack in buffer)
+			{
+				if (pack.Unpack(out var bufferedEntity) &&
+				    bufferedEntity == otherEntity)
+					return true;
+			}
+
+			return false;
+		}
+
+		public static bool HasInTriggerExitBuffer(this EntityWrapper e,
+			int otherEntity)
+		{
+			var buffer = e.TriggerExitBuffer();
 			foreach (var pack in buffer)
 			{
 				if (pack.Unpack(out var bufferedEntity) &&
@@ -39,6 +68,13 @@ namespace Gameplay.Feature.Collisions
 			this EntityWrapper e)
 		{
 			ref var buffer = ref e.Get<TriggerEnterBuffer>();
+			return buffer.Value;
+		}
+
+		public static List<EcsPackedEntityWithWorld> TriggerExitBuffer(
+			this EntityWrapper e)
+		{
+			ref var buffer = ref e.Get<TriggerExitBuffer>();
 			return buffer.Value;
 		}
 	}

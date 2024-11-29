@@ -1,6 +1,7 @@
 ﻿using Common.Component;
 using Gameplay.Feature.UI.Component;
 using Gameplay.Windows;
+using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -12,6 +13,7 @@ namespace Gameplay.Feature.UI.System
 	{
 		[Inject] EntityWrapper _root;
 		[Inject] IWindowService _windowService;
+		[Inject] IAssetProvider _assetProvider;
 
 		readonly EcsFilterInject<
 			Inc<WindowsRoot, TransformComponent>> _windowsRootFilter;
@@ -32,7 +34,7 @@ namespace Gameplay.Feature.UI.System
 			return new[]
 			{
 				WindowId.GameOver,
-				// WindowId.LevelComplete
+				WindowId.LevelComplete,
 			};
 		}
 	}

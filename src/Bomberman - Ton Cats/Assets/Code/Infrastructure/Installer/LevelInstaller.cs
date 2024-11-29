@@ -19,6 +19,8 @@ using Infrastructure.ECS;
 using Infrastructure.Factory.SystemFactory;
 using Infrastructure.FinishLevel;
 using Infrastructure.FinishLevel.Condition;
+using Infrastructure.FinishLevel.Condition.GameOver;
+using Infrastructure.FinishLevel.Condition.LevelComplete;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Leopotam.EcsLite;
@@ -73,8 +75,9 @@ namespace Infrastructure.Installer
 		void BindFinishLevelService()
 		{
 			Container.Bind<IFinishLevelService>().To<FinishLevelService>().AsSingle();
-			Container.BindInterfacesTo<HeroHealthCondition>().AsSingle();
+			Container.BindInterfacesTo<KillAllEnemies>().AsSingle();
 			Container.BindInterfacesTo<GameTimerCondition>().AsSingle();
+			Container.BindInterfacesTo<HeroHealthCondition>().AsSingle();
 			Container.BindInterfacesTo<HeroEnteredIntoFinishLevelDoor>().AsSingle();
 		}
 		

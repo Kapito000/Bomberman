@@ -2,7 +2,7 @@ using Gameplay.Feature.FinishLevel.Component;
 using Infrastructure.ECS;
 using Zenject;
 
-namespace Infrastructure.FinishLevel.Condition
+namespace Infrastructure.FinishLevel.Condition.GameOver
 {
 	public sealed class HeroHealthCondition : IGameOverCondition
 	{

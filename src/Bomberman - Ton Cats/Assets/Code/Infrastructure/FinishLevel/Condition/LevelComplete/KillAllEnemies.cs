@@ -2,16 +2,16 @@
 using Infrastructure.ECS;
 using Zenject;
 
-namespace Infrastructure.FinishLevel.Condition
+namespace Infrastructure.FinishLevel.Condition.LevelComplete
 {
-	public sealed class GameTimerCondition : IGameOverCondition
+	public sealed class KillAllEnemies : ILevelCompleteCondition
 	{
 		[Inject] EntityWrapper _observer;
 
 		public bool Check(int observerEntity)
 		{
 			_observer.SetEntity(observerEntity);
-			return _observer.Has<GameTimerOver>();
+			return _observer.Has<AllEnemiesKilled>();
 		}
 	}
 }

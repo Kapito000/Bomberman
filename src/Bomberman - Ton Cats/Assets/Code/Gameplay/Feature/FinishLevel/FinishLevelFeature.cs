@@ -15,6 +15,7 @@ namespace Gameplay.Feature.FinishLevel
 			
 			AddUpdate<HeroHealthObserveSystem>();
 			AddUpdate<GameTimerObserverSystem>();
+			AddUpdate<EnemyQuantityObserverSystem>();
 			
 			AddUpdate<FinishLevelSystem>();
 		}

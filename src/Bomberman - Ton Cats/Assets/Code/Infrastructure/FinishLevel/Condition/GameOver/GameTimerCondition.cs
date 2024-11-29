@@ -2,16 +2,16 @@
 using Infrastructure.ECS;
 using Zenject;
 
-namespace Infrastructure.FinishLevel.Condition
+namespace Infrastructure.FinishLevel.Condition.GameOver
 {
-	public sealed class HeroEnteredIntoFinishLevelDoor : ILevelCompleteCondition
+	public sealed class GameTimerCondition : IGameOverCondition
 	{
 		[Inject] EntityWrapper _observer;
 
 		public bool Check(int observerEntity)
 		{
 			_observer.SetEntity(observerEntity);
-			return _observer.Has<HeroInFinishLevelDoor>();
+			return _observer.Has<GameTimerOver>();
 		}
 	}
 }

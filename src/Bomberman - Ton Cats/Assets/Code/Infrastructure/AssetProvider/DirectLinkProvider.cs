@@ -16,11 +16,13 @@ namespace Infrastructure.AssetProvider
 	{
 		[SerializeField] Camera _camera;
 		[SerializeField] CinemachineVirtualCamera _virtualCamera;
+		[Space]
 		[SerializeField] GameObject _hero;
 		[SerializeField] GameObject _heroSpawnPoint;
 		[SerializeField] GameObject _bomb;
 		[SerializeField] GameObject _explosion;
 		[SerializeField] GameObject _baseEnemy;
+		[SerializeField] GameObject _finishLevelDoor;
 		[Header("Tile prefabs")]
 		[SerializeField] GameObject _destructibleTile;
 		[Header("UI")]
@@ -38,23 +40,24 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameTimerDisplay _gameTimerDisplay;
 
 		public Camera Camera() => _camera;
-		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
-		public GameObject Hero() => _hero;
-		public GameObject HeroSpawnPoint() => _heroSpawnPoint;
-		public GameObject Bomb() => _bomb;
 		public Canvas UiRoot() => _root;
 		public Canvas HudRoot() => _hudRoot;
-		public GameObject CharacterJoystick() => _characterJoystick;
-		public GameObject PutBombButton() => _putBombButton;
-		public EventSystem EventSystem() => _eventSystem;
+		public GameObject Hero() => _hero;
+		public GameObject Bomb() => _bomb;
+		public GameObject BaseEnemy() => _baseEnemy;
 		public GameObject Explosion() => _explosion;
 		public GameObject UpperPanel() => _upperPanel;
-		public LifePointsPanel LifePointsPanel() => _lifePointsPanel;
-		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
-		public BaseWindow WindowPrefab(WindowId id) => _windows[id];
-		public GameObject BaseEnemy() => _baseEnemy;
-		public GameObject DestructibleTile() => _destructibleTile;
 		public GameObject WindowsRoot() => _windowsRoot;
+		public GameObject PutBombButton() => _putBombButton;
+		public GameObject HeroSpawnPoint() => _heroSpawnPoint;
+		public GameObject FinishLevelDoor() => _finishLevelDoor;
+		public GameObject DestructibleTile() => _destructibleTile;
+		public GameObject CharacterJoystick() => _characterJoystick;
+		public BaseWindow WindowPrefab(WindowId id) => _windows[id];
+		public EventSystem EventSystem() => _eventSystem;
+		public LifePointsPanel LifePointsPanel() => _lifePointsPanel;
 		public GameTimerDisplay GameTimerDisplay() => _gameTimerDisplay;
+		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
+		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
 	}
 }

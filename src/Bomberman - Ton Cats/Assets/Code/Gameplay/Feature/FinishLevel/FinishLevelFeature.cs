@@ -8,6 +8,7 @@ namespace Gameplay.Feature.FinishLevel
 		public FinishLevelFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateFinishLevelObserverSystem>();
+			AddInit<CreateFinishLevelDoorSystem>();
 			
 			AddUpdate<HeroHealthObserveSystem>();
 			AddUpdate<GameTimerObserverSystem>();

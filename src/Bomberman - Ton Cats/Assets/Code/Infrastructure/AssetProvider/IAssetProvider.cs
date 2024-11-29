@@ -29,5 +29,6 @@ namespace Infrastructure.AssetProvider
 		GameObject DestructibleTile();
 		GameObject WindowsRoot();
 		GameTimerDisplay GameTimerDisplay();
+		GameObject FinishLevelDoor();
 	}
 }

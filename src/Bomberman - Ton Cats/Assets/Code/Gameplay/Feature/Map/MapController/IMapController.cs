@@ -15,5 +15,6 @@ namespace Gameplay.Feature.Map.MapController
 		IEnumerable<Vector2Int> AllCoordinates();
 		void DestroyTile(Vector2Int cellPos);
 		void TrySetCell(CellType type, Vector2Int pos);
+		IEnumerable<Vector2Int> AllCoordinates(CellType type);
 	}
 }

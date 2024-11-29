@@ -42,11 +42,11 @@ namespace Gameplay.Feature.Map.MapController
 			_mapView.SetFree(pos);
 		}
 
-		public IEnumerable<Vector2Int> Destuctibles() =>
-			_map.AllCoordinates(CellType.Destructible);
-
 		public IEnumerable<Vector2Int> AllCoordinates() =>
 			_map.AllCoordinates();
+
+		public IEnumerable<Vector2Int> AllCoordinates(CellType type) =>
+			_map.AllCoordinates(type);
 
 		public Vector2Int WorldToCell(Vector2 pos) =>
 			_mapView.WorldToCell(pos);

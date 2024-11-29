@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Infrastructure.FinishLevel.Condition
 {
-	public sealed class GameTimerCondition : IGameTimerCondition
+	public sealed class GameTimerCondition : IGameOverCondition
 	{
 		[Inject] EntityWrapper _observer;
 

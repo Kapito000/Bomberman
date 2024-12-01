@@ -26,7 +26,7 @@ namespace Gameplay.Feature.Map.System
 			{
 				_request.SetEntity(e);
 				var pos = _request.TilePos();
-				_mapController.TrySetCell(CellType.Free, pos);
+				_mapController.TrySetCell(TileType.Free, pos);
 				_request.Destroy();
 			}
 
@@ -34,7 +34,7 @@ namespace Gameplay.Feature.Map.System
 			{
 				_request.SetEntity(e);
 				var pos = _request.TilePos();
-				_mapController.TrySetCell(CellType.Destructible, pos);
+				_mapController.TrySetCell(TileType.Destructible, pos);
 				_request.Destroy();
 			}
 
@@ -42,7 +42,7 @@ namespace Gameplay.Feature.Map.System
 			{
 				_request.SetEntity(e);
 				var pos = _request.TilePos();
-				_mapController.TrySetCell(CellType.Indestructible, pos);
+				_mapController.TrySetCell(TileType.Indestructible, pos);
 				_request.Destroy();
 			}
 		}

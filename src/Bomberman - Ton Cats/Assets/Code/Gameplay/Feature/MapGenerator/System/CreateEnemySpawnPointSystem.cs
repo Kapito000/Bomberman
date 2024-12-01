@@ -18,7 +18,7 @@ namespace Gameplay.Feature.MapGenerator.System
 		public void Run(IEcsSystems systems)
 		{
 			var spawnPoints = _mapGenerator.Map
-				.AllCoordinates(CellType.EnemySpawnPoint);
+				.AllCoordinates(TileType.EnemySpawnPoint);
 			foreach (var spawnPointPos in spawnPoints)
 			{
 				var pos = _mapView.GetCellCenterWorld(spawnPointPos);

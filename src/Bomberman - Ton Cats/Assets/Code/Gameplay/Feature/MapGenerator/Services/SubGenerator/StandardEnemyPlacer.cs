@@ -1,8 +1,8 @@
 ﻿using Gameplay.Feature.MapGenerator.StaticData;
 
-namespace Gameplay.Feature.MapGenerator.Services.EnemyPlacer
+namespace Gameplay.Feature.MapGenerator.Services.SubGenerator
 {
-	public sealed class StandardEnemyPlacer : IEnemyPlacer
+	public sealed class StandardEnemyPlacer
 	{
 		readonly IMapData _mapData;
 

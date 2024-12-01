@@ -1,8 +1,4 @@
-﻿using Gameplay.Feature.MapGenerator.Services.DestructibleTilesGenerator;
-using Gameplay.Feature.MapGenerator.Services.EnemySpawnGenerator;
-using Gameplay.Feature.MapGenerator.Services.HeroSpawnGenerator;
-using Gameplay.Feature.MapGenerator.Services.IndestructibleWallsGenerator;
-using Gameplay.Feature.MapGenerator.Services.OutLineWallGenerator;
+﻿using Gameplay.Feature.MapGenerator.Services.SubGenerator;
 using Gameplay.Feature.MapGenerator.StaticData;
 using Gameplay.Map;
 using UnityEngine;
@@ -13,13 +9,16 @@ namespace Gameplay.Feature.MapGenerator.Services
 	{
 		IMapData _mapData;
 
-		IHeroSpawnGenerator _heroSpawnGenerator;
-		IEnemySpawnGenerator _enemySpawnGenerator;
-		IOutLineWallGenerator _outLineWallGenerator;
-		IDestructibleTilesGenerator _destructibleTilesGenerator;
-		IIndestructibleTilesGenerator _indestructibleTilesGenerator;
+		StandardHeroSpawnGenerator _heroSpawnGenerator;
+		StandardEnemySpawnGenerator _enemySpawnGenerator;
+		StandardOutLineWallGenerator _outLineWallGenerator;
+		StandardDestructibleTilesGenerator _destructibleTilesGenerator;
+		StandardIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
-		public IMap Map { get; private set; }
+		Vector2Int _heroSpawnPoint;
+
+		public IGrid<TileType> TilesGrid { get; private set; }
+		public IGrid<SpawnCellType> SpawnGrid { get; private set; }
 
 		public StandardMapGenerator(IMapData mapData)
 		{
@@ -31,45 +30,46 @@ namespace Gameplay.Feature.MapGenerator.Services
 			_indestructibleTilesGenerator = new StandardIndestructibleTilesGenerator();
 		}
 
-		public IMap CreateMap()
+		public void CreateMap()
 		{
 			var size = _mapData.MapSize + new Vector2Int(2, 2);
-			Map = new StandardTileMap(new TileGrid(size.x, size.y));
-			CreateWallOutLine(Map);
-			CreateIndestructibleWalls(Map);
-			CreatePlayerSpawnArea(Map);
-			CreateEnemies(Map);
-			CreateDestructibleWalls(Map);
-			SetNoneAsFree(Map);
-			return Map;
+			TilesGrid = new TilesGrid(size.x, size.y);
+			CreateWallOutLine();
+			CreateIndestructibleWalls();
+			CreatePlayerSpawnArea();
+			CreateEnemiesSpawnPoints();
+			CreateDestructibleWalls();
+			SetNoneAsFree();
 		}
 
-		public IMap CleanMap()
+		void CreateWallOutLine() =>
+			_outLineWallGenerator.Create(TilesGrid);
+
+		void CreateIndestructibleWalls() =>
+			_indestructibleTilesGenerator.Create(TilesGrid);
+
+		void CreatePlayerSpawnArea()
 		{
-			var size = Map.Size;
-			return new StandardTileMap(new TileGrid(size.x, size.y));
+			_heroSpawnPoint = _heroSpawnGenerator
+				.CreateHeroSpawnPoint(TilesGrid, SpawnGrid);
+			_heroSpawnGenerator.CreateSafeArea(TilesGrid, _heroSpawnPoint);
 		}
 
-		void CreateWallOutLine(IMap map) =>
-			_outLineWallGenerator.Create(map);
-
-		void CreateIndestructibleWalls(IMap map) =>
-			_indestructibleTilesGenerator.Create(map);
-
-		void CreatePlayerSpawnArea(IMap map) =>
-			_heroSpawnGenerator.CreateSpawnArea(map);
-
-		void CreateEnemies(IMap map) =>
-			_enemySpawnGenerator.CreateSpawnArea(map);
-
-		void CreateDestructibleWalls(IMap map) =>
-			_destructibleTilesGenerator.Create(map);
-
-		void SetNoneAsFree(IMap map)
+		void CreateEnemiesSpawnPoints()
 		{
-			var noneCells = map.AllCoordinates(CellType.None);
+			_enemySpawnGenerator
+				.CreateSpawnPoints(_heroSpawnPoint, TilesGrid, SpawnGrid);
+			_enemySpawnGenerator.CreateSafeArea(TilesGrid, SpawnGrid);
+		}
+
+		void CreateDestructibleWalls() =>
+			_destructibleTilesGenerator.Create(TilesGrid);
+
+		void SetNoneAsFree()
+		{
+			var noneCells = TilesGrid.AllCoordinates(TileType.None);
 			foreach (Vector2Int noneCell in noneCells)
-				map.TrySetCell(CellType.Free, noneCell);
+				TilesGrid.TrySet(TileType.Free, noneCell);
 		}
 	}
 }

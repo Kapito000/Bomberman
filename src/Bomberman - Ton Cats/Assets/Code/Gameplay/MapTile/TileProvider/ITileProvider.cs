@@ -7,8 +7,8 @@ namespace Gameplay.MapTile.TileProvider
 {
 	public interface ITileProvider : IService
 	{
-		IReadOnlyDictionary<CellType, TileBase> Tiles { get; }
-		TileBase this[CellType type] { get; }
-		bool Has(CellType type);
+		IReadOnlyDictionary<TileType, TileBase> Tiles { get; }
+		TileBase this[TileType type] { get; }
+		bool Has(TileType type);
 	}
 }

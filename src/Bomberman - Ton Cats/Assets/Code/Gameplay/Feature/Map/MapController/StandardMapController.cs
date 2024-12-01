@@ -15,25 +15,28 @@ namespace Gameplay.Feature.Map.MapController
 		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _entity;
 
-		IMap _map;
+		IGrid<TileType> _tiles;
 
-		public Vector2Int Size => _map.Size;
-		public Vector2Int HeroSpawnPoint => _map.HeroSpawnPoint;
+		public Vector2Int Size => _tiles.Size;
+		public Vector2Int HeroSpawnPoint { get; set; }
+
+		public bool Has(Vector2Int pos) =>
+			_tiles.Has(pos);
 
 		public bool IsFree(Vector2Int pos)
 		{
-			var type = _map.GetCellType(pos);
-			return type == CellType.Free;
+			var type = _tiles.GetTileType(pos);
+			return type == TileType.Free;
 		}
 
-		public void SetMap(IMap map)
+		public void SetMap(TilesMap tilesMap)
 		{
-			_map = map;
+			_tiles = tilesMap;
 		}
 
-		public void TrySetCell(CellType type, Vector2Int pos)
+		public void TrySetCell(TileType type, Vector2Int pos)
 		{
-			if (_map.TrySetCell(type, pos) == false)
+			if (_tiles.TrySet(type, pos) == false)
 			{
 				CastCannotModifyMapMessage();
 				return;
@@ -42,11 +45,20 @@ namespace Gameplay.Feature.Map.MapController
 			_mapView.SetFree(pos);
 		}
 
-		public IEnumerable<Vector2Int> AllCoordinates() =>
-			_map.AllCoordinates();
+		public bool TrySetHeroSpawnPoint(Vector2Int pos)
+		{
+			if (Has(pos) == false)
+				return false;
 
-		public IEnumerable<Vector2Int> AllCoordinates(CellType type) =>
-			_map.AllCoordinates(type);
+			HeroSpawnPoint = pos;
+			return true;
+		}
+
+		public IEnumerable<Vector2Int> AllCoordinates() =>
+			_tiles.AllCoordinates();
+
+		public IEnumerable<Vector2Int> AllCoordinates(TileType type) =>
+			_tiles.AllCoordinates(type);
 
 		public Vector2Int WorldToCell(Vector2 pos) =>
 			_mapView.WorldToCell(pos);
@@ -54,8 +66,8 @@ namespace Gameplay.Feature.Map.MapController
 		public Vector2 GetCellCenterWorld(Vector2Int cellPos) =>
 			_mapView.GetCellCenterWorld(cellPos);
 
-		public CellType GetCellType(Vector2Int pos) =>
-			_map.GetCellType(pos);
+		public TileType GetCellType(Vector2Int pos) =>
+			_tiles.GetTileType(pos);
 
 		public void DestroyTile(Vector2Int cellPos)
 		{

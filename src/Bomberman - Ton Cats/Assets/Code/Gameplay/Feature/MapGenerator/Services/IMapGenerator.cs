@@ -5,7 +5,7 @@ namespace Gameplay.Feature.MapGenerator.Services
 {
 	public interface IMapGenerator : IService
 	{
-		IMap CreateMap();
-		IMap Map { get; }
+		void CreateMap();
+		IGrid<TileType> TilesGrid { get; }
 	}
 }

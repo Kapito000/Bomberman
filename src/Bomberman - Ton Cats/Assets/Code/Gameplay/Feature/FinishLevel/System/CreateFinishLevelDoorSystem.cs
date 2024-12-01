@@ -18,7 +18,7 @@ namespace Gameplay.Feature.FinishLevel.System
 		
 		public void Run(IEcsSystems systems)
 		{
-			var freeCells = _mapController.AllCoordinates(CellType.Free).ToArray();
+			var freeCells = _mapController.AllCoordinates(TileType.Free).ToArray();
 			if (freeCells.Length == 0)
 			{
 				Debug.LogWarning("Cannot to spawn the finish level door.");

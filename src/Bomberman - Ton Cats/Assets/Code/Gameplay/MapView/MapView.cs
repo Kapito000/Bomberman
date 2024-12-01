@@ -27,19 +27,19 @@ namespace Gameplay.MapView
 
 		public void SetGroundTile(Vector2Int pos)
 		{
-			var tile = _tileProvider[CellType.Ground];
+			var tile = _tileProvider[TileType.Ground];
 			_groundTailMap.SetTile((Vector3Int)pos, tile);
 		}
 
 		public void SetDestructibleTile(Vector2Int pos)
 		{
-			var tile = _tileProvider[CellType.Destructible];
+			var tile = _tileProvider[TileType.Destructible];
 			_destructibleTailMap.SetTile((Vector3Int)pos, tile);
 		}
 
 		public void SetIndestructibleTile(Vector2Int pos)
 		{
-			var tile = _tileProvider[CellType.Indestructible];
+			var tile = _tileProvider[TileType.Indestructible];
 			_indestructibleTailMap.SetTile((Vector3Int)pos, tile);
 		}
 

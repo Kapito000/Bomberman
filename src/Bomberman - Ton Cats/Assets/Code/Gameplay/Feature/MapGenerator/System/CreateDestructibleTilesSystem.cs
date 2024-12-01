@@ -16,7 +16,7 @@ namespace Gameplay.Feature.MapGenerator.System
 		public void Run(IEcsSystems systems)
 		{
 			var destructibles = _mapGenerator.Map
-				.AllCoordinates(CellType.Destructible);
+				.AllCoordinates(TileType.Destructible);
 			
 			foreach (var cellPos in destructibles)
 				_mapView.SetDestructibleTile(cellPos);

@@ -1,8 +1,8 @@
 ﻿using Gameplay.Feature.MapGenerator.StaticData;
 
-namespace Gameplay.Feature.MapGenerator.Services.DestructibleTilesPlacer
+namespace Gameplay.Feature.MapGenerator.Services.SubGenerator
 {
-	public sealed class StandardDestructibleTilesPlacer : IDestructibleTilesPlacer
+	public sealed class StandardDestructibleTilesPlacer
 	{
 		readonly IMapData _mapData;
 

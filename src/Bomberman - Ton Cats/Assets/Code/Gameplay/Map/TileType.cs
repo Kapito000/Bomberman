@@ -1,13 +1,11 @@
 ﻿namespace Gameplay.Map
 {
-	public enum CellType
+	public enum TileType
 	{
 		None,
 		Free,
-		Ground,
+		// Ground, // Replace.
 		Destructible,
 		Indestructible,
-		HeroSpawnPoint,
-		EnemySpawnPoint,
 	}
 }

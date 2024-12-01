@@ -29,23 +29,23 @@ namespace Gameplay.Feature.Explosion.System
 				var pos = _request.Position();
 				var cellPos = _mapController.WorldToCell(pos);
 				var cellType = _mapController.GetCellType(cellPos);
-				if (cellType == CellType.Free)
+				if (cellType == TileType.Free)
 					continue;
 
-				if (cellType == CellType.None)
+				if (cellType == TileType.None)
 				{
 					Debug.LogWarning("Found \"None\" cell.");
 					continue;
 				}
 
-				if (cellType == CellType.Destructible)
+				if (cellType == TileType.Destructible)
 				{
 					_request
 						.AddBlowUpDestructible()
 						.AddDestructibleTileCellPos(cellPos)
 						;
 				}
-				else if (cellType == CellType.Indestructible)
+				else if (cellType == TileType.Indestructible)
 				{
 					_request
 						.Add<Destructed>()

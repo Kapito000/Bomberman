@@ -11,12 +11,12 @@ namespace Gameplay.MapTile.TileProvider
 	{
 		[SerializeField] TilesByTypeDictionary _tiles;
 
-		public IReadOnlyDictionary<CellType, TileBase> Tiles => _tiles;
+		public IReadOnlyDictionary<TileType, TileBase> Tiles => _tiles;
 
-		public TileBase this[CellType type] =>
+		public TileBase this[TileType type] =>
 			Has(type) ? _tiles[type] : null;
 
-		public bool Has(CellType type) =>
+		public bool Has(TileType type) =>
 			_tiles.ContainsKey(type);
 	}
 }

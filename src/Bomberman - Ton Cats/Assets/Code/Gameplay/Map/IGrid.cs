@@ -3,12 +3,14 @@ using UnityEngine;
 
 namespace Gameplay.Map
 {
-	public interface IGrid : IEnumerable<Cell>, IEnumerable<Vector2Int>
+	public interface IGrid<T> : IEnumerable<Vector2Int>
+		where T : struct
 	{
 		Vector2Int Size { get; }
-		ref Cell this[int x, int y] { get; }
-		ref Cell this[Vector2Int pos] { get; }
 		bool Has(int x, int y);
-		bool Has(Vector2Int pos);
+		bool Has(T value, int x, int y);
+		bool TrySet(T value, int x, int y);
+		bool TryGet(int x, int y, out T value);
+		IEnumerable<Vector2Int> AllCoordinates(T value);
 	}
 }

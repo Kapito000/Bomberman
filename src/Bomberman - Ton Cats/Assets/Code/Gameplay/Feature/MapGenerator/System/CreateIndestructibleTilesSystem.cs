@@ -16,7 +16,7 @@ namespace Gameplay.Feature.MapGenerator.System
 		public void Run(IEcsSystems systems)
 		{
 			var indestructibles = _mapGenerator.Map
-				.AllCoordinates(CellType.Indestructible);
+				.AllCoordinates(TileType.Indestructible);
 			foreach (var cellPos in indestructibles)
 				_mapView.SetIndestructibleTile(cellPos);
 		}

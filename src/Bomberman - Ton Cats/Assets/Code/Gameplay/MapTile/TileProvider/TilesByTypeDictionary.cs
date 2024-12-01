@@ -6,6 +6,6 @@ using UnityEngine.Tilemaps;
 namespace Gameplay.MapTile.TileProvider
 {
 	[Serializable]
-	public sealed class TilesByTypeDictionary : SerializedDictionary<CellType, TileBase>
+	public sealed class TilesByTypeDictionary : SerializedDictionary<TileType, TileBase>
 	{ }
 }

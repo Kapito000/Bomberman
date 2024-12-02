@@ -98,12 +98,16 @@ namespace Gameplay.Feature.Map.MapController
 
 		public bool TryGet(Vector2Int pos, out TileType type) =>
 			_tilesGrid.TryGet(pos, out type);
+		
+		public bool TryGet(Vector2Int pos, out MapItem type) =>
+			_itemsGrid.TryGet(pos, out type);
 
 		public void DestroyTile(Vector2Int cellPos)
 		{
 			_entity.NewEntity()
 				.Add<DestroyedTile>()
-				.AddTilePos(cellPos)
+				.AddCellPos(cellPos)
+				.Add<DestroyedTileRequest>()
 				;
 		}
 

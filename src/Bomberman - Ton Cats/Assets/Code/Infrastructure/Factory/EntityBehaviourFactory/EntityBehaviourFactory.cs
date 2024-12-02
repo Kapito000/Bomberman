@@ -11,11 +11,22 @@ namespace Infrastructure.Factory.EntityBehaviourFactory
 
 		public int InitEntityBehaviour(GameObject obj)
 		{
-			if (!obj.TryGetComponent<EntityBehaviour>(out var entityBehaviour))
-				entityBehaviour = _instantiateService.AddComponent<EntityBehaviour>(obj);
-
+			var entityBehaviour = ReplaceEntityBehaviour(obj);
 			entityBehaviour.AddToEcs(out var entity);
 			return entity;
+		}
+
+		public void BindTogether(int entity, GameObject obj)
+		{
+			var entityBehaviour = ReplaceEntityBehaviour(obj);
+			entityBehaviour.AttachEntity(entity);
+		}
+
+		EntityBehaviour ReplaceEntityBehaviour(GameObject obj)
+		{
+			if (!obj.TryGetComponent<EntityBehaviour>(out var entityBehaviour))
+				entityBehaviour = _instantiateService.AddComponent<EntityBehaviour>(obj);
+			return entityBehaviour;
 		}
 	}
 }

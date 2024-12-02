@@ -14,15 +14,16 @@ namespace Gameplay.Feature.Map.System
 		[Inject] EntityWrapper _destroyRequest;
 		[Inject] IMapController _mapController;
 
-		readonly EcsFilterInject<Inc<DestroyedTile, TilePos>> _destroyedTileFilter;
+		readonly EcsFilterInject<
+			Inc<DestroyedTile, DestroyedTileRequest, CellPos>> _destroyedTileFilter;
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var e in _destroyedTileFilter.Value)
 			{
 				_destroyRequest.SetEntity(e);
-				var cellPos = _destroyRequest.TilePos();
-				_mapController.TrySet(TileType.Free, cellPos);
+				var cell = _destroyRequest.CellPos();
+				_mapController.TrySet(TileType.Free, cell);
 			}
 		}
 	}

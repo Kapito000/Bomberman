@@ -18,16 +18,25 @@ namespace Gameplay.Feature.FinishLevel.Factory
 				.Enity;
 		}
 
-		public int CreateFinishLevelDoor(Vector2 pos)
+		public int CreateFinishLevelDoorEntity(Vector2Int cell)
+		{
+			_entity.NewEntity()
+				.Add<FinishLevelDoor>()
+				.AddCellPos(cell)
+				;
+			return _entity.Enity;
+		}
+
+		public GameObject CreateFinishLevelDoor(int doorEntity, Vector2 pos)
 		{
 			var prefab = _kit.AssetProvider.FinishLevelDoor();
 			var instance = _kit.InstantiateService.Instantiate(prefab, pos);
-			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
-			_entity.SetEntity(e);
+			_kit.EntityBehaviourFactory.BindTogether(doorEntity, instance);
+			_entity.SetEntity(doorEntity);
 			_entity
-				.Add<FinishLevelDoor>()
+				.AddTransform(instance.transform)
 				;
-			return e;
+			return instance;
 		}
 	}
 }

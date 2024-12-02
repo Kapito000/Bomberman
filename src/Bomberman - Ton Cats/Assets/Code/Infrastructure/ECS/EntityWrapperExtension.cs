@@ -327,15 +327,15 @@ namespace Infrastructure.ECS
 			return spriteRendererComponent.Value;
 		}
 
-		public Vector2Int TilePos()
+		public Vector2Int CellPos()
 		{
-			ref var tilePos = ref Get<TilePos>();
+			ref var tilePos = ref Get<CellPos>();
 			return tilePos.Value;
 		}
 
-		public EntityWrapper AddTilePos(Vector2Int pos)
+		public EntityWrapper AddCellPos(Vector2Int pos)
 		{
-			ref var tilePos = ref AddComponent<TilePos>();
+			ref var tilePos = ref AddComponent<CellPos>();
 			tilePos.Value = pos;
 			return this;
 		}

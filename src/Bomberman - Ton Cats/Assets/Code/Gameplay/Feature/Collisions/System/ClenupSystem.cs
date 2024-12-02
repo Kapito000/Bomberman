@@ -16,7 +16,7 @@ namespace Gameplay.Feature.Collisions.System
 		{
 			foreach (var e in _triggerEnterBufferFilter.Value)
 				_world.GetPool<TriggerEnterBuffer>().Del(e);
-			foreach (var e in _triggerEnterBufferFilter.Value)
+			foreach (var e in _triggerExitBufferFilter.Value)
 				_world.GetPool<TriggerExitBuffer>().Del(e);
 		}
 	}

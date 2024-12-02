@@ -27,11 +27,12 @@ namespace Gameplay.Feature.MapGenerator.System
 				return;
 			}
 
-			var cell = SpawnPosition(destructibles);
+			var cell = SpawnCellPos(destructibles);
 			_mapController.TrySet(MapItem.FinishLevelDoor, cell);
+			_finishLevelFactory.CreateFinishLevelDoorEntity(cell);
 		}
 
-		Vector2Int SpawnPosition(Vector2Int[] cells)
+		Vector2Int SpawnCellPos(Vector2Int[] cells)
 		{
 			var index = Random.Range(0, cells.Length);
 			var cell = cells[index];

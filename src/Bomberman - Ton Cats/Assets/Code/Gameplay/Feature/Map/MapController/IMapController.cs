@@ -12,6 +12,7 @@ namespace Gameplay.Feature.Map.MapController
 		bool TrySet(TileType type, Vector2Int cell);
 		bool TrySet(MapItem itemType, Vector2Int cell);
 		bool TryGet(Vector2Int pos, out TileType type);
+		bool TryGet(Vector2Int pos, out MapItem type);
 		bool SetGround(Vector2Int cell);
 		void DestroyTile(Vector2Int cellPos);
 		bool TrySetHeroSpawnPoint(Vector2Int pos);

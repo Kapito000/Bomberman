@@ -28,7 +28,7 @@ namespace Gameplay.Feature.Explosion.System
 
 				var pos = _request.Position();
 				var cellPos = _mapController.WorldToCell(pos);
-				if (_mapController.TryGet(cellPos, out var tileType) == false ||
+				if (_mapController.TryGet(cellPos, out TileType tileType) == false ||
 				    tileType == TileType.Free)
 					continue;
 

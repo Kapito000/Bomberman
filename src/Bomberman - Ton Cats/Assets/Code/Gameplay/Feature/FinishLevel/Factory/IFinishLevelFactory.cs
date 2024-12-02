@@ -6,6 +6,7 @@ namespace Gameplay.Feature.FinishLevel.Factory
 	public interface IFinishLevelFactory : IFactory
 	{
 		int CreateFinishLevelObserver();
-		int CreateFinishLevelDoor(Vector2 pos);
+		GameObject CreateFinishLevelDoor(int doorEntity, Vector2 pos);
+		int CreateFinishLevelDoorEntity(Vector2Int cell);
 	}
 }

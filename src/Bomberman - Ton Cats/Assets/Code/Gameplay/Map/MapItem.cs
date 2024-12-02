@@ -3,7 +3,6 @@
 	public enum MapItem
 	{
 		None,
-		Free,
 		FinishLevelDoor,
 	}
 }

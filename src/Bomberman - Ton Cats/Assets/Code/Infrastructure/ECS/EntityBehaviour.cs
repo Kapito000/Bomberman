@@ -29,6 +29,14 @@ namespace Infrastructure.ECS
 			ResolveEntityDependant();
 		}
 
+		public void AttachEntity(int entity)
+		{
+			SetEntity(entity);
+			RegisterColliders(entity);
+			ConvertConverters(_world, entity);
+			ResolveEntityDependant();
+		}
+
 		public bool TryGetEntity(out int entity)
 		{
 			if (_packedEntity.Unpack(_world, out entity) == false)

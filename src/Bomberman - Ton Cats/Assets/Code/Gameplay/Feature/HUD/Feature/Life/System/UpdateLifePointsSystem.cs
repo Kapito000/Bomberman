@@ -12,9 +12,9 @@ namespace Gameplay.Feature.HUD.Feature.Life.System
 	{
 		[Inject] EntityWrapper _hero;
 		[Inject] EntityWrapper _panel;
-		
+
 		readonly EcsFilterInject<
-			Inc<HeroComponent, LifePoints, ChangeLifePoints>> _heroFilter;
+			Inc<HeroComponent, LifePoints>> _heroFilter;
 		readonly EcsFilterInject<
 			Inc<LifePointsPanelComponent>> _lifePointsPanelFilter;
 

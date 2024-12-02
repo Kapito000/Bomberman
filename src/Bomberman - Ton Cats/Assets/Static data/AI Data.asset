@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4f65c955a74db2933df7bf6e0bfe96, type: 3}
   m_Name: AI Data
   m_EditorClassIdentifier: 
-  <ArrivedDestinationDistance>k__BackingField: 0.5
+  <PatrolDistance>k__BackingField: 5
+  <ArrivedDestinationDistance>k__BackingField: 0.1

@@ -45,7 +45,7 @@ namespace Mitfart.LeoECSLite.UnityIntegration.Editor.Window.Layout {
 
       public void RemoveTab(TData data) {
          if (!_tabs.ContainsKey(data))
-            throw new Exception($"Cant find {data}");
+            return;
 
          Tab<TData> tab = _tabs[data];
          Remove(tab);

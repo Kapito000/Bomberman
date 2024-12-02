@@ -18,7 +18,10 @@ namespace Mitfart.LeoECSLite.UnityIntegration.View {
 
       private bool BakeComponents => _nameBuilder.Settings.BakeComponents;
 
-
+      void OnDestroy()
+      {
+         IsAlive = false;
+      }
 
       public EntityView Construct(EcsWorld world, int entity, NameBuilder nameBuilder) {
          World        = world;
@@ -45,8 +48,13 @@ namespace Mitfart.LeoECSLite.UnityIntegration.View {
 
 
       public void Activate()   => gameObject.SetActive(IsAlive = true);
-      public void Deactivate() => gameObject.SetActive(IsAlive = false);
-
+      public void Deactivate()
+      {
+         if (IsAlive == false)
+            return;
+         
+         gameObject.SetActive(IsAlive = false);
+      }
 
 
       private void RefreshData() => componentsCount = World.GetComponentTypes(Entity, ref ComponentsTypes);

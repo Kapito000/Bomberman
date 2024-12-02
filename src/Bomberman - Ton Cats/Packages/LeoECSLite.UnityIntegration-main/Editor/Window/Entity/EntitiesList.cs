@@ -115,9 +115,9 @@ namespace Mitfart.LeoECSLite.UnityIntegration.Editor.Window.Entity {
          int[] enumerable = indices as int[] ?? indices.ToArray();
 
 
-         int curSelectedEntity = enumerable.Length >= 1
-            ? _entities[enumerable.First()]
-            : -1;
+         int curSelectedEntity = -1;
+         if (_entities.Count != 0 && enumerable.Length >= 1) 
+            curSelectedEntity = _entities[enumerable.First()];
 
 
          if (_selectedEntity >= 0)

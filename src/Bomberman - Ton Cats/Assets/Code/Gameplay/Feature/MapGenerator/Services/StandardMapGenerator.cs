@@ -45,8 +45,8 @@ namespace Gameplay.Feature.MapGenerator.Services
 
 		public void CreateGroundTiles()
 		{
-			foreach (var pos in _tilesGrid)
-				MapController().TrySet(TileType.Ground, pos);
+			foreach (var cell in _tilesGrid)
+				MapController().SetGround(cell);
 		}
 
 		public void CreateIndestructibleTiles()

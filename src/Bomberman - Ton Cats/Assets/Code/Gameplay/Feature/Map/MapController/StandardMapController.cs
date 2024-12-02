@@ -42,17 +42,21 @@ namespace Gameplay.Feature.Map.MapController
 			_spawnGrid = spawnGrid;
 		}
 
-		public bool TrySet(TileType type, Vector2Int pos)
+		public bool TrySet(TileType type, Vector2Int cell)
 		{
-			if (_tilesGrid.TrySet(type, pos) == false)
+			if (type == TileType.Ground ||
+			    _tilesGrid.TrySet(type, cell) == false)
 			{
 				CastCannotModifyMapMessage();
 				return false;
 			}
 
-			_mapView.TrySetTile(type, pos);
+			_mapView.TrySetTile(type, cell);
 			return true;
 		}
+
+		public bool SetGround(Vector2Int cell) =>
+			_mapView.TrySetTile(TileType.Ground, cell);
 
 		public bool TrySetHeroSpawnPoint(Vector2Int pos)
 		{

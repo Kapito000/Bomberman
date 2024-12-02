@@ -10,7 +10,7 @@ namespace Gameplay.Feature.Map.MapController
 		bool Has(Vector2Int pos);
 		void SetGrids(IGrid<TileType> tilesGrid, IGrid<SpawnCellType> spawnGrid);
 		bool IsFree(Vector2Int pos);
-		bool TrySet(TileType type, Vector2Int pos);
+		bool TrySet(TileType type, Vector2Int cell);
 		bool TryGet(Vector2Int pos, out TileType type);
 		void DestroyTile(Vector2Int cellPos);
 		bool TrySetHeroSpawnPoint(Vector2Int pos);
@@ -18,5 +18,6 @@ namespace Gameplay.Feature.Map.MapController
 		Vector2Int WorldToCell(Vector2 pos);
 		IEnumerable<Vector2Int> AllCoordinates();
 		IEnumerable<Vector2Int> AllCoordinates(TileType type);
+		bool SetGround(Vector2Int cell);
 	}
 }

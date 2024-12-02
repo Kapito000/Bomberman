@@ -3,6 +3,7 @@ using Infrastructure;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
+using Mitfart.LeoECSLite.UnityIntegration;
 
 namespace Gameplay.LevelData
 {
@@ -12,5 +13,8 @@ namespace Gameplay.LevelData
 		IEcsRunner EcsRunner { get; set; }
 		IMapController MapController { get; set; }
 		IDevSceneRunner DevSceneRunner { get; set; }
+#if UNITY_EDITOR
+		EcsWorldDebugSystem EcsWorldDebugSystem { get; set; }
+#endif
 	}
 }

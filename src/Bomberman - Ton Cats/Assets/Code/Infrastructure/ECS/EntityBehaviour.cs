@@ -1,7 +1,9 @@
 ﻿using AB_Utility.FromSceneToEntityConverter;
 using Extensions;
 using Gameplay.Collisions;
+using Gameplay.LevelData;
 using Leopotam.EcsLite;
+using Mitfart.LeoECSLite.UnityIntegration.View;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +11,11 @@ namespace Infrastructure.ECS
 {
 	public class EntityBehaviour : MonoBehaviour, IEntityView
 	{
+#if UNITY_EDITOR
+		[Inject] ILevelData _levelData;
+		[SerializeField] EntityView _entityView;
+#endif
+
 		[Inject] EcsWorld _world;
 		[Inject] ICollisionRegistry _collisionRegistry;
 
@@ -23,18 +30,12 @@ namespace Infrastructure.ECS
 		public void AddToEcs(out int entity)
 		{
 			entity = _world.NewEntity();
-			SetEntity(entity);
-			RegisterColliders(entity);
-			ConvertConverters(_world, entity);
-			ResolveEntityDependant();
+			Init(entity);
 		}
 
 		public void AttachEntity(int entity)
 		{
-			SetEntity(entity);
-			RegisterColliders(entity);
-			ConvertConverters(_world, entity);
-			ResolveEntityDependant();
+			Init(entity);
 		}
 
 		public bool TryGetEntity(out int entity)
@@ -56,6 +57,17 @@ namespace Infrastructure.ECS
 
 		protected virtual void OnDestroyed()
 		{ }
+
+		void Init(int entity)
+		{
+			SetEntity(entity);
+			RegisterColliders(entity);
+			ConvertConverters(_world, entity);
+			ResolveEntityDependant();
+#if UNITY_EDITOR
+			_entityView = _levelData.EcsWorldDebugSystem.View.GetEntityView(entity);
+#endif
+		}
 
 		void SetEntity(int entity)
 		{

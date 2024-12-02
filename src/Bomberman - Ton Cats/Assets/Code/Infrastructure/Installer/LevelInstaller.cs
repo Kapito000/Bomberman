@@ -69,6 +69,7 @@ namespace Infrastructure.Installer
 		{
 			_levelData.World = Container.Resolve<EcsWorld>();
 			_levelData.EcsRunner = _ecsRunner;
+			_levelData.MapController = Container.Resolve<IMapController>();
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
 

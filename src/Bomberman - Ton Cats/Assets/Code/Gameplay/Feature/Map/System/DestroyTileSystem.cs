@@ -22,7 +22,7 @@ namespace Gameplay.Feature.Map.System
 			{
 				_destroyRequest.SetEntity(e);
 				var cellPos = _destroyRequest.TilePos();
-				_mapController.TrySetCell(TileType.Free, cellPos);
+				_mapController.TrySet(TileType.Free, cellPos);
 			}
 		}
 	}

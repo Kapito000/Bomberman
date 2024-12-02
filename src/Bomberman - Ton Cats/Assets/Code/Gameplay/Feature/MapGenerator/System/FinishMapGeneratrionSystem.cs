@@ -4,13 +4,13 @@ using Zenject;
 
 namespace Gameplay.Feature.MapGenerator.System
 {
-	public sealed class CreateIndestructibleTilesSystem : IEcsRunSystem
+	public sealed class FinishMapGeneratrionSystem : IEcsRunSystem
 	{
 		[Inject] IMapGenerator _mapGenerator;
 
 		public void Run(IEcsSystems systems)
 		{
-			_mapGenerator.CreateIndestructibleTiles();
+			_mapGenerator.SetNoneAsFree();
 		}
 	}
 }

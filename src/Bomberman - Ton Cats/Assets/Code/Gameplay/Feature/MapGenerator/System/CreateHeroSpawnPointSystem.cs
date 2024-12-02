@@ -14,8 +14,10 @@ namespace Gameplay.Feature.MapGenerator.System
 
 		public void Run(IEcsSystems systems)
 		{
-			var spawnPoint = _mapGenerator.Map.HeroSpawnPoint;
-			var pos = _mapView.GetCellCenterWorld(spawnPoint);
+			var spawnCell = _mapGenerator.CreateHeroSpawnCell();
+			_mapGenerator.CreateHeroSafeArea();
+			
+			var pos = _mapView.GetCellCenterWorld(spawnCell);
 			_heroFactory.CreateHeroSpawnPoint(pos);
 		}
 	}

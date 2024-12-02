@@ -9,17 +9,11 @@ namespace Gameplay.Feature.MapGenerator.System
 {
 	public sealed class CreateDestructibleTilesSystem : IEcsRunSystem
 	{
-		[Inject] IMapView _mapView;
-		[Inject] ILevelData _levelData;
 		[Inject] IMapGenerator _mapGenerator;
 
 		public void Run(IEcsSystems systems)
 		{
-			var destructibles = _mapGenerator.Map
-				.AllCoordinates(TileType.Destructible);
-			
-			foreach (var cellPos in destructibles)
-				_mapView.SetDestructibleTile(cellPos);
+			_mapGenerator.CreateDestructibleWalls();
 		}
 	}
 }

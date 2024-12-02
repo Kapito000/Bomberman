@@ -15,34 +15,43 @@ namespace Gameplay.Feature.Map.MapController
 		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _entity;
 
-		IGrid<TileType> _tiles;
+		IGrid<TileType> _tilesGrid;
+		IGrid<SpawnCellType> _spawnGrid;
 
-		public Vector2Int Size => _tiles.Size;
-		public Vector2Int HeroSpawnPoint { get; set; }
+		public IGrid<TileType> TilesGrid => _tilesGrid;
+		public IGrid<SpawnCellType> SpawnGrid => _spawnGrid;
+
+		public Vector2Int Size => _tilesGrid.Size;
+		public Vector2Int HeroSpawnPoint { get; private set; }
 
 		public bool Has(Vector2Int pos) =>
-			_tiles.Has(pos);
+			_tilesGrid.Has(pos);
 
 		public bool IsFree(Vector2Int pos)
 		{
-			var type = _tiles.GetTileType(pos);
+			if (TryGet(pos, out TileType type) == false)
+				return false;
+
 			return type == TileType.Free;
 		}
 
-		public void SetMap(TilesMap tilesMap)
+		public void SetGrids(IGrid<TileType> tilesGrid,
+			IGrid<SpawnCellType> spawnGrid)
 		{
-			_tiles = tilesMap;
+			_tilesGrid = tilesGrid;
+			_spawnGrid = spawnGrid;
 		}
 
-		public void TrySetCell(TileType type, Vector2Int pos)
+		public bool TrySet(TileType type, Vector2Int pos)
 		{
-			if (_tiles.TrySet(type, pos) == false)
+			if (_tilesGrid.TrySet(type, pos) == false)
 			{
 				CastCannotModifyMapMessage();
-				return;
+				return false;
 			}
 
-			_mapView.SetFree(pos);
+			_mapView.TrySetTile(type, pos);
+			return true;
 		}
 
 		public bool TrySetHeroSpawnPoint(Vector2Int pos)
@@ -55,10 +64,10 @@ namespace Gameplay.Feature.Map.MapController
 		}
 
 		public IEnumerable<Vector2Int> AllCoordinates() =>
-			_tiles.AllCoordinates();
+			_tilesGrid;
 
 		public IEnumerable<Vector2Int> AllCoordinates(TileType type) =>
-			_tiles.AllCoordinates(type);
+			_tilesGrid.AllCoordinates(type);
 
 		public Vector2Int WorldToCell(Vector2 pos) =>
 			_mapView.WorldToCell(pos);
@@ -66,8 +75,8 @@ namespace Gameplay.Feature.Map.MapController
 		public Vector2 GetCellCenterWorld(Vector2Int cellPos) =>
 			_mapView.GetCellCenterWorld(cellPos);
 
-		public TileType GetCellType(Vector2Int pos) =>
-			_tiles.GetTileType(pos);
+		public bool TryGet(Vector2Int pos, out TileType type) =>
+			_tilesGrid.TryGet(pos, out type);
 
 		public void DestroyTile(Vector2Int cellPos)
 		{

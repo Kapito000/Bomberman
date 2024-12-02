@@ -25,22 +25,38 @@ namespace Gameplay.MapView
 				_destructibleTailMap, _indestructibleTailMap);
 		}
 
-		public void SetGroundTile(Vector2Int pos)
+		public bool TrySetTile(TileType type, Vector2Int pos)
 		{
-			var tile = _tileProvider[TileType.Ground];
-			_groundTailMap.SetTile((Vector3Int)pos, tile);
-		}
+			if (type == TileType.Free)
+			{
+				_interactive.SetFree(pos);
+				return true;
+			}
 
-		public void SetDestructibleTile(Vector2Int pos)
-		{
-			var tile = _tileProvider[TileType.Destructible];
-			_destructibleTailMap.SetTile((Vector3Int)pos, tile);
-		}
+			var tile = _tileProvider[type];
+			if (tile == null)
+			{
+				CastCannotModifyMapViewMessage();
+				return false;
+			}
 
-		public void SetIndestructibleTile(Vector2Int pos)
-		{
-			var tile = _tileProvider[TileType.Indestructible];
-			_indestructibleTailMap.SetTile((Vector3Int)pos, tile);
+			switch (type)
+			{
+				case TileType.Ground:
+					_groundTailMap.SetTile((Vector3Int)pos, tile);
+					return true;
+
+				case TileType.Destructible:
+					_destructibleTailMap.SetTile((Vector3Int)pos, tile);
+					return true;
+
+				case TileType.Indestructible:
+					_indestructibleTailMap.SetTile((Vector3Int)pos, tile);
+					return true;
+			}
+
+			CastCannotModifyMapViewMessage();
+			return false;
 		}
 
 		public Vector2 GetCellCenterWorld(Vector2Int pos) =>
@@ -63,9 +79,7 @@ namespace Gameplay.MapView
 			return tile != null;
 		}
 
-		public void SetFree(Vector2Int cellPos)
-		{
-			_interactive.SetFree(cellPos);
-		}
+		void CastCannotModifyMapViewMessage() =>
+			Debug.LogError("Cannot to modify map view.");
 	}
 }

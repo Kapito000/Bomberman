@@ -20,20 +20,23 @@ namespace Gameplay.Feature.MapGenerator.Services.SubGenerator
 			_safeAreaCalculator = new CrossSafeAreaCalculator();
 		}
 
-		public void CreateSpawnPoints(Vector2Int heroSpawnPoint,
+		public IEnumerable<Vector2Int> CreateSpawnCells(Vector2Int heroSpawnPoint,
 			IGrid<TileType> tilesGrid, IGrid<SpawnCellType> spawnGrid)
 		{
+			var result = new List<Vector2Int>();
 			var availablePoints = AvailablePoints(heroSpawnPoint, tilesGrid);
 			for (var i = 0; i < availablePoints.Count; i++)
 			{
 				if (CanCreateSpawnPoint())
 				{
 					var pos = availablePoints[i];
+					result.Add(pos);
 					tilesGrid.TrySet(TileType.Free, pos);
 					spawnGrid.TrySet(SpawnCellType.EnemySpawnPoint, pos);
 					availablePoints.RemoveAt(i);
 				}
 			}
+			return result;
 		}
 
 		public void CreateSafeArea(

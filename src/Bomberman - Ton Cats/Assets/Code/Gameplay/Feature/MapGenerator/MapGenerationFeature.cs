@@ -9,10 +9,11 @@ namespace Gameplay.Feature.MapGenerator
 		{
 			AddInit<CreateMapSystem>();
 			AddInit<CreateGroundSystem>();
-			AddInit<CreateDestructibleTilesSystem>();
 			AddInit<CreateIndestructibleTilesSystem>();
 			AddInit<CreateHeroSpawnPointSystem>();
 			AddInit<CreateEnemySpawnPointSystem>();
+			AddInit<CreateDestructibleTilesSystem>();
+			AddInit<FinishMapGeneratrionSystem>();
 			AddInit<BindNavMeshSystem>();
 		}
 	}

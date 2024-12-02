@@ -4,7 +4,7 @@
 	{
 		None,
 		Free,
-		// Ground, // Replace.
+		Ground,
 		Destructible,
 		Indestructible,
 	}

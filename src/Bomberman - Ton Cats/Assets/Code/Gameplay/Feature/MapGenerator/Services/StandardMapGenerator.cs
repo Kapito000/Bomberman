@@ -40,7 +40,8 @@ namespace Gameplay.Feature.MapGenerator.Services
 			var size = _mapData.MapSize + new Vector2Int(2, 2);
 			_tilesGrid = new TilesGrid(size.x, size.y);
 			_spawnGrid = new SpawnGrid(size.x, size.y);
-			MapController().SetGrids(_tilesGrid, _spawnGrid);
+			var itemGrid = new ItemGrid(size.x, size.y);
+			MapController().SetGrids(_tilesGrid, _spawnGrid, itemGrid);
 		}
 
 		public void CreateGroundTiles()

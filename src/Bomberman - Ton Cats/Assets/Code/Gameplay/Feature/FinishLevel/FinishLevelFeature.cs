@@ -1,4 +1,5 @@
 ﻿using Gameplay.Feature.FinishLevel.System;
+using Gameplay.Feature.MapGenerator.System;
 using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature.FinishLevel

@@ -15,6 +15,8 @@ namespace Gameplay.Feature.MapGenerator
 			AddInit<CreateDestructibleTilesSystem>();
 			AddInit<FinishMapGeneratrionSystem>();
 			AddInit<BindNavMeshSystem>();
+			
+			AddInit<CreateFinishLevelDoorSystem>();
 		}
 	}
 }

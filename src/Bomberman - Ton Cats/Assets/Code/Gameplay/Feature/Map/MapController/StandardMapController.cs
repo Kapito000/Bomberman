@@ -2,6 +2,7 @@
 using Gameplay.Feature.Map.Component;
 using Gameplay.Map;
 using Gameplay.MapView;
+using Infrastructure;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -15,31 +16,29 @@ namespace Gameplay.Feature.Map.MapController
 		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _entity;
 
+		Vector2Int _heroSpawnPoint;
+		
+		IGrid<MapItem> _itemsGrid;
 		IGrid<TileType> _tilesGrid;
 		IGrid<SpawnCellType> _spawnGrid;
 
-		public IGrid<TileType> TilesGrid => _tilesGrid;
-		public IGrid<SpawnCellType> SpawnGrid => _spawnGrid;
+		public bool HasTile(Vector2Int cell) =>
+			_tilesGrid.Has(cell);
 
-		public Vector2Int Size => _tilesGrid.Size;
-		public Vector2Int HeroSpawnPoint { get; private set; }
-
-		public bool Has(Vector2Int pos) =>
-			_tilesGrid.Has(pos);
-
-		public bool IsFree(Vector2Int pos)
+		public bool IsFree(Vector2Int cell)
 		{
-			if (TryGet(pos, out TileType type) == false)
+			if (TryGet(cell, out TileType type) == false)
 				return false;
 
 			return type == TileType.Free;
 		}
 
 		public void SetGrids(IGrid<TileType> tilesGrid,
-			IGrid<SpawnCellType> spawnGrid)
+			IGrid<SpawnCellType> spawnGrid, ItemGrid itemsGrid)
 		{
 			_tilesGrid = tilesGrid;
 			_spawnGrid = spawnGrid;
+			_itemsGrid = itemsGrid;
 		}
 
 		public bool TrySet(TileType type, Vector2Int cell)
@@ -55,15 +54,33 @@ namespace Gameplay.Feature.Map.MapController
 			return true;
 		}
 
+		public bool TrySet(MapItem itemType, Vector2Int cell)
+		{
+			if (itemType == MapItem.None ||
+			    _itemsGrid.TrySet(itemType, cell) == false)
+			{
+				CastCannotModifyMapMessage();
+				return false;
+			}
+
+			if (_tilesGrid.TryGet(cell, out var tileType) &&
+			    tileType == TileType.Free)
+			{
+				ActionImitation.Execute($"Spawn item: \"{itemType}\".");
+			}
+			
+			return true;
+		}
+
 		public bool SetGround(Vector2Int cell) =>
 			_mapView.TrySetTile(TileType.Ground, cell);
 
 		public bool TrySetHeroSpawnPoint(Vector2Int pos)
 		{
-			if (Has(pos) == false)
+			if (HasTile(pos) == false)
 				return false;
 
-			HeroSpawnPoint = pos;
+			_heroSpawnPoint = pos;
 			return true;
 		}
 

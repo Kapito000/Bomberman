@@ -385,5 +385,18 @@ namespace Infrastructure.ECS
 			component.Value = gameTimerDisplay;
 			return this;
 		}
+
+		public AudioSource AudioSource()
+		{
+			ref var audioSourceComponent = ref Get<AudioSourceComponent>();
+			return audioSourceComponent.Value;
+		}
+		
+		public EntityWrapper AddAudioSource(AudioSource audioSource)
+		{
+			ref var audioSourceComponent = ref AddComponent<AudioSourceComponent>();
+			audioSourceComponent.Value = audioSource;
+			return this;
+		}
 	}
 }

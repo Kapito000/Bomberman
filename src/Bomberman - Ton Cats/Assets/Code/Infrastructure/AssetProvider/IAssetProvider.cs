@@ -32,5 +32,6 @@ namespace Infrastructure.AssetProvider
 		GameTimerDisplay GameTimerDisplay();
 		GameObject FinishLevelDoor();
 		Dictionary<WindowId, BaseWindow> AllWindows { get; }
+		GameObject GameMusicPrefab();
 	}
 }

@@ -4,7 +4,8 @@ using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.Hero.StaticData;
 using Gameplay.Feature.MapGenerator.Services;
 using Gameplay.Feature.MapGenerator.StaticData;
-using Gameplay.Feature.Timer.Component;
+using Gameplay.Feature.Music;
+using Gameplay.Feature.Music.Factory;
 using Gameplay.Feature.Timer.StaticData;
 using Gameplay.Input;
 using Gameplay.Input.Character;
@@ -41,6 +42,7 @@ namespace Infrastructure.Installer
 		{
 			GameTimerData();
 			BindLevelData();
+			BindFactories();
 			BindStaticData();
 			BindFactoryKit();
 			BindTimeService();
@@ -56,6 +58,11 @@ namespace Infrastructure.Installer
 			BindCollisionRegistry();
 			BindInstantiateService();
 			BindEntityBehaviourFactory();
+		}
+
+		void BindFactories()
+		{
+			Container.Bind<IMusicFactory>().To<MusicFactory>().AsSingle();
 		}
 
 		void BindAudioService()

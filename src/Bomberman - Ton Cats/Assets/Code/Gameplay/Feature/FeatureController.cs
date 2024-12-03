@@ -14,6 +14,7 @@ using Gameplay.Feature.Input;
 using Gameplay.Feature.Life;
 using Gameplay.Feature.Map;
 using Gameplay.Feature.MapGenerator;
+using Gameplay.Feature.Music;
 using Gameplay.Feature.Timer;
 using Gameplay.Feature.UI;
 using Infrastructure.Factory.SystemFactory;
@@ -43,6 +44,7 @@ namespace Gameplay.Feature
 			Add<UiFeature>();
 			Add<HudFeature>();
 			Add<FinishLevelFeature>();
+			Add<MusicFeature>();
 			Add<DestructionFeature>();
 		}
 

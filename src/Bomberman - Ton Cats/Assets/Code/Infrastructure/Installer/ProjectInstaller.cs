@@ -1,4 +1,5 @@
-﻿using Gameplay.Collisions;
+﻿using Gameplay.Audio.Service;
+using Gameplay.Collisions;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.Hero.StaticData;
 using Gameplay.Feature.MapGenerator.Services;
@@ -45,6 +46,7 @@ namespace Infrastructure.Installer
 			BindTimeService();
 			BindSceneLoader();
 			BindUIFactories();
+			BindAudioService();
 			BindInputService();
 			BindMapGenerator();
 			BindEntityWrapper();
@@ -54,6 +56,11 @@ namespace Infrastructure.Installer
 			BindCollisionRegistry();
 			BindInstantiateService();
 			BindEntityBehaviourFactory();
+		}
+
+		void BindAudioService()
+		{
+			Container.Bind<IAudioService>().To<AudioService>().AsSingle();
 		}
 
 		void GameTimerData()

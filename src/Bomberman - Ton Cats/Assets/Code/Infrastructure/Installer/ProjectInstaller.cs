@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Gameplay.Audio;
-using Gameplay.Audio.MixerProvider;
+using Gameplay.Audio.MixerGroupProvider;
 using Gameplay.Audio.Service;
 using Gameplay.Collisions;
 using Gameplay.Feature.Enemy.Base.StaticData;

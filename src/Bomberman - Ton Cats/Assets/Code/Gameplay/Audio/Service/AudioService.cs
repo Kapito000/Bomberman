@@ -1,4 +1,4 @@
-﻿using Gameplay.Audio.MixerProvider;
+﻿using Gameplay.Audio.MixerGroupProvider;
 using UnityEngine;
 using Zenject;
 

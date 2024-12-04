@@ -1,7 +1,7 @@
 ﻿using Infrastructure;
 using UnityEngine.Audio;
 
-namespace Gameplay.Audio.MixerProvider
+namespace Gameplay.Audio.MixerGroupProvider
 {
 	public interface IAudioMixerGroupProvider : IService
 	{

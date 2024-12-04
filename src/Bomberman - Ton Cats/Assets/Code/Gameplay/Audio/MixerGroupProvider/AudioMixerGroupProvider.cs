@@ -2,7 +2,7 @@
 using UnityEngine.Audio;
 using Menu = Constant.CreateAssetMenu;
 
-namespace Gameplay.Audio.MixerProvider
+namespace Gameplay.Audio.MixerGroupProvider
 {
 	[CreateAssetMenu(menuName = Menu.Path.c_StaticData + nameof(AudioMixerGroupProvider))]
 	public sealed class AudioMixerGroupProvider : ScriptableObject,

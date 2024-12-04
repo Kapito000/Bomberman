@@ -1,4 +1,5 @@
 ﻿using Gameplay.Audio;
+using Gameplay.Audio.ClipProvider;
 using Gameplay.Audio.Service;
 using Gameplay.Feature.GameMusic.Component;
 using Infrastructure.ECS;
@@ -15,6 +16,7 @@ namespace Gameplay.Feature.GameMusic.Factory
 		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _entity;
 		[Inject] IAudioService _audioService;
+		[Inject] IAudioClipProvider _audioClipProvider;
 
 		public int CreateGameMusic()
 		{
@@ -50,6 +52,7 @@ namespace Gameplay.Feature.GameMusic.Factory
 		{
 			_audioService.AssignMixerGroup(audioSource, MixerGroup.Music);
 			audioSource.playOnAwake = false;
+			_audioService.AssignMusicClip(audioSource, MusicType.GameAmbient);
 		}
 	}
 }

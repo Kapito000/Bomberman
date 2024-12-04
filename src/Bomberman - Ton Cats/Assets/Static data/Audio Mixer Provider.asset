@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a45e2b3577754b9a9e3ecca0b630a395, type: 3}
-  m_Name: Audio Mixer Group Provider
+  m_Name: Audio Mixer Provider
   m_EditorClassIdentifier: 
   <Mixer>k__BackingField: {fileID: 24100000, guid: ba5cc7b599d5eb14f92aa41ee26b8f86, type: 2}
   _groups:
-    _keyData: 01000000020000000300000004000000
+    _keyData: 01000000020000000300000000000000
     _valueData:
     - {fileID: 24300002, guid: ba5cc7b599d5eb14f92aa41ee26b8f86, type: 2}
     - {fileID: -6364841870596985134, guid: ba5cc7b599d5eb14f92aa41ee26b8f86, type: 2}

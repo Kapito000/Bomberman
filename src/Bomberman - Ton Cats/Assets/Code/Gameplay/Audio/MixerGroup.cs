@@ -2,7 +2,6 @@
 {
 	public enum MixerGroup
 	{
-		None,
 		Main,
 		UI,
 		SFX,

@@ -3,9 +3,9 @@ using UnityEngine.Audio;
 
 namespace Gameplay.Audio.MixerGroupProvider
 {
-	public interface IAudioMixerGroupProvider : IService
+	public interface IAudioMixerProvider : IService
 	{
 		AudioMixer Mixer { get; }
-		AudioMixerGroup MixerGroup(MixerGroup group);
+		bool TryGetMixerGroup(MixerGroup groupType, out AudioMixerGroup group);
 	}
 }

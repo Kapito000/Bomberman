@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Gameplay.Audio;
+using Gameplay.Audio.ClipProvider;
 using Gameplay.Audio.MixerGroupProvider;
 using Gameplay.Audio.Service;
 using Gameplay.Collisions;
@@ -40,9 +41,9 @@ namespace Infrastructure.Installer
 		[SerializeField] GameTimerData _gameTimerData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
+		[SerializeField] AudioClipProvider _audioClipProvider;
 		[SerializeField] DirectLinkProvider _assetProvider;
-		[FormerlySerializedAs("_audioMixerGroupGroupProvider"), FormerlySerializedAs("_audioMixerProvider"), SerializeField]
-		AudioMixerGroupProvider _audioMixerGroupProvider;
+		[SerializeField] AudioMixerProvider _audioMixerProvider;
 
 		public override void InstallBindings()
 		{
@@ -56,6 +57,7 @@ namespace Infrastructure.Installer
 			BindAudioService();
 			BindInputService();
 			BindMapGenerator();
+			AudioClipProvider();
 			BindEntityWrapper();
 			BindAssetProvider();
 			BindPhysicsService();
@@ -66,10 +68,15 @@ namespace Infrastructure.Installer
 			BindEntityBehaviourFactory();
 		}
 
+		void AudioClipProvider()
+		{
+			Container.Bind<IAudioClipProvider>().FromInstance(_audioClipProvider).AsSingle();
+		}
+
 		void BindAudioMixerProvider()
 		{
-			Container.Bind<IAudioMixerGroupProvider>()
-				.FromMethod(CreateAudioMixerGroupProvider).AsSingle();
+			Container.Bind<IAudioMixerProvider>().FromInstance(_audioMixerProvider)
+				.AsSingle();
 		}
 
 		void BindAudioService()
@@ -175,33 +182,6 @@ namespace Infrastructure.Installer
 		void BindFactoryKit()
 		{
 			Container.Bind<IFactoryKit>().To<FactoryKit>().AsSingle();
-		}
-
-		IAudioMixerGroupProvider CreateAudioMixerGroupProvider()
-		{
-			CheckAudioMixerProviderContent();
-			return _audioMixerGroupProvider;
-		}
-
-		void CheckAudioMixerProviderContent()
-		{
-			if (_audioMixerGroupProvider.Mixer == null)
-			{
-				Debug.LogWarning($"{nameof(IAudioMixerGroupProvider)} not contains " +
-					$"{nameof(AudioMixer)}");
-			}
-			var values = Enum
-				.GetValues(typeof(MixerGroup))
-				.Cast<MixerGroup>()
-				.ToArray();
-			for (int i = 1; i < values.Length; i++)
-			{
-				if (_audioMixerGroupProvider.Has(values[i]) == false)
-				{
-					Debug.LogWarning($"{nameof(IAudioMixerGroupProvider)} not contains " +
-						$"\"{values[i]}\" group.");
-				}
-			}
 		}
 	}
 }

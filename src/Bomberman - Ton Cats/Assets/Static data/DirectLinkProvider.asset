@@ -20,6 +20,7 @@ MonoBehaviour:
   _explosion: {fileID: 4520389842868597706, guid: f2b0be94c295e7d4b88034b81dd5016a, type: 3}
   _baseEnemy: {fileID: 5150371019810778337, guid: b400a96b57938b444bda5e9f8daa434c, type: 3}
   _finishLevelDoor: {fileID: 5717685852050178812, guid: 11e17d803bf338245b468ea41f01af8a, type: 3}
+  _gameMusicPrefab: {fileID: 6151127893788280244, guid: a57fa11e23da93849a82fa499065628d, type: 3}
   _destructibleTile: {fileID: 4954203463075040424, guid: dfaa6b8ca3608ce4b9c4b19e8271c4ca, type: 3}
   _root: {fileID: 4644769364156463938, guid: 2a25ecfac15109f4b9f21645efa713e4, type: 3}
   _eventSystem: {fileID: 176851465483218010, guid: a3c37fa5708cd3944a3f5bb8921fd59e, type: 3}

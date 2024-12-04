@@ -1,11 +1,13 @@
-﻿using Gameplay.Audio.Service;
+﻿using System;
+using System.Linq;
+using Gameplay.Audio;
+using Gameplay.Audio.MixerProvider;
+using Gameplay.Audio.Service;
 using Gameplay.Collisions;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.Hero.StaticData;
 using Gameplay.Feature.MapGenerator.Services;
 using Gameplay.Feature.MapGenerator.StaticData;
-using Gameplay.Feature.Music;
-using Gameplay.Feature.Music.Factory;
 using Gameplay.Feature.Timer.StaticData;
 using Gameplay.Input;
 using Gameplay.Input.Character;
@@ -24,6 +26,8 @@ using Infrastructure.InstantiateService;
 using Infrastructure.SceneLoader;
 using Infrastructure.TimeService;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Infrastructure.Installer
@@ -37,12 +41,13 @@ namespace Infrastructure.Installer
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
 		[SerializeField] DirectLinkProvider _assetProvider;
+		[FormerlySerializedAs("_audioMixerGroupGroupProvider"), FormerlySerializedAs("_audioMixerProvider"), SerializeField]
+		AudioMixerGroupProvider _audioMixerGroupProvider;
 
 		public override void InstallBindings()
 		{
 			GameTimerData();
 			BindLevelData();
-			BindFactories();
 			BindStaticData();
 			BindFactoryKit();
 			BindTimeService();
@@ -56,13 +61,15 @@ namespace Infrastructure.Installer
 			BindPhysicsService();
 			BindGameStateMachine();
 			BindCollisionRegistry();
+			BindAudioMixerProvider();
 			BindInstantiateService();
 			BindEntityBehaviourFactory();
 		}
 
-		void BindFactories()
+		void BindAudioMixerProvider()
 		{
-			Container.Bind<IMusicFactory>().To<MusicFactory>().AsSingle();
+			Container.Bind<IAudioMixerGroupProvider>()
+				.FromMethod(CreateAudioMixerGroupProvider).AsSingle();
 		}
 
 		void BindAudioService()
@@ -168,6 +175,33 @@ namespace Infrastructure.Installer
 		void BindFactoryKit()
 		{
 			Container.Bind<IFactoryKit>().To<FactoryKit>().AsSingle();
+		}
+
+		IAudioMixerGroupProvider CreateAudioMixerGroupProvider()
+		{
+			CheckAudioMixerProviderContent();
+			return _audioMixerGroupProvider;
+		}
+
+		void CheckAudioMixerProviderContent()
+		{
+			if (_audioMixerGroupProvider.Mixer == null)
+			{
+				Debug.LogWarning($"{nameof(IAudioMixerGroupProvider)} not contains " +
+					$"{nameof(AudioMixer)}");
+			}
+			var values = Enum
+				.GetValues(typeof(MixerGroup))
+				.Cast<MixerGroup>()
+				.ToArray();
+			for (int i = 1; i < values.Length; i++)
+			{
+				if (_audioMixerGroupProvider.Has(values[i]) == false)
+				{
+					Debug.LogWarning($"{nameof(IAudioMixerGroupProvider)} not contains " +
+						$"\"{values[i]}\" group.");
+				}
+			}
 		}
 	}
 }

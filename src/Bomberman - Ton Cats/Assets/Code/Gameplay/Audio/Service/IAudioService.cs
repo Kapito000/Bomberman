@@ -1,11 +1,10 @@
 ﻿using Infrastructure;
-using UnityEngine.Audio;
+using UnityEngine;
 
 namespace Gameplay.Audio.Service
 {
 	public interface IAudioService : IService
 	{
-		public AudioMixer Mixer(MixerGroup mixerGroup);
-		public AudioMixerGroup MixerGroup(MixerGroup mixerGroup);
+		void AssignMixerGroup(AudioSource audioSource, MixerGroup mixerGroup);
 	}
 }

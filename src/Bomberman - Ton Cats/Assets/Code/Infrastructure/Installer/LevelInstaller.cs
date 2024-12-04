@@ -7,6 +7,7 @@ using Gameplay.Feature.Enemy.Base.Factory;
 using Gameplay.Feature.Enemy.Base.System;
 using Gameplay.Feature.Explosion.Factory;
 using Gameplay.Feature.FinishLevel.Factory;
+using Gameplay.Feature.GameMusic.Factory;
 using Gameplay.Feature.Hero.Factory;
 using Gameplay.Feature.HUD.Factory;
 using Gameplay.Feature.Map.MapController;
@@ -18,7 +19,6 @@ using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.Factory.SystemFactory;
 using Infrastructure.FinishLevel;
-using Infrastructure.FinishLevel.Condition;
 using Infrastructure.FinishLevel.Condition.GameOver;
 using Infrastructure.FinishLevel.Condition.LevelComplete;
 using Infrastructure.GameStatus;
@@ -121,8 +121,9 @@ namespace Infrastructure.Installer
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
 			Container.Bind<IBombFactory>().To<BombFactory>().AsSingle();
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
-			Container.Bind<IExplosionFactory>().To<ExplosionFactory>().AsSingle();
 			Container.Bind<IBaseEnemyFactory>().To<BaseEnemyFactory>().AsSingle();
+			Container.Bind<IExplosionFactory>().To<ExplosionFactory>().AsSingle();
+			Container.Bind<IGameMusicFactory>().To<GameMusicFactory>().AsSingle();
 			Container.Bind<IFinishLevelFactory>().To<FinishLevelFactory>().AsSingle();
 		}
 

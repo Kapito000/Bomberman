@@ -1,15 +1,17 @@
 ﻿using Gameplay.Audio;
 using Gameplay.Audio.Service;
-using Gameplay.Feature.Music.Component;
+using Gameplay.Feature.GameMusic.Component;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
+using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Feature.Music.Factory
+namespace Gameplay.Feature.GameMusic.Factory
 {
-	public sealed class MusicFactory : IMusicFactory
+	public sealed class GameMusicFactory : IGameMusicFactory
 	{
+		[Inject] EcsWorld _world;
 		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _entity;
 		[Inject] IAudioService _audioService;
@@ -19,10 +21,11 @@ namespace Gameplay.Feature.Music.Factory
 			var prefab = _kit.AssetProvider.GameMusicPrefab();
 			var instance = _kit.InstantiateService.Instantiate(prefab);
 			var audioSource = GetAudioSource(instance);
-			
+
 			AdjustAudioSource(audioSource);
 
 			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			_entity.SetEntity(e);
 			_entity.SetEntity(e);
 			_entity
 				.Add<MusicComponent>()
@@ -45,9 +48,7 @@ namespace Gameplay.Feature.Music.Factory
 
 		void AdjustAudioSource(AudioSource audioSource)
 		{
-			var mixerGroup = _audioService.MixerGroup(MixerGroup.Music);
-			audioSource.outputAudioMixerGroup = mixerGroup;
-			
+			_audioService.AssignMixerGroup(audioSource, MixerGroup.Music);
 			audioSource.playOnAwake = false;
 		}
 	}

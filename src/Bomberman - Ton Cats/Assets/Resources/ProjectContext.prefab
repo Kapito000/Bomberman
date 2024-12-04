@@ -81,3 +81,4 @@ MonoBehaviour:
   _sceneNamesData: {fileID: 11400000, guid: d0022a8e84f23ca43b2a0e9413aaad62, type: 2}
   _tileCollection: {fileID: 11400000, guid: 260116ef626b8464aa40ca488c3f2af4, type: 2}
   _assetProvider: {fileID: 11400000, guid: ca71632310af84646bd2153a470be011, type: 2}
+  _audioMixerGroupProvider: {fileID: 11400000, guid: 3748f66f52b277c4bb22e79c30881386, type: 2}

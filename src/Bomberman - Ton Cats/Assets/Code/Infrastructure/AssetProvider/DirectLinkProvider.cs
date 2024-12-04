@@ -24,6 +24,8 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _explosion;
 		[SerializeField] GameObject _baseEnemy;
 		[SerializeField] GameObject _finishLevelDoor;
+		[Header("Audio")]
+		[SerializeField] GameObject _gameMusicPrefab;
 		[Header("Tile prefabs")]
 		[SerializeField] GameObject _destructibleTile;
 		[Header("UI")]
@@ -61,5 +63,6 @@ namespace Infrastructure.AssetProvider
 		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
 		public Dictionary<WindowId, BaseWindow> AllWindows => _windows;
+		public GameObject GameMusicPrefab() => _gameMusicPrefab;
 	}
 }

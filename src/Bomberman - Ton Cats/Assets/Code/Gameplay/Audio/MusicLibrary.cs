@@ -3,6 +3,6 @@
 namespace Gameplay.Audio
 {
 	[Serializable]
-	public sealed class MusicLibrary : AudioClipLibrary<MusicType>
+	public sealed class MusicLibrary : AudioClipLibrary<AmbientMusic>
 	{ }
 }

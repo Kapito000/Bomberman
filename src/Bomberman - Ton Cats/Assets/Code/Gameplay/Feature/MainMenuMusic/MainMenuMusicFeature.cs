@@ -1,4 +1,5 @@
-﻿using Infrastructure.Factory.SystemFactory;
+﻿using Gameplay.Feature.MainMenuMusic.System;
+using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature.MainMenuMusic
 {
@@ -6,6 +7,8 @@ namespace Gameplay.Feature.MainMenuMusic
 	{
 		public MainMenuMusicFeature(ISystemFactory systemFactory)
 			: base(systemFactory)
-		{ }
+		{
+			AddInit<CreateMainMenuMusiSystem>();
+		}
 	}
 }

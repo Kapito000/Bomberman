@@ -1,5 +1,5 @@
-﻿using Gameplay.Feature;
-using Gameplay.Feature.FeatureControl;
+﻿using Gameplay.Feature.FeatureControl;
+using Gameplay.Feature.MainMenuMusic.Factory;
 using Gameplay.LevelData;
 using Gameplay.MainMenu;
 using Infrastructure.Boot;
@@ -18,6 +18,7 @@ namespace Infrastructure.Installer
 		public override void InstallBindings()
 		{
 			BindInitializable();
+			BindFactories();
 			BindUIServices();
 			BindDevSceneRunner();
 			BindFeatureController();
@@ -26,6 +27,7 @@ namespace Infrastructure.Installer
 		public void Initialize()
 		{
 			InitLevelData();
+			Util.ResolveDiContainerDependences(Container);
 			_gameStateMachine.Enter<MainMenu>();
 		}
 
@@ -33,6 +35,11 @@ namespace Infrastructure.Installer
 		{
 			_levelData.EcsRunner = Container.Resolve<IEcsRunner>();
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
+		}
+
+		void BindFactories()
+		{
+			Container.Bind<IMainMenuMusicFactory>().To<MainMenuMusicFactory>().AsSingle();
 		}
 
 		void BindFeatureController()

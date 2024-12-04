@@ -1,4 +1,5 @@
 ﻿using Gameplay.Audio.ClipProvider;
+using Gameplay.Audio.Factory;
 using Gameplay.Audio.MixerGroupProvider;
 using Gameplay.Audio.Service;
 using Gameplay.Collisions;
@@ -56,6 +57,7 @@ namespace Infrastructure.Installer
 			BindAudioService();
 			BindInputService();
 			BindMapGenerator();
+			BindMusicFactory();
 			BindSystemFactory();
 			BindEntityWrapper();
 			BindAssetProvider();
@@ -68,10 +70,16 @@ namespace Infrastructure.Installer
 			BindEntityBehaviourFactory();
 		}
 
+		void BindMusicFactory()
+		{
+			Container.Bind<IMusicFactory>().To<MusicFactory>()
+				.AsSingle()
+				.MoveIntoAllSubContainers();
+		}
+
 		void BindWorld()
 		{
-			Container.Bind<EcsWorld>()
-				.To<EcsWorld>()
+			Container.Bind<EcsWorld>().To<EcsWorld>()
 				.AsSingle()
 				.MoveIntoAllSubContainers();
 		}

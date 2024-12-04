@@ -3,17 +3,17 @@ using Gameplay.Audio.Factory;
 using Infrastructure.Factory.Kit;
 using Zenject;
 
-namespace Gameplay.Feature.GameMusic.Factory
+namespace Gameplay.Feature.MainMenuMusic.Factory
 {
-	public sealed class GameMusicFactory : IGameMusicFactory
+	public sealed class MainMenuMusicFactory : IMainMenuMusicFactory
 	{
 		[Inject] IFactoryKit _kit;
 		[Inject] IMusicFactory _musicFactory;
 
-		public int CreateGameMusic()
+		public int CreateAmbientMusic()
 		{
 			var prefab = _kit.AssetProvider.GameMusicPrefab();
-			return _musicFactory.CreateAmbientMusic(AmbientMusic.Game, prefab);
+			return _musicFactory.CreateAmbientMusic(AmbientMusic.MainMenu, prefab);
 		}
 	}
 }

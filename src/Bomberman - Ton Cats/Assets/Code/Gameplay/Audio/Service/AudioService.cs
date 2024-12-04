@@ -18,9 +18,9 @@ namespace Gameplay.Audio.Service
 				Debug.LogError($"Cannot to get \"{groupType}\" group.");
 		}
 
-		public void AssignMusicClip(AudioSource audioSource, MusicType musicType)
+		public void AssignMusicClip(AudioSource audioSource, AmbientMusic ambientMusic)
 		{
-			audioSource.clip = _clipProvider.Musics[musicType];
+			audioSource.clip = _clipProvider.Musics[ambientMusic];
 		}
 	}
 }

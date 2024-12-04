@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Infrastructure.Factory.SystemFactory;
 
-namespace Gameplay.Feature
+namespace Gameplay.Feature.FeatureControl
 {
 	public abstract class FeatureController : IFeatureController
 	{

@@ -17,7 +17,7 @@ using Gameplay.Feature.Timer;
 using Gameplay.Feature.UI;
 using Infrastructure.Factory.SystemFactory;
 
-namespace Gameplay.Feature
+namespace Gameplay.Feature.FeatureControl
 {
 	public sealed class GameFeatureController : FeatureController
 	{

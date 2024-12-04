@@ -6,6 +6,7 @@ using Gameplay.Feature.Enemy.AI;
 using Gameplay.Feature.Enemy.Base.Factory;
 using Gameplay.Feature.Enemy.Base.System;
 using Gameplay.Feature.Explosion.Factory;
+using Gameplay.Feature.FeatureControl;
 using Gameplay.Feature.FinishLevel.Factory;
 using Gameplay.Feature.GameMusic.Factory;
 using Gameplay.Feature.Hero.Factory;

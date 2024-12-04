@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Gameplay.Feature
+namespace Gameplay.Feature.FeatureControl
 {
 	public interface IFeatureController : IDisposable
 	{

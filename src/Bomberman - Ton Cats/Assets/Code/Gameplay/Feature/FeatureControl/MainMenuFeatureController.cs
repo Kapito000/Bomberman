@@ -1,7 +1,7 @@
 ﻿using Gameplay.Feature.MainMenuMusic;
 using Infrastructure.Factory.SystemFactory;
 
-namespace Gameplay.Feature
+namespace Gameplay.Feature.FeatureControl
 {
 	public sealed class MainMenuFeatureController : FeatureController
 	{

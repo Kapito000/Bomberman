@@ -14,6 +14,8 @@ namespace Infrastructure.GameStatus.State
 		{
 			if (Util.TryDevStart(_levelData))
 				return;
+			
+			_levelData.EcsRunner.InitWorld();
 		}
 
 		public void Exit()

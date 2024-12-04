@@ -17,7 +17,6 @@ using Gameplay.MapView;
 using Gameplay.Windows;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
-using Infrastructure.Factory.SystemFactory;
 using Infrastructure.FinishLevel;
 using Infrastructure.FinishLevel.Condition.GameOver;
 using Infrastructure.FinishLevel.Condition.LevelComplete;
@@ -36,7 +35,6 @@ namespace Infrastructure.Installer
 		[SerializeField] Tilemap _groundTailMap;
 		[SerializeField] Tilemap _destructibleTailMap;
 		[SerializeField] Tilemap _indestructibleTailMap;
-		[SerializeField] GameEcsRunner _ecsRunner;
 		[SerializeField] NavMeshSurface _navMeshSurface;
 
 		[Inject] ILevelData _levelData;
@@ -45,12 +43,10 @@ namespace Infrastructure.Installer
 		public override void InstallBindings()
 		{
 			BindInitializable();
-			BindWorld();
 			BindMapView();
 			BindFactories();
 			BindAIFunctional();
 			BindMapController();
-			BindSystemFactory();
 			BindDevSceneRunner();
 			BindWindowServices();
 			BindNavigationSurface();
@@ -68,7 +64,7 @@ namespace Infrastructure.Installer
 		void InitLevelData()
 		{
 			_levelData.World = Container.Resolve<EcsWorld>();
-			_levelData.EcsRunner = _ecsRunner;
+			_levelData.EcsRunner = Container.Resolve<IEcsRunner>();
 			_levelData.MapController = Container.Resolve<IMapController>();
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
@@ -81,7 +77,7 @@ namespace Infrastructure.Installer
 			Container.BindInterfacesTo<HeroHealthCondition>().AsSingle();
 			Container.BindInterfacesTo<HeroEnteredIntoFinishLevelDoor>().AsSingle();
 		}
-		
+
 		void BindWindowServices()
 		{
 			Container.Bind<IWindowService>().To<WindowService>().AsSingle();
@@ -129,17 +125,8 @@ namespace Infrastructure.Installer
 
 		void BindFeatureController()
 		{
-			Container.Bind<FeatureController>().AsSingle();
-		}
-
-		void BindSystemFactory()
-		{
-			Container.Bind<ISystemFactory>().To<StandardSystemFactory>().AsSingle();
-		}
-
-		void BindWorld()
-		{
-			Container.Bind<EcsWorld>().FromInstance(new EcsWorld()).AsSingle();
+			Container.Bind<IFeatureController>().To<GameFeatureController>()
+				.AsSingle();
 		}
 
 		void BindInitializable()

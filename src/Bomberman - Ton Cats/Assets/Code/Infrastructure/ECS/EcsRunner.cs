@@ -9,12 +9,12 @@ using Mitfart.LeoECSLite.UnityIntegration;
 
 namespace Infrastructure.ECS
 {
-	public sealed class GameEcsRunner : MonoBehaviour, IEcsRunner
+	public sealed class EcsRunner : MonoBehaviour, IEcsRunner
 	{
 		[Inject] EcsWorld _world;
 		[Inject] ILevelData _levelData;
 		[Inject] ISystemFactory _systemFactory;
-		[Inject] FeatureController _features;
+		[Inject] IFeatureController _features;
 
 		IEcsSystems _supprotiveSystems;
 

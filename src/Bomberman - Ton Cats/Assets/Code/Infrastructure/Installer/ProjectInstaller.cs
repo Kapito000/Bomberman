@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using Gameplay.Audio;
-using Gameplay.Audio.ClipProvider;
+﻿using Gameplay.Audio.ClipProvider;
 using Gameplay.Audio.MixerGroupProvider;
 using Gameplay.Audio.Service;
 using Gameplay.Collisions;
@@ -21,14 +18,14 @@ using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Infrastructure.Factory.EntityBehaviourFactory;
 using Infrastructure.Factory.Kit;
+using Infrastructure.Factory.SystemFactory;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Infrastructure.InstantiateService;
 using Infrastructure.SceneLoader;
 using Infrastructure.TimeService;
+using Leopotam.EcsLite;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Infrastructure.Installer
@@ -47,6 +44,8 @@ namespace Infrastructure.Installer
 
 		public override void InstallBindings()
 		{
+			BindWorld();
+			BindEcsRunner();
 			GameTimerData();
 			BindLevelData();
 			BindStaticData();
@@ -57,20 +56,48 @@ namespace Infrastructure.Installer
 			BindAudioService();
 			BindInputService();
 			BindMapGenerator();
-			AudioClipProvider();
+			BindSystemFactory();
 			BindEntityWrapper();
 			BindAssetProvider();
 			BindPhysicsService();
 			BindGameStateMachine();
+			BindAudioClipProvider();
 			BindCollisionRegistry();
 			BindAudioMixerProvider();
 			BindInstantiateService();
 			BindEntityBehaviourFactory();
 		}
 
-		void AudioClipProvider()
+		void BindWorld()
 		{
-			Container.Bind<IAudioClipProvider>().FromInstance(_audioClipProvider).AsSingle();
+			Container.Bind<EcsWorld>()
+				.To<EcsWorld>()
+				.AsSingle()
+				.MoveIntoAllSubContainers();
+		}
+
+		void BindEcsRunner()
+		{
+			Container.Bind<IEcsRunner>().To<EcsRunner>()
+				.FromNewComponentOnNewGameObject()
+				.WithGameObjectName(Constant.ObjectName.c_EcsRunnerName)
+				.UnderTransformGroup(Constant.ObjectName.c_Services)
+				.AsSingle()
+				.OnInstantiated<EcsRunner>((c, runner) => runner.enabled = false)
+				.MoveIntoAllSubContainers();
+		}
+
+		void BindSystemFactory()
+		{
+			Container.Bind<ISystemFactory>().To<StandardSystemFactory>()
+				.AsSingle()
+				.MoveIntoAllSubContainers();
+		}
+
+		void BindAudioClipProvider()
+		{
+			Container.Bind<IAudioClipProvider>().FromInstance(_audioClipProvider)
+				.AsSingle();
 		}
 
 		void BindAudioMixerProvider()

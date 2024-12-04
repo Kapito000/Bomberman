@@ -30,7 +30,7 @@ namespace Gameplay.Feature.GameMusic.Factory
 			_entity.SetEntity(e);
 			_entity.SetEntity(e);
 			_entity
-				.Add<MusicComponent>()
+				.Add<GameAmbientMusic>()
 				.AddAudioSource(audioSource)
 				;
 			return e;

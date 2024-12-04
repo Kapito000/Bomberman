@@ -1,4 +1,4 @@
 ﻿namespace Gameplay.Feature.GameMusic.Component
 {
-	public struct MusicComponent { }
+	public struct GameAmbientMusic { }
 }

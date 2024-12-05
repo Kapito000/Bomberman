@@ -8,5 +8,6 @@ namespace Gameplay.Feature.FinishLevel.Factory
 		int CreateFinishLevelObserver();
 		GameObject CreateFinishLevelDoor(int doorEntity, Vector2 pos);
 		int CreateFinishLevelDoorEntity(Vector2Int cell);
+		int CreateFinishLevelMusic(Transform parent);
 	}
 }

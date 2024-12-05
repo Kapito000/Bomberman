@@ -33,5 +33,6 @@ namespace Infrastructure.AssetProvider
 		GameObject FinishLevelDoor();
 		Dictionary<WindowId, BaseWindow> AllWindows { get; }
 		GameObject GameMusicPrefab();
+		GameObject FinishLevelMusic();
 	}
 }

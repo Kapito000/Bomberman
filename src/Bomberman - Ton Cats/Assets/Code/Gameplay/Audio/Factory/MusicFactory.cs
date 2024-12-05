@@ -17,10 +17,11 @@ namespace Gameplay.Audio.Factory
 		[Inject] IAudioService _audioService;
 		[Inject] IAudioClipProvider _audioClipProvider;
 
-		public int CreateAmbientMusic(AmbientMusic musicType, GameObject prefab)
+		public int CreateAmbientMusic(AmbientMusic musicType, GameObject prefab,
+			Transform parent)
 		{
-			var instance = _kit.InstantiateService.Instantiate(prefab);
-			var audioSource = GetAudioSource(instance);
+			var instance = _kit.InstantiateService.Instantiate(prefab, parent);
+			var audioSource = _audioService.ReplaceAudioSource(instance);
 
 			AdjustAudioSource(audioSource, musicType);
 
@@ -34,23 +35,11 @@ namespace Gameplay.Audio.Factory
 			return e;
 		}
 
-		AudioSource GetAudioSource(GameObject instance)
-		{
-			var audioSource = instance.GetComponent<AudioSource>();
-			if (audioSource == null)
-			{
-				Debug.LogWarning(
-					$"Music prefab has no \"{nameof(AudioSource)}\" component.");
-				audioSource = instance.AddComponent<AudioSource>();
-			}
-			return audioSource;
-		}
-
 		void AdjustAudioSource(AudioSource audioSource, AmbientMusic musicType)
 		{
-			_audioService.AssignMixerGroup(audioSource, MixerGroup.Music);
-			audioSource.playOnAwake = false;
 			_audioService.AssignMusicClip(audioSource, musicType);
+			_audioService.AssignMixerGroup(audioSource, MixerGroup.Music);
+			_audioService.EstablishCommonSettings(audioSource);
 		}
 	}
 }

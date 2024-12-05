@@ -6,4 +6,5 @@
 	public struct FinishLevelDoor { }
 	public struct AllEnemiesKilled { }
 	public struct HeroInFinishLevelDoor { }
+	public struct FinishLevelMusic { }
 }

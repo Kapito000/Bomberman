@@ -5,6 +5,7 @@ namespace Gameplay.Audio.Factory
 {
 	public interface IMusicFactory : IFactory
 	{
-		int CreateAmbientMusic(AmbientMusic musicType, GameObject prefab);
-	}
+		int CreateAmbientMusic(AmbientMusic musicType, GameObject prefab,
+			Transform parent);
+ 	}
 }

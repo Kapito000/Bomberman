@@ -9,6 +9,7 @@ namespace Gameplay.Feature.FinishLevel
 		public FinishLevelFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateFinishLevelObserverSystem>();
+			AddInit<CreateFinishLevelMusicSystem>();
 			AddInit<CreateFinishLevelDoorSystem>();
 			
 			AddUpdate<EnterToFinishLevelDoorProcessSystem>();
@@ -19,6 +20,7 @@ namespace Gameplay.Feature.FinishLevel
 			AddUpdate<EnemyQuantityObserverSystem>();
 			
 			AddUpdate<FinishLevelSystem>();
+			AddUpdate<LevelCompleteMusicSystem>();
 		}
 	}
 }

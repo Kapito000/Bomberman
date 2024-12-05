@@ -7,6 +7,7 @@ namespace Gameplay.Feature.GameMusic
 	{
 		public GameMusicFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
+			AddInit<CreateMusicParentSystem>();
 			AddInit<CreateMusicSystem>();
 		}
 	}

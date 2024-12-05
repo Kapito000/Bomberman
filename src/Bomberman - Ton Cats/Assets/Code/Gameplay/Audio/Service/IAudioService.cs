@@ -5,7 +5,9 @@ namespace Gameplay.Audio.Service
 {
 	public interface IAudioService : IService
 	{
-		void AssignMixerGroup(AudioSource audioSource, MixerGroup groupType);
 		void AssignMusicClip(AudioSource audioSource, AmbientMusic ambientMusic);
+		void AssignMixerGroup(AudioSource audioSource, MixerGroup groupType);
+		void EstablishCommonSettings(AudioSource audioSource);
+		AudioSource ReplaceAudioSource(GameObject instance);
 	}
 }

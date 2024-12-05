@@ -27,6 +27,7 @@ namespace Gameplay.Feature.FeatureControl
 			Add<InputFeature>();
 			Add<MapGenerationFeature>();
 			Add<CollisionsFeature>();
+			Add<GameMusicFeature>();
 			Add<HeroFeature>();
 			Add<EnemyFeature>();
 			Add<BombFeature>();
@@ -39,7 +40,6 @@ namespace Gameplay.Feature.FeatureControl
 			Add<UiFeature>();
 			Add<HudFeature>();
 			Add<FinishLevelFeature>();
-			Add<GameMusicFeature>();
 			Add<DestructionFeature>();
 		}
 	}

@@ -1,3 +1,5 @@
+using Gameplay.Audio;
+using Gameplay.Audio.Service;
 using Gameplay.Feature.FinishLevel.Component;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
@@ -10,6 +12,7 @@ namespace Gameplay.Feature.FinishLevel.Factory
 	{
 		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _entity;
+		[Inject] IAudioService _audioService;
 
 		public int CreateFinishLevelObserver()
 		{
@@ -27,6 +30,21 @@ namespace Gameplay.Feature.FinishLevel.Factory
 			return _entity.Enity;
 		}
 
+		public int CreateFinishLevelMusic(Transform parent)
+		{
+			var prefab = _kit.AssetProvider.FinishLevelMusic();
+			var instance = _kit.InstantiateService.Instantiate(prefab, parent);
+			var audioSource = AdjustAudioSource(instance);
+			
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			_entity.SetEntity(e);
+			_entity
+				.Add<FinishLevelMusic>()
+				.AddAudioSource(audioSource)
+				;
+			return e;
+		}
+
 		public GameObject CreateFinishLevelDoor(int doorEntity, Vector2 pos)
 		{
 			var prefab = _kit.AssetProvider.FinishLevelDoor();
@@ -37,6 +55,14 @@ namespace Gameplay.Feature.FinishLevel.Factory
 				.AddTransform(instance.transform)
 				;
 			return instance;
+		}
+
+		AudioSource AdjustAudioSource(GameObject instance)
+		{
+			var audioSource = _audioService.ReplaceAudioSource(instance);
+			_audioService.AssignMixerGroup(audioSource, MixerGroup.Music);
+			_audioService.EstablishCommonSettings(audioSource);
+			return audioSource;
 		}
 	}
 }

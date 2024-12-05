@@ -20,6 +20,7 @@ namespace Gameplay.Feature.FinishLevel
 			AddUpdate<EnemyQuantityObserverSystem>();
 			
 			AddUpdate<FinishLevelSystem>();
+			AddUpdate<GameOverMusicSystem>();
 			AddUpdate<LevelCompleteMusicSystem>();
 		}
 	}

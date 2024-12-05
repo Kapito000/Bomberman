@@ -1,5 +1,6 @@
 ﻿using Gameplay.Audio.ClipProvider;
 using Gameplay.Audio.MixerGroupProvider;
+using Gameplay.Audio.Player;
 using UnityEngine;
 using Zenject;
 
@@ -10,7 +11,15 @@ namespace Gameplay.Audio.Service
 		[Inject] IAudioClipProvider _clipProvider;
 		[Inject] IAudioMixerProvider _mixerProvider;
 
-		public void AssignMixerGroup(AudioSource audioSource, MixerGroup groupType)
+		[Inject] public IAudioPlayer Player { get; }
+
+		public void AssignMusicClip(AmbientMusic key, AudioSource audioSource)
+		{
+			if (_clipProvider.TryGetWithDebug(key, out var clip)) 
+				audioSource.clip = clip;
+		}
+
+		public void AssignMixerGroup(MixerGroup groupType, AudioSource audioSource)
 		{
 			if (_mixerProvider.TryGetMixerGroup(groupType, out var group))
 				audioSource.outputAudioMixerGroup = group;
@@ -18,9 +27,9 @@ namespace Gameplay.Audio.Service
 				Debug.LogError($"Cannot to get \"{groupType}\" group.");
 		}
 
-		public void AssignMusicClip(AudioSource audioSource, AmbientMusic ambientMusic)
+		public void EstablishCommonSettings(AudioSource audioSource)
 		{
-			audioSource.clip = _clipProvider.Musics[ambientMusic];
+			audioSource.playOnAwake = false;
 		}
 
 		public AudioSource ReplaceAudioSource(GameObject instance)
@@ -29,11 +38,6 @@ namespace Gameplay.Audio.Service
 			if (audioSource == null)
 				audioSource = instance.AddComponent<AudioSource>();
 			return audioSource;
-		}
-
-		public void EstablishCommonSettings(AudioSource audioSource)
-		{
-			audioSource.playOnAwake = false;
 		}
 	}
 }

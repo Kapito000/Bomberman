@@ -37,8 +37,8 @@ namespace Gameplay.Audio.Factory
 
 		void AdjustAudioSource(AudioSource audioSource, AmbientMusic musicType)
 		{
-			_audioService.AssignMusicClip(audioSource, musicType);
-			_audioService.AssignMixerGroup(audioSource, MixerGroup.Music);
+			_audioService.AssignMusicClip(musicType, audioSource);
+			_audioService.AssignMixerGroup(MixerGroup.Music, audioSource);
 			_audioService.EstablishCommonSettings(audioSource);
 		}
 	}

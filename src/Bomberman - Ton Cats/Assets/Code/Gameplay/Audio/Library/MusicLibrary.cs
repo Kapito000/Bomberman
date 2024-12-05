@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Gameplay.Audio
+namespace Gameplay.Audio.Library
 {
 	[Serializable]
 	public sealed class MusicLibrary : AudioClipLibrary<AmbientMusic>

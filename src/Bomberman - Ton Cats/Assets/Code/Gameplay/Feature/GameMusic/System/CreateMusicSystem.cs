@@ -1,4 +1,5 @@
-﻿using Gameplay.Feature.GameMusic.Component;
+﻿using Common.Component;
+using Gameplay.Feature.GameMusic.Component;
 using Gameplay.Feature.GameMusic.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
@@ -13,7 +14,8 @@ namespace Gameplay.Feature.GameMusic.System
 		[Inject] EntityWrapper _gameMusic;
 		[Inject] IGameMusicFactory _gameMusicFactory;
 
-		readonly EcsFilterInject<Inc<MusicParent>> _parentFilter;
+		readonly EcsFilterInject<
+			Inc<MusicParent, TransformComponent>> _parentFilter;
 
 		public void Run(IEcsSystems systems)
 		{

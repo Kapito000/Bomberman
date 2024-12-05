@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cinemachine;
 using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
 using Gameplay.Feature.HUD.Feature.Life.Behaviour;
@@ -6,6 +7,7 @@ using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Windows;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using Menu = Constant.CreateAssetMenu;
 
 namespace Infrastructure.AssetProvider
@@ -25,7 +27,8 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _baseEnemy;
 		[SerializeField] GameObject _finishLevelDoor;
 		[Header("Audio")]
-		[SerializeField] GameObject _gameMusicPrefab;
+		[SerializeField] GameObject _ambientMusic;
+		[SerializeField] GameObject _finishLevelMusic;
 		[Header("Tile prefabs")]
 		[SerializeField] GameObject _destructibleTile;
 		[Header("UI")]
@@ -63,6 +66,7 @@ namespace Infrastructure.AssetProvider
 		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
 		public Dictionary<WindowId, BaseWindow> AllWindows => _windows;
-		public GameObject GameMusicPrefab() => _gameMusicPrefab;
+		public GameObject GameMusic() => _ambientMusic;
+		public GameObject FinishLevelMusic() => _finishLevelMusic;
 	}
 }

@@ -1,9 +1,11 @@
 ﻿using Gameplay.Audio.ClipProvider;
 using Gameplay.Audio.Factory;
 using Gameplay.Audio.MixerGroupProvider;
+using Gameplay.Audio.Player;
 using Gameplay.Audio.Service;
 using Gameplay.Collisions;
 using Gameplay.Feature.Enemy.Base.StaticData;
+using Gameplay.Feature.GameMusic.Factory;
 using Gameplay.Feature.Hero.StaticData;
 using Gameplay.Feature.MapGenerator.Services;
 using Gameplay.Feature.MapGenerator.StaticData;
@@ -49,6 +51,7 @@ namespace Infrastructure.Installer
 			BindEcsRunner();
 			GameTimerData();
 			BindLevelData();
+			BindFactories();
 			BindStaticData();
 			BindFactoryKit();
 			BindTimeService();
@@ -68,6 +71,13 @@ namespace Infrastructure.Installer
 			BindAudioMixerProvider();
 			BindInstantiateService();
 			BindEntityBehaviourFactory();
+		}
+
+		void BindFactories()
+		{
+			Container.Bind<IGameMusicFactory>().To<GameMusicFactory>()
+				.AsSingle()
+				.MoveIntoAllSubContainers();
 		}
 
 		void BindMusicFactory()
@@ -117,6 +127,9 @@ namespace Infrastructure.Installer
 		void BindAudioService()
 		{
 			Container.Bind<IAudioService>().To<AudioService>().AsSingle();
+			Container.Bind<IAudioPlayer>().To<AudioPlayer>()
+				.AsSingle()
+				.WhenInjectedInto<IAudioService>();
 		}
 
 		void GameTimerData()

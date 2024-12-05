@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.Audio.Library;
+using UnityEngine;
 using Menu = Constant.CreateAssetMenu;
 
 namespace Gameplay.Audio.ClipProvider
@@ -7,5 +8,6 @@ namespace Gameplay.Audio.ClipProvider
 	public sealed class AudioClipProvider : ScriptableObject, IAudioClipProvider
 	{
 		[field: SerializeField] public MusicLibrary Musics { get; private set; }
+		[field: SerializeField] public ShortMusicLibrary ShortMusic { get; private set; }
 	}
 }

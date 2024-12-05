@@ -1,6 +1,7 @@
 ﻿using Gameplay.Audio;
 using Gameplay.Audio.Factory;
 using Infrastructure.Factory.Kit;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.MainMenuMusic.Factory
@@ -10,10 +11,11 @@ namespace Gameplay.Feature.MainMenuMusic.Factory
 		[Inject] IFactoryKit _kit;
 		[Inject] IMusicFactory _musicFactory;
 
-		public int CreateAmbientMusic()
+		public int CreateAmbientMusic(Transform parent)
 		{
-			var prefab = _kit.AssetProvider.GameMusicPrefab();
-			return _musicFactory.CreateAmbientMusic(AmbientMusic.MainMenu, prefab);
+			var prefab = _kit.AssetProvider.GameMusic();
+			return _musicFactory
+				.CreateAmbientMusic(AmbientMusic.MainMenu, prefab, parent);
 		}
 	}
 }

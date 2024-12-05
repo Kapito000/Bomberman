@@ -22,4 +22,5 @@ namespace Common.Component
 	public struct Direction { public Vector2 Value; }
 	public struct FirstBreath { }
 	public struct ForParent { public Transform Value; }
+	public struct Launched { }
 }

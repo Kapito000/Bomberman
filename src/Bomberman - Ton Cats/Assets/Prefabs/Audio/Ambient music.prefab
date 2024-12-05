@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8631514710595521792}
   - component: {fileID: 8857167642741900039}
   m_Layer: 0
-  m_Name: Game music
+  m_Name: Ambient music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

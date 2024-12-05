@@ -4,6 +4,5 @@
 	{
 		Victory,
 		Defeat,
-		EnemyDeath,
 	}
 }

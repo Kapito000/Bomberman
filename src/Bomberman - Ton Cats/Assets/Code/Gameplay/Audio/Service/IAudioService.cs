@@ -1,12 +1,14 @@
-﻿using Infrastructure;
+﻿using Gameplay.Audio.Player;
+using Infrastructure;
 using UnityEngine;
 
 namespace Gameplay.Audio.Service
 {
 	public interface IAudioService : IService
 	{
-		void AssignMusicClip(AudioSource audioSource, AmbientMusic ambientMusic);
-		void AssignMixerGroup(AudioSource audioSource, MixerGroup groupType);
+		IAudioPlayer Player { get; }
+		void AssignMusicClip(AmbientMusic key, AudioSource audioSource);
+		void AssignMixerGroup(MixerGroup key, AudioSource audioSource);
 		void EstablishCommonSettings(AudioSource audioSource);
 		AudioSource ReplaceAudioSource(GameObject instance);
 	}

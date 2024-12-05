@@ -120,7 +120,6 @@ namespace Infrastructure.Installer
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 			Container.Bind<IBaseEnemyFactory>().To<BaseEnemyFactory>().AsSingle();
 			Container.Bind<IExplosionFactory>().To<ExplosionFactory>().AsSingle();
-			Container.Bind<IGameMusicFactory>().To<GameMusicFactory>().AsSingle();
 			Container.Bind<IFinishLevelFactory>().To<FinishLevelFactory>().AsSingle();
 		}
 

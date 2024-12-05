@@ -17,3 +17,8 @@ MonoBehaviour:
     _valueData:
     - {fileID: 8300000, guid: ac896f73311f0ab479989f0d9f9e9e64, type: 3}
     - {fileID: 8300000, guid: ac896f73311f0ab479989f0d9f9e9e64, type: 3}
+  <ShortMusic>k__BackingField:
+    _keyData: 0000000001000000
+    _valueData:
+    - {fileID: 8300000, guid: 10ab92f4c0ebc2644ae8fd82375b9a75, type: 3}
+    - {fileID: 8300000, guid: 137644834ecb2d34090a3b7060151f57, type: 3}

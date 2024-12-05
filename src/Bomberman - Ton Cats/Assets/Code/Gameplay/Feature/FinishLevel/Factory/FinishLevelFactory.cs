@@ -60,7 +60,7 @@ namespace Gameplay.Feature.FinishLevel.Factory
 		AudioSource AdjustAudioSource(GameObject instance)
 		{
 			var audioSource = _audioService.ReplaceAudioSource(instance);
-			_audioService.AssignMixerGroup(audioSource, MixerGroup.Music);
+			_audioService.AssignMixerGroup(MixerGroup.Music, audioSource);
 			_audioService.EstablishCommonSettings(audioSource);
 			return audioSource;
 		}

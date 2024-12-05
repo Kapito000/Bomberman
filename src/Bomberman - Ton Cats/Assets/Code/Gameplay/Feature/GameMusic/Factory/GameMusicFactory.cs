@@ -16,7 +16,7 @@ namespace Gameplay.Feature.GameMusic.Factory
 
 		public int CreateGameMusic(Transform parent)
 		{
-			var prefab = _kit.AssetProvider.GameMusicPrefab();
+			var prefab = _kit.AssetProvider.GameMusic();
 			return _musicFactory.CreateAmbientMusic(AmbientMusic.Game, prefab, parent);
 		}
 

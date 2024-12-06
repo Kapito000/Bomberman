@@ -23,4 +23,5 @@ namespace Common.Component
 	public struct FirstBreath { }
 	public struct ForParent { public Transform Value; }
 	public struct Launched { }
+	public struct AdditionalAudioSourceParent { public Transform Value; }
 }

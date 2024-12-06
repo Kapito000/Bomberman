@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a5ecff165348f3977b72031b3aff16, type: 3}
   m_Name: Audio Clip Provider
   m_EditorClassIdentifier: 
+  <Sfx>k__BackingField:
+    _keyData:
+    - Hero taken damage
+    _valueData:
+    - {fileID: 8300000, guid: eace94f70b1ab7f4da99abc8a6ff0797, type: 3}
   <Musics>k__BackingField:
     _keyData: 0000000001000000
     _valueData:

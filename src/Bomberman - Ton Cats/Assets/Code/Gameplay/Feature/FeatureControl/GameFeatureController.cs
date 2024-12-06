@@ -28,6 +28,8 @@ namespace Gameplay.Feature.FeatureControl
 			Add<MapGenerationFeature>();
 			Add<CollisionsFeature>();
 			Add<GameMusicFeature>();
+			Add<ExplosionFeature>();
+			Add<LifeFeature>();
 			Add<HeroFeature>();
 			Add<EnemyFeature>();
 			Add<BombFeature>();

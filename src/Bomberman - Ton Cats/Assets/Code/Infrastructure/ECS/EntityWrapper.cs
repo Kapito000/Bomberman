@@ -73,7 +73,7 @@ namespace Infrastructure.ECS
 
 		public void Destroy()
 		{
-			Add<Destructed>();
+			Replace<Destructed>();
 		}
 	}
 }

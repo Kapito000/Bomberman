@@ -11,5 +11,7 @@ namespace Gameplay.Audio.Service
 		void AssignMixerGroup(MixerGroup key, AudioSource audioSource);
 		void EstablishCommonSettings(AudioSource audioSource);
 		AudioSource ReplaceAudioSource(GameObject instance);
+		bool TryCreateAdditionalAudioSource(int forEntity,
+			out AudioSource audioSource);
 	}
 }

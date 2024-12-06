@@ -3,6 +3,7 @@ using Extensions;
 using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.DamageApplication.Component;
+using Gameplay.Feature.DamageApplication.System;
 using Gameplay.Feature.Enemy.AI.Blackboard;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Explosion;
@@ -17,6 +18,8 @@ using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Timer.Component;
 using Leopotam.EcsLite;
+using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
@@ -391,11 +394,58 @@ namespace Infrastructure.ECS
 			ref var audioSourceComponent = ref Get<AudioSourceComponent>();
 			return audioSourceComponent.Value;
 		}
-		
+
 		public EntityWrapper AddAudioSource(AudioSource audioSource)
 		{
 			ref var audioSourceComponent = ref AddComponent<AudioSourceComponent>();
 			audioSourceComponent.Value = audioSource;
+			return this;
+		}
+
+		public string TakenDamageAudioEffectId()
+		{
+			ref var source = ref Get<TakenDamageAudioEffectId>();
+			return source.Value;
+		}
+
+		public EntityWrapper AddTakenDamageAudioEffectId(string id)
+		{
+			ref var source = ref AddComponent<TakenDamageAudioEffectId>();
+			source.Value = id;
+			return this;
+		}
+
+		public AudioSource TakenDamageEffectAudiosSource()
+		{
+			ref var source = ref Get<TakenDamageEffectAudioSource>();
+			return source.Value;
+		}
+
+		public EntityWrapper AddTakenDamageEffectAudioSource(
+			AudioSource audioSource)
+		{
+			ref var source = ref AddComponent<TakenDamageEffectAudioSource>();
+			source.Value = audioSource;
+			return this;
+		}
+
+		public Transform AdditionalAudioSourceParent()
+		{
+			ref var parent = ref Get<AdditionalAudioSourceParent>();
+			return parent.Value;
+		}
+		
+		public EntityWrapper AddAdditionalAudioSourceParent(Transform value)
+		{
+			ref var parent = ref AddComponent<AdditionalAudioSourceParent>();
+			parent.Value = value;
+			return this;
+		}
+		
+		public EntityWrapper ReplaceAdditionalAudioSourceParent(Transform value)
+		{
+			ref var parent = ref ReplaceComponent<AdditionalAudioSourceParent>();
+			parent.Value = value;
 			return this;
 		}
 	}

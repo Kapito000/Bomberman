@@ -15,6 +15,7 @@ namespace Gameplay.Feature.DamageApplication
 			AddUpdate<ApplyTakenDamageEffectSystem>();
 			AddUpdate<DamageEffectProcessSystem>();
 			AddUpdate<DamageEffectDurationTimerSystem>();
+			AddUpdate<TakenDamageAudioEffectSystem>();
 			
 			AddCleanup<CleanupSystem>();
 		}

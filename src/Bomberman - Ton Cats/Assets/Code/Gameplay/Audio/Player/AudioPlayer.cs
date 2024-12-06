@@ -16,5 +16,26 @@ namespace Gameplay.Audio.Player
 				audioSource.Play();
 			}
 		}
+
+		public void PlaySfx(string clipId, AudioSource audioSource,
+			bool forceReplay)
+		{
+			if (forceReplay == false)
+			{
+				if (audioSource.isPlaying)
+					return;
+			}
+
+			PlaySfx(clipId, audioSource);
+		}
+
+		void PlaySfx(string clipId, AudioSource audioSource)
+		{
+			if (_clipProvider.TryGetSfxWithDebug(clipId, out var clip))
+			{
+				audioSource.clip = clip;
+				audioSource.Play();
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using Common.Component;
 using Extensions;
+using Gameplay.Audio.Service;
 using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Hero.Component;
 using Gameplay.Feature.Hero.StaticData;
@@ -17,6 +18,7 @@ namespace Gameplay.Feature.Hero.Factory
 		[Inject] IHeroData _heroData;
 		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _heroEntity;
+		[Inject] IAudioService _audioService;
 
 		public int CreateHero(Vector2 pos, Quaternion rot, Transform parent)
 		{
@@ -35,10 +37,28 @@ namespace Gameplay.Feature.Hero.Factory
 				.Add<BombCarrier>()
 				.Add<BombNumber>().With(e => e.SetBombNumber(_heroData.StartBombNumber))
 				.Add<MoveSpeed>().With(e => e.SetMoveSpeed(_heroData.MovementSpeed))
-				.Add<LifePoints>().With(e => e.SetLifePoints(_heroData.LifePointsOnStart))
+				.Add<LifePoints>().With(e =>
+					e.SetLifePoints(_heroData.LifePointsOnStart))
 				;
 
+			AddTakenDamageEffectComponents(_heroEntity);
+
 			return entity;
+		}
+
+		void AddTakenDamageEffectComponents(EntityWrapper heroEntity)
+		{
+			if (_audioService.TryCreateAdditionalAudioSource(heroEntity.Enity,
+				    out var takenDamageEffectAudioSource) == false)
+			{
+				CastCannotInitCorrectlyErrorMessage();
+				return;
+			}
+
+			heroEntity
+				.AddTakenDamageAudioEffectId(Constant.AudioClipId.c_HeroTakenDamage)
+				.AddTakenDamageEffectAudioSource(takenDamageEffectAudioSource)
+				;
 		}
 
 		public int CreateHeroSpawnPoint(Vector2 pos)
@@ -48,5 +68,8 @@ namespace Gameplay.Feature.Hero.Factory
 			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			return e;
 		}
+
+		static void CastCannotInitCorrectlyErrorMessage() =>
+			Debug.LogError("The hero cannot be initialized correctly.");
 	}
 }

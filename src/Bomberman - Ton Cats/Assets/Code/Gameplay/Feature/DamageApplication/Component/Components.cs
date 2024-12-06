@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Gameplay.Feature.DamageApplication.Component
 {
@@ -11,4 +12,6 @@ namespace Gameplay.Feature.DamageApplication.Component
 	public struct TakenDamageEffectDuration { public float Value; }
 	public struct SpriteFlickeringPeriod { public float Value; }
 	public struct SpriteFlickeringTimer { public float Value; }
+	public struct TakenDamageAudioEffectId { public string Value; }
+	public struct TakenDamageEffectAudioSource { public AudioSource Value; }
 }

@@ -8,6 +8,7 @@ namespace Gameplay.Audio.Service
 	{
 		IAudioPlayer Player { get; }
 		void AssignMusicClip(AmbientMusic key, AudioSource audioSource);
+		void AssignUiSfxClip(UiSfx key, AudioSource audioSource);
 		void AssignMixerGroup(MixerGroup key, AudioSource audioSource);
 		void EstablishCommonSettings(AudioSource audioSource);
 		AudioSource ReplaceAudioSource(GameObject instance);

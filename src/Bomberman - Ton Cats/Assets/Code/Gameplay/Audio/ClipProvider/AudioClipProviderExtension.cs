@@ -24,6 +24,16 @@ namespace Gameplay.Audio.ClipProvider
 			return false;
 		}
 		
+		public static bool TryGetWithDebug(this IAudioClipProvider provider,
+			UiSfx key, out AudioClip clip)
+		{
+			if (provider.UiSfx.TryGetValue(key, out clip))
+				return true;
+
+			Debug.LogError($"Cannot to get \"{key}\" clip.");
+			return false;
+		}
+		
 		public static bool TryGetSfxWithDebug(this IAudioClipProvider provider,
 			string key, out AudioClip clip)
 		{

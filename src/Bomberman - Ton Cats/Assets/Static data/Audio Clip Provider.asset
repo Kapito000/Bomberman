@@ -25,6 +25,10 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5748abb47d36cff4a837e739fcbcfc73, type: 3}
     - {fileID: 8300000, guid: c7bba55f46216ea49b4f94ea044e6b83, type: 3}
     - {fileID: 8300000, guid: c7bba55f46216ea49b4f94ea044e6b83, type: 3}
+  <UiSfx>k__BackingField:
+    _keyData: 00000000
+    _valueData:
+    - {fileID: 8300000, guid: f535793379a91b24b834a5d7a1f9d834, type: 3}
   <Musics>k__BackingField:
     _keyData: 0000000001000000
     _valueData:

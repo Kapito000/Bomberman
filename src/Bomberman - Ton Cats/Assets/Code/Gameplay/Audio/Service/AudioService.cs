@@ -23,6 +23,12 @@ namespace Gameplay.Audio.Service
 				audioSource.clip = clip;
 		}
 
+		public void AssignUiSfxClip(UiSfx key, AudioSource audioSource)
+		{
+			if (_clipProvider.TryGetWithDebug(key, out var clip))
+				audioSource.clip = clip;
+		}
+		
 		public void AssignMixerGroup(MixerGroup groupType, AudioSource audioSource)
 		{
 			if (_mixerProvider.TryGetMixerGroup(groupType, out var group))

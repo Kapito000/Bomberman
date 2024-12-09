@@ -16,13 +16,13 @@ namespace Gameplay.Feature.Explosion.Factory
 	{
 		[Inject] EcsWorld _world;
 		[Inject] IFactoryKit _kit;
-		[Inject] EntityWrapper _explosion;
+		[Inject] EntityWrapper _entity;
 
 		public int CreateExplosionRequest(Vector2 pos)
 		{
 			var entity = _world.NewEntity();
-			_explosion.SetEntity(entity);
-			_explosion
+			_entity.SetEntity(entity);
+			_entity
 				.Add<ExplosionRequest>()
 				.Add<Position>().With(e => e.SetPosition(pos))
 				;
@@ -43,6 +43,10 @@ namespace Gameplay.Feature.Explosion.Factory
 		{
 			var instance = InstantiateExplosion(pos, parent);
 			var entity = InitExplosionEntity(instance);
+			_entity.SetEntity(entity);
+			_entity
+				.Add<ExplosionCenter>()
+				;
 			PlayAnimation(instance, ExplosionPart.Center);
 			return entity;
 		}
@@ -74,10 +78,11 @@ namespace Gameplay.Feature.Explosion.Factory
 		int InitExplosionEntity(GameObject instance)
 		{
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
-			_explosion.SetEntity(entity);
-			_explosion
-				.Add<Component.Explosion>()
+			_entity.SetEntity(entity);
+			_entity
 				.Add<FirstBreath>()
+				.Add<Component.Explosion>()
+				.AddTransform(instance.transform)
 				;
 			return entity;
 		}

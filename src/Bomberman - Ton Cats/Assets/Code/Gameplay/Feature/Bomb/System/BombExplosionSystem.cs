@@ -1,4 +1,5 @@
 ﻿using Common.Component;
+using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Destruction.Component;
 using Gameplay.Feature.Explosion.Factory;
 using Infrastructure.ECS;
@@ -15,7 +16,8 @@ namespace Gameplay.Feature.Bomb.System
 		[Inject] IExplosionFactory _explosionFactory;
 
 		readonly EcsFilterInject<
-			Inc<Component.Bomb, Explosion.Component.Explosion, TransformComponent>> _filter;
+				Inc<BombComponent, Explosion.Component.Explosion, TransformComponent>>
+			_filter;
 
 		public void Run(IEcsSystems systems)
 		{

@@ -17,10 +17,14 @@ MonoBehaviour:
     - Hero taken damage
     - Enemy death
     - Put bomb
+    - Explosion
+    - Bomb explosion
     _valueData:
     - {fileID: 8300000, guid: eace94f70b1ab7f4da99abc8a6ff0797, type: 3}
     - {fileID: 8300000, guid: 02393b970b0ab584e9ffa041dcc9d05d, type: 3}
     - {fileID: 8300000, guid: 5748abb47d36cff4a837e739fcbcfc73, type: 3}
+    - {fileID: 8300000, guid: c7bba55f46216ea49b4f94ea044e6b83, type: 3}
+    - {fileID: 8300000, guid: c7bba55f46216ea49b4f94ea044e6b83, type: 3}
   <Musics>k__BackingField:
     _keyData: 0000000001000000
     _valueData:

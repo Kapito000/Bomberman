@@ -20,7 +20,7 @@ namespace Gameplay.Feature.Bomb.Factory
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			_bomb.SetEntity(entity);
 			_bomb
-				.Add<Component.Bomb>()
+				.Add<BombComponent>()
 				;
 			return entity;
 		}

@@ -1,5 +1,5 @@
 ﻿using Gameplay.Feature.FeatureControl;
-using Gameplay.Feature.MainMenuMusic.Factory;
+using Gameplay.Feature.MainMenu.Factory;
 using Gameplay.LevelData;
 using Gameplay.MainMenu;
 using Gameplay.UI.StaticData;
@@ -49,7 +49,7 @@ namespace Infrastructure.Installer
 
 		void BindFactories()
 		{
-			Container.Bind<IMainMenuMusicFactory>().To<MainMenuMusicFactory>().AsSingle();
+			Container.Bind<IMainMenuFactory>().To<MainMenuFactory>().AsSingle();
 		}
 
 		void BindFeatureController()

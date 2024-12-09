@@ -24,8 +24,9 @@ MonoBehaviour:
   _finishLevelMusic: {fileID: 6151127893788280244, guid: 18e12603fcc99694e96571b082c6cf90, type: 3}
   _destructibleTile: {fileID: 4954203463075040424, guid: dfaa6b8ca3608ce4b9c4b19e8271c4ca, type: 3}
   _root: {fileID: 4644769364156463938, guid: 2a25ecfac15109f4b9f21645efa713e4, type: 3}
-  _eventSystem: {fileID: 176851465483218010, guid: a3c37fa5708cd3944a3f5bb8921fd59e, type: 3}
   _windowsRoot: {fileID: 4030447168085231578, guid: 33fdfcae503e41e4d9bde70373328093, type: 3}
+  _mainMenuUpperPanel: {fileID: 252757770158953570, guid: 7e3d8596985c7e84a8cb1ed07bf73d31, type: 3}
+  _eventSystem: {fileID: 176851465483218010, guid: a3c37fa5708cd3944a3f5bb8921fd59e, type: 3}
   _windows:
     _keyData: 000000000100000002000000
     _valueData:

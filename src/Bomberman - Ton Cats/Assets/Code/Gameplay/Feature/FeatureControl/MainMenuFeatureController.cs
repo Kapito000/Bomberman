@@ -1,5 +1,4 @@
-﻿using Gameplay.Feature.MainMenuMusic;
-using Gameplay.Feature.MainMenuUI;
+﻿using Gameplay.Feature.MainMenu;
 using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature.FeatureControl
@@ -9,8 +8,7 @@ namespace Gameplay.Feature.FeatureControl
 		public MainMenuFeatureController(ISystemFactory systemFactory)
 			: base(systemFactory)
 		{
-			Add<MainMenuMusicFeature>();
-			Add<MainMenuUiFeature>();
+			Add<MainMenuFeature>();
 		}
 	}
 }

@@ -1,20 +1,20 @@
 ﻿using Common.Component;
 using Gameplay.Audio.Service;
 using Gameplay.Feature.GameMusic.Component;
-using Gameplay.Feature.MainMenuMusic.Factory;
+using Gameplay.Feature.MainMenu.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.MainMenuMusic.System
+namespace Gameplay.Feature.MainMenu.System
 {
 	public sealed class CreateMainMenuMusiSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _musicEntity;
 		[Inject] EntityWrapper _parentEntity;
 		[Inject] IAudioService _audioService;
-		[Inject] IMainMenuMusicFactory _musicFactory;
+		[Inject] IMainMenuFactory _factory;
 
 		readonly EcsFilterInject<
 			Inc<MusicParent, TransformComponent>> _parentFilter;
@@ -26,7 +26,7 @@ namespace Gameplay.Feature.MainMenuMusic.System
 				_parentEntity.SetEntity(parentEntity);
 				var parent = _parentEntity.Transform();
 
-				var musicEntity = _musicFactory.CreateAmbientMusic(parent);
+				var musicEntity = _factory.CreateAmbientMusic(parent);
 				_musicEntity.SetEntity(musicEntity);
 				var audioSource = _musicEntity.AudioSource();
 				audioSource.Play();

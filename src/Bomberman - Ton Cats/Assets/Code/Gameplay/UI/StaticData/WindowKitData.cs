@@ -13,14 +13,14 @@ namespace Gameplay.UI.StaticData
 
 		public bool TryGetKit(WindowKitId kitId, out IReadOnlyList<WindowId> list)
 		{
-			if (_kit.TryGetValue(kitId, out WindowId[] kit) == false)
+			if (_kit.TryGetValue(kitId, out var kit) == false)
 			{
 				Debug.LogError($"{nameof(WindowKitId)} has no \"{kitId}\".");
 				list = default;
 				return false;
 			}
 
-			list = kit;
+			list = kit.Values;
 			return true;
 		}
 	}

@@ -33,8 +33,9 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _destructibleTile;
 		[Header("UI")]
 		[SerializeField] Canvas _root;
-		[SerializeField] EventSystem _eventSystem;
 		[SerializeField] GameObject _windowsRoot;
+		[SerializeField] GameObject _mainMenuUpperPanel;
+		[SerializeField] EventSystem _eventSystem;
 		[SerializeField] WindowsDictionary _windows;
 		[Header("HUD")]
 		[SerializeField] Canvas _hudRoot;
@@ -68,5 +69,6 @@ namespace Infrastructure.AssetProvider
 		public Dictionary<WindowId, BaseWindow> AllWindows => _windows;
 		public GameObject GameMusic() => _ambientMusic;
 		public GameObject FinishLevelMusic() => _finishLevelMusic;
+		public GameObject MainMenuUpperPanel() => _mainMenuUpperPanel;
 	}
 }

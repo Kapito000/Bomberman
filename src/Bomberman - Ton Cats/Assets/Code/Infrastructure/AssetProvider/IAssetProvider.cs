@@ -34,5 +34,6 @@ namespace Infrastructure.AssetProvider
 		Dictionary<WindowId, BaseWindow> AllWindows { get; }
 		GameObject GameMusic();
 		GameObject FinishLevelMusic();
+		GameObject MainMenuUpperPanel();
 	}
 }

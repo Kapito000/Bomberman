@@ -30,7 +30,7 @@ namespace Gameplay.Feature.Explosion.Factory
 		}
 
 		public int CreateExplosionPart(Vector2 pos, Vector2 direction,
-			Transform parent, EExplosionPart part)
+			Transform parent, ExplosionPart part)
 		{
 			var instance = InstantiateExplosion(pos, parent);
 			var entity = InitExplosionEntity(instance);
@@ -43,7 +43,7 @@ namespace Gameplay.Feature.Explosion.Factory
 		{
 			var instance = InstantiateExplosion(pos, parent);
 			var entity = InitExplosionEntity(instance);
-			PlayAnimation(instance, EExplosionPart.Center);
+			PlayAnimation(instance, ExplosionPart.Center);
 			return entity;
 		}
 		
@@ -53,7 +53,7 @@ namespace Gameplay.Feature.Explosion.Factory
 			_kit.InstantiateService.Instantiate(prefab, pos, parent);
 		}
 
-		void PlayAnimation(GameObject instance, EExplosionPart part)
+		void PlayAnimation(GameObject instance, ExplosionPart part)
 		{
 			if (!instance.TryGetComponent<ExplosionAnimator>(out var animator))
 			{
@@ -89,17 +89,17 @@ namespace Gameplay.Feature.Explosion.Factory
 				.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
 		}
 
-		void PlayExplosionAnimation(ExplosionAnimator animator, EExplosionPart part)
+		void PlayExplosionAnimation(ExplosionAnimator animator, ExplosionPart part)
 		{
 			switch (part)
 			{
-				case EExplosionPart.Center:
+				case ExplosionPart.Center:
 					animator.PlayCenter();
 					break;
-				case EExplosionPart.Middle:
+				case ExplosionPart.Middle:
 					animator.PlayMiddle();
 					break;
-				case EExplosionPart.End:
+				case ExplosionPart.End:
 					animator.PlayEnd();
 					break;
 				default:

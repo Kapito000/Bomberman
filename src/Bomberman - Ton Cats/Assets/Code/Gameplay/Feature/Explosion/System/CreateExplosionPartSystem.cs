@@ -11,7 +11,7 @@ namespace Gameplay.Feature.Explosion.System
 	public sealed class CreateExplosionPartSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-			Inc<CreateExplosionRequest, Position, Direction, ExplosionPart,
+			Inc<CreateExplosionRequest, Position, Direction, ExplosionPartComponent,
 				ForParent>> _requestFilter;
 
 		[Inject] EntityWrapper _request;

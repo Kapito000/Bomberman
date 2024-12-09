@@ -174,15 +174,15 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public EExplosionPart ExplosionPart()
+		public ExplosionPart ExplosionPart()
 		{
-			ref var explosionPart = ref Get<ExplosionPart>();
+			ref var explosionPart = ref Get<ExplosionPartComponent>();
 			return explosionPart.Value;
 		}
 
-		public EntityWrapper AddExplosionPart(EExplosionPart part)
+		public EntityWrapper AddExplosionPart(ExplosionPart part)
 		{
-			ref var explosionPart = ref AddComponent<ExplosionPart>();
+			ref var explosionPart = ref AddComponent<ExplosionPartComponent>();
 			explosionPart.Value = part;
 			return this;
 		}

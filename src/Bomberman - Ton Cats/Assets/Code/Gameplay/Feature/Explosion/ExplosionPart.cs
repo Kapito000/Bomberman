@@ -1,6 +1,6 @@
 ﻿namespace Gameplay.Feature.Explosion
 {
-	public enum EExplosionPart
+	public enum ExplosionPart
 	{
 		Center,
 		Middle,

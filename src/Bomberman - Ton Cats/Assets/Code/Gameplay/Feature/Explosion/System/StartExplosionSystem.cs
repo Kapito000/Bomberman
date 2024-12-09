@@ -34,10 +34,10 @@ namespace Gameplay.Feature.Explosion.System
 				Vector2 pos = _explosionRequest.Position();
 
 				RequestCreatingExplosionCenter(pos, parent);
-				RequestCreatingExplosionPart(pos + Vector2.up, Vector2.up, EExplosionPart.End, parent);
-				RequestCreatingExplosionPart(pos + Vector2.down, Vector2.down, EExplosionPart.End, parent);
-				RequestCreatingExplosionPart(pos + Vector2.left, Vector2.left, EExplosionPart.End, parent);
-				RequestCreatingExplosionPart(pos + Vector2.right, Vector2.right, EExplosionPart.End, parent);
+				RequestCreatingExplosionPart(pos + Vector2.up, Vector2.up, ExplosionPart.End, parent);
+				RequestCreatingExplosionPart(pos + Vector2.down, Vector2.down, ExplosionPart.End, parent);
+				RequestCreatingExplosionPart(pos + Vector2.left, Vector2.left, ExplosionPart.End, parent);
+				RequestCreatingExplosionPart(pos + Vector2.right, Vector2.right, ExplosionPart.End, parent);
 
 				_explosionRequest.Destroy();
 			}
@@ -51,7 +51,7 @@ namespace Gameplay.Feature.Explosion.System
 		}
 
 		void RequestCreatingExplosionPart(Vector2 pos, Vector2 dir,
-			EExplosionPart part, Transform parent)
+			ExplosionPart part, Transform parent)
 		{
 			RequestCreatingExplosion(pos, parent)
 				.AddDirection(dir)

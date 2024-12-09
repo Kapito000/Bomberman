@@ -1,6 +1,7 @@
 ﻿using Common.Component;
 using Gameplay.Audio.ClipProvider;
 using Gameplay.Feature.Audio.Behaviour;
+using Gameplay.Feature.Audio.Component;
 using Gameplay.LevelData;
 using Infrastructure.ECS;
 using UnityEngine;
@@ -41,7 +42,7 @@ namespace Gameplay.Audio.Player
 				Debug.LogError("Cannot play clip at point.");
 				return;
 			}
-
+			
 			var wrapper = _levelData.NewEntityWrapper();
 			wrapper.SetEntity(entity);
 			if (wrapper.Has<TransformComponent, AudioSourceComponent>() == false)
@@ -54,6 +55,7 @@ namespace Gameplay.Audio.Player
 			var audioSource = wrapper.AudioSource();
 			audioSource.clip = clip;
 			audioSource.Play();
+			wrapper.Add<EndPlayDespawn>();
 		}
 
 		public void PlaySfxClipAtPoint(string key, Vector2 pos)

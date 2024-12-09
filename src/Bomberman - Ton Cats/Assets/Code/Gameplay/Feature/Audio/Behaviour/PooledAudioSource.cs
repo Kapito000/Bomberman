@@ -1,6 +1,7 @@
 ﻿using Extensions;
 using Gameplay.Audio;
 using Gameplay.Audio.Service;
+using Gameplay.Feature.Audio.Component;
 using Infrastructure.ECS;
 using Infrastructure.Factory.EntityBehaviourFactory;
 using UnityEngine;
@@ -26,13 +27,13 @@ namespace Gameplay.Feature.Audio.Behaviour
 
 				return true;
 			}
-			
+
 			protected override void OnCreated(PooledAudioSource item)
 			{
 				var audioSource = _audioService.ReplaceAudioSource(item.gameObject);
 				_audioService.AssignMixerGroup(MixerGroup.SFX, audioSource);
 				item.gameObject.SetActive(false);
-                
+
 				var e = _entityFactory.InitEntityBehaviour(item.gameObject);
 				_entity.SetEntity(e);
 				_entity
@@ -50,7 +51,6 @@ namespace Gameplay.Feature.Audio.Behaviour
 
 			protected override void OnDespawned(PooledAudioSource item)
 			{
-				Debug.Log("Despawned");
 				item.gameObject.SetActive(false);
 			}
 

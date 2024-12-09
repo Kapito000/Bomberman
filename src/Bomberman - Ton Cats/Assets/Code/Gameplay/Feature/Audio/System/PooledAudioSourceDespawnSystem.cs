@@ -23,6 +23,7 @@ namespace Gameplay.Feature.Audio.System
 				var pool = _pooledAudioSource.PooledAudioSourcePool();
 				var pooledItem = _pooledAudioSource.PooledAudioSource();
 				pool.Despawn(pooledItem);
+				_pooledAudioSource.Remove<DespawnRequest>();
 			}
 		}
 	}

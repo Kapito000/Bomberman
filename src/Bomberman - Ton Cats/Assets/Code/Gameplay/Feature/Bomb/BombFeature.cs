@@ -11,6 +11,7 @@ namespace Gameplay.Feature.Bomb
 			
 			AddUpdate<PutBombSystem>();
 			AddUpdate<BombExplosionSystem>();
+			AddUpdate<PutBombAudioEffect>();
 		}
 	}
 }

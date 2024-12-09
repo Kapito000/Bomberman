@@ -14,8 +14,9 @@ namespace Gameplay.Feature.Bomb.System
 	{
 		readonly EcsFilterInject<
 				Inc<BombCarrier, BombNumber, PutBombRequest, TransformComponent>>
-			_bombCarrierFilter;
-		readonly EcsFilterInject<Inc<BombParent, TransformComponent>> _bombParentFilter;
+			_putBombRequestFilter;
+		readonly EcsFilterInject<Inc<BombParent, TransformComponent>>
+			_bombParentFilter;
 
 		[Inject] IBombFactory _bombFactory;
 		[Inject] EntityWrapper _bombParent;
@@ -25,21 +26,19 @@ namespace Gameplay.Feature.Bomb.System
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var parentEntity in _bombParentFilter.Value)
+			foreach (var requestEntity in _putBombRequestFilter.Value)
 			{
 				_bombParent.SetEntity(parentEntity);
+				_bombCarrier.SetEntity(requestEntity);
 				var parent = _bombParent.Transform();
-				foreach (var requestEntity in _bombCarrierFilter.Value)
-				{
-					_bombCarrier.SetEntity(requestEntity);
-					var bombNumber = _bombCarrier.BombNumber();
-					if (bombNumber <= 0)
-						continue;
+				var bombNumber = _bombCarrier.BombNumber();
+				if (bombNumber <= 0)
+					continue;
 
-					_bombCarrier.SetBombNumber(bombNumber - 1);
-					var bombCarrierPos = _bombCarrier.TransformPos();		
-					var pos = CellCenterPos(bombCarrierPos);
-					_bombFactory.CreateBomb(pos, parent);
-				}
+				_bombCarrier.SetBombNumber(bombNumber - 1);
+				var bombCarrierPos = _bombCarrier.TransformPos();
+				var pos = CellCenterPos(bombCarrierPos);
+				_bombFactory.CreateBomb(pos, parent);
 			}
 		}
 

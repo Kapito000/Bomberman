@@ -1,7 +1,6 @@
 ﻿using Extensions;
 using Gameplay.Audio;
 using Gameplay.Audio.Service;
-using Gameplay.Feature.Audio.Component;
 using Infrastructure.ECS;
 using Infrastructure.Factory.EntityBehaviourFactory;
 using UnityEngine;

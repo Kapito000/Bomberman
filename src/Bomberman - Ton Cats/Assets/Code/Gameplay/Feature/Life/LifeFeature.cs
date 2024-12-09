@@ -9,6 +9,7 @@ namespace Gameplay.Feature.Life
 		{
 			AddUpdate<ChangeLifePointsSystem>();
 			AddUpdate<DeathSystem>();
+			AddUpdate<DeathAudioEffectSystem>();
 
 			AddCleanup<CleanupSystem>();
 		}

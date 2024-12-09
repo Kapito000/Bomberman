@@ -1,4 +1,5 @@
-﻿using Gameplay.Feature.Bomb;
+﻿using Gameplay.Feature.Audio;
+using Gameplay.Feature.Bomb;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.Collisions;
 using Gameplay.Feature.DamageApplication;
@@ -28,8 +29,6 @@ namespace Gameplay.Feature.FeatureControl
 			Add<MapGenerationFeature>();
 			Add<CollisionsFeature>();
 			Add<GameMusicFeature>();
-			Add<ExplosionFeature>();
-			Add<LifeFeature>();
 			Add<HeroFeature>();
 			Add<EnemyFeature>();
 			Add<BombFeature>();
@@ -38,6 +37,7 @@ namespace Gameplay.Feature.FeatureControl
 			Add<LifeFeature>();
 			Add<MapFeature>();
 			Add<TimerFeature>();
+			Add<AudioFeature>();
 			Add<CameraFeature>();
 			Add<UiFeature>();
 			Add<HudFeature>();

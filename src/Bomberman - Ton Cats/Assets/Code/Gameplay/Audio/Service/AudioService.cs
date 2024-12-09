@@ -36,16 +36,8 @@ namespace Gameplay.Audio.Service
 			audioSource.playOnAwake = false;
 		}
 
-		public AudioSource ReplaceAudioSource(GameObject instance)
-		{
-			var audioSource = instance.GetComponent<AudioSource>();
-			if (audioSource == null)
-				audioSource = instance.AddComponent<AudioSource>();
-			return audioSource;
-		}
-
 		public bool TryCreateAdditionalAudioSource(int forEntity,
-			out AudioSource audioSource)
+			out AudioSource audioSource, string name)
 		{
 			var wrapper = _levelData.NewEntityWrapper();
 			wrapper.SetEntity(forEntity);
@@ -56,10 +48,25 @@ namespace Gameplay.Audio.Service
 			}
 
 			ReplaceAudioSourceParent(wrapper, tr);
-
-			var parent = wrapper.AdditionalAudioSourceParent();
-			audioSource = ReplaceAudioSource(parent.gameObject);
+			var audioSourceObj = CreateAudioSourceObj(name, wrapper);
+			audioSource = ReplaceAudioSource(audioSourceObj);
 			return true;
+		}
+
+		public AudioSource ReplaceAudioSource(GameObject instance)
+		{
+			var audioSource = instance.GetComponent<AudioSource>();
+			if (audioSource == null)
+				audioSource = instance.AddComponent<AudioSource>();
+			return audioSource;
+		}
+
+		static GameObject CreateAudioSourceObj(string name, EntityWrapper wrapper)
+		{
+			var parent = wrapper.AdditionalAudioSourceParent();
+			var audioSourceObj = new GameObject(name);
+			audioSourceObj.transform.SetParent(parent);
+			return audioSourceObj;
 		}
 
 		void ReplaceAudioSourceParent(EntityWrapper wrapper, Transform tr)
@@ -68,7 +75,7 @@ namespace Gameplay.Audio.Service
 			{
 				var name = Constant.ObjectName.c_AdditionalAudioSourceParent;
 				var parent = new GameObject(name);
-				parent.transform.SetParent(tr);
+				parent.transform.SetParent(tr, false);
 				wrapper.AddAdditionalAudioSourceParent(parent.transform);
 			}
 		}

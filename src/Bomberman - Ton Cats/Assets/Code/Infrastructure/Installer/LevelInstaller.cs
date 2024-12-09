@@ -1,5 +1,6 @@
 ﻿using Gameplay.AI.Navigation;
 using Gameplay.Feature;
+using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Bomb.Factory;
 using Gameplay.Feature.Camera.Factory;
 using Gameplay.Feature.Enemy.AI;
@@ -68,6 +69,8 @@ namespace Infrastructure.Installer
 			_levelData.EcsRunner = Container.Resolve<IEcsRunner>();
 			_levelData.MapController = Container.Resolve<IMapController>();
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
+			_levelData.AudioSourcePool =
+				Container.Resolve<PooledAudioSource.Pool>();
 		}
 
 		void BindFinishLevelService()

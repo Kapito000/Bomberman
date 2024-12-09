@@ -17,6 +17,7 @@ namespace Infrastructure.GameStatus.State
 				return;
 
 			_levelData.EcsRunner.InitWorld();
+			_levelData.AudioSourcePool.ExpandBy(Constant.Value.c_AudioSourcePoolSize);
 			_gameStateMachine.Enter<GameLoop>();
 		}
 

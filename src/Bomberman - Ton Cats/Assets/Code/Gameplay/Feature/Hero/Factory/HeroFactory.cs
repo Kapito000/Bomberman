@@ -46,10 +46,19 @@ namespace Gameplay.Feature.Hero.Factory
 			return entity;
 		}
 
+		public int CreateHeroSpawnPoint(Vector2 pos)
+		{
+			var prefab = _kit.AssetProvider.HeroSpawnPoint();
+			var instance = _kit.InstantiateService.Instantiate(prefab, pos);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			return e;
+		}
+
 		void AddTakenDamageEffectComponents(EntityWrapper heroEntity)
 		{
+			var name = Constant.ObjectName.c_DamageAudioEffect;
 			if (_audioService.TryCreateAdditionalAudioSource(heroEntity.Enity,
-				    out var takenDamageEffectAudioSource) == false)
+				    out var takenDamageEffectAudioSource, name: name) == false)
 			{
 				CastCannotInitCorrectlyErrorMessage();
 				return;
@@ -59,14 +68,6 @@ namespace Gameplay.Feature.Hero.Factory
 				.AddTakenDamageAudioEffectId(Constant.AudioClipId.c_HeroTakenDamage)
 				.AddTakenDamageEffectAudioSource(takenDamageEffectAudioSource)
 				;
-		}
-
-		public int CreateHeroSpawnPoint(Vector2 pos)
-		{
-			var prefab = _kit.AssetProvider.HeroSpawnPoint();
-			var instance = _kit.InstantiateService.Instantiate(prefab, pos);
-			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
-			return e;
 		}
 
 		static void CastCannotInitCorrectlyErrorMessage() =>

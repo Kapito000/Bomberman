@@ -1,9 +1,10 @@
 ﻿using Common.Component;
 using Extensions;
+using Gameplay.Feature.Audio.Behaviour;
+using Gameplay.Feature.Audio.Component;
 using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.DamageApplication.Component;
-using Gameplay.Feature.DamageApplication.System;
 using Gameplay.Feature.Enemy.AI.Blackboard;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Explosion;
@@ -18,8 +19,6 @@ using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Timer.Component;
 using Leopotam.EcsLite;
-using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
@@ -31,6 +30,24 @@ namespace Infrastructure.ECS
 	public partial class EntityWrapper
 	{
 		public EcsWorld World() => _world;
+
+		public bool Has<T1, T2>()
+			where T1 : struct
+			where T2 : struct =>
+			Has(typeof(T1), typeof(T2));
+
+		public bool Has<T1, T2, T3>()
+			where T1 : struct
+			where T2 : struct
+			where T3 : struct =>
+			Has(typeof(T1), typeof(T2), typeof(T3));
+
+		public bool Has<T1, T2, T3, T4>()
+			where T1 : struct
+			where T2 : struct
+			where T3 : struct
+			where T4 : struct =>
+			Has(typeof(T1), typeof(T2), typeof(T3), typeof(T4));
 
 		public Transform Transform() =>
 			_world.Transform(_entity);
@@ -112,7 +129,7 @@ namespace Infrastructure.ECS
 			return position.Value;
 		}
 
-		public EntityWrapper AddPosition(Vector3 value)
+		public EntityWrapper AddPosition(Vector2 value)
 		{
 			ref var position = ref AddComponent<Position>();
 			position.Value = value;
@@ -434,18 +451,57 @@ namespace Infrastructure.ECS
 			ref var parent = ref Get<AdditionalAudioSourceParent>();
 			return parent.Value;
 		}
-		
+
 		public EntityWrapper AddAdditionalAudioSourceParent(Transform value)
 		{
 			ref var parent = ref AddComponent<AdditionalAudioSourceParent>();
 			parent.Value = value;
 			return this;
 		}
-		
+
 		public EntityWrapper ReplaceAdditionalAudioSourceParent(Transform value)
 		{
 			ref var parent = ref ReplaceComponent<AdditionalAudioSourceParent>();
 			parent.Value = value;
+			return this;
+		}
+
+		public string DeathAudioEffectClipId()
+		{
+			ref var deathAudioEffectId = ref Get<DeathAudioEffectClipId>();
+			return deathAudioEffectId.Value;
+		}
+
+		public EntityWrapper AddDeathAudioEffectClipId(string value)
+		{
+			ref var deathAudioEffectId = ref AddComponent<DeathAudioEffectClipId>();
+			deathAudioEffectId.Value = value;
+			return this;
+		}
+
+		public PooledAudioSource.Pool PooledAudioSourcePool()
+		{
+			ref var component = ref Get<PooledAudioSourcePool>();
+			return component.Value;
+		}
+
+		public EntityWrapper AddPooledAudioSourcePool(PooledAudioSource.Pool pool)
+		{
+			ref var component = ref AddComponent<PooledAudioSourcePool>();
+			component.Value = pool;
+			return this;
+		}
+
+		public PooledAudioSource PooledAudioSource()
+		{
+			ref var pooledItem = ref Get<PooledAudioSourceComponent>();
+			return pooledItem.Value;
+		}
+
+		public EntityWrapper AddPooledAudioSourceComponent(PooledAudioSource value)
+		{
+			ref var component = ref AddComponent<PooledAudioSourceComponent>();
+			component.Value = value;
 			return this;
 		}
 	}

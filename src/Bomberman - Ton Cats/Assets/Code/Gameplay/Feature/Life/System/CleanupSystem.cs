@@ -11,7 +11,7 @@ namespace Gameplay.Feature.Life.System
 
 		public void Run(IEcsSystems systems)
 		{
-			foreach (var e in _eventFilter.Value) 
+			foreach (var e in _eventFilter.Value)
 				_world.Value.GetPool<ChangeLifePoints>().Del(e);
 		}
 	}

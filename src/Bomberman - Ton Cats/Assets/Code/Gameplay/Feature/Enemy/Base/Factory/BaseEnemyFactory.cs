@@ -1,4 +1,5 @@
-﻿using Gameplay.Feature.Destruction.Component;
+﻿using Gameplay.Audio.Service;
+using Gameplay.Feature.Destruction.Component;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Component;
 using Infrastructure.ECS;
@@ -14,6 +15,7 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		[Inject] EcsWorld _world;
 		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _entity;
+		[Inject] IAudioService _audioService;
 
 		public int CreateEnemy(Vector3 pos, Transform parent)
 		{
@@ -25,7 +27,9 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 				.Add<EnemyComponent>()
 				.Add<AttackHeroAbility>()
 				.AddBaseEnemyAIBlackboard()
+				.AddDeathAudioEffectClipId(Constant.AudioClipId.c_EnemyDeath)
 				;
+
 			return entity;
 		}
 

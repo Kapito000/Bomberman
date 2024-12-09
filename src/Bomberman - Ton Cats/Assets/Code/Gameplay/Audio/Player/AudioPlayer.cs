@@ -1,4 +1,8 @@
-﻿using Gameplay.Audio.ClipProvider;
+﻿using Common.Component;
+using Gameplay.Audio.ClipProvider;
+using Gameplay.Feature.Audio.Behaviour;
+using Gameplay.LevelData;
+using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
 
@@ -6,6 +10,7 @@ namespace Gameplay.Audio.Player
 {
 	public sealed class AudioPlayer : IAudioPlayer
 	{
+		[Inject] ILevelData _levelData;
 		[Inject] IAudioClipProvider _clipProvider;
 
 		public void Play(ShortMusic key, AudioSource audioSource)
@@ -29,6 +34,34 @@ namespace Gameplay.Audio.Player
 			PlaySfx(clipId, audioSource);
 		}
 
+		public void PlayClipAtPoint(AudioClip clip, Vector2 pos)
+		{
+			if (PooledAudioSourcePool().SpawnAndTryGetEntity(out var entity) == false)
+			{
+				Debug.LogError("Cannot play clip at point.");
+				return;
+			}
+
+			var wrapper = _levelData.NewEntityWrapper();
+			wrapper.SetEntity(entity);
+			if (wrapper.Has<TransformComponent, AudioSourceComponent>() == false)
+			{
+				Debug.LogError("The pooled audio source entity is not correct.");
+				return;
+			}
+			
+			wrapper.Transform().position = pos;
+			var audioSource = wrapper.AudioSource();
+			audioSource.clip = clip;
+			audioSource.Play();
+		}
+
+		public void PlaySfxClipAtPoint(string key, Vector2 pos)
+		{
+			if (_clipProvider.TryGetSfxWithDebug(key, out var clip))
+				PlayClipAtPoint(clip, pos);
+		}
+
 		void PlaySfx(string clipId, AudioSource audioSource)
 		{
 			if (_clipProvider.TryGetSfxWithDebug(clipId, out var clip))
@@ -37,5 +70,8 @@ namespace Gameplay.Audio.Player
 				audioSource.Play();
 			}
 		}
+
+		PooledAudioSource.Pool PooledAudioSourcePool() =>
+			_levelData.AudioSourcePool;
 	}
 }

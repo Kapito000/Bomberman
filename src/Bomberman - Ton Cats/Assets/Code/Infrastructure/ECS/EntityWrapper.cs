@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using System;
+using Extensions;
 using Gameplay.Feature.Destruction.Component;
 using Leopotam.EcsLite;
 
@@ -10,7 +11,7 @@ namespace Infrastructure.ECS
 		readonly EcsWorld _world;
 
 		public int Enity => _entity;
-		
+
 		public EntityWrapper(EcsWorld world)
 		{
 			_world = world;
@@ -66,10 +67,11 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public bool Has<TComponent>() where TComponent : struct
-		{
-			return _world.Has<TComponent>(_entity);
-		}
+		public bool Has<TComponent>() where TComponent : struct =>
+			_world.Has<TComponent>(_entity);
+
+		public bool Has(params Type[] types) =>
+			_world.Has(_entity, types);
 
 		public void Destroy()
 		{

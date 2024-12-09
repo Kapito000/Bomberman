@@ -4,6 +4,7 @@ using Gameplay.Audio.MixerGroupProvider;
 using Gameplay.Audio.Player;
 using Gameplay.Audio.Service;
 using Gameplay.Collisions;
+using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.GameMusic.Factory;
 using Gameplay.Feature.Hero.StaticData;
@@ -48,6 +49,7 @@ namespace Infrastructure.Installer
 		public override void InstallBindings()
 		{
 			BindWorld();
+			BindPools();
 			BindEcsRunner();
 			GameTimerData();
 			BindLevelData();
@@ -73,6 +75,21 @@ namespace Infrastructure.Installer
 			BindEntityBehaviourFactory();
 		}
 
+		void BindPools()
+		{
+			BindAudioSourcePool();
+		}
+
+		void BindAudioSourcePool()
+		{
+			Container.BindMemoryPool<PooledAudioSource, PooledAudioSource.Pool>()
+				.FromNewComponentOnNewGameObject()
+				.WithGameObjectName(Constant.ObjectName.c_PooledAudioSource)
+				.UnderTransformGroup(Constant.ObjectName.c_PooledAudioSourcesParent)
+				.AsSingle()
+				.MoveIntoAllSubContainers();
+		}
+
 		void BindFactories()
 		{
 			Container.Bind<IGameMusicFactory>().To<GameMusicFactory>()
@@ -89,8 +106,7 @@ namespace Infrastructure.Installer
 
 		void BindWorld()
 		{
-			Container.Bind<EcsWorld>().To<EcsWorld>()
-				.AsSingle()
+			Container.Bind<EcsWorld>().AsSingle()
 				.MoveIntoAllSubContainers();
 		}
 
@@ -140,7 +156,8 @@ namespace Infrastructure.Installer
 		void BindEntityBehaviourFactory()
 		{
 			Container.Bind<IEntityBehaviourFactory>().To<EntityBehaviourFactory>()
-				.AsSingle();
+				.AsSingle()
+				.MoveIntoAllSubContainers();
 		}
 
 		void BindCollisionRegistry()
@@ -165,7 +182,9 @@ namespace Infrastructure.Installer
 
 		void BindUIFactories()
 		{
-			Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
+			Container.Bind<IWindowFactory>().To<WindowFactory>()
+				.AsSingle()
+				.MoveIntoAllSubContainers();
 		}
 
 		void BindEntityWrapper()
@@ -224,12 +243,15 @@ namespace Infrastructure.Installer
 			Container
 				.Bind(typeof(IInstantiateService), typeof(IDiContainerDependence))
 				.To<StandardInstantiateService>()
-				.AsSingle();
+				.AsSingle()
+				.MoveIntoAllSubContainers();
 		}
 
 		void BindFactoryKit()
 		{
-			Container.Bind<IFactoryKit>().To<FactoryKit>().AsSingle();
+			Container.Bind<IFactoryKit>().To<FactoryKit>()
+				.AsSingle()
+				.MoveIntoAllSubContainers();
 		}
 	}
 }

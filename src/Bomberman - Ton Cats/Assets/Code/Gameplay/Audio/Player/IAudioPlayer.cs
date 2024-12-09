@@ -8,5 +8,8 @@ namespace Gameplay.Audio.Player
 
 		void PlaySfx(string clipId, AudioSource audioSource,
 			bool forceReplay = false);
+
+		void PlaySfxClipAtPoint(string key, Vector2 pos);
+		void PlayClipAtPoint(AudioClip clip, Vector2 pos);
 	}
 }

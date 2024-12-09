@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿using System;
+using Cinemachine;
 using Common.Component;
 using Gameplay.Feature.Camera.Component;
 using Infrastructure.ECS;
@@ -31,7 +32,8 @@ namespace Extensions
 		public static void SetTransform(this EcsWorld world, int e,
 			Transform transform)
 		{
-			ref var transformComponent = ref world.GetPool<TransformComponent>().Get(e);
+			ref var transformComponent =
+				ref world.GetPool<TransformComponent>().Get(e);
 			transformComponent.Value = transform;
 		}
 
@@ -81,6 +83,23 @@ namespace Extensions
 		public static bool Has<TComponent>(this EcsWorld world, int e)
 			where TComponent : struct =>
 			world.GetPool<TComponent>().Has(e);
+
+		public static bool Has(this EcsWorld world, int e, params Type[] types)
+		{
+			foreach (var type in types)
+			{
+				if (type.IsValueType == false)
+				{
+					Debug.LogError("The reference type was passed.");
+					return false;
+				}
+				
+				var pool = world.GetPoolByType(type);
+				if (pool.Has(e) == false)
+					return false;
+			}
+			return true;
+		}
 
 		public static bool Has(this IEcsPool pool, int e) =>
 			pool.Has(e);

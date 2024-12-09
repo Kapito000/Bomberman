@@ -1,4 +1,5 @@
-﻿using Gameplay.Feature.Map.MapController;
+﻿using Gameplay.Feature.Audio.Behaviour;
+using Gameplay.Feature.Map.MapController;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
@@ -12,6 +13,7 @@ namespace Gameplay.LevelData
 		public IEcsRunner EcsRunner { get; set; }
 		public IMapController MapController { get; set; }
 		public IDevSceneRunner DevSceneRunner { get; set; }
+		public PooledAudioSource.Pool AudioSourcePool { get; set; }
 #if UNITY_EDITOR
 		public EcsWorldDebugSystem EcsWorldDebugSystem { get; set; }
 #endif

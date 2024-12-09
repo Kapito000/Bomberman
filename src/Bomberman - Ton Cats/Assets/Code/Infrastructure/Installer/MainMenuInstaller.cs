@@ -2,16 +2,20 @@
 using Gameplay.Feature.MainMenuMusic.Factory;
 using Gameplay.LevelData;
 using Gameplay.MainMenu;
+using Gameplay.UI.StaticData;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
+using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.Installer
 {
 	public sealed class MainMenuInstaller : MonoInstaller, IInitializable
 	{
+		[SerializeField] WindowKitId _windowKitId = WindowKitId.MainMenu;
+		
 		[Inject] ILevelData _levelData;
 		[Inject] IGameStateMachine _gameStateMachine;
 
@@ -20,6 +24,7 @@ namespace Infrastructure.Installer
 			BindInitializable();
 			BindFactories();
 			BindUIServices();
+			BindWindowKitId();
 			BindDevSceneRunner();
 			BindFeatureController();
 		}
@@ -35,6 +40,11 @@ namespace Infrastructure.Installer
 		{
 			_levelData.EcsRunner = Container.Resolve<IEcsRunner>();
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
+		}
+		
+		void BindWindowKitId()
+		{
+			Container.BindInstance(_windowKitId).AsSingle();
 		}
 
 		void BindFactories()

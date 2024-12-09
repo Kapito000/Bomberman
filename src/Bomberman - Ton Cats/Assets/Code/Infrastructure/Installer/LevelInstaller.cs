@@ -1,5 +1,4 @@
 ﻿using Gameplay.AI.Navigation;
-using Gameplay.Feature;
 using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Bomb.Factory;
 using Gameplay.Feature.Camera.Factory;
@@ -9,14 +8,12 @@ using Gameplay.Feature.Enemy.Base.System;
 using Gameplay.Feature.Explosion.Factory;
 using Gameplay.Feature.FeatureControl;
 using Gameplay.Feature.FinishLevel.Factory;
-using Gameplay.Feature.GameMusic.Factory;
 using Gameplay.Feature.Hero.Factory;
 using Gameplay.Feature.HUD.Factory;
 using Gameplay.Feature.Map.MapController;
-using Gameplay.Feature.UI.Factory;
 using Gameplay.LevelData;
 using Gameplay.MapView;
-using Gameplay.Windows;
+using Gameplay.UI.StaticData;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
 using Infrastructure.FinishLevel;
@@ -37,6 +34,7 @@ namespace Infrastructure.Installer
 		[SerializeField] Tilemap _groundTailMap;
 		[SerializeField] Tilemap _destructibleTailMap;
 		[SerializeField] Tilemap _indestructibleTailMap;
+		[SerializeField] WindowKitId _windowKitId = WindowKitId.Game;
 		[SerializeField] NavMeshSurface _navMeshSurface;
 
 		[Inject] ILevelData _levelData;
@@ -47,10 +45,10 @@ namespace Infrastructure.Installer
 			BindInitializable();
 			BindMapView();
 			BindFactories();
+			BindWindowKitId();
 			BindAIFunctional();
 			BindMapController();
 			BindDevSceneRunner();
-			BindWindowServices();
 			BindNavigationSurface();
 			BindFeatureController();
 			BindFinishLevelService();
@@ -73,6 +71,11 @@ namespace Infrastructure.Installer
 				Container.Resolve<PooledAudioSource.Pool>();
 		}
 
+		void BindWindowKitId()
+		{
+			Container.BindInstance(_windowKitId).AsSingle();
+		}
+
 		void BindFinishLevelService()
 		{
 			Container.Bind<IFinishLevelService>().To<FinishLevelService>().AsSingle();
@@ -80,11 +83,6 @@ namespace Infrastructure.Installer
 			Container.BindInterfacesTo<GameTimerCondition>().AsSingle();
 			Container.BindInterfacesTo<HeroHealthCondition>().AsSingle();
 			Container.BindInterfacesTo<HeroEnteredIntoFinishLevelDoor>().AsSingle();
-		}
-
-		void BindWindowServices()
-		{
-			Container.Bind<IWindowService>().To<WindowService>().AsSingle();
 		}
 
 		void BindMapController()
@@ -116,7 +114,6 @@ namespace Infrastructure.Installer
 
 		void BindFactories()
 		{
-			Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
 			Container.Bind<IHudFactory>().To<HudFactory>().AsSingle();
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
 			Container.Bind<IBombFactory>().To<BombFactory>().AsSingle();

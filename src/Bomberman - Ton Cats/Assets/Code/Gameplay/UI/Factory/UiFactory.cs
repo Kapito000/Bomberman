@@ -1,10 +1,10 @@
-﻿using Gameplay.Feature.UI.Component;
+﻿using Gameplay.Feature.GameUI.Component;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Feature.UI.Factory
+namespace Gameplay.UI.Factory
 {
 	public sealed class UiFactory : IUiFactory
 	{
@@ -17,7 +17,6 @@ namespace Gameplay.Feature.UI.Factory
 			var instance = _kit.InstantiateService.Instantiate(prefab);
 			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			_entity.SetEntity(e);
-
 			_entity
 				.Add<UiRoot>()
 				.AddTransform(instance.transform);

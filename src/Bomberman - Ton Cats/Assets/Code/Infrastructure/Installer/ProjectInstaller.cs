@@ -17,6 +17,9 @@ using Gameplay.LevelData;
 using Gameplay.MapTile.TileProvider;
 using Gameplay.Physics;
 using Gameplay.StaticData.SceneNames;
+using Gameplay.UI.Factory;
+using Gameplay.UI.StaticData;
+using Gameplay.Windows;
 using Gameplay.Windows.Factory;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
@@ -42,6 +45,7 @@ namespace Infrastructure.Installer
 		[SerializeField] GameTimerData _gameTimerData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
+		[SerializeField] WindowKitData _windowKitData;
 		[SerializeField] AudioClipProvider _audioClipProvider;
 		[SerializeField] DirectLinkProvider _assetProvider;
 		[SerializeField] AudioMixerProvider _audioMixerProvider;
@@ -63,6 +67,7 @@ namespace Infrastructure.Installer
 			BindInputService();
 			BindMapGenerator();
 			BindMusicFactory();
+			BindWindowService();
 			BindSystemFactory();
 			BindEntityWrapper();
 			BindAssetProvider();
@@ -180,10 +185,17 @@ namespace Infrastructure.Installer
 			Container.Bind<ITimeService>().To<StandardTimeService>().AsSingle();
 		}
 
+		void BindWindowService()
+		{
+			Container.Bind<IWindowService>().To<WindowService>().AsSingle()
+				.MoveIntoAllSubContainers();
+		}
+
 		void BindUIFactories()
 		{
-			Container.Bind<IWindowFactory>().To<WindowFactory>()
-				.AsSingle()
+			Container.Bind<IUiFactory>().To<UiFactory>().AsSingle()
+				.MoveIntoAllSubContainers();
+			Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle()
 				.MoveIntoAllSubContainers();
 		}
 
@@ -222,6 +234,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IAIData>().FromInstance(_aiData).AsSingle();
 			Container.Bind<IMapData>().FromInstance(_mapData).AsSingle();
 			Container.Bind<ITileProvider>().FromInstance(_tileCollection).AsSingle();
+			Container.Bind<IWindowKitData>().FromInstance(_windowKitData).AsSingle();
 		}
 
 		void BindGameStateMachine()

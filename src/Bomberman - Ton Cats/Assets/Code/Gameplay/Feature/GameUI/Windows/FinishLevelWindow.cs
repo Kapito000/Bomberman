@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Gameplay.Feature.UI.Windows
+namespace Gameplay.Feature.GameUI.Windows
 {
 	public class FinishLevelWindow : BaseWindow
 	{

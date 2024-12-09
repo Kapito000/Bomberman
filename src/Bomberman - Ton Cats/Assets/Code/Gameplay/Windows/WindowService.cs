@@ -12,7 +12,10 @@ namespace Gameplay.Windows
 		readonly Dictionary<WindowId, BaseWindow> _poolWindows = new();
 		readonly Dictionary<WindowId, BaseWindow> _openedWindows = new();
 
-		public void Create(Transform parent, params WindowId[] ids)
+		public void Create(Transform parent, params WindowId[] ids) =>
+			Create(parent, (IEnumerable<WindowId>)ids);
+
+		public void Create(Transform parent, IEnumerable<WindowId> ids)
 		{
 			foreach (var id in ids)
 			{

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Gameplay.Windows
 {
@@ -7,5 +8,6 @@ namespace Gameplay.Windows
 		void Open(WindowId windowId);
 		void Close(WindowId windowId);
 		void Create(Transform parent, params WindowId[] ids);
+		void Create(Transform parent, IEnumerable<WindowId> ids);
 	}
 }

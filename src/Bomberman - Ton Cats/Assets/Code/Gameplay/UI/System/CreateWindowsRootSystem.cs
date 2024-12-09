@@ -1,12 +1,12 @@
 ﻿using Common.Component;
-using Gameplay.Feature.UI.Component;
-using Gameplay.Feature.UI.Factory;
+using Gameplay.Feature.GameUI.Component;
+using Gameplay.UI.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.UI.System
+namespace Gameplay.UI.System
 {
 	public sealed class CreateWindowsRootSystem : IEcsRunSystem
 	{

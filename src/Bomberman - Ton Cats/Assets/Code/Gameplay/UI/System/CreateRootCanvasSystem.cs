@@ -1,8 +1,8 @@
-﻿using Gameplay.Feature.UI.Factory;
+﻿using Gameplay.UI.Factory;
 using Leopotam.EcsLite;
 using Zenject;
 
-namespace Gameplay.Feature.UI.System
+namespace Gameplay.UI.System
 {
 	public sealed class CreateRootCanvasSystem : IEcsRunSystem
 	{

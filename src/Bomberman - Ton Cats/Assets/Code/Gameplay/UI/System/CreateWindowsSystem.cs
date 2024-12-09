@@ -1,19 +1,24 @@
-﻿using Common.Component;
-using Gameplay.Feature.UI.Component;
+﻿using System.Collections.Generic;
+using Common.Component;
+using Gameplay.Feature.GameUI.Component;
+using Gameplay.UI.StaticData;
 using Gameplay.Windows;
 using Infrastructure.AssetProvider;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Feature.UI.System
+namespace Gameplay.UI.System
 {
 	public sealed class CreateWindowsSystem : IEcsRunSystem
 	{
+		[Inject] WindowKitId _windowKitId;
 		[Inject] EntityWrapper _root;
 		[Inject] IWindowService _windowService;
 		[Inject] IAssetProvider _assetProvider;
+		[Inject] IWindowKitData _windowKitData;
 
 		readonly EcsFilterInject<
 			Inc<WindowsRoot, TransformComponent>> _windowsRootFilter;
@@ -24,18 +29,16 @@ namespace Gameplay.Feature.UI.System
 			{
 				_root.SetEntity(e);
 				var parent = _root.Transform();
-				var windowsIds = WindowsIdsList();
+				if (TryGetWindowsIdsList(out var windowsIds) == false)
+				{
+					Debug.LogError("Cannot to create windows.");
+					return;
+				}
 				_windowService.Create(parent, windowsIds);
 			}
 		}
 
-		WindowId[] WindowsIdsList()
-		{
-			return new[]
-			{
-				WindowId.GameOver,
-				WindowId.LevelComplete,
-			};
-		}
+		bool TryGetWindowsIdsList(out IReadOnlyList<WindowId> list) =>
+			_windowKitData.TryGetKit(_windowKitId, out list);
 	}
 }

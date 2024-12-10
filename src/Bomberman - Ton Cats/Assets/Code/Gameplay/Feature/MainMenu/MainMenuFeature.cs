@@ -10,7 +10,7 @@ namespace Gameplay.Feature.MainMenu
 			: base(systemFactory)
 		{
 			AddInit<CreateMusicParentSystem>();
-			AddInit<CreateMainMenuMusiSystem>();
+			AddInit<CreateMainMenuAmbientMusicSystem>();
 		}
 	}
 }

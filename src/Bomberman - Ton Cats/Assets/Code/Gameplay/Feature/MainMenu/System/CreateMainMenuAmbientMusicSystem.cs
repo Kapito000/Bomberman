@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Gameplay.Feature.MainMenu.System
 {
-	public sealed class CreateMainMenuMusiSystem : IEcsRunSystem
+	public sealed class CreateMainMenuAmbientMusicSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _musicEntity;
 		[Inject] EntityWrapper _parentEntity;

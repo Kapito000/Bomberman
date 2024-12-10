@@ -4,17 +4,10 @@ namespace Gameplay.Windows
 {
 	public abstract class BaseWindow : MonoBehaviour
 	{
-		WindowId _id;
-
-		public WindowId Id
-		{
-			get => _id;
-			private set => _id = value;
-		}
+		public abstract WindowId Id { get; }
 
 		void Start()
 		{
-			SetWindowId(ref _id);
 			Initialize();
 			SubscribeUpdates();
 		}
@@ -43,8 +36,6 @@ namespace Gameplay.Windows
 
 		protected virtual void OnCleanup()
 		{ }
-
-		protected abstract void SetWindowId(ref WindowId id);
 
 		void Cleanup()
 		{

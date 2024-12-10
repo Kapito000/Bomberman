@@ -11,6 +11,8 @@ using Gameplay.Feature.Hero.StaticData;
 using Gameplay.Feature.MapGenerator.Services;
 using Gameplay.Feature.MapGenerator.StaticData;
 using Gameplay.Feature.Timer.StaticData;
+using Gameplay.GameSettings;
+using Gameplay.GameSettings.Audio;
 using Gameplay.Input;
 using Gameplay.Input.Character;
 using Gameplay.LevelData;
@@ -34,6 +36,7 @@ using Infrastructure.TimeService;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
+using AudioSettings = Gameplay.GameSettings.Audio.AudioSettings;
 
 namespace Infrastructure.Installer
 {
@@ -77,7 +80,15 @@ namespace Infrastructure.Installer
 			BindCollisionRegistry();
 			BindAudioMixerProvider();
 			BindInstantiateService();
+			BindGameSettingsService();
 			BindEntityBehaviourFactory();
+		}
+
+		void BindGameSettingsService()
+		{
+			Container.Bind<IGameSettings>().To<GameSettingsService>().AsSingle();
+			Container.Bind<IAudioSetting>().To<AudioSettings>().AsSingle()
+				.WhenInjectedInto<IGameSettings>();
 		}
 
 		void BindPools()

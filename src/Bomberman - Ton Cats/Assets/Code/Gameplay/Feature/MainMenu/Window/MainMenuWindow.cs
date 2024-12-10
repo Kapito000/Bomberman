@@ -12,6 +12,8 @@ namespace Gameplay.Feature.MainMenu.Window
 
 		[SerializeField] Button _launchGameButton;
 
+		public override WindowId Id => WindowId.MainMenu;
+
 		protected override void Initialize()
 		{
 			_launchGameButton.onClick.AddListener(OnLaunchGameButtonClick);
@@ -21,9 +23,6 @@ namespace Gameplay.Feature.MainMenu.Window
 		{
 			_launchGameButton.onClick.RemoveListener(OnLaunchGameButtonClick);
 		}
-
-		protected override void SetWindowId(ref WindowId id) =>
-			id = WindowId.MainMenu;
 
 		void OnLaunchGameButtonClick()
 		{

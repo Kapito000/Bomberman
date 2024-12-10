@@ -14,8 +14,7 @@ namespace Gameplay.Feature.GameUI.Window
 
 		[Inject] IFinishLevelService _finishLevelService;
 
-		protected override void SetWindowId(ref WindowId id) =>
-			id = _windowId;
+		public override WindowId Id => _windowId;
 
 		protected override void Initialize()
 		{

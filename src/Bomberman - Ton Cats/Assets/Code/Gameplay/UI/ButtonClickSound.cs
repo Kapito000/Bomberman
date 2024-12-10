@@ -20,6 +20,11 @@ namespace Gameplay.UI
 			_audioService.AssignMixerGroup(MixerGroup.UI, _audioSource);
 		}
 
+		void OnDestroy()
+		{
+			_button.onClick.RemoveListener(OnButtonClick);
+		}
+
 		void OnButtonClick()
 		{
 			_audioSource.Play();

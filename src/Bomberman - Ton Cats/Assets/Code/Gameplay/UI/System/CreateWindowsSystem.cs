@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Common.Component;
-using Gameplay.Feature.GameUI.Component;
+using Gameplay.UI.Component;
 using Gameplay.UI.StaticData;
 using Gameplay.Windows;
 using Infrastructure.AssetProvider;

@@ -1,5 +1,5 @@
 ﻿using Common.Component;
-using Gameplay.Feature.GameUI.Component;
+using Gameplay.UI.Component;
 using Gameplay.UI.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;

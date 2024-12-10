@@ -1,6 +1,6 @@
 ﻿using Common.Component;
-using Gameplay.Feature.GameUI.Component;
 using Gameplay.Feature.MainMenu.Factory;
+using Gameplay.UI.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;

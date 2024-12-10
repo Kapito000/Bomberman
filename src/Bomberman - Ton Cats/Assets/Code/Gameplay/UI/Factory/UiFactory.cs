@@ -1,4 +1,4 @@
-﻿using Gameplay.Feature.GameUI.Component;
+﻿using Gameplay.UI.Component;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using UnityEngine;

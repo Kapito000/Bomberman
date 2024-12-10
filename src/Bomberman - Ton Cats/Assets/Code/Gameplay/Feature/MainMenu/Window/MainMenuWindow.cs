@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Gameplay.Feature.GameUI.Windows
+namespace Gameplay.Feature.MainMenu.Window
 {
 	public sealed class MainMenuWindow : BaseWindow
 	{

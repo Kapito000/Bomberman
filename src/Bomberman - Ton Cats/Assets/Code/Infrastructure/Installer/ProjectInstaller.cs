@@ -13,6 +13,8 @@ using Gameplay.Feature.MapGenerator.StaticData;
 using Gameplay.Feature.Timer.StaticData;
 using Gameplay.GameSettings;
 using Gameplay.GameSettings.Audio;
+using Gameplay.GameSettings.StaticData;
+using Gameplay.GameSettings.StaticData.Audio;
 using Gameplay.Input;
 using Gameplay.Input.Character;
 using Gameplay.LevelData;
@@ -246,6 +248,10 @@ namespace Infrastructure.Installer
 			Container.Bind<IMapData>().FromInstance(_mapData).AsSingle();
 			Container.Bind<ITileProvider>().FromInstance(_tileCollection).AsSingle();
 			Container.Bind<IWindowKitData>().FromInstance(_windowKitData).AsSingle();
+			Container.Bind<IGameSettingsStartValueData>().To<GameSettingsStartValue>()
+				.AsSingle();
+			Container.Bind<IAudioStartValueData>().To<AudioStartValueData>()
+				.AsSingle().WhenInjectedInto<IGameSettingsStartValueData>();
 		}
 
 		void BindGameStateMachine()

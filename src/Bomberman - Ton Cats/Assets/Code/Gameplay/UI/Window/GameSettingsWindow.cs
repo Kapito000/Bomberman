@@ -20,13 +20,42 @@ namespace Gameplay.UI.Window
 
 		protected override void Initialize()
 		{
+			UpdateSlidersValues();
+			SubscribeToSlidersEvents();
+		}
+
+		public override void Show()
+		{
+			UpdateSlidersValues();
+			gameObject.SetActive(true);
+		}
+
+		protected override void OnCleanup()
+		{
+			UnsubscribeFromSlidersEvents();
+		}
+
+		void UpdateSlidersValues()
+		{
+			if (_gameSettings.Audio.TryGetVolumeValue(VolumeType.Main, out var value))
+				_mainVolume.value = value;
+			if (_gameSettings.Audio.TryGetVolumeValue(VolumeType.UI, out value))
+				_uiVolume.value = value;
+			if (_gameSettings.Audio.TryGetVolumeValue(VolumeType.SFX, out value))
+				_sfxVolume.value = value;
+			if (_gameSettings.Audio.TryGetVolumeValue(VolumeType.Music, out value))
+				_musicVolume.value = value;
+		}
+
+		void SubscribeToSlidersEvents()
+		{
 			_mainVolume.onValueChanged.AddListener(OnMainVolumeChanged);
 			_uiVolume.onValueChanged.AddListener(OnUiVolumeChanged);
 			_sfxVolume.onValueChanged.AddListener(OnSfxVolumeChanged);
 			_musicVolume.onValueChanged.AddListener(OnMusicVolumeChanged);
 		}
 
-		protected override void OnCleanup()
+		void UnsubscribeFromSlidersEvents()
 		{
 			_mainVolume.onValueChanged.RemoveListener(OnMainVolumeChanged);
 			_uiVolume.onValueChanged.RemoveListener(OnUiVolumeChanged);

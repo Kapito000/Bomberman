@@ -1,5 +1,4 @@
 ﻿using AB_Utility.FromSceneToEntityConverter;
-using Gameplay.Feature;
 using Gameplay.Feature.FeatureControl;
 using Gameplay.LevelData;
 using Infrastructure.Factory.SystemFactory;
@@ -21,12 +20,13 @@ namespace Infrastructure.ECS
 
 		public void InitWorld()
 		{
+			Debug.Log("Init world");
 			_supprotiveSystems = new EcsSystems(_world);
 #if UNITY_EDITOR
-			_levelData.EcsWorldDebugSystem = new EcsWorldDebugSystem(); 
-			_supprotiveSystems
-				.Add(_levelData.EcsWorldDebugSystem)
+			_levelData.EcsWorldDebugSystem = new EcsWorldDebugSystem();
+			_supprotiveSystems.Add(_levelData.EcsWorldDebugSystem);
 #endif
+			_supprotiveSystems
 				.ConvertScene()
 				.Init();
 

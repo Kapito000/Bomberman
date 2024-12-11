@@ -124,9 +124,12 @@ namespace Infrastructure.Installer
 
 		void BindWorld()
 		{
-			Container.Bind<EcsWorld>().AsSingle()
+			Container.Bind<EcsWorld>().FromMethod(CreateNewWorld).AsSingle()
 				.MoveIntoAllSubContainers();
+
+			EcsWorld CreateNewWorld() => new();
 		}
+
 
 		void BindEcsRunner()
 		{

@@ -1,21 +1,14 @@
 ﻿using AB_Utility.FromSceneToEntityConverter;
 using Extensions;
 using Gameplay.Collisions;
-using Gameplay.LevelData;
 using Leopotam.EcsLite;
-using Mitfart.LeoECSLite.UnityIntegration.View;
 using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.ECS
 {
-	public class EntityBehaviour : MonoBehaviour, IEntityView
+	public partial class EntityBehaviour : MonoBehaviour, IEntityView
 	{
-#if UNITY_EDITOR
-		[Inject] ILevelData _levelData;
-		[SerializeField] EntityView _entityView;
-#endif
-
 		[Inject] EcsWorld _world;
 		[Inject] ICollisionRegistry _collisionRegistry;
 
@@ -51,7 +44,8 @@ namespace Infrastructure.ECS
 
 		public void Dispose()
 		{
-			foreach (var collider2d in GetComponentsInChildren<Collider2D>(includeInactive: true))
+			foreach (var collider2d in GetComponentsInChildren<Collider2D>(
+				         includeInactive: true))
 				_collisionRegistry.Unregister(collider2d.GetInstanceID());
 		}
 
@@ -64,9 +58,7 @@ namespace Infrastructure.ECS
 			RegisterColliders(entity);
 			ConvertConverters(_world, entity);
 			ResolveEntityDependant();
-#if UNITY_EDITOR
-			_entityView = _levelData.EcsWorldDebugSystem.View.GetEntityView(entity);
-#endif
+			InitPartial(entity);
 		}
 
 		void SetEntity(int entity)
@@ -77,7 +69,8 @@ namespace Infrastructure.ECS
 
 		void RegisterColliders(int entity)
 		{
-			foreach (Collider2D collider2d in GetComponentsInChildren<Collider2D>(includeInactive: true))
+			foreach (Collider2D collider2d in GetComponentsInChildren<Collider2D>(
+				         includeInactive: true))
 				_collisionRegistry.Register(collider2d.GetInstanceID(), entity);
 		}
 

@@ -7,7 +7,7 @@ using Mitfart.LeoECSLite.UnityIntegration;
 
 namespace Gameplay.LevelData
 {
-	public sealed class StandardLevelData : ILevelData
+	public sealed class StandardLevelData : IGameLevelData, IMainMenuLevelData
 	{
 		public EcsWorld World { get; set; }
 		public IEcsRunner EcsRunner { get; set; }

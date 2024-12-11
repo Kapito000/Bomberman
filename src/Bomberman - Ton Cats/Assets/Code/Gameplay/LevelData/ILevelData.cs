@@ -3,6 +3,7 @@ using Gameplay.Feature.Map.MapController;
 using Infrastructure;
 using Infrastructure.Boot;
 using Infrastructure.ECS;
+using Infrastructure.Factory.Kit;
 using Leopotam.EcsLite;
 using Mitfart.LeoECSLite.UnityIntegration;
 
@@ -12,11 +13,18 @@ namespace Gameplay.LevelData
 	{
 		EcsWorld World { get; set; }
 		IEcsRunner EcsRunner { get; set; }
-		IMapController MapController { get; set; }
 		IDevSceneRunner DevSceneRunner { get; set; }
-		PooledAudioSource.Pool AudioSourcePool { get; set; }
 #if UNITY_EDITOR
 		EcsWorldDebugSystem EcsWorldDebugSystem { get; set; }
 #endif
 	}
+
+	public interface IGameLevelData : ILevelData
+	{
+		IMapController MapController { get; set; }
+		PooledAudioSource.Pool AudioSourcePool { get; set; }
+	}
+
+	public interface IMainMenuLevelData : ILevelData
+	{ }
 }

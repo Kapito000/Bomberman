@@ -5,7 +5,7 @@ namespace Infrastructure.GameStatus.State
 {
 	public sealed class LaunchGame : State, IState
 	{
-		[Inject] ILevelData _levelData;
+		[Inject] IGameLevelData _levelData;
 
 		public LaunchGame(IGameStateMachine gameStateMachine) : base(
 			gameStateMachine)

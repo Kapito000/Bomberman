@@ -10,7 +10,7 @@ namespace Gameplay.Audio.Player
 {
 	public sealed class AudioPlayer : IAudioPlayer
 	{
-		[Inject] ILevelData _levelData;
+		[Inject] IGameLevelData _levelData;
 		[Inject] IAudioClipProvider _clipProvider;
 
 		public void Play(ShortMusic key, AudioSource audioSource)

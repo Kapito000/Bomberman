@@ -231,7 +231,7 @@ namespace Infrastructure.Installer
 
 		void BindLevelData()
 		{
-			Container.Bind<ILevelData>().To<StandardLevelData>().AsSingle();
+			Container.BindInterfacesTo<StandardLevelData>().AsSingle();
 		}
 
 		void BindSceneLoader()

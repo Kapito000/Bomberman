@@ -16,7 +16,7 @@ namespace Gameplay.Feature.MapGenerator.Services
 		IGrid<SpawnCellType> _spawnGrid;
 
 		readonly IMapData _mapData;
-		readonly ILevelData _levelData;
+		readonly IGameLevelData _levelData;
 
 		readonly StandardHeroSpawnGenerator _heroSpawnGenerator;
 		readonly StandardEnemySpawnGenerator _enemySpawnGenerator;
@@ -24,15 +24,17 @@ namespace Gameplay.Feature.MapGenerator.Services
 		readonly StandardDestructibleTilesGenerator _destructibleTilesGenerator;
 		readonly StandardIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
-		public StandardMapGenerator(IMapData mapData, ILevelData levelData)
+		public StandardMapGenerator(IMapData mapData, IGameLevelData levelData)
 		{
 			_mapData = mapData;
 			_levelData = levelData;
 			_heroSpawnGenerator = new StandardHeroSpawnGenerator();
 			_enemySpawnGenerator = new StandardEnemySpawnGenerator(mapData);
 			_outLineWallGenerator = new StandardOutLineWallGenerator();
-			_destructibleTilesGenerator = new StandardDestructibleTilesGenerator(mapData);
-			_indestructibleTilesGenerator = new StandardIndestructibleTilesGenerator();
+			_destructibleTilesGenerator =
+				new StandardDestructibleTilesGenerator(mapData);
+			_indestructibleTilesGenerator =
+				new StandardIndestructibleTilesGenerator();
 		}
 
 		public void CreateMap()

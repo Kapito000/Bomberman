@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Windows
 {
 	public abstract class BaseWindow : MonoBehaviour
 	{
+		[Inject] IWindowService _windowService;
+		
 		public abstract WindowId Id { get; }
 
 		void Start()

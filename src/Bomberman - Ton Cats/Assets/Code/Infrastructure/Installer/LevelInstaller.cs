@@ -37,7 +37,7 @@ namespace Infrastructure.Installer
 		[SerializeField] WindowKitId _windowKitId = WindowKitId.Game;
 		[SerializeField] NavMeshSurface _navMeshSurface;
 
-		[Inject] ILevelData _levelData;
+		[Inject] IGameLevelData _levelData;
 		[Inject] IGameStateMachine _gameStateMachine;
 
 		public override void InstallBindings()

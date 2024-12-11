@@ -9,6 +9,8 @@ namespace Gameplay.Feature.MainMenu
 		public MainMenuFeature(ISystemFactory systemFactory)
 			: base(systemFactory)
 		{
+			AddInit<WindowRegistrationSystem>();
+			
 			AddInit<CreateMusicParentSystem>();
 			AddInit<CreateMainMenuAmbientMusicSystem>();
 		}

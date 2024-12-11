@@ -15,7 +15,7 @@ namespace Infrastructure.Installer
 	public sealed class MainMenuInstaller : MonoInstaller, IInitializable
 	{
 		[SerializeField] WindowKitId _windowKitId = WindowKitId.MainMenu;
-		
+
 		[Inject] ILevelData _levelData;
 		[Inject] IGameStateMachine _gameStateMachine;
 
@@ -41,7 +41,7 @@ namespace Infrastructure.Installer
 			_levelData.EcsRunner = Container.Resolve<IEcsRunner>();
 			_levelData.DevSceneRunner = Container.Resolve<IDevSceneRunner>();
 		}
-		
+
 		void BindWindowKitId()
 		{
 			Container.BindInstance(_windowKitId).AsSingle();

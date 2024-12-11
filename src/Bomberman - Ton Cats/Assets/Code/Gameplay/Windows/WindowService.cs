@@ -18,17 +18,16 @@ namespace Gameplay.Windows
 		public void Create(Transform parent, IEnumerable<WindowId> ids)
 		{
 			foreach (var id in ids)
-			{
-				if (_poolWindows.ContainsKey(id))
-				{
-					Debug.LogWarning($"The try to create window \"{id}\" twice.");
-					continue;
-				}
+				TryCreate(id, parent);
+		}
 
-				var window = _windowFactory.CreateWindow(id, parent);
-				_poolWindows[id] = window;
-				window.Hide();
-			}
+		public bool TryRegistry(BaseWindow window)
+		{
+			if (_poolWindows.TryAdd(window.Id, window))
+				return true;
+
+			Debug.LogError($"The window \"{window.Id}\" already registered.");
+			return false;
 		}
 
 		public void Open(WindowId windowId)
@@ -47,6 +46,12 @@ namespace Gameplay.Windows
 			_openedWindows[windowId] = window;
 		}
 
+		public void OpenOnly(WindowId windowId)
+		{
+			CloseAll();
+			Open(windowId);
+		}
+
 		public void Close(WindowId windowId)
 		{
 			if (_openedWindows.TryGetValue(windowId, out var window) == false)
@@ -54,6 +59,39 @@ namespace Gameplay.Windows
 
 			window.Hide();
 			_openedWindows.Remove(windowId);
+		}
+
+		public void CloseAll()
+		{
+			foreach (var windowId in _openedWindows.Keys)
+				Close(windowId);
+		}
+
+		bool TryCreate(WindowId id, Transform parent)
+		{
+			if (_poolWindows.ContainsKey(id))
+			{
+				Debug.LogWarning($"The try to create window \"{id}\" twice.");
+				return false;
+			}
+
+			var window = _windowFactory.CreateWindow(id, parent);
+			_poolWindows[id] = window;
+			window.Hide();
+			return true;
+		}
+
+		void DestroyWindow(BaseWindow window)
+		{
+			_poolWindows.Remove(window.Id);
+			Object.Destroy(window);
+		}
+
+		void DestroyAllWindows()
+		{
+			var windowIds = _poolWindows.Keys;
+			foreach (var windowId in windowIds)
+				DestroyWindow(_poolWindows[windowId]);
 		}
 	}
 }

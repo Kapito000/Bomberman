@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Gameplay.Feature.Enemy.Base.System
 {
-	public sealed class CreateBaseEnemySystem : IEcsRunSystem
+	public sealed class CreateRandomEnemySystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _parent;
 		[Inject] EntityWrapper _spawnPoint;

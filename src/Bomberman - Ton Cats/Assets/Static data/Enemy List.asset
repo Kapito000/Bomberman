@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f44d36bd894480dbff850cb3c294fb0, type: 3}
+  m_Name: Enemy List
+  m_EditorClassIdentifier: 
+  List:
+    _keyData:
+    - Assassin
+    - Cyborg
+    - Flash
+    - Hologram
+    - Scammer
+    _valueData:
+    - {fileID: 11400000, guid: 152bb2d8ced3a0741b4d0bad4eacd005, type: 2}
+    - {fileID: 11400000, guid: e0896e151a7ddb64db0c25a2cdd603b3, type: 2}
+    - {fileID: 11400000, guid: 7f413120805cc754cb7d6040e3b2b220, type: 2}
+    - {fileID: 11400000, guid: a30ccf8872759624c95052775cce797b, type: 2}
+    - {fileID: 11400000, guid: c853eaa7c2b47e248ad96c4a48057857, type: 2}

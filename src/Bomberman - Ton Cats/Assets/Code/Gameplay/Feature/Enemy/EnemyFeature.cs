@@ -8,7 +8,7 @@ namespace Gameplay.Feature.Enemy
 	{
 		public EnemyFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
-			AddInit<CreateBaseEnemySystem>();
+			AddInit<CreateRandomEnemySystem>();
 			
 			AddUpdate<EnemyAIBrainProcessSystem>();
 			AddUpdate<AttackOfHeroSystemSystem>();

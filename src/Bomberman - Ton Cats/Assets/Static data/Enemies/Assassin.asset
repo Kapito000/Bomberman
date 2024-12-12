@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903a52f0c3a14959b30dfe21052c3681, type: 3}
   m_Name: Assassin
   m_EditorClassIdentifier: 
-  Name: Assassin
-  Characteristic:
+  Characteristics:
     MovementSpeed: 4
     MovementDistance: 5

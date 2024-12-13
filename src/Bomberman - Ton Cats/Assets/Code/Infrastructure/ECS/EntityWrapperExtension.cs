@@ -504,5 +504,12 @@ namespace Infrastructure.ECS
 			component.Value = value;
 			return this;
 		}
+
+		public EntityWrapper AddLifePoints(int points)
+		{
+			ref var component = ref AddComponent<LifePoints>();
+			component.Value = points;
+			return this;
+		}
 	}
 }

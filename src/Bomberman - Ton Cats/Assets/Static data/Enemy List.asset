@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f44d36bd894480dbff850cb3c294fb0, type: 3}
   m_Name: Enemy List
   m_EditorClassIdentifier: 
-  List:
+  _dictionary:
     _keyData:
     - Assassin
     - Cyborg

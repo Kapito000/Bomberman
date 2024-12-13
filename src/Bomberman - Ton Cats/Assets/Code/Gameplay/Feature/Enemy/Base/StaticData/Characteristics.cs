@@ -3,9 +3,10 @@
 namespace Gameplay.Feature.Enemy.Base.StaticData
 {
 	[Serializable]
-	public struct Characteristics 
+	public struct Characteristics
 	{
 		public float MovementSpeed;
-		public int MovementDistance;
+		
+		public int LifePoints => 1;
 	}
 }

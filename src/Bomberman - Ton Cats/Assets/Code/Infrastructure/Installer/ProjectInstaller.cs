@@ -47,10 +47,11 @@ namespace Infrastructure.Installer
 		[SerializeField] AIData _aiData;
 		[SerializeField] MapData _mapData;
 		[SerializeField] HeroData _heroData;
+		[SerializeField] EnemyList _enemyList;
 		[SerializeField] GameTimerData _gameTimerData;
+		[SerializeField] WindowKitData _windowKitData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
-		[SerializeField] WindowKitData _windowKitData;
 		[SerializeField] AudioClipProvider _audioClipProvider;
 		[SerializeField] DirectLinkProvider _assetProvider;
 		[SerializeField] AudioMixerProvider _audioMixerProvider;
@@ -255,6 +256,7 @@ namespace Infrastructure.Installer
 				.AsSingle();
 			Container.Bind<IAudioStartValueData>().To<AudioStartValueData>()
 				.AsSingle().WhenInjectedInto<IGameSettingsStartValueData>();
+			Container.Bind<IEnemyList>().FromInstance(_enemyList).AsSingle();
 		}
 
 		void BindGameStateMachine()

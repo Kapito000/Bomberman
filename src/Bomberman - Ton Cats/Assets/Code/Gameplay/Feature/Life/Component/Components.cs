@@ -1,6 +1,4 @@
 ﻿using System;
-using Infrastructure.ECS;
-using UnityEngine;
 
 namespace Gameplay.Feature.Life.Component
 {

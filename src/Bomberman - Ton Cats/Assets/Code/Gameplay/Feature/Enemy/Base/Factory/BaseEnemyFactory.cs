@@ -1,11 +1,13 @@
 ﻿using Gameplay.Audio.Service;
 using Gameplay.Feature.Destruction.Component;
 using Gameplay.Feature.Enemy.Base.Component;
+using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.Enemy.Component;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using Leopotam.EcsLite;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 namespace Gameplay.Feature.Enemy.Base.Factory
@@ -13,24 +15,33 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 	public sealed class BaseEnemyFactory : IBaseEnemyFactory
 	{
 		[Inject] EcsWorld _world;
+		[Inject] IEnemyList _enemyList;
 		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _entity;
 		[Inject] IAudioService _audioService;
 
-		public int CreateEnemy(Vector3 pos, Transform parent)
+		public void CreateEnemy(string key, Vector3 pos, Transform parent)
 		{
+			if (_enemyList.TryGet(key, out var data) == false)
+			{
+				Debug.LogError($"Cannot to spawn the enemy by key: \"{key}\".");
+				return;
+			}
+
 			var prefab = _kit.AssetProvider.BaseEnemy();
 			var instance = _kit.InstantiateService.Instantiate(prefab, pos, parent);
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+
+			SetMovementSpeed(instance, data);
+
 			_entity.SetEntity(entity);
 			_entity
 				.Add<EnemyComponent>()
 				.Add<AttackHeroAbility>()
 				.AddBaseEnemyAIBlackboard()
 				.AddDeathAudioEffectClipId(Constant.AudioClipId.c_EnemyDeath)
+				.AddLifePoints(data.Characteristics.LifePoints)
 				;
-
-			return entity;
 		}
 
 		public int CreateEnemySpawnPoint(Vector3 pos)
@@ -52,6 +63,12 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 			_entity.SetEntity(e);
 			_entity.AddEnemyParent(parent.transform);
 			return e;
+		}
+
+		static void SetMovementSpeed(GameObject instance, EnemyData data)
+		{
+			var navMeshAgent = instance.GetComponent<NavMeshAgent>();
+			navMeshAgent.speed = data.Characteristics.MovementSpeed;
 		}
 	}
 }

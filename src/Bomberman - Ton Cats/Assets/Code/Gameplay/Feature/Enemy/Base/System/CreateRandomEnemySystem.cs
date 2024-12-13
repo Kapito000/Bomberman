@@ -1,15 +1,19 @@
-﻿using Common.Component;
+﻿using System.Linq;
+using Common.Component;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Base.Factory;
+using Gameplay.Feature.Enemy.Base.StaticData;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.Enemy.Base.System
 {
 	public sealed class CreateRandomEnemySystem : IEcsRunSystem
 	{
+		[Inject] IEnemyList _enemyList;
 		[Inject] EntityWrapper _parent;
 		[Inject] EntityWrapper _spawnPoint;
 		[Inject] IBaseEnemyFactory _baseEnemyFactory;
@@ -27,8 +31,17 @@ namespace Gameplay.Feature.Enemy.Base.System
 
 				var pos = _spawnPoint.Position();
 				var parent = _parent.EnemyParent();
-				_baseEnemyFactory.CreateEnemy(pos, parent);
+
+				var key = RandomEnemyKey();
+				_baseEnemyFactory.CreateEnemy(key, pos, parent);
 			}
+		}
+
+		string RandomEnemyKey()
+		{
+			var index = Random.Range(0, _enemyList.Dictionary.Count);
+			var key = _enemyList.Dictionary.ElementAt(index).Key;
+			return key;
 		}
 	}
 }

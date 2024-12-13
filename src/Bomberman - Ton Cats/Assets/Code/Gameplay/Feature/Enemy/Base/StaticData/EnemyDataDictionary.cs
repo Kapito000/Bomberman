@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Common.Dictionary;
 
 namespace Gameplay.Feature.Enemy.Base.StaticData
 {

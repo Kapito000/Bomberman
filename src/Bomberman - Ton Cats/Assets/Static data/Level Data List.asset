@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885663ae32b048458c4f5e5722be3223, type: 3}
+  m_Name: Level Data List
+  m_EditorClassIdentifier: 
+  List:
+  - Bonuses:
+      _keyData: []
+      _valueData: 
+    EnemiesAtDoor:
+      _keyData: []
+      _valueData: 
+    EnemiesAtStart:
+      _keyData:
+      - Scammer
+      _valueData: 05000000
+  - Bonuses:
+      _keyData: []
+      _valueData: 
+    EnemiesAtDoor:
+      _keyData: []
+      _valueData: 
+    EnemiesAtStart:
+      _keyData:
+      - Scammer
+      - Cyborg
+      _valueData: 0900000001000000

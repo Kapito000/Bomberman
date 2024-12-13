@@ -20,6 +20,8 @@ using Gameplay.Input.Character;
 using Gameplay.LevelData;
 using Gameplay.MapTile.TileProvider;
 using Gameplay.Physics;
+using Gameplay.Progress;
+using Gameplay.StaticData.LevelData;
 using Gameplay.StaticData.SceneNames;
 using Gameplay.UI.Factory;
 using Gameplay.UI.StaticData;
@@ -50,6 +52,7 @@ namespace Infrastructure.Installer
 		[SerializeField] EnemyList _enemyList;
 		[SerializeField] GameTimerData _gameTimerData;
 		[SerializeField] WindowKitData _windowKitData;
+		[SerializeField] LevelDataList _levelDataList;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
 		[SerializeField] AudioClipProvider _audioClipProvider;
@@ -61,7 +64,6 @@ namespace Infrastructure.Installer
 			BindWorld();
 			BindPools();
 			BindEcsRunner();
-			GameTimerData();
 			BindLevelData();
 			BindFactories();
 			BindStaticData();
@@ -73,11 +75,13 @@ namespace Infrastructure.Installer
 			BindInputService();
 			BindMapGenerator();
 			BindMusicFactory();
+			BindGameTimerData();
 			BindWindowService();
 			BindSystemFactory();
 			BindEntityWrapper();
 			BindAssetProvider();
 			BindPhysicsService();
+			BindProgressService();
 			BindGameStateMachine();
 			BindAudioClipProvider();
 			BindCollisionRegistry();
@@ -85,6 +89,11 @@ namespace Infrastructure.Installer
 			BindInstantiateService();
 			BindGameSettingsService();
 			BindEntityBehaviourFactory();
+		}
+
+		void BindProgressService()
+		{
+			Container.Bind<IProgressService>().To<ProgressService>().AsSingle();
 		}
 
 		void BindGameSettingsService()
@@ -170,7 +179,7 @@ namespace Infrastructure.Installer
 				.WhenInjectedInto<IAudioService>();
 		}
 
-		void GameTimerData()
+		void BindGameTimerData()
 		{
 			Container.Bind<IGameTimerData>().FromInstance(_gameTimerData).AsSingle();
 		}
@@ -250,13 +259,14 @@ namespace Infrastructure.Installer
 				.AsSingle();
 			Container.Bind<IAIData>().FromInstance(_aiData).AsSingle();
 			Container.Bind<IMapData>().FromInstance(_mapData).AsSingle();
+			Container.Bind<IEnemyList>().FromInstance(_enemyList).AsSingle();
 			Container.Bind<ITileProvider>().FromInstance(_tileCollection).AsSingle();
+			Container.Bind<ILevelDataList>().FromInstance(_levelDataList).AsSingle();
 			Container.Bind<IWindowKitData>().FromInstance(_windowKitData).AsSingle();
 			Container.Bind<IGameSettingsStartValueData>().To<GameSettingsStartValue>()
 				.AsSingle();
 			Container.Bind<IAudioStartValueData>().To<AudioStartValueData>()
 				.AsSingle().WhenInjectedInto<IGameSettingsStartValueData>();
-			Container.Bind<IEnemyList>().FromInstance(_enemyList).AsSingle();
 		}
 
 		void BindGameStateMachine()

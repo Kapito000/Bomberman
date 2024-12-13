@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Common
+namespace Common.Dictionary
 {
 	public abstract class SerializedDictionary<TKey, TValue> :
 		Dictionary<TKey, TValue>, ISerializationCallbackReceiver

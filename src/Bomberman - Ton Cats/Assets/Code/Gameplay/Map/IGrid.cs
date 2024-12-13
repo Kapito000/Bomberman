@@ -4,7 +4,6 @@ using UnityEngine;
 namespace Gameplay.Map
 {
 	public interface IGrid<T> : IEnumerable<Vector2Int>
-		where T : struct
 	{
 		Vector2Int Size { get; }
 		bool Has(int x, int y);

@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Gameplay.Map
 {
 	public abstract class Grid<T> : IGrid<T>
-		where T : struct
 	{
 		readonly T[,] _cells;
 

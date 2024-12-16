@@ -70,10 +70,7 @@ namespace Gameplay.Feature.MapGenerator.Services
 
 		public Vector2Int CreateHeroSpawnCell()
 		{
-			_heroSpawnCell = _heroSpawnGenerator
-				.CreateHeroSpawnPoint(_tilesGrid);
-			if (MapController().TrySetHeroSpawnPoint(_heroSpawnCell) == false)
-				CastCannotModifyMapMessage();
+			_heroSpawnCell = _heroSpawnGenerator.CreateHeroSpawnPoint(_tilesGrid);
 			return _heroSpawnCell;
 		}
 

@@ -70,15 +70,6 @@ namespace Gameplay.Feature.Map.MapController
 		public bool SetGround(Vector2Int cell) =>
 			_mapView.TrySetTile(TileType.Ground, cell);
 
-		public bool TrySetHeroSpawnPoint(Vector2Int pos)
-		{
-			if (HasTile(pos) == false)
-				return false;
-
-			_heroSpawnCell = pos;
-			return true;
-		}
-
 		public IEnumerable<Vector2Int> AllCoordinates() =>
 			_tilesGrid;
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,8 @@ namespace Gameplay.Map
 		}
 
 		public bool Has(int x, int y) =>
-			Size.x > x && Size.y > y;
+			0 <= x && x < Size.x &&
+			0 <= y && y < Size.y;
 
 		public bool Has(T type, int x, int y)
 		{
@@ -52,6 +54,20 @@ namespace Gameplay.Map
 		{
 			foreach (var cell in this)
 				yield return new(cell, _cells[cell.x, cell.y]);
+		}
+
+		public IEnumerable<(Vector2Int cell, T value)> WithValues(
+			Func<T, bool> where)
+		{
+			if (where == null)
+			{
+				Debug.LogError("The condition is null.");
+				yield break;
+			}
+
+			foreach (var cell in this)
+				if (where.Invoke(_cells[cell.x, cell.y]))
+					yield return new(cell, _cells[cell.x, cell.y]);
 		}
 
 		public IEnumerable<Vector2Int> AllCoordinates(T value)

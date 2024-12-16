@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885663ae32b048458c4f5e5722be3223, type: 3}
   m_Name: Level Data List
   m_EditorClassIdentifier: 
-  List:
+  _list:
   - Bonuses:
       _keyData: []
       _valueData: 
@@ -22,15 +22,5 @@ MonoBehaviour:
     EnemiesAtStart:
       _keyData:
       - Scammer
-      _valueData: 05000000
-  - Bonuses:
-      _keyData: []
-      _valueData: 
-    EnemiesAtDoor:
-      _keyData: []
-      _valueData: 
-    EnemiesAtStart:
-      _keyData:
-      - Scammer
-      - Cyborg
-      _valueData: 0900000001000000
+      - Flash
+      _valueData: 0500000002000000

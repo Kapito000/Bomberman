@@ -17,7 +17,9 @@ namespace Gameplay.Feature.MapGenerator.System
 		public void Run(IEcsSystems systems)
 		{
 			_mapGenerator.CreateEnemySpawnCells();
-			foreach (var tuple in _mapGenerator.EnemySpawnGrid.WithValues())
+			var spawnCells = _mapGenerator.EnemySpawnGrid
+				.WithValues(id => string.IsNullOrEmpty(id) == false);
+			foreach (var tuple in spawnCells)
 			{
 				var pos = _mapView.GetCellCenterWorld(tuple.cell);
 				_enemyFactory.CreateEnemySpawnPoint(tuple.value, pos);

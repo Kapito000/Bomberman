@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gameplay.Map
@@ -12,5 +13,6 @@ namespace Gameplay.Map
 		bool TryGet(int x, int y, out T value);
 		IEnumerable<Vector2Int> AllCoordinates(T value);
 		IEnumerable<(Vector2Int cell, T value)> WithValues();
+		public IEnumerable<(Vector2Int cell, T value)> WithValues(Func<T, bool> where);
 	}
 }

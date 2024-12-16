@@ -20,7 +20,6 @@ namespace Infrastructure.ECS
 
 		public void InitWorld()
 		{
-			Debug.Log("Init world");
 			_supprotiveSystems = new EcsSystems(_world);
 #if UNITY_EDITOR
 			_levelData.EcsWorldDebugSystem = new EcsWorldDebugSystem();

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Common.Component;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Base.Factory;
@@ -8,6 +9,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Gameplay.Feature.Enemy.Base.System
 {
@@ -18,10 +20,12 @@ namespace Gameplay.Feature.Enemy.Base.System
 		[Inject] EntityWrapper _spawnPoint;
 		[Inject] IBaseEnemyFactory _baseEnemyFactory;
 
-		readonly EcsFilterInject<Inc<EnemySpawnPoint, Position>> _spawnPointFilter;
+		readonly EcsFilterInject<Inc<EnemySpawnPoint, EnemyId, Position>> _spawnPointFilter;
 
 		public void Run(IEcsSystems systems)
 		{
+			Debug.LogError("Need to add the \"EnemyId\" processing.");
+			
 			var parentEntity = _baseEnemyFactory.CreateEnemyParent();
 			_parent.SetEntity(parentEntity);
 

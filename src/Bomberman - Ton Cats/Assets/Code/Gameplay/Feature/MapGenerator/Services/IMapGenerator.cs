@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Gameplay.Map;
 using Infrastructure;
 using UnityEngine;
 
@@ -11,9 +12,9 @@ namespace Gameplay.Feature.MapGenerator.Services
 		void CreateIndestructibleTiles();
 		Vector2Int CreateHeroSpawnCell();
 		void CreateHeroSafeArea();
-		IEnumerable<Vector2Int> EnemySpawnCells();
-		void CreateEnemySafeArea();
+		void CreateEnemySpawnCells();
 		void CreateDestructibleWalls();
 		void SetNoneAsFree();
+		IGrid<string> EnemySpawnGrid { get; }
 	}
 }

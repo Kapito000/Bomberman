@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Gameplay.Difficult;
 using Gameplay.Feature.Map.MapController;
 using Gameplay.Feature.MapGenerator.Services.SubGenerator;
 using Gameplay.Feature.MapGenerator.StaticData;
@@ -12,8 +12,8 @@ namespace Gameplay.Feature.MapGenerator.Services
 	{
 		Vector2Int _heroSpawnCell;
 
+		IGrid<string> _enemySpawnGrid;
 		IGrid<TileType> _tilesGrid;
-		IGrid<SpawnCellType> _spawnGrid;
 
 		readonly IMapData _mapData;
 		readonly IGameLevelData _levelData;
@@ -24,12 +24,16 @@ namespace Gameplay.Feature.MapGenerator.Services
 		readonly StandardDestructibleTilesGenerator _destructibleTilesGenerator;
 		readonly StandardIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
-		public StandardMapGenerator(IMapData mapData, IGameLevelData levelData)
+		public IGrid<string> EnemySpawnGrid => _enemySpawnGrid;
+
+		public StandardMapGenerator(IMapData mapData, IGameLevelData levelData,
+			IDifficultService difficultService)
 		{
 			_mapData = mapData;
 			_levelData = levelData;
 			_heroSpawnGenerator = new StandardHeroSpawnGenerator();
-			_enemySpawnGenerator = new StandardEnemySpawnGenerator(mapData);
+			_enemySpawnGenerator =
+				new StandardEnemySpawnGenerator(mapData, difficultService);
 			_outLineWallGenerator = new StandardOutLineWallGenerator();
 			_destructibleTilesGenerator =
 				new StandardDestructibleTilesGenerator(mapData);
@@ -41,9 +45,11 @@ namespace Gameplay.Feature.MapGenerator.Services
 		{
 			var size = _mapData.MapSize + new Vector2Int(2, 2);
 			_tilesGrid = new TilesGrid(size.x, size.y);
-			_spawnGrid = new SpawnGrid(size.x, size.y);
 			var itemGrid = new ItemGrid(size.x, size.y);
-			MapController().SetGrids(_tilesGrid, _spawnGrid, itemGrid);
+			_enemySpawnGrid = new ComparableGrid<string>(size.x, size.y);
+
+			_enemySpawnGenerator.SetGrids(_tilesGrid, _enemySpawnGrid);
+			MapController().SetGrids(_tilesGrid, itemGrid);
 		}
 
 		public void CreateGroundTiles()
@@ -65,7 +71,7 @@ namespace Gameplay.Feature.MapGenerator.Services
 		public Vector2Int CreateHeroSpawnCell()
 		{
 			_heroSpawnCell = _heroSpawnGenerator
-				.CreateHeroSpawnPoint(_tilesGrid, _spawnGrid);
+				.CreateHeroSpawnPoint(_tilesGrid);
 			if (MapController().TrySetHeroSpawnPoint(_heroSpawnCell) == false)
 				CastCannotModifyMapMessage();
 			return _heroSpawnCell;
@@ -78,12 +84,11 @@ namespace Gameplay.Feature.MapGenerator.Services
 				MapController().TrySet(TileType.Free, pos);
 		}
 
-		public IEnumerable<Vector2Int> EnemySpawnCells() =>
-			_enemySpawnGenerator
-				.CreateSpawnCells(_heroSpawnCell, _tilesGrid, _spawnGrid);
-
-		public void CreateEnemySafeArea() =>
-			_enemySpawnGenerator.CreateSafeArea(_tilesGrid, _spawnGrid);
+		public void CreateEnemySpawnCells()
+		{
+			_enemySpawnGenerator.CreateEnemySpawnCells(_heroSpawnCell);
+			_enemySpawnGenerator.CreateSafeArea();
+		}
 
 		public void CreateDestructibleWalls()
 		{

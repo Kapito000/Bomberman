@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using Common.Dictionary;
 using UnityEngine;
 using Menu = Constant.CreateAssetMenu.Path;
 
 namespace Gameplay.StaticData.LevelData
 {
-	[CreateAssetMenu(menuName = Menu.c_StaticData + nameof(LevelDataList))]
-	public sealed class LevelDataList : ScriptableObject, ILevelDataList
+	[CreateAssetMenu(menuName = Menu.c_StaticData + nameof(LevelsData))]
+	public sealed class LevelsData : ScriptableObject, ILevelsData
 	{
-		public LevelData[] List;
+		[SerializeField] LevelData[] _list;
+
+		public IReadOnlyList<LevelData> List => _list;
 	}
 
 	[Serializable]

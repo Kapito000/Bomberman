@@ -4,6 +4,7 @@ using Gameplay.Audio.MixerGroupProvider;
 using Gameplay.Audio.Player;
 using Gameplay.Audio.Service;
 using Gameplay.Collisions;
+using Gameplay.Difficult;
 using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.GameMusic.Factory;
@@ -39,6 +40,7 @@ using Infrastructure.SceneLoader;
 using Infrastructure.TimeService;
 using Leopotam.EcsLite;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 using AudioSettings = Gameplay.GameSettings.Audio.AudioSettings;
 
@@ -52,7 +54,7 @@ namespace Infrastructure.Installer
 		[SerializeField] EnemyList _enemyList;
 		[SerializeField] GameTimerData _gameTimerData;
 		[SerializeField] WindowKitData _windowKitData;
-		[SerializeField] LevelDataList _levelDataList;
+		[FormerlySerializedAs("_levelDataList"),SerializeField] LevelsData _levelsData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
 		[SerializeField] AudioClipProvider _audioClipProvider;
@@ -82,6 +84,7 @@ namespace Infrastructure.Installer
 			BindAssetProvider();
 			BindPhysicsService();
 			BindProgressService();
+			BindDifficultService();
 			BindGameStateMachine();
 			BindAudioClipProvider();
 			BindCollisionRegistry();
@@ -89,6 +92,11 @@ namespace Infrastructure.Installer
 			BindInstantiateService();
 			BindGameSettingsService();
 			BindEntityBehaviourFactory();
+		}
+
+		void BindDifficultService()
+		{
+			Container.Bind<IDifficultService>().To<DifficultService>().AsSingle();
 		}
 
 		void BindProgressService()
@@ -261,7 +269,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IMapData>().FromInstance(_mapData).AsSingle();
 			Container.Bind<IEnemyList>().FromInstance(_enemyList).AsSingle();
 			Container.Bind<ITileProvider>().FromInstance(_tileCollection).AsSingle();
-			Container.Bind<ILevelDataList>().FromInstance(_levelDataList).AsSingle();
+			Container.Bind<ILevelsData>().FromInstance(_levelsData).AsSingle();
 			Container.Bind<IWindowKitData>().FromInstance(_windowKitData).AsSingle();
 			Container.Bind<IGameSettingsStartValueData>().To<GameSettingsStartValue>()
 				.AsSingle();

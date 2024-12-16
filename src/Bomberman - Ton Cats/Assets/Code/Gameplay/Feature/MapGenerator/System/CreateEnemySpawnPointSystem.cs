@@ -16,12 +16,11 @@ namespace Gameplay.Feature.MapGenerator.System
 
 		public void Run(IEcsSystems systems)
 		{
-			var enemySpawnCells = _mapGenerator.EnemySpawnCells();
-			_mapGenerator.CreateEnemySafeArea();
-			foreach (var cell in enemySpawnCells)
+			_mapGenerator.CreateEnemySpawnCells();
+			foreach (var tuple in _mapGenerator.EnemySpawnGrid.WithValues())
 			{
-				var pos = _mapView.GetCellCenterWorld(cell);
-				_enemyFactory.CreateEnemySpawnPoint(pos);
+				var pos = _mapView.GetCellCenterWorld(tuple.cell);
+				_enemyFactory.CreateEnemySpawnPoint(tuple.value, pos);
 			}
 		}
 	}

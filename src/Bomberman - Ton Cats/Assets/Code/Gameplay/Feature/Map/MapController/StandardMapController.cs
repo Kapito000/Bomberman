@@ -16,11 +16,8 @@ namespace Gameplay.Feature.Map.MapController
 		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _entity;
 
-		Vector2Int _heroSpawnPoint;
-		
 		IGrid<MapItem> _itemsGrid;
 		IGrid<TileType> _tilesGrid;
-		IGrid<SpawnCellType> _spawnGrid;
 
 		public bool HasTile(Vector2Int cell) =>
 			_tilesGrid.Has(cell);
@@ -33,11 +30,9 @@ namespace Gameplay.Feature.Map.MapController
 			return type == TileType.Free;
 		}
 
-		public void SetGrids(IGrid<TileType> tilesGrid,
-			IGrid<SpawnCellType> spawnGrid, ItemGrid itemsGrid)
+		public void SetGrids(IGrid<TileType> tilesGrid, ItemGrid itemsGrid)
 		{
 			_tilesGrid = tilesGrid;
-			_spawnGrid = spawnGrid;
 			_itemsGrid = itemsGrid;
 		}
 
@@ -68,7 +63,7 @@ namespace Gameplay.Feature.Map.MapController
 			{
 				ActionImitation.Execute($"Spawn item: \"{itemType}\".");
 			}
-			
+
 			return true;
 		}
 
@@ -80,7 +75,7 @@ namespace Gameplay.Feature.Map.MapController
 			if (HasTile(pos) == false)
 				return false;
 
-			_heroSpawnPoint = pos;
+			_heroSpawnCell = pos;
 			return true;
 		}
 
@@ -98,7 +93,7 @@ namespace Gameplay.Feature.Map.MapController
 
 		public bool TryGet(Vector2Int pos, out TileType type) =>
 			_tilesGrid.TryGet(pos, out type);
-		
+
 		public bool TryGet(Vector2Int pos, out MapItem type) =>
 			_itemsGrid.TryGet(pos, out type);
 

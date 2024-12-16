@@ -44,12 +44,13 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 				;
 		}
 
-		public int CreateEnemySpawnPoint(Vector3 pos)
+		public int CreateEnemySpawnPoint(string enemyId, Vector3 pos)
 		{
 			var e = _world.NewEntity();
 			_entity.SetEntity(e);
 			_entity
 				.Add<EnemySpawnPoint>()
+				.AddEnemyId(enemyId)
 				.AddPosition(pos)
 				.Add<Destructed>()
 				;

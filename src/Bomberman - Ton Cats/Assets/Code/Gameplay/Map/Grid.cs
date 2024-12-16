@@ -48,6 +48,12 @@ namespace Gameplay.Map
 			return true;
 		}
 
+		public IEnumerable<(Vector2Int cell, T value)> WithValues()
+		{
+			foreach (var cell in this)
+				yield return new(cell, _cells[cell.x, cell.y]);
+		}
+
 		public IEnumerable<Vector2Int> AllCoordinates(T value)
 		{
 			foreach (var pos in (IEnumerable<Vector2Int>)this)

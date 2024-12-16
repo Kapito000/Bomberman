@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.Feature.Enemy.Base.Component
 {
+	public struct EnemyId {		public string Value; }
 	public struct EnemyParent { public Transform Value; }
 	public struct EnemyComponent { }
 	public struct EnemySpawnPoint { }

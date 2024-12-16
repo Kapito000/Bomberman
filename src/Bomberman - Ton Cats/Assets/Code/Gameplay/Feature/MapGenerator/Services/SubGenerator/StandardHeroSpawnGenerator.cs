@@ -14,13 +14,12 @@ namespace Gameplay.Feature.MapGenerator.Services.SubGenerator
 		}
 
 		public Vector2Int CreateHeroSpawnPoint(
-			IGrid<TileType> tileGrid, IGrid<SpawnCellType> spawnGrid)
+			IGrid<TileType> tileGrid)
 		{
 			int x = 1;
 			int y = tileGrid.Size.y - 2;
 			var pos = new Vector2Int(x, y);
 			tileGrid.TrySet(TileType.Free, pos);
-			spawnGrid.TrySet(SpawnCellType.HeroSpawnPoint, pos);
 			return pos;
 		}
 

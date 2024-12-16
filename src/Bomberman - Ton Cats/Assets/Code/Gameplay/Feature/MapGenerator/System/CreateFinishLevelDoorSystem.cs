@@ -23,7 +23,7 @@ namespace Gameplay.Feature.MapGenerator.System
 			if (destructibles.Length == 0)
 			{
 				Debug.LogWarning("Cannot to spawn the finish level door. " +
-					"Has ho any destructible cell.");
+					"Has no any destructible cell.");
 				return;
 			}
 

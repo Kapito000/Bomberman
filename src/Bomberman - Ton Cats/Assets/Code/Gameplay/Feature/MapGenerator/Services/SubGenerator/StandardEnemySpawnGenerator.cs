@@ -39,37 +39,35 @@ namespace Gameplay.Feature.MapGenerator.Services.SubGenerator
 		{
 			var enemyDictionary = _difficultService.EnemyAtStartForCurrentProgress();
 			_availableCells = AvailableCells(heroSpawnPoint);
-			var spawnCount = SpawnCount(enemyDictionary);
+			var availableSpawnCount = AvailableSpawnCount(enemyDictionary);
 
 			foreach (var pair in enemyDictionary)
-			foreach (var quantity in enemyDictionary.Values)
 			{
 				var enemyId = pair.Key;
-				spawnCount =
-					CreateSpawnCells(enemyId, quantity, spawnCount);
+				var quantity = pair.Value;
+				CreateSpawnCells(enemyId, quantity, ref availableSpawnCount);
 			}
 		}
 
-		int CreateSpawnCells(string enemyId, int quantity, int spawnCount)
+		void CreateSpawnCells(string enemyId, int quantity,
+			ref int availableSpawnCount)
 		{
 			for (int i = 0; i < quantity; i++)
 			{
-				if (spawnCount <= 0)
-				{
+				if (availableSpawnCount <= 0)
 					break;
-				}
+
 				var cell = _availableCells.GetRandom(out var index);
 				_tilesGrid.TrySet(TileType.Free, cell);
 				_enemySpawnGrid.TrySet(enemyId, cell);
 				_availableCells.RemoveAt(index);
-				spawnCount--;
+				availableSpawnCount--;
 			}
-			return spawnCount;
 		}
 
 		public void CreateSafeArea()
 		{
-			foreach (var cell in _enemySpawnGrid)
+			foreach (var cell in SpawnCells())
 			{
 				var safeCells = _safeAreaCalculator.SafeArea(cell);
 				foreach (var safeCell in safeCells)
@@ -83,24 +81,30 @@ namespace Gameplay.Feature.MapGenerator.Services.SubGenerator
 			}
 		}
 
-		int SpawnCount(IReadOnlyDictionary<string, int> enemyDictionary)
+		IEnumerable<Vector2Int> SpawnCells()
+		{
+			var spawnCells = _enemySpawnGrid
+				.AllCoordinates(id => string.IsNullOrEmpty(id) == false);
+			return spawnCells;
+		}
+
+		int AvailableSpawnCount(IReadOnlyDictionary<string, int> enemyDictionary)
 		{
 			var allEnemyCount = EnemySumAtStart(enemyDictionary);
-			var spawnCount = AvailableSpawnCount(allEnemyCount, _availableCells);
+			var spawnCount = AvailableSpawnCount(allEnemyCount);
 			return spawnCount;
 		}
 
 		int EnemySumAtStart(IReadOnlyDictionary<string, int> enemyDictionary) =>
 			enemyDictionary.Sum(x => x.Value);
 
-		static int AvailableSpawnCount(int allEnemyCount,
-			List<Vector2Int> availableCells)
+		int AvailableSpawnCount(int allEnemyCount)
 		{
 			var spawnCount = allEnemyCount;
-			if (availableCells.Count < allEnemyCount)
+			if (_availableCells.Count < allEnemyCount)
 			{
 				Debug.LogError("Available cells is less than enemies.");
-				spawnCount = availableCells.Count;
+				spawnCount = _availableCells.Count;
 			}
 
 			return spawnCount;

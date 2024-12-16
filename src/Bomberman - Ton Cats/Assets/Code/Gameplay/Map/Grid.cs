@@ -79,6 +79,19 @@ namespace Gameplay.Map
 			}
 		}
 
+		public IEnumerable<Vector2Int> AllCoordinates(Func<T, bool> where)
+		{
+			if (where == null)
+			{
+				Debug.LogError("The condition is null.");
+				yield break;
+			}
+
+			foreach (var cell in this)
+				if (where.Invoke(_cells[cell.x, cell.y]))
+					yield return cell;
+		}
+
 		public IEnumerator<Vector2Int> GetEnumerator()
 		{
 			for (int x = 0; x < Size.x; x++)

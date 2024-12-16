@@ -14,5 +14,6 @@ namespace Gameplay.Map
 		IEnumerable<Vector2Int> AllCoordinates(T value);
 		IEnumerable<(Vector2Int cell, T value)> WithValues();
 		public IEnumerable<(Vector2Int cell, T value)> WithValues(Func<T, bool> where);
+		IEnumerable<Vector2Int> AllCoordinates(Func<T, bool> where);
 	}
 }

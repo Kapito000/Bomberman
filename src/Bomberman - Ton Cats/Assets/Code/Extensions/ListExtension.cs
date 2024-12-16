@@ -16,5 +16,8 @@ namespace Extensions
 			index = Random.Range(0, list.Count);
 			return list[index];
 		}
+
+		public static int GetRandomIndex<T>(this IList<T> list) =>
+			Random.Range(0, list.Count);
 	}
 }

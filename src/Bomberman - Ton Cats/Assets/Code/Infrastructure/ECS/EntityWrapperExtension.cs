@@ -512,6 +512,12 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
+		public string EnemyId()
+		{
+			ref var component = ref Get<EnemyId>();
+			return component.Value;
+		}
+		
 		public EntityWrapper AddEnemyId(string enemyId)
 		{
 			ref var component = ref AddComponent<EnemyId>();

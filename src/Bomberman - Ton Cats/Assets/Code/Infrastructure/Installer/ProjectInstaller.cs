@@ -22,6 +22,8 @@ using Gameplay.LevelData;
 using Gameplay.MapTile.TileProvider;
 using Gameplay.Physics;
 using Gameplay.Progress;
+using Gameplay.Reskin;
+using Gameplay.Reskin.StaticData;
 using Gameplay.StaticData.LevelData;
 using Gameplay.StaticData.SceneNames;
 using Gameplay.UI.Factory;
@@ -52,9 +54,10 @@ namespace Infrastructure.Installer
 		[SerializeField] MapData _mapData;
 		[SerializeField] HeroData _heroData;
 		[SerializeField] EnemyList _enemyList;
+		[SerializeField] LevelsData _levelsData;
+		[SerializeField] SkinLibrary _skinLibrary;
 		[SerializeField] GameTimerData _gameTimerData;
 		[SerializeField] WindowKitData _windowKitData;
-		[FormerlySerializedAs("_levelDataList"),SerializeField] LevelsData _levelsData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
 		[SerializeField] AudioClipProvider _audioClipProvider;
@@ -77,6 +80,7 @@ namespace Infrastructure.Installer
 			BindInputService();
 			BindMapGenerator();
 			BindMusicFactory();
+			BindReskinService();
 			BindGameTimerData();
 			BindWindowService();
 			BindSystemFactory();
@@ -92,6 +96,11 @@ namespace Infrastructure.Installer
 			BindInstantiateService();
 			BindGameSettingsService();
 			BindEntityBehaviourFactory();
+		}
+
+		void BindReskinService()
+		{
+			Container.Bind<IReskinService>().To<ReskinService>().AsSingle();
 		}
 
 		void BindDifficultService()
@@ -275,6 +284,7 @@ namespace Infrastructure.Installer
 				.AsSingle();
 			Container.Bind<IAudioStartValueData>().To<AudioStartValueData>()
 				.AsSingle().WhenInjectedInto<IGameSettingsStartValueData>();
+			Container.Bind<ISkinLibrary>().FromInstance(_skinLibrary).AsSingle();
 		}
 
 		void BindGameStateMachine()

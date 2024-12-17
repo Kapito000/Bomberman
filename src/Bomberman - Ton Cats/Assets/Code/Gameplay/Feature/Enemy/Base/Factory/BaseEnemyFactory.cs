@@ -3,6 +3,7 @@ using Gameplay.Feature.Destruction.Component;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.Enemy.Component;
+using Gameplay.Reskin;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using Leopotam.EcsLite;
@@ -19,6 +20,7 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		[Inject] IFactoryKit _kit;
 		[Inject] EntityWrapper _entity;
 		[Inject] IAudioService _audioService;
+		[Inject] IReskinService _reskinService;
 
 		public void CreateEnemy(string key, Vector3 pos, Transform parent)
 		{
@@ -42,6 +44,10 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 				.AddDeathAudioEffectClipId(Constant.AudioClipId.c_EnemyDeath)
 				.AddLifePoints(data.Characteristics.LifePoints)
 				;
+
+			var spriteLibrary = _entity.SpriteLibrary();
+			var libraryAsset = _reskinService.GetSkinSpriteLibraryAsset(key);
+			spriteLibrary.spriteLibraryAsset = libraryAsset;
 		}
 
 		public int CreateEnemySpawnPoint(string enemyId, Vector3 pos)

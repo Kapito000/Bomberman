@@ -13,6 +13,7 @@ namespace Gameplay.Feature.Enemy
 			AddUpdate<EnemyAIBrainProcessSystem>();
 			AddUpdate<AttackOfHeroSystemSystem>();
 			AddUpdate<EnemyDeathProcessSystem>();
+			AddUpdate<EnemyAnimationSystem>();
 		}
 	}
 }

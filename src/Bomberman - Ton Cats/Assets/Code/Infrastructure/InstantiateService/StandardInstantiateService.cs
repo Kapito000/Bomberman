@@ -49,6 +49,26 @@ namespace Infrastructure.InstantiateService
 			return instance;
 		}
 
+		public GameObject Instantiate(GameObject prefab, string name,
+			Vector2 pos = new(), Transform parent = null) =>
+			Instantiate(prefab, name, pos, quaternion.identity, parent);
+
+		public GameObject Instantiate(GameObject prefab, string name,
+			Vector2 pos = new(), Quaternion rot = new(),
+			Transform parent = null)
+		{
+			var parameters = new GameObjectCreationParameters()
+			{
+				Position = pos,
+				Rotation = rot,
+				ParentTransform = parent,
+				Name = name,
+			};
+
+			var instance = _container.InstantiatePrefab(prefab, parameters);
+			return instance;
+		}
+
 		public TComponent AddComponent<TComponent>(GameObject instance)
 			where TComponent : Component
 		{

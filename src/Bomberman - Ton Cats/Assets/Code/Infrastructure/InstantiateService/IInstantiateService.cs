@@ -21,5 +21,12 @@ namespace Infrastructure.InstantiateService
 
 		TComponent Instantiate<TComponent>(Object prefab, Transform parent)
 			where TComponent : Component;
+
+		GameObject Instantiate(GameObject prefab, string name,
+			Vector2 pos = new(), Quaternion rot = new(),
+			Transform parent = null);
+
+		GameObject Instantiate(GameObject prefab, string name,
+			Vector2 pos = new(), Transform parent = null);
 	}
 }

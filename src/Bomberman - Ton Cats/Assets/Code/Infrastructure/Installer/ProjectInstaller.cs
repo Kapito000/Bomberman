@@ -152,7 +152,7 @@ namespace Infrastructure.Installer
 		void BindWorld()
 		{
 			Container.Bind<EcsWorld>().FromMethod(CreateNewWorld).AsSingle()
-				.MoveIntoAllSubContainers();
+				.MoveIntoDirectSubContainers();
 
 			EcsWorld CreateNewWorld() => new();
 		}

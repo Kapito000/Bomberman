@@ -22,6 +22,8 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		[Inject] IAudioService _audioService;
 		[Inject] IReskinService _reskinService;
 
+		int _spawnedEnemyNum;
+
 		public void CreateEnemy(string key, Vector3 pos, Transform parent)
 		{
 			if (_enemyList.TryGet(key, out var data) == false)
@@ -31,7 +33,9 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 			}
 
 			var prefab = _kit.AssetProvider.BaseEnemy();
-			var instance = _kit.InstantiateService.Instantiate(prefab, pos, parent);
+			var name = prefab.name + " " + _spawnedEnemyNum++;
+			var instance = _kit.InstantiateService
+				.Instantiate(prefab, name, pos, parent);
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 
 			SetMovementSpeed(instance, data);

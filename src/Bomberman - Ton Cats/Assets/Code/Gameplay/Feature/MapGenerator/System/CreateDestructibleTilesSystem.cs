@@ -1,7 +1,4 @@
 ﻿using Gameplay.Feature.MapGenerator.Services;
-using Gameplay.LevelData;
-using Gameplay.Map;
-using Gameplay.MapView;
 using Leopotam.EcsLite;
 using Zenject;
 

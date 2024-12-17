@@ -13,6 +13,7 @@ namespace Gameplay.Feature.Enemy.Base.System
 	{
 		[Inject] IAIData _aiData;
 		[Inject] FindPatrolPoints _findPatrolPoints;
+		[Inject] FindPatrolVolatilePoints _findPatrolVolatilePoints;
 
 		IAIAgent _agent;
 
@@ -41,6 +42,17 @@ namespace Gameplay.Feature.Enemy.Base.System
 			var pos = Agent().TransformPos();
 			var patrolDistance = _aiData.PatrolDistance;
 			var destination = _findPatrolPoints.CalculatePoint(pos, patrolDistance);
+			Agent().ReplaceCurrentDestination(destination);
+			Agent().NavMeshAgent().SetDestination(destination);
+			return BehaviourTreeStatus.Success;
+		}
+
+		public BehaviourTreeStatus SelectVolatilePatrolDestination()
+		{
+			var pos = Agent().TransformPos();
+			var patrolDistance = _aiData.PatrolDistance;
+			var destination = _findPatrolVolatilePoints
+				.CalculatePoint(pos, patrolDistance);
 			Agent().ReplaceCurrentDestination(destination);
 			Agent().NavMeshAgent().SetDestination(destination);
 			return BehaviourTreeStatus.Success;

@@ -105,6 +105,7 @@ namespace Infrastructure.Installer
 		{
 			Container.Bind<Patrolling>().AsSingle();
 			Container.Bind<FindPatrolPoints>().AsSingle();
+			Container.Bind<FindPatrolVolatilePoints>().AsSingle();
 		}
 
 		void BindDevSceneRunner()

@@ -44,7 +44,7 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 			_wrapper
 				.Add<EnemyComponent>()
 				.Add<AttackHeroAbility>()
-				.AddBaseEnemyAIBlackboard()
+				.AddEnemyAIBlackboard()
 				.AddDeathAudioEffectClipId(Constant.AudioClipId.c_EnemyDeath)
 				.AddLifePoints(data.Characteristics.LifePoints)
 				;

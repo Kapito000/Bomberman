@@ -295,7 +295,7 @@ namespace Infrastructure.ECS
 			return blackboard.Value;
 		}
 
-		public EntityWrapper AddBaseEnemyAIBlackboard()
+		public EntityWrapper AddEnemyAIBlackboard()
 		{
 			ref var blackboard = ref AddComponent<EnemyAIBlackboardComponent>();
 			blackboard.Value = new EnemyAIBlackboard();

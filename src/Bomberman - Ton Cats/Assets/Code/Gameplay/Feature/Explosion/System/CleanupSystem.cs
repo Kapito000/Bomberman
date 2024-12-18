@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Gameplay.Feature.Explosion.System
 {
-	public sealed class CreateExplosionRequestCleanupSystem : IEcsRunSystem
+	public sealed class CleanupSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _entity;
 		

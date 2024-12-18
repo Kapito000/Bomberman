@@ -17,7 +17,7 @@ namespace Gameplay.Feature.Explosion
 			AddUpdate<RemoveFromTargetBufferSystem>();
 			AddUpdate<ExplosionDamageSystem>();
 			
-			AddCleanup<CreateExplosionRequestCleanupSystem>();
+			AddCleanup<CleanupSystem>();
 		}
 	}
 }

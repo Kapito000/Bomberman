@@ -8,5 +8,7 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		int CreateEnemyParent();
 		int CreateEnemySpawnPoint(string enemyId, Vector3 pos);
 		void CreateEnemy(string key, Vector3 pos, Transform parent);
+		bool TryCreateEnemy(string key, Vector3 pos, Transform parent,
+			out int entity);
 	}
 }

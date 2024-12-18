@@ -8,5 +8,6 @@ namespace Gameplay.Feature.Enemy.Base.StaticData
 	{
 		[field: SerializeField] public int PatrolDistance { get; private set; } = 5;
 		[field: SerializeField] public float ArrivedDestinationDistance { get; private set; } = .5f;
+		[field: SerializeField] public float AfterDoorImmortalTimer { get; private set; } = 1f;
 	}
 }

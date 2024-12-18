@@ -2,6 +2,7 @@
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Base.Factory;
 using Gameplay.Feature.Enemy.Base.StaticData;
+using Gameplay.Feature.Life.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -11,8 +12,10 @@ namespace Gameplay.Feature.Enemy.Base.System
 {
 	public sealed class SpawnEnemySystem : IEcsRunSystem
 	{
+		[Inject] IAIData _aiData;
 		[Inject] EcsWorld _world;
 		[Inject] IEnemyList _enemyList;
+		[Inject] EntityWrapper _enemy;
 		[Inject] EntityWrapper _parent;
 		[Inject] EntityWrapper _spawnRequest;
 		[Inject] IEnemyFactory _enemyFactory;
@@ -28,12 +31,18 @@ namespace Gameplay.Feature.Enemy.Base.System
 			{
 				_parent.SetEntity(parentEntity);
 				_spawnRequest.SetEntity(spawnRequest);
-				
+
 				var parent = _parent.EnemyParent();
 				var pos = _spawnRequest.Position();
 				var key = _spawnRequest.EnemyId();
-				_enemyFactory.CreateEnemy(key, pos, parent);
-				
+				if (_enemyFactory.TryCreateEnemy(key, pos, parent, out var enemyEntity))
+				{
+					_enemy.SetEntity(enemyEntity);
+					_enemy.Remove<LifePoints>();
+					_enemy.Add<Immortal>();
+					_enemy.AddImmortalTimer(_aiData.AfterDoorImmortalTimer);
+				}
+
 				_spawnRequest.Destroy();
 			}
 
@@ -42,7 +51,7 @@ namespace Gameplay.Feature.Enemy.Base.System
 
 		void CleanupRequests()
 		{
-			foreach (var e in _requestFilter.Value) 
+			foreach (var e in _requestFilter.Value)
 				_world.DelEntity(e);
 		}
 	}

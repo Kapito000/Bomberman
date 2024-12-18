@@ -524,5 +524,12 @@ namespace Infrastructure.ECS
 			component.Value = enemyId;
 			return this;
 		}
+
+		public EntityWrapper AddImmortalTimer(float time)
+		{
+			ref var component = ref AddComponent<ImmortalTimer>();
+			component.Value = time;
+			return this;
+		}
 	}
 }

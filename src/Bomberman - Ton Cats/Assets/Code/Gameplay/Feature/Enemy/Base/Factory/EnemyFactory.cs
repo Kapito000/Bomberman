@@ -11,6 +11,7 @@ using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Gameplay.Feature.Enemy.Base.Factory
 {
@@ -27,22 +28,29 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 
 		public void CreateEnemy(string key, Vector3 pos, Transform parent)
 		{
+			TryCreateEnemy(key, pos, parent, out _);
+		}
+
+		public bool TryCreateEnemy(string key, Vector3 pos, Transform parent,
+			out int entity)
+		{
 			if (_enemyList.TryGet(key, out var data) == false)
 			{
 				Debug.LogError($"Cannot to spawn the enemy by key: \"{key}\".");
-				return;
+				entity = default;
+				return false;
 			}
 
 			var prefab = _kit.AssetProvider.BaseEnemy();
 			var name = prefab.name + " " + _spawnedEnemyNum++;
 			var instance = _kit.InstantiateService
 				.Instantiate(prefab, name, pos, parent);
-			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 
 			var navMeshAgent = instance.GetComponent<NavMeshAgent>();
 			InitNavMeshAgent(navMeshAgent, key, data);
 
-			_wrapper.SetEntity(e);
+			_wrapper.SetEntity(entity);
 			_wrapper
 				.Add<EnemyComponent>()
 				.Add<AttackHeroAbility>()
@@ -55,6 +63,7 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 			var spriteLibrary = _wrapper.SpriteLibrary();
 			var libraryAsset = _reskinService.GetSkinSpriteLibraryAsset(key);
 			spriteLibrary.spriteLibraryAsset = libraryAsset;
+			return true;
 		}
 
 		public int CreateEnemySpawnPoint(string enemyId, Vector3 pos)

@@ -9,7 +9,9 @@ namespace Gameplay.Feature.Map.System
 	{
 		[Inject] EcsWorld _world;
 
-		readonly EcsFilterInject<Inc<DestroyedTile, DestroyedTileRequest>> _destroyedTileFilter;
+		readonly EcsFilterInject<Inc<DestroyedTile, DestroyedTileRequest>>
+			_destroyedTileFilter;
+		
 
 		public void Run(IEcsSystems systems)
 		{

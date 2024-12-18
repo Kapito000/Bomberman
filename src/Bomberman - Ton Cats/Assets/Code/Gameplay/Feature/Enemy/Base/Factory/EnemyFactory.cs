@@ -14,7 +14,7 @@ using Zenject;
 
 namespace Gameplay.Feature.Enemy.Base.Factory
 {
-	public sealed class BaseEnemyFactory : IBaseEnemyFactory
+	public sealed class EnemyFactory : IEnemyFactory
 	{
 		[Inject] EcsWorld _world;
 		[Inject] IEnemyList _enemyList;

@@ -14,14 +14,14 @@ namespace Gameplay.Feature.Enemy.Base.System
 		[Inject] IEnemyList _enemyList;
 		[Inject] EntityWrapper _parent;
 		[Inject] EntityWrapper _spawnPoint;
-		[Inject] IBaseEnemyFactory _baseEnemyFactory;
+		[Inject] IEnemyFactory _enemyFactory;
 
 		readonly EcsFilterInject<
 			Inc<EnemySpawnPoint, EnemyId, Position>> _spawnPointFilter;
 
 		public void Run(IEcsSystems systems)
 		{
-			var parentEntity = _baseEnemyFactory.CreateEnemyParent();
+			var parentEntity = _enemyFactory.CreateEnemyParent();
 			_parent.SetEntity(parentEntity);
 			var parent = _parent.EnemyParent();
 
@@ -30,7 +30,7 @@ namespace Gameplay.Feature.Enemy.Base.System
 				_spawnPoint.SetEntity(spawnPoint);
 				var pos = _spawnPoint.Position();
 				var key = _spawnPoint.EnemyId();
-				_baseEnemyFactory.CreateEnemy(key, pos, parent);
+				_enemyFactory.CreateEnemy(key, pos, parent);
 			}
 		}
 	}

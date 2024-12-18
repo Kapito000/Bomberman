@@ -18,6 +18,12 @@ namespace Gameplay.Difficult
 			return data.EnemiesAtStart;
 		}
 
+		public IReadOnlyDictionary<string, int> EnemyAtDoorForCurrentProgress()
+		{
+			var data = LevelDataForCurrentLevel();
+			return data.EnemiesAtDoor;
+		}
+
 		StaticData.LevelData.LevelData LevelDataForCurrentLevel()
 		{
 			var numOfLevelData = CurrentAvailableLevelData();

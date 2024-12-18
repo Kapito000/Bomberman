@@ -9,6 +9,7 @@ namespace Gameplay.Feature.Map
 		{
 			AddUpdate<DestroyTileSystem>();
 			AddUpdate<SpawnFinishLevelDoorSystem>();
+			AddUpdate<SpawnEnemyAtFinishLevelDoor>();
 			AddUpdate<RebakeNavigationSurfaceSystem>();
 			
 			AddCleanup<CleanupSystem>();

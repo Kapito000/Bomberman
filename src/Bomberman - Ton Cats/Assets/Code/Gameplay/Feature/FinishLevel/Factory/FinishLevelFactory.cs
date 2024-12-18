@@ -1,3 +1,4 @@
+using Common.Component;
 using Gameplay.Audio;
 using Gameplay.Audio.Service;
 using Gameplay.Feature.FinishLevel.Component;
@@ -53,6 +54,7 @@ namespace Gameplay.Feature.FinishLevel.Factory
 			_entity.SetEntity(doorEntity);
 			_entity
 				.AddTransform(instance.transform)
+				.Add<OpenEvent>()
 				;
 			return instance;
 		}

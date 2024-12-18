@@ -17,8 +17,11 @@ MonoBehaviour:
       _keyData: []
       _valueData: 
     EnemiesAtDoor:
-      _keyData: []
-      _valueData: 
+      _keyData:
+      - Flash
+      - Hologram
+      - Scammer
+      _valueData: 020000000100000005000000
     EnemiesAtStart:
       _keyData:
       - Scammer

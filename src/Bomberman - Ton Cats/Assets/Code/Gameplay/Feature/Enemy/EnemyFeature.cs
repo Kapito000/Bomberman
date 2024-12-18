@@ -10,6 +10,8 @@ namespace Gameplay.Feature.Enemy
 		{
 			AddInit<CreateEnemiesSystem>();
 			
+			AddUpdate<SpawnEnemySystem>();
+			
 			AddUpdate<EnemyAIBrainProcessSystem>();
 			AddUpdate<VolatileEnemyAIBrainProcessSystem>();
 			AddUpdate<AttackOfHeroSystemSystem>();

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.Feature.Enemy.Base.Factory
 {
-	public interface IBaseEnemyFactory : IFactory
+	public interface IEnemyFactory : IFactory
 	{
 		int CreateEnemyParent();
 		int CreateEnemySpawnPoint(string enemyId, Vector3 pos);

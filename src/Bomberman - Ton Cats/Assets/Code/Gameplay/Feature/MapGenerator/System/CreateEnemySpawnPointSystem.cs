@@ -12,7 +12,7 @@ namespace Gameplay.Feature.MapGenerator.System
 		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _enemyParent;
 		[Inject] IMapGenerator _mapGenerator;
-		[Inject] IBaseEnemyFactory _enemyFactory;
+		[Inject] IEnemyFactory _enemyFactory;
 
 		public void Run(IEcsSystems systems)
 		{

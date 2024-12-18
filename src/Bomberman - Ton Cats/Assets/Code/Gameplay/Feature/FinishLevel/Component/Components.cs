@@ -2,6 +2,7 @@
 {
 	public struct HeroDead { }
 	public struct GameOver { }
+	public struct OpenEvent { }
 	public struct GameTimerOver { }
 	public struct LevelFinished { }
 	public struct LevelComplete { }

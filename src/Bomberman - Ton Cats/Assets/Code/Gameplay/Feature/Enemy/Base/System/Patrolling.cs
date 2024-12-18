@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Gameplay.Feature.Enemy.Base.System
 {
-	public sealed class Patrolling
+	public sealed class  Patrolling
 	{
 		[Inject] IAIData _aiData;
 		[Inject] FindPatrolPoints _findPatrolPoints;

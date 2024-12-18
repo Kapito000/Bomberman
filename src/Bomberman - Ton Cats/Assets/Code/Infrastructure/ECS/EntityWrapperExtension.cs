@@ -289,16 +289,16 @@ namespace Infrastructure.ECS
 			return spriteLibraryComponent.Value;
 		}
 
-		public BaseEnemyAIBlackboard BaseEnemyAIBlackboard()
+		public EnemyAIBlackboard BaseEnemyAIBlackboard()
 		{
-			ref var blackboard = ref Get<BaseEnemyAIBlackboardComponent>();
+			ref var blackboard = ref Get<EnemyAIBlackboardComponent>();
 			return blackboard.Value;
 		}
 
 		public EntityWrapper AddBaseEnemyAIBlackboard()
 		{
-			ref var blackboard = ref AddComponent<BaseEnemyAIBlackboardComponent>();
-			blackboard.Value = new BaseEnemyAIBlackboard();
+			ref var blackboard = ref AddComponent<EnemyAIBlackboardComponent>();
+			blackboard.Value = new EnemyAIBlackboard();
 			return this;
 		}
 

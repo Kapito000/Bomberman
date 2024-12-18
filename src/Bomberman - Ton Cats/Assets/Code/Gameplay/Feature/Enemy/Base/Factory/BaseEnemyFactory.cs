@@ -18,7 +18,7 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		[Inject] EcsWorld _world;
 		[Inject] IEnemyList _enemyList;
 		[Inject] IFactoryKit _kit;
-		[Inject] EntityWrapper _entity;
+		[Inject] EntityWrapper _wrapper;
 		[Inject] IAudioService _audioService;
 		[Inject] IReskinService _reskinService;
 
@@ -36,20 +36,21 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 			var name = prefab.name + " " + _spawnedEnemyNum++;
 			var instance = _kit.InstantiateService
 				.Instantiate(prefab, name, pos, parent);
-			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 
 			SetMovementSpeed(instance, data);
 
-			_entity.SetEntity(entity);
-			_entity
+			_wrapper.SetEntity(e);
+			_wrapper
 				.Add<EnemyComponent>()
 				.Add<AttackHeroAbility>()
 				.AddBaseEnemyAIBlackboard()
 				.AddDeathAudioEffectClipId(Constant.AudioClipId.c_EnemyDeath)
 				.AddLifePoints(data.Characteristics.LifePoints)
 				;
+			SetMovementMode(key, _wrapper);
 
-			var spriteLibrary = _entity.SpriteLibrary();
+			var spriteLibrary = _wrapper.SpriteLibrary();
 			var libraryAsset = _reskinService.GetSkinSpriteLibraryAsset(key);
 			spriteLibrary.spriteLibraryAsset = libraryAsset;
 		}
@@ -57,8 +58,8 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		public int CreateEnemySpawnPoint(string enemyId, Vector3 pos)
 		{
 			var e = _world.NewEntity();
-			_entity.SetEntity(e);
-			_entity
+			_wrapper.SetEntity(e);
+			_wrapper
 				.Add<EnemySpawnPoint>()
 				.AddEnemyId(enemyId)
 				.AddPosition(pos)
@@ -71,8 +72,8 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		{
 			var parent = new GameObject("Enemies");
 			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(parent);
-			_entity.SetEntity(e);
-			_entity.AddEnemyParent(parent.transform);
+			_wrapper.SetEntity(e);
+			_wrapper.AddEnemyParent(parent.transform);
 			return e;
 		}
 
@@ -80,6 +81,17 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		{
 			var navMeshAgent = instance.GetComponent<NavMeshAgent>();
 			navMeshAgent.speed = data.Characteristics.MovementSpeed;
+		}
+
+		void SetMovementMode(string enemyId, EntityWrapper wrapper)
+		{
+			if (enemyId == Constant.EnemyId.c_Hologram)
+			{
+				wrapper.Add<Volatile>();
+				return;
+			}
+
+			wrapper.Add<Walking>();
 		}
 	}
 }

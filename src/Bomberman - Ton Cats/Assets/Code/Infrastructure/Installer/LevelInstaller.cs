@@ -103,7 +103,7 @@ namespace Infrastructure.Installer
 
 		void BindAIFunctional()
 		{
-			Container.Bind<Patrolling>().AsSingle();
+			Container.Bind<Patrolling>().AsTransient();
 			Container.Bind<FindPatrolPoints>().AsSingle();
 			Container.Bind<FindPatrolVolatilePoints>().AsSingle();
 		}

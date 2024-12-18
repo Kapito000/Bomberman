@@ -1,4 +1,5 @@
-﻿using Common.FluentBehaviourTree;
+﻿using Common.Component;
+using Common.FluentBehaviourTree;
 using Gameplay.AI;
 using Gameplay.Feature.Enemy.AI;
 using Gameplay.Feature.Enemy.Base.Component;
@@ -21,7 +22,9 @@ namespace Gameplay.Feature.Enemy.Base.System
 		IBehaviourTreeNode _tree;
 		IBehaviourTreeNode _patrolTree;
 
-		readonly EcsFilterInject<Inc<BaseEnemyAIBlackboardComponent>> _enemyFilter;
+		readonly EcsFilterInject<
+				Inc<EnemyAIBlackboardComponent, Walking, NavMeshAgentComponent>>
+			_enemyFilter;
 
 		public void Init(IEcsSystems systems)
 		{

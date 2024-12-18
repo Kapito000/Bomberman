@@ -1,4 +1,5 @@
-﻿using Gameplay.Audio.Service;
+﻿using Extensions;
+using Gameplay.Audio.Service;
 using Gameplay.Feature.Destruction.Component;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Base.StaticData;
@@ -38,7 +39,8 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 				.Instantiate(prefab, name, pos, parent);
 			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 
-			SetMovementSpeed(instance, data);
+			var navMeshAgent = instance.GetComponent<NavMeshAgent>();
+			InitNavMeshAgent(navMeshAgent, key, data);
 
 			_wrapper.SetEntity(e);
 			_wrapper
@@ -77,10 +79,16 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 			return e;
 		}
 
-		static void SetMovementSpeed(GameObject instance, EnemyData data)
+		static void InitNavMeshAgent(NavMeshAgent navMeshAgent, string enemyId,
+			EnemyData data)
 		{
-			var navMeshAgent = instance.GetComponent<NavMeshAgent>();
 			navMeshAgent.speed = data.Characteristics.MovementSpeed;
+			if (enemyId == Constant.EnemyId.c_Hologram)
+			{
+				var agentTypeName = Constant.NavMeshAgentTypeName.c_VolatileEnemy;
+				var agentTypeId = NavMeshExtension.GetAgentTypeIDByName(agentTypeName);
+				navMeshAgent.agentTypeID = agentTypeId;
+			}
 		}
 
 		void SetMovementMode(string enemyId, EntityWrapper wrapper)

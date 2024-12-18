@@ -1,25 +1,31 @@
-﻿using NavMeshPlus.Components;
-
-namespace Gameplay.AI.Navigation
+﻿namespace Gameplay.AI.Navigation
 {
 	public sealed class AINavigationSurface : INavigationSurface
 	{
-		readonly NavMeshSurface _navMeshSurface;
+		readonly NavMeshSurfaceIdDictionary _surfaces;
 
-		public AINavigationSurface(NavMeshSurface navMeshSurface)
+		public AINavigationSurface(NavMeshSurfaceIdDictionary surfaces)
 		{
-			_navMeshSurface = navMeshSurface;
-			navMeshSurface.hideEditorLogs = true;
+			_surfaces = surfaces;
+			HideEditorLogs();
 		}
 
 		public void Bake()
 		{
-			_navMeshSurface.BuildNavMesh();
+			foreach (var surface in _surfaces.Values)
+				surface.BuildNavMesh();
 		}
 
 		public void Update()
 		{
-			_navMeshSurface.UpdateNavMesh(_navMeshSurface.navMeshData);
+			foreach (var surface in _surfaces.Values)
+				surface.UpdateNavMesh(surface.navMeshData);
+		}
+
+		void HideEditorLogs()
+		{
+			foreach (var surface in _surfaces.Values)
+				surface.hideEditorLogs = true;
 		}
 	}
 }

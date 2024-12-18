@@ -35,7 +35,7 @@ namespace Infrastructure.Installer
 		[SerializeField] Tilemap _destructibleTailMap;
 		[SerializeField] Tilemap _indestructibleTailMap;
 		[SerializeField] WindowKitId _windowKitId = WindowKitId.Game;
-		[SerializeField] NavMeshSurface _navMeshSurface;
+		[SerializeField] NavMeshSurfaceIdDictionary _navMeshSurfaces;
 
 		[Inject] IGameLevelData _levelData;
 		[Inject] IGameStateMachine _gameStateMachine;
@@ -92,7 +92,8 @@ namespace Infrastructure.Installer
 
 		void BindNavigationSurface()
 		{
-			Container.Bind<NavMeshSurface>().FromInstance(_navMeshSurface).AsSingle();
+			Container.Bind<NavMeshSurfaceIdDictionary>()
+				.FromInstance(_navMeshSurfaces).AsSingle();
 			Container.Bind<INavigationSurface>().To<AINavigationSurface>().AsSingle();
 		}
 

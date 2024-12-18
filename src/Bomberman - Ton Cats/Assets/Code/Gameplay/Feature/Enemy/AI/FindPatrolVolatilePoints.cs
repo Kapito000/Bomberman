@@ -39,7 +39,7 @@ namespace Gameplay.Feature.Enemy.AI
 			var minPos = new Vector2Int(pos.x - distance, pos.y - distance);
 			var maxPos = new Vector2Int(pos.x + distance, pos.y + distance);
 			for (int x = minPos.x; x < maxPos.x; x++)
-			for (int y = minPos.y; y < maxPos.y; x++)
+			for (int y = minPos.y; y < maxPos.y; y++)
 			{
 				var point = new Vector2Int(x, y);
 				if (PointIntoCircle(pos, distance, point))

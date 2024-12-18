@@ -6,7 +6,7 @@ namespace Gameplay.Feature.Collisions.Behaviour
 {
 	public sealed class TriggerExitProcessor : ColliderCheckBehaviour
 	{
-		[Inject] EntityWrapper _explosion;
+		[Inject] EntityWrapper _thisWrapper;
 
 		void OnTriggerExit2D(Collider2D other)
 		{
@@ -16,8 +16,8 @@ namespace Gameplay.Feature.Collisions.Behaviour
 			if (TryGetEntity(out var thisEntity) == false)
 				return;
 
-			_explosion.SetEntity(thisEntity);
-			_explosion.AddToTriggerExitBuffer(otherEntity);
+			_thisWrapper.SetEntity(thisEntity);
+			_thisWrapper.AddToTriggerExitBuffer(otherEntity);
 		}
 	}
 }

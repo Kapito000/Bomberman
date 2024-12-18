@@ -6,7 +6,7 @@ namespace Gameplay.Feature.Collisions.Behaviour
 {
 	public sealed class TriggerEnterProcessor : ColliderCheckBehaviour
 	{
-		[Inject] EntityWrapper _explosion;
+		[Inject] EntityWrapper _thisWrapper;
 
 		void OnTriggerEnter2D(Collider2D other)
 		{
@@ -16,8 +16,8 @@ namespace Gameplay.Feature.Collisions.Behaviour
 			if (TryGetEntity(out var thisEntity) == false)
 				return;
 
-			_explosion.SetEntity(thisEntity);
-			_explosion.AddToTriggerEnterBuffer(otherEntity);
+			_thisWrapper.SetEntity(thisEntity);
+			_thisWrapper.AddToTriggerEnterBuffer(otherEntity);
 		}
 	}
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885663ae32b048458c4f5e5722be3223, type: 3}
   m_Name: Level Data List
   m_EditorClassIdentifier: 
-  BonusesTable: {fileID: 3347090732687339515, guid: a252ceb821f72dd4f9b6ab31da48e7a0, type: 3}
-  EnemiesAtDoorTable: {fileID: 7435606901577259619, guid: 58596d12af1207c41bdfa97dcf984c0f, type: 3}
-  EnemiesAtStartTable: {fileID: -4206732472498477123, guid: a73a65ea55b6e574b9f102708306e473, type: 3}
+  _bonusesTable: {fileID: -3697927592125524007, guid: 986a275b23a9ab14f9351c92d89e2fcf, type: 3}
+  _enemiesAtDoorTable: {fileID: -3353251550612655614, guid: c2cd4abc6164c1a46afa69e8dd7a146b, type: 3}
+  _enemiesAtStartTable: {fileID: 1716695391902317254, guid: 222a00b93bf55ae478a2e3b1698e9a3a, type: 3}
   _bonuses:
   - _keyData: []
     _valueData: 
@@ -45,43 +45,43 @@ MonoBehaviour:
   - _keyData: []
     _valueData: 
   - _keyData:
-    - powerful bomb
+    - Powerful bomb
     _valueData: 01000000
   - _keyData: []
     _valueData: 
   - _keyData:
-    - powerful bomb
-    _valueData: 01000000
-  - _keyData: []
-    _valueData: 
-  - _keyData: []
-    _valueData: 
-  - _keyData: []
-    _valueData: 
-  - _keyData: []
-    _valueData: 
-  - _keyData:
-    - powerful bomb
+    - Powerful bomb
     _valueData: 01000000
   - _keyData: []
     _valueData: 
   - _keyData: []
     _valueData: 
+  - _keyData: []
+    _valueData: 
+  - _keyData: []
+    _valueData: 
   - _keyData:
-    - powerful bomb
+    - Powerful bomb
+    _valueData: 01000000
+  - _keyData: []
+    _valueData: 
+  - _keyData: []
+    _valueData: 
+  - _keyData:
+    - Powerful bomb
     _valueData: 01000000
   - _keyData: []
     _valueData: 
   - _keyData:
-    - powerful bomb
+    - Powerful bomb
     _valueData: 01000000
   - _keyData: []
     _valueData: 
   - _keyData:
-    - powerful bomb
+    - Powerful bomb
     _valueData: 01000000
   - _keyData:
-    - powerful bomb
+    - Powerful bomb
     _valueData: 01000000
   _enemiesAtDoor:
   - _keyData: []
@@ -103,248 +103,248 @@ MonoBehaviour:
   - _keyData: []
     _valueData: 
   - _keyData:
-    - scammer
+    - Scammer
     _valueData: 01000000
   - _keyData:
-    - scammer
+    - Scammer
     _valueData: 02000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0100000001000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0100000002000000
   - _keyData:
-    - hologram
-    - scammer
+    - Hologram
+    - Scammer
     _valueData: 0100000001000000
   - _keyData:
-    - cyber
-    - hologram
-    - scammer
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 010000000100000001000000
   - _keyData:
-    - hologram
+    - Hologram
     _valueData: 02000000
   - _keyData:
-    - hologram
-    - scammer
+    - Hologram
+    - Scammer
     _valueData: 0200000001000000
   - _keyData:
-    - cyber
-    - hologram
-    - scammer
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 010000000300000001000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0200000002000000
   - _keyData:
-    - cyber
-    - hologram
-    - scammer
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 010000000100000002000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
+    - Cyber
+    - Flash
+    - Hologram
     _valueData: 020000000100000002000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 03000000010000000100000002000000
   - _keyData:
-    - cyber
-    - flash
-    - scammer
+    - Cyber
+    - Flash
+    - Scammer
     _valueData: 020000000200000002000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 01000000010000000100000001000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 02000000010000000100000002000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 01000000010000000100000001000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 01000000020000000100000002000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 01000000010000000100000001000000
   - _keyData:
-    - assassin
-    - cyber
-    - scammer
+    - Assassin
+    - Cyber
+    - Scammer
     _valueData: 010000000200000002000000
   - _keyData:
-    - assassin
-    - cyber
-    - hologram
-    - scammer
+    - Assassin
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 01000000010000000100000002000000
   _enemiesAtStart:
   - _keyData:
-    - scammer
+    - Scammer
     _valueData: 05000000
   - _keyData:
-    - scammer
+    - Scammer
     _valueData: 06000000
   - _keyData:
-    - scammer
+    - Scammer
     _valueData: 07000000
   - _keyData:
-    - scammer
+    - Scammer
     _valueData: 08000000
   - _keyData:
-    - scammer
+    - Scammer
     _valueData: 09000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0100000009000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0200000008000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0300000007000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0400000006000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0500000005000000
   - _keyData:
-    - cyber
-    - scammer
+    - Cyber
+    - Scammer
     _valueData: 0600000004000000
   - _keyData:
-    - cyber
-    - hologram
-    - scammer
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 030000000100000006000000
   - _keyData:
-    - hologram
-    - scammer
+    - Hologram
+    - Scammer
     _valueData: 0200000008000000
   - _keyData:
-    - cyber
-    - hologram
-    - scammer
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 010000000200000007000000
   - _keyData:
-    - cyber
-    - hologram
-    - scammer
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 020000000300000005000000
   - _keyData:
-    - hologram
-    - scammer
+    - Hologram
+    - Scammer
     _valueData: 0300000006000000
   - _keyData:
-    - cyber
-    - hologram
-    - scammer
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 010000000400000005000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 03000000010000000100000005000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 03000000020000000100000004000000
   - _keyData:
-    - flash
-    - hologram
-    - scammer
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 020000000200000006000000
   - _keyData:
-    - cyber
-    - flash
-    - scammer
+    - Cyber
+    - Flash
+    - Scammer
     _valueData: 030000000300000004000000
   - _keyData:
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 04000000030000000100000002000000
   - _keyData:
-    - flash
-    - hologram
-    - scammer
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 040000000100000005000000
   - _keyData:
-    - assassin
-    - cyber
-    - hologram
-    - scammer
+    - Assassin
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 01000000040000000100000004000000
   - _keyData:
-    - assassin
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Assassin
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 0100000001000000020000000200000004000000
   - _keyData:
-    - assassin
-    - cyber
-    - flash
-    - scammer
+    - Assassin
+    - Cyber
+    - Flash
+    - Scammer
     _valueData: 02000000010000000100000006000000
   - _keyData:
-    - assassin
-    - cyber
-    - flash
-    - hologram
-    - scammer
+    - Assassin
+    - Cyber
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 0200000002000000010000000100000004000000
   - _keyData:
-    - assassin
-    - flash
-    - hologram
-    - scammer
+    - Assassin
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 02000000010000000100000006000000
   - _keyData:
-    - assassin
-    - flash
-    - hologram
-    - scammer
+    - Assassin
+    - Flash
+    - Hologram
+    - Scammer
     _valueData: 03000000010000000100000004000000
   - _keyData:
-    - assassin
-    - cyber
-    - hologram
-    - scammer
+    - Assassin
+    - Cyber
+    - Hologram
+    - Scammer
     _valueData: 03000000010000000200000004000000

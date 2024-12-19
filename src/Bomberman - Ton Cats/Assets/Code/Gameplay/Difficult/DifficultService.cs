@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Dictionary;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Progress;
 using Gameplay.StaticData.LevelData;
@@ -15,33 +16,23 @@ namespace Gameplay.Difficult
 
 		public IReadOnlyDictionary<string, int> EnemyAtStartForCurrentProgress()
 		{
-			throw new NotImplementedException();
-			// var data = LevelDataForCurrentLevel();
-			// return data.EnemiesAtStart;
+			var numLevel = AvailableLevel(_levelsData.EnemiesAtStart);
+			return _levelsData.EnemiesAtStart[numLevel];
 		}
 
 		public IReadOnlyDictionary<string, int> EnemyAtDoorForCurrentProgress()
 		{
-			throw new NotImplementedException();
-			// var data = LevelDataForCurrentLevel();
-			// return data.EnemiesAtDoor;
+			var numLevel = AvailableLevel(_levelsData.EnemiesAtDoor);
+			return _levelsData.EnemiesAtStart[numLevel];
 		}
 
-		// StaticData.LevelData.LevelData LevelDataForCurrentLevel()
-		// {
-		// 	var numOfLevelData = CurrentAvailableLevelData();
-		// 	var levelsData = _levelsData.List[numOfLevelData];
-		// 	return levelsData;
-		// }
-
-		// int CurrentAvailableLevelData()
-		// {
-		// 	var reachedLevel = _progressService.ReachedLevel;
-		// 	var levelCount = _levelsData.List.Count;
-		// 	var availableLevelData = reachedLevel >= levelCount
-		// 		? levelCount - 1
-		// 		: reachedLevel;
-		// 	return availableLevelData;
-		// }
+		int AvailableLevel(StringIntegerDictionary[] dictionaries)
+		{
+			var reachedLevel = _progressService.ReachedLevel;
+			var levelCount = _levelsData.EnemiesAtDoor.Length;
+			return reachedLevel >= levelCount
+				? levelCount - 1
+				: reachedLevel;
+		}
 	}
 }

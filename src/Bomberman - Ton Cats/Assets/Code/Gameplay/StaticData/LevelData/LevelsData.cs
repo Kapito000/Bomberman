@@ -2,6 +2,7 @@
 using Sirenix.OdinInspector;
 using Static_table_data;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Menu = Constant.CreateAssetMenu.Path;
 
 namespace Gameplay.StaticData.LevelData
@@ -9,19 +10,23 @@ namespace Gameplay.StaticData.LevelData
 	[CreateAssetMenu(menuName = Menu.c_StaticData + nameof(LevelsData))]
 	public sealed class LevelsData : ScriptableObject, ILevelsData
 	{
-		[SerializeField] TextAsset BonusesTable;
-		[SerializeField] TextAsset EnemiesAtDoorTable;
-		[SerializeField] TextAsset EnemiesAtStartTable;
+		[SerializeField] TextAsset _bonusesTable;
+		[SerializeField] TextAsset _enemiesAtDoorTable;
+		[SerializeField] TextAsset _enemiesAtStartTable;
 		[Space]
 		[SerializeField] StringIntegerDictionary[] _bonuses;
 		[SerializeField] StringIntegerDictionary[] _enemiesAtDoor;
 		[SerializeField] StringIntegerDictionary[] _enemiesAtStart;
+		
+		public StringIntegerDictionary[] Bonuses => _bonuses;
+		public StringIntegerDictionary[] EnemiesAtDoor => _enemiesAtDoor;
+		public StringIntegerDictionary[] EnemiesAtStart => _enemiesAtStart;
 
 		[Button]
 		public void ParseData()
 		{
-			ParseTable(BonusesTable, ref _bonuses, TableColumnName.c_PowerfulBomb);
-			var enemyNames = new string[]
+			ParseTable(_bonusesTable, ref _bonuses, TableColumnName.c_PowerfulBomb);
+			var enemyNames = new[]
 			{
 				TableColumnName.Enemy.c_Assassin,
 				TableColumnName.Enemy.c_Cyber,
@@ -29,8 +34,8 @@ namespace Gameplay.StaticData.LevelData
 				TableColumnName.Enemy.c_Hologram,
 				TableColumnName.Enemy.c_Scammer,
 			};
-			ParseTable(EnemiesAtDoorTable, ref _enemiesAtDoor, enemyNames);
-			ParseTable(EnemiesAtStartTable, ref _enemiesAtStart, enemyNames);
+			ParseTable(_enemiesAtDoorTable, ref _enemiesAtDoor, enemyNames);
+			ParseTable(_enemiesAtStartTable, ref _enemiesAtStart, enemyNames);
 		}
 
 		void ParseTable(TextAsset textAsset, ref StringIntegerDictionary[] levels,
@@ -55,7 +60,7 @@ namespace Gameplay.StaticData.LevelData
 		{
 			if (floatTable.HasColumn(columnName) == false)
 			{
-				Debug.LogError($"The table \"{BonusesTable.name}\" not contains " +
+				Debug.LogError($"The table \"{_bonusesTable.name}\" not contains " +
 					$"the column \"{columnName}\".");
 				return;
 			}

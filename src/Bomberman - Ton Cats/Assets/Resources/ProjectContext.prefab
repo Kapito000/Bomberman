@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9bb2e078db463bac8679fff2493273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Text: {fileID: 5187562094624297472, guid: a252ceb821f72dd4f9b6ab31da48e7a0, type: 3}
   _aiData: {fileID: 11400000, guid: aa034e23ac655ad4c83f3f0391fec357, type: 2}
   _mapData: {fileID: 11400000, guid: a468fdc1c8113e546b604f96023b62b7, type: 2}
   _heroData: {fileID: 11400000, guid: eb53c9d54d44aae4e8aa6ecf56b5c61f, type: 2}

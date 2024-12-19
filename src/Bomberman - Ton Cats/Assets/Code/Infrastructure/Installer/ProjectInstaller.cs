@@ -42,7 +42,6 @@ using Infrastructure.SceneLoader;
 using Infrastructure.TimeService;
 using Leopotam.EcsLite;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 using AudioSettings = Gameplay.GameSettings.Audio.AudioSettings;
 
@@ -156,7 +155,6 @@ namespace Infrastructure.Installer
 
 			EcsWorld CreateNewWorld() => new();
 		}
-
 
 		void BindEcsRunner()
 		{

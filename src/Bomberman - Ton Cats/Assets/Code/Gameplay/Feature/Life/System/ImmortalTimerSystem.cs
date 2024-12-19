@@ -2,6 +2,7 @@
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.Life.System
@@ -17,9 +18,13 @@ namespace Gameplay.Feature.Life.System
 			foreach (var e in _immortalFilter.Value)
 			{
 				_immortal.SetEntity(e);
-				_immortal
-					.Remove<Immortal>()
-					.Remove<ImmortalTimer>();
+				var timerEnd = _immortal.ImmortalTimer();
+				if (Time.time > timerEnd)
+				{
+					_immortal
+						.Remove<Immortal>()
+						.Remove<ImmortalTimer>();
+				}
 			}
 		}
 	}

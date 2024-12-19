@@ -167,6 +167,13 @@ namespace Infrastructure.ECS
 			return health.Value;
 		}
 
+		public EntityWrapper AddLifePoints(int points)
+		{
+			ref var component = ref AddComponent<LifePoints>();
+			component.Value = points;
+			return this;
+		}
+		
 		public EntityWrapper SetLifePoints(int value)
 		{
 			ref var health = ref Get<LifePoints>();
@@ -505,13 +512,6 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public EntityWrapper AddLifePoints(int points)
-		{
-			ref var component = ref AddComponent<LifePoints>();
-			component.Value = points;
-			return this;
-		}
-
 		public string EnemyId()
 		{
 			ref var component = ref Get<EnemyId>();
@@ -525,10 +525,29 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
+		public float ImmortalTimer()
+		{
+			ref var component = ref Get<ImmortalTimer>();
+			return component.Value;
+		}
+		
 		public EntityWrapper AddImmortalTimer(float time)
 		{
 			ref var component = ref AddComponent<ImmortalTimer>();
 			component.Value = time;
+			return this;
+		}
+
+		public int RestoreLifePoints()
+		{
+			ref var component = ref Get<RestoreLifePoints>();
+			return component.Value;
+		}
+		
+		public EntityWrapper AddRestoreLifePoints(int lifePoints)
+		{
+			ref var component = ref AddComponent<RestoreLifePoints>();
+			component.Value = lifePoints;
 			return this;
 		}
 	}

@@ -6,6 +6,7 @@ using Gameplay.Feature.Life.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.Enemy.Base.System
@@ -38,9 +39,13 @@ namespace Gameplay.Feature.Enemy.Base.System
 				if (_enemyFactory.TryCreateEnemy(key, pos, parent, out var enemyEntity))
 				{
 					_enemy.SetEntity(enemyEntity);
+
+					var lifePoints = _enemy.LifePoints();
 					_enemy.Remove<LifePoints>();
+					_enemy.AddRestoreLifePoints(lifePoints);
+
 					_enemy.Add<Immortal>();
-					_enemy.AddImmortalTimer(_aiData.AfterDoorImmortalTimer);
+					_enemy.AddImmortalTimer(Time.time + _aiData.AfterDoorImmortalTimer);
 				}
 
 				_spawnRequest.Destroy();

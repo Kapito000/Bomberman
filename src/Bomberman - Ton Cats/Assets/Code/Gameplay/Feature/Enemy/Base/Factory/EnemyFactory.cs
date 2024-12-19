@@ -11,7 +11,6 @@ using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Gameplay.Feature.Enemy.Base.Factory
 {

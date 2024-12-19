@@ -8,5 +8,6 @@ namespace Gameplay.Feature.Life.Component
 	public struct ImmortalTimer { public float Value; }
 	public struct DeathProcessor { }
 	public struct ChangeLifePoints { public int Value; }
+	public struct RestoreLifePoints { public int Value; }
 	public struct DeathAudioEffectClipId { public string Value; }
 }

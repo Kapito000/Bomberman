@@ -1,5 +1,4 @@
-﻿using Gameplay.Feature.Life.Component;
-using Gameplay.Feature.Life.System;
+﻿using Gameplay.Feature.Life.System;
 using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature.Life
@@ -12,6 +11,7 @@ namespace Gameplay.Feature.Life
 			AddUpdate<DeathSystem>();
 			AddUpdate<DeathAudioEffectSystem>();
 			AddUpdate<ImmortalTimerSystem>();
+			AddUpdate<RestoreLifePointsSystem>();
 
 			AddCleanup<CleanupSystem>();
 		}

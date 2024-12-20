@@ -21,8 +21,8 @@ namespace Infrastructure
 				? CustomScene
 				: _sceneName.MainMenu;
 
-			_gameStateMachine.GetState<LoadGame>().FirstScene = firstScene;
-			_gameStateMachine.Enter<LoadGame>();
+			_gameStateMachine.GetState<LoadProject>().FirstScene = firstScene;
+			_gameStateMachine.Enter<LoadProject>();
 		}
 
 		bool LaunchFromCustomScene()

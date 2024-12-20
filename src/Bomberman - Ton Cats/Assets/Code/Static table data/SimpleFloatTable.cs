@@ -66,9 +66,9 @@ namespace Static_table_data
 			return _cachedColumnIds.Keys;
 		}
 
-		public float GetValue(int columnIdx, int rowIdx)
+		public float GetValue(int columnId, int rowId)
 		{
-			return GetValueInternal(columnIdx, rowIdx);
+			return GetValueInternal(columnId, rowId);
 		}
 
 		public bool TryGetValue(string columnName, int row, out float value)
@@ -115,6 +115,17 @@ namespace Static_table_data
 				success = true;
 			}
 			return success;
+		}
+
+		public bool TryGetRowDictionary(int rowIndex,
+			out IReadOnlyDictionary<string, float> dictionary)
+		{
+			if (rowIndex < 0 || rowIndex > RowCount)
+				dictionary = default;
+			else
+				dictionary = new RowAsDictionary(this, rowIndex);
+
+			return dictionary != default;
 		}
 
 		void SetValueInternal(int col, int row, float value)

@@ -1,12 +1,12 @@
-﻿using Common.Dictionary;
+﻿using System.Collections.Generic;
 
 namespace Gameplay.StaticData.LevelData
 {
 	public interface ILevelsData : IStaticData
 	{
-		StringIntegerDictionary[] Bonuses { get; }
-		StringIntegerDictionary[] EnemiesAtDoor { get; }
-		StringIntegerDictionary[] EnemiesAtStart { get; }
+		IReadOnlyDictionary<string, float>[] Bonuses { get; }
+		IReadOnlyDictionary<string, float>[] EnemiesAtDoor { get; }
+		IReadOnlyDictionary<string, float>[] EnemiesAtStart { get; }
 		void Init();
 	}
 }

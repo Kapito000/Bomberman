@@ -1,5 +1,5 @@
-﻿using Common.Dictionary;
-using Sirenix.OdinInspector;
+﻿using System.Collections.Generic;
+using Common.Dictionary;
 using Static_table_data;
 using UnityEngine;
 using Menu = Constant.CreateAssetMenu.Path;
@@ -12,77 +12,40 @@ namespace Gameplay.StaticData.LevelData
 		[SerializeField] TextAsset _bonusesTable;
 		[SerializeField] TextAsset _enemiesAtDoorTable;
 		[SerializeField] TextAsset _enemiesAtStartTable;
-		[Space]
-		[SerializeField] StringIntegerDictionary[] _bonuses;
-		[SerializeField] StringIntegerDictionary[] _enemiesAtDoor;
-		[SerializeField] StringIntegerDictionary[] _enemiesAtStart;
-		
-		public StringIntegerDictionary[] Bonuses => _bonuses;
-		public StringIntegerDictionary[] EnemiesAtDoor => _enemiesAtDoor;
-		public StringIntegerDictionary[] EnemiesAtStart => _enemiesAtStart;
+
+		IReadOnlyDictionary<string, float>[] _bonuses;
+		IReadOnlyDictionary<string, float>[] _enemiesAtDoor;
+		IReadOnlyDictionary<string, float>[] _enemiesAtStart;
+
+		public IReadOnlyDictionary<string, float>[] Bonuses => _bonuses;
+		public IReadOnlyDictionary<string, float>[] EnemiesAtDoor => _enemiesAtDoor;
+		public IReadOnlyDictionary<string, float>[] EnemiesAtStart => _enemiesAtStart;
 
 		public void Init()
 		{
 			ParseData();
 		}
-		
-		[Button]
-		public void ClearData()
+
+		void ParseData()
 		{
-			_bonuses = null;
-			_enemiesAtDoor = null;
-			_enemiesAtStart = null;
-		}
-		
-		[Button]
-		public void ParseData()
-		{
-			ParseTable(_bonusesTable, ref _bonuses, TableColumnName.c_PowerfulBomb);
-			var enemyNames = new[]
-			{
-				TableColumnName.Enemy.c_Assassin,
-				TableColumnName.Enemy.c_Cyber,
-				TableColumnName.Enemy.c_Flash,
-				TableColumnName.Enemy.c_Hologram,
-				TableColumnName.Enemy.c_Scammer,
-			};
-			ParseTable(_enemiesAtDoorTable, ref _enemiesAtDoor, enemyNames);
-			ParseTable(_enemiesAtStartTable, ref _enemiesAtStart, enemyNames);
+			ParseTable(_bonusesTable, ref _bonuses);
+			ParseTable(_enemiesAtDoorTable, ref _enemiesAtDoor);
+			ParseTable(_enemiesAtStartTable, ref _enemiesAtStart);
 		}
 
-		void ParseTable(TextAsset textAsset, ref StringIntegerDictionary[] levels,
-			params string[] columnNames)
+		void ParseTable(TextAsset textAsset,
+			ref IReadOnlyDictionary<string, float>[] levels)
 		{
 			var floatTable = FloatTable(textAsset);
-			CreateArray(out levels, floatTable);
-			foreach (var columnName in columnNames)
-				ParseColumn(columnName, floatTable, levels);
+			CacheRow(floatTable, ref levels);
 		}
 
-		void CreateArray(out StringIntegerDictionary[] levels,
-			SimpleFloatTable floatTable)
+		void CacheRow(SimpleFloatTable floatTable,
+			ref IReadOnlyDictionary<string, float>[] levels)
 		{
-			levels = new StringIntegerDictionary[floatTable.RowCount];
-			for (int i = 0; i < levels.Length; i++)
-				levels[i] = new StringIntegerDictionary();
-		}
-
-		void ParseColumn(string columnName, SimpleFloatTable floatTable,
-			StringIntegerDictionary[] levels)
-		{
-			if (floatTable.HasColumn(columnName) == false)
-			{
-				Debug.LogError($"The table \"{_bonusesTable.name}\" not contains " +
-					$"the column \"{columnName}\".");
-				return;
-			}
-
-			for (int r = 0; r < floatTable.RowCount; r++)
-				if (floatTable.TryGetValue(columnName, r, out float value))
-				{
-					if (value == 0) continue;
-					levels[r].Add(columnName, (int)value);
-				}
+			levels = new IReadOnlyDictionary<string, float>[floatTable.RowCount];
+			for (int rowIndex = 0; rowIndex < levels.Length; rowIndex++)
+				floatTable.TryGetRowDictionary(rowIndex, out levels[rowIndex]);
 		}
 
 		SimpleFloatTable FloatTable(TextAsset textAsset) =>

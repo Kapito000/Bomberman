@@ -5,7 +5,7 @@ namespace Static_table_data {
         int ColumnCount { get; }
         int RowCount { get; }
 
-        float GetValue(int columnIdx, int rowIdx);
+        float GetValue(int columnId, int rowId);
 
         #region NAMED_COLUMNS
         bool HasColumn(string columnName);

@@ -574,7 +574,7 @@ namespace Infrastructure.ECS
 		
 		public IDisplay<int> EnemyCounterDisplay()
 		{
-			ref var component = ref AddComponent<EnemyCounterDisplay>();
+			ref var component = ref Get<EnemyCounterDisplay>();
 			return component.Value;
 		}
 	}

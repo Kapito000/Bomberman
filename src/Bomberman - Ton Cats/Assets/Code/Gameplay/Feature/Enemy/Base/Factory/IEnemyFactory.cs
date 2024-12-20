@@ -10,5 +10,6 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 		void CreateEnemy(string key, Vector3 pos, Transform parent);
 		bool TryCreateEnemy(string key, Vector3 pos, Transform parent,
 			out int entity);
+		int CreateEnemyCounter();
 	}
 }

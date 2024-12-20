@@ -9,6 +9,7 @@ namespace Gameplay.Feature.Enemy
 		public EnemyFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CreateEnemiesSystem>();
+			AddInit<CreateEnemyCounterSystem>();
 			
 			AddUpdate<SpawnEnemySystem>();
 			
@@ -17,6 +18,7 @@ namespace Gameplay.Feature.Enemy
 			AddUpdate<AttackOfHeroSystemSystem>();
 			AddUpdate<EnemyDeathProcessSystem>();
 			AddUpdate<EnemyAnimationSystem>();
+			AddUpdate<EnemyCounterSystem>();
 		}
 	}
 }

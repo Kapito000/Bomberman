@@ -7,6 +7,7 @@ using Gameplay.Feature.Camera;
 using Gameplay.Feature.DamageApplication.Component;
 using Gameplay.Feature.Enemy.AI.Blackboard;
 using Gameplay.Feature.Enemy.Base.Component;
+using Gameplay.Feature.Enemy.Component;
 using Gameplay.Feature.Explosion;
 using Gameplay.Feature.Explosion.Component;
 using Gameplay.Feature.Hero.Behaviour;
@@ -548,6 +549,19 @@ namespace Infrastructure.ECS
 		{
 			ref var component = ref AddComponent<RestoreLifePoints>();
 			component.Value = lifePoints;
+			return this;
+		}
+
+		public int EnemyCount()
+		{
+			ref var component = ref Get<EnemyCount>();
+			return component.Value;
+		}
+
+		public EntityWrapper SetEnemyCount(int value)
+		{
+			ref var component = ref Get<EnemyCount>();
+			component.Value = value;
 			return this;
 		}
 	}

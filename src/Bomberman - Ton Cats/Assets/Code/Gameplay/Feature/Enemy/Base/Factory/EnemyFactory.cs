@@ -4,13 +4,16 @@ using Gameplay.Feature.Destruction.Component;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.Enemy.Component;
+using Gameplay.Feature.Enemy.System;
 using Gameplay.Reskin;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using Leopotam.EcsLite;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Gameplay.Feature.Enemy.Base.Factory
 {
@@ -63,6 +66,14 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 			var libraryAsset = _reskinService.GetSkinSpriteLibraryAsset(key);
 			spriteLibrary.spriteLibraryAsset = libraryAsset;
 			return true;
+		}
+
+		public int CreateEnemyCounter()
+		{
+			return _wrapper.NewEntity()
+				.Add<EnemyCounter>()
+				.Add<EnemyCount>()
+				.Enity;
 		}
 
 		public int CreateEnemySpawnPoint(string enemyId, Vector3 pos)

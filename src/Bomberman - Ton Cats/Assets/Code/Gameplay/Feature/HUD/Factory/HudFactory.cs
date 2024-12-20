@@ -1,13 +1,13 @@
 ﻿using Common.Component;
+using Common.HUD;
 using Extensions;
 using Gameplay.Feature.HUD.Component;
-using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
-using Gameplay.Feature.HUD.Feature.Life.Behaviour;
-using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using UnityEngine;
 using Zenject;
+using GameTimerDisplay = Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Gameplay.Feature.HUD.Factory
 {
@@ -75,7 +75,7 @@ namespace Gameplay.Feature.HUD.Factory
 		{
 			var prefab = _kit.AssetProvider.LifePointsPanel();
 			var instance = _kit.InstantiateService
-				.Instantiate<LifePointsPanel>(prefab, parent);
+				.Instantiate<IntegerDisplay>(prefab, parent);
 			var e = _kit.EntityBehaviourFactory
 				.InitEntityBehaviour(instance.gameObject);
 			_entity.SetEntity(e);
@@ -90,7 +90,7 @@ namespace Gameplay.Feature.HUD.Factory
 		{
 			var prefab = _kit.AssetProvider.BombCounterPanel();
 			var instance = _kit.InstantiateService
-				.Instantiate<BombCounterPanel>(prefab, parent);
+				.Instantiate<IntegerDisplay>(prefab, parent);
 			var e = _kit.EntityBehaviourFactory
 				.InitEntityBehaviour(instance.gameObject);
 			_entity.SetEntity(e);
@@ -99,6 +99,21 @@ namespace Gameplay.Feature.HUD.Factory
 				.AddBombCounterPanel(instance)
 				;
 
+			return e;
+		}
+
+		public int CreateEnemyCounterDisplay(Transform parent)
+		{
+			var prefab = _kit.AssetProvider.EnemyCounterDisplay();
+			var instance = _kit.InstantiateService
+				.Instantiate<IntegerDisplay>(prefab, parent);
+			var e = _kit.EntityBehaviourFactory
+				.InitEntityBehaviour(instance.gameObject);
+			_entity.SetEntity(e);
+			_entity
+				.AddTransform(instance.transform)
+				.AddEnemyCounterDisplay(instance)
+				;
 			return e;
 		}
 	}

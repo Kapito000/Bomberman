@@ -1,4 +1,5 @@
 ﻿using Common.Component;
+using Common.HUD;
 using Extensions;
 using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Audio.Component;
@@ -13,9 +14,6 @@ using Gameplay.Feature.Explosion.Component;
 using Gameplay.Feature.Hero.Behaviour;
 using Gameplay.Feature.Hero.Component;
 using Gameplay.Feature.HUD.Component;
-using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
-using Gameplay.Feature.HUD.Feature.Life.Behaviour;
-using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Timer.Component;
@@ -23,6 +21,8 @@ using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
+using BombCounterPanel = Gameplay.Feature.HUD.Component.BombCounterPanel;
+using LifePointsPanel = Gameplay.Feature.HUD.Component.LifePointsPanel;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
 using Transform = UnityEngine.Transform;
 
@@ -240,28 +240,28 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public LifePointsPanel LifePointsPanel()
+		public IDisplay<int> LifePointsPanel()
 		{
-			ref var component = ref Get<LifePointsPanelComponent>();
+			ref var component = ref Get<LifePointsPanel>();
 			return component.Value;
 		}
 
-		public EntityWrapper AddLifePointsPanel(LifePointsPanel value)
+		public EntityWrapper AddLifePointsPanel(IDisplay<int> value)
 		{
-			ref var lifePointsPanel = ref AddComponent<LifePointsPanelComponent>();
+			ref var lifePointsPanel = ref AddComponent<LifePointsPanel>();
 			lifePointsPanel.Value = value;
 			return this;
 		}
 
-		public BombCounterPanel BombCounterPanel()
+		public IDisplay<int> BombCounterPanel()
 		{
-			ref var bombCounterPanel = ref Get<BombCounterPanelComponent>();
+			ref var bombCounterPanel = ref Get<BombCounterPanel>();
 			return bombCounterPanel.Value;
 		}
 
-		public EntityWrapper AddBombCounterPanel(BombCounterPanel value)
+		public EntityWrapper AddBombCounterPanel(IDisplay<int> value)
 		{
-			ref var bombCounterPanel = ref AddComponent<BombCounterPanelComponent>();
+			ref var bombCounterPanel = ref AddComponent<BombCounterPanel>();
 			bombCounterPanel.Value = value;
 			return this;
 		}
@@ -401,13 +401,13 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public GameTimerDisplay GameTimerDisplay()
+		public Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay GameTimerDisplay()
 		{
 			ref var component = ref Get<GameTimerDisplayComponent>();
 			return component.Value;
 		}
 
-		public EntityWrapper AddGameTimerDisplay(GameTimerDisplay gameTimerDisplay)
+		public EntityWrapper AddGameTimerDisplay(Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay gameTimerDisplay)
 		{
 			ref var component = ref AddComponent<GameTimerDisplayComponent>();
 			component.Value = gameTimerDisplay;
@@ -563,6 +563,19 @@ namespace Infrastructure.ECS
 			ref var component = ref Get<EnemyCount>();
 			component.Value = value;
 			return this;
+		}
+
+		public EntityWrapper AddEnemyCounterDisplay(IDisplay<int> value)
+		{
+			ref var component = ref AddComponent<EnemyCounterDisplay>();
+			component.Value = value;
+			return this;
+		}
+		
+		public IDisplay<int> EnemyCounterDisplay()
+		{
+			ref var component = ref AddComponent<EnemyCounterDisplay>();
+			return component.Value;
 		}
 	}
 }

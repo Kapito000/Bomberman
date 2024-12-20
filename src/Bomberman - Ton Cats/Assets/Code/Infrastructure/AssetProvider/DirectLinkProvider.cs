@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cinemachine;
-using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
-using Gameplay.Feature.HUD.Feature.Life.Behaviour;
+using Common.HUD;
 using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Windows;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using Menu = Constant.CreateAssetMenu;
 
 namespace Infrastructure.AssetProvider
@@ -42,8 +39,9 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameObject _upperPanel;
 		[SerializeField] GameObject _putBombButton;
 		[SerializeField] GameObject _characterJoystick;
-		[SerializeField] LifePointsPanel _lifePointsPanel;
-		[SerializeField] BombCounterPanel _bombCounterPanel;
+		[SerializeField] IntegerDisplay _lifePointsPanel;
+		[SerializeField] IntegerDisplay _bombCounterPanel;
+		[SerializeField] IntegerDisplay _enemyCounterDisplay;
 		[SerializeField] GameTimerDisplay _gameTimerDisplay;
 
 		public Camera Camera() => _camera;
@@ -62,13 +60,14 @@ namespace Infrastructure.AssetProvider
 		public GameObject CharacterJoystick() => _characterJoystick;
 		public BaseWindow WindowPrefab(WindowId id) => _windows[id];
 		public EventSystem EventSystem() => _eventSystem;
-		public LifePointsPanel LifePointsPanel() => _lifePointsPanel;
+		public IntegerDisplay LifePointsPanel() => _lifePointsPanel;
 		public GameTimerDisplay GameTimerDisplay() => _gameTimerDisplay;
-		public BombCounterPanel BombCounterPanel() => _bombCounterPanel;
+		public IntegerDisplay BombCounterPanel() => _bombCounterPanel;
 		public CinemachineVirtualCamera VirtualCamera() => _virtualCamera;
 		public Dictionary<WindowId, BaseWindow> AllWindows => _windows;
 		public GameObject GameMusic() => _ambientMusic;
 		public GameObject FinishLevelMusic() => _finishLevelMusic;
 		public GameObject MainMenuUpperPanel() => _mainMenuUpperPanel;
+		public IntegerDisplay EnemyCounterDisplay() => _enemyCounterDisplay;
 	}
 }

@@ -12,5 +12,6 @@ namespace Gameplay.Feature.HUD.Factory
 		int CreateTimerDisplay(Transform parent);
 		int CreateLifePointsPanel(Transform parent);
 		int CreateBombCounterPanel(Transform parent);
+		int CreateEnemyCounterDisplay(Transform parent);
 	}
 }

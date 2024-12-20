@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cinemachine;
-using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
-using Gameplay.Feature.HUD.Feature.Life.Behaviour;
+using Common.HUD;
 using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Windows;
 using UnityEngine;
@@ -23,8 +22,8 @@ namespace Infrastructure.AssetProvider
 		EventSystem EventSystem();
 		GameObject Explosion();
 		GameObject UpperPanel();
-		LifePointsPanel LifePointsPanel();
-		BombCounterPanel BombCounterPanel();
+		IntegerDisplay LifePointsPanel();
+		IntegerDisplay BombCounterPanel();
 		BaseWindow WindowPrefab(WindowId id);
 		GameObject BaseEnemy();
 		GameObject DestructibleTile();
@@ -35,5 +34,6 @@ namespace Infrastructure.AssetProvider
 		GameObject GameMusic();
 		GameObject FinishLevelMusic();
 		GameObject MainMenuUpperPanel();
+		IntegerDisplay EnemyCounterDisplay();
 	}
 }

@@ -1,10 +1,11 @@
 ﻿using System;
+using Common.HUD;
 using TMPro;
 using UnityEngine;
 
 namespace Gameplay.Feature.HUD.Feature.Timer.Behaviour
 {
-	public class GameTimerDisplay : MonoBehaviour
+	public class GameTimerDisplay : MonoBehaviour, IDisplay<float>
 	{
 		[SerializeField] TMP_Text _text;
 

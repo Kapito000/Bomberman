@@ -1,9 +1,9 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Gameplay.Feature.HUD.Feature.Bomb.Behaviour
+namespace Common.HUD
 {
-	public sealed class BombCounterPanel : MonoBehaviour
+	public class IntegerDisplay : MonoBehaviour, IDisplay<int>
 	{
 		[SerializeField] TMP_Text _value;
 		

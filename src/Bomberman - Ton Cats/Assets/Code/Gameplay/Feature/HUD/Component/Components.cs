@@ -1,12 +1,12 @@
-﻿using Gameplay.Feature.HUD.Feature.Bomb.Behaviour;
-using Gameplay.Feature.HUD.Feature.Life.Behaviour;
+﻿using Common.HUD;
 using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 
 namespace Gameplay.Feature.HUD.Component
 {
 	public struct HudRoot { }
 	public struct UpperPanel { }
-	public struct LifePointsPanelComponent { public LifePointsPanel Value; }
-	public struct BombCounterPanelComponent { public BombCounterPanel Value; }
+	public struct LifePointsPanel { public IDisplay<int> Value; }
+	public struct BombCounterPanel { public IDisplay<int> Value; }
+	public struct EnemyCounterDisplay { public IDisplay<int> Value; }
 	public struct GameTimerDisplayComponent { public GameTimerDisplay Value; }
 }

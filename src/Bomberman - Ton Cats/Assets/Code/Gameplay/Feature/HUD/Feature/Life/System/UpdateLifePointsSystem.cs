@@ -16,7 +16,7 @@ namespace Gameplay.Feature.HUD.Feature.Life.System
 		readonly EcsFilterInject<
 			Inc<HeroComponent, LifePoints>> _heroFilter;
 		readonly EcsFilterInject<
-			Inc<LifePointsPanelComponent>> _lifePointsPanelFilter;
+			Inc<LifePointsPanel>> _lifePointsPanelFilter;
 
 		public void Run(IEcsSystems systems)
 		{

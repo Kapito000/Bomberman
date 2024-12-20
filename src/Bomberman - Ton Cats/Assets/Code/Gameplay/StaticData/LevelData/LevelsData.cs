@@ -2,7 +2,6 @@
 using Sirenix.OdinInspector;
 using Static_table_data;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Menu = Constant.CreateAssetMenu.Path;
 
 namespace Gameplay.StaticData.LevelData
@@ -22,6 +21,19 @@ namespace Gameplay.StaticData.LevelData
 		public StringIntegerDictionary[] EnemiesAtDoor => _enemiesAtDoor;
 		public StringIntegerDictionary[] EnemiesAtStart => _enemiesAtStart;
 
+		public void Init()
+		{
+			ParseData();
+		}
+		
+		[Button]
+		public void ClearData()
+		{
+			_bonuses = null;
+			_enemiesAtDoor = null;
+			_enemiesAtStart = null;
+		}
+		
 		[Button]
 		public void ParseData()
 		{

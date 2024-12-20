@@ -7,5 +7,6 @@ namespace Gameplay.StaticData.LevelData
 		StringIntegerDictionary[] Bonuses { get; }
 		StringIntegerDictionary[] EnemiesAtDoor { get; }
 		StringIntegerDictionary[] EnemiesAtStart { get; }
+		void Init();
 	}
 }

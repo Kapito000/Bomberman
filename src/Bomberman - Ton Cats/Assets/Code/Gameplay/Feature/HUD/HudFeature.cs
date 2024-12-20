@@ -1,5 +1,4 @@
-﻿using Gameplay.Feature.Enemy.System;
-using Gameplay.Feature.HUD.Feature.Bomb.System;
+﻿using Gameplay.Feature.HUD.Feature.Bomb.System;
 using Gameplay.Feature.HUD.Feature.Enemy.System;
 using Gameplay.Feature.HUD.Feature.Input.System;
 using Gameplay.Feature.HUD.Feature.Life.System;
@@ -19,6 +18,7 @@ namespace Gameplay.Feature.HUD
 			AddInit<CreatePutBombButtonSystem>();
 			
 			AddInit<CreateUpperPanelSystem>();
+			
 			AddInit<CreateLifePointsSystem>();
 			AddInit<CreateBombCounterPanelSystem>();
 			AddInit<CreateGameTimerDisplaySystem>();

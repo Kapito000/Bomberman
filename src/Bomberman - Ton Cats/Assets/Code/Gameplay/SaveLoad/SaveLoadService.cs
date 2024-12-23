@@ -17,7 +17,7 @@ namespace Gameplay.SaveLoad
 			foreach (var processor in _saveProcessors)
 				processor.Save();
 
-			var json = JsonUtility.ToJson(SavedData);
+			var json = JsonUtility.ToJson(SavedData, true);
 			var path = Path.Combine(Application.persistentDataPath, c_saveFileName);
 			File.WriteAllText(path, json);
 		}

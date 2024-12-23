@@ -34,12 +34,11 @@ namespace Gameplay.Feature.FinishLevel.System
 			if (_finishLevelService.GameOver(observerEntity) == false)
 				return false;
 
-			CallFinishLevelView(WindowId.GameOver);
-
 			_observer.SetEntity(observerEntity);
 			_observer
 				.Add<LevelFinished>()
 				.Add<GameOver>()
+				.Add<LevelFinishedProcessor>()
 				;
 			return true;
 		}
@@ -49,8 +48,6 @@ namespace Gameplay.Feature.FinishLevel.System
 			if (_finishLevelService.LevelComplete(observerEntity) == false)
 				return false;
 
-			CallFinishLevelView(WindowId.LevelComplete);
-
 			_observer.SetEntity(observerEntity);
 			_observer
 				.Add<LevelFinished>()
@@ -58,12 +55,6 @@ namespace Gameplay.Feature.FinishLevel.System
 				.Add<LevelFinishedProcessor>()
 				;
 			return true;
-		}
-
-		void CallFinishLevelView(WindowId windowId)
-		{
-			_finishLevelService.LaunchGamePause();
-			_windowService.Open(windowId);
 		}
 	}
 }

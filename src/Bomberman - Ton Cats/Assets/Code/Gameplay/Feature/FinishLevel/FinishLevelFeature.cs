@@ -23,6 +23,8 @@ namespace Gameplay.Feature.FinishLevel
 			AddUpdate<GameOverMusicSystem>();
 			AddUpdate<LevelCompleteMusicSystem>();
 			
+			AddUpdate<FinishLevelViewSystem>();
+			
 			AddCleanup<CleanupSystem>();
 		}
 	}

@@ -10,7 +10,7 @@ namespace Gameplay.SaveLoad
 
 		[Inject] ISaveProcessor[] _saveProcessors;
 
-		public SavedData SavedData { get; private set; } = new SavedData();
+		public SavedData SavedData { get; } = new();
 
 		public void Save()
 		{

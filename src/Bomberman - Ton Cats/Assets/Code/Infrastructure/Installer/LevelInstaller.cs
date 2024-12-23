@@ -11,6 +11,7 @@ using Gameplay.Feature.FinishLevel.Factory;
 using Gameplay.Feature.Hero.Factory;
 using Gameplay.Feature.HUD.Factory;
 using Gameplay.Feature.Map.MapController;
+using Gameplay.Feature.PlayerProgress.Factory;
 using Gameplay.LevelData;
 using Gameplay.MapView;
 using Gameplay.UI.StaticData;
@@ -123,6 +124,8 @@ namespace Infrastructure.Installer
 			Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
 			Container.Bind<IExplosionFactory>().To<ExplosionFactory>().AsSingle();
 			Container.Bind<IFinishLevelFactory>().To<FinishLevelFactory>().AsSingle();
+			Container.Bind<IPlayerProgressFactory>().To<PlayerProgressFactory>()
+				.AsSingle();
 		}
 
 		void BindFeatureController()

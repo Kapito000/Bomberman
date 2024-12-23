@@ -45,7 +45,7 @@ namespace Infrastructure.ECS
 		public EntityWrapper Remove<TComponent>()
 			where TComponent : struct
 		{
-			_world.Remove<TComponent>(_entity);
+			_world.RemoveComponent<TComponent>(_entity);
 			return this;
 		}
 

@@ -45,7 +45,7 @@ namespace Gameplay.Feature.Map.System
 		void Cleanup()
 		{
 			foreach (var e in _openDoorEventFilter.Value)
-				_world.Remove<OpenEvent>(e);
+				_world.RemoveComponent<OpenEvent>(e);
 		}
 	}
 }

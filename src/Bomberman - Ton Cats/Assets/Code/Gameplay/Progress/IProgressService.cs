@@ -4,6 +4,6 @@ namespace Gameplay.Progress
 {
 	public interface IProgressService : IService
 	{
-		int ReachedLevel { get; }
+		int ReachedLevel { get; set; }
 	}
 }

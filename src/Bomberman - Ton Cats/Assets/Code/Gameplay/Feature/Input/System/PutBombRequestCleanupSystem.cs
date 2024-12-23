@@ -15,7 +15,7 @@ namespace Gameplay.Feature.Input.System
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var e in _filter.Value)
-				_world.Remove<PutBombRequest>(e);
+				_world.RemoveComponent<PutBombRequest>(e);
 		}
 	}
 }

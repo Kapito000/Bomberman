@@ -18,7 +18,7 @@ namespace Gameplay.Feature.Camera.System
 			{
 				var target = _world.FollowTarget(e);
 				_world.VirtualCamera(e).Follow = target;
-				_world.Remove<FollowTarget>(e);
+				_world.RemoveComponent<FollowTarget>(e);
 			}
 		}
 	}

@@ -2,6 +2,6 @@
 {
 	public sealed class ProgressService : IProgressService
 	{
-		public int ReachedLevel { get; private set; }
+		public int ReachedLevel { get; set; }
 	}
 }

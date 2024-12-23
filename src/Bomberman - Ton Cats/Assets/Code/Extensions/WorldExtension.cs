@@ -72,7 +72,7 @@ namespace Extensions
 			return ref pool.Add(e);
 		}
 
-		public static void Remove<TComponent>(this EcsWorld world, int e)
+		public static void RemoveComponent<TComponent>(this EcsWorld world, int e)
 			where TComponent : struct =>
 			world.GetPool<TComponent>().Del(e);
 

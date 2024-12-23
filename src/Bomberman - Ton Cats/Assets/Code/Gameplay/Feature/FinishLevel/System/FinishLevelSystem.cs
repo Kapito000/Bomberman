@@ -10,6 +10,7 @@ namespace Gameplay.Feature.FinishLevel.System
 {
 	public sealed class FinishLevelSystem : IEcsRunSystem
 	{
+		[Inject] EcsWorld _world;
 		[Inject] EntityWrapper _observer;
 		[Inject] IWindowService _windowService;
 		[Inject] IFinishLevelService _finishLevelService;
@@ -54,6 +55,7 @@ namespace Gameplay.Feature.FinishLevel.System
 			_observer
 				.Add<LevelFinished>()
 				.Add<LevelComplete>()
+				.Add<LevelFinishedProcessor>()
 				;
 			return true;
 		}

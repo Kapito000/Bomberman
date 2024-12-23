@@ -15,6 +15,7 @@ using Gameplay.Feature.Input;
 using Gameplay.Feature.Life;
 using Gameplay.Feature.Map;
 using Gameplay.Feature.MapGenerator;
+using Gameplay.Feature.PlayerProgress;
 using Gameplay.Feature.Timer;
 using Infrastructure.Factory.SystemFactory;
 
@@ -42,6 +43,7 @@ namespace Gameplay.Feature.FeatureControl
 			Add<GameUiFeature>();
 			Add<HudFeature>();
 			Add<FinishLevelFeature>();
+			Add<PlayerProgressFeature>();
 			Add<DestructionFeature>();
 		}
 	}

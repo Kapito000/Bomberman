@@ -11,4 +11,5 @@
 	public struct FinishLevelMusic { }
 	public struct FinishLevelObserver { }
 	public struct HeroInFinishLevelDoor { }
+	public struct LevelFinishedProcessor { }
 }

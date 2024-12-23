@@ -2,6 +2,6 @@
 {
 	public interface ILoadProcessor
 	{
-		void Load();
+		void Load(SavedData savedData);
 	}
 }

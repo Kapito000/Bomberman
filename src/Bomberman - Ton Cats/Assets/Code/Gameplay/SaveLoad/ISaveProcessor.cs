@@ -2,6 +2,6 @@
 {
 	public interface ISaveProcessor
 	{
-		void Save();
+		void Save(SavedData savedData);
 	}
 }

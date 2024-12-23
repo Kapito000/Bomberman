@@ -1,17 +1,20 @@
 ﻿using Gameplay.SaveLoad;
-using Zenject;
 
 namespace Gameplay.Progress
 {
-	public sealed class ProgressService : IProgressService, ISaveProcessor
+	public sealed class ProgressService : IProgressService, ISaveProcessor,
+		ILoadProcessor
 	{
-		[Inject] ISaveLoadService _saveLoadService;
-		
 		public int ReachedLevel { get; set; }
-		
-		public void Save()
+
+		public void Save(SavedData savedData)
 		{
-			_saveLoadService.SavedData.ReachedLevel = ReachedLevel;
+			savedData.ReachedLevel = ReachedLevel;
+		}
+
+		public void Load(SavedData savedData)
+		{
+			ReachedLevel = savedData.ReachedLevel;
 		}
 	}
 }

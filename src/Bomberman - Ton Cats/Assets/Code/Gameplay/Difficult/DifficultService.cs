@@ -1,42 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Common.Dictionary;
-using Extensions;
-using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Progress;
 using Gameplay.StaticData.LevelData;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Difficult
 {
 	public sealed class DifficultService : IDifficultService
 	{
-		[Inject] IEnemyList _enemyList;
 		[Inject] ILevelsData _levelsData;
 		[Inject] IProgressService _progressService;
 
-		public IReadOnlyDictionary<string, int> EnemyAtStartForCurrentProgress()
+		public bool TryGetDataForCurrentProgress(Table tableKey,
+			out IReadOnlyDictionary<string, int> data) =>
+			TryGetRow(tableKey, out data);
+
+		bool TryGetRow(Table tableKey, out IReadOnlyDictionary<string, int> data)
 		{
-			var numLevel = AvailableLevel(_levelsData.EnemiesAtStart);
-			return _levelsData.EnemiesAtStart[numLevel]
-				.ToDictionary(x => x.Key, x => (int)x.Value);
+			if (!TryGetAvailableLevel(tableKey, out var numLevel))
+			{
+				data = default;
+				return false;
+			}
+			if (!_levelsData.TryGetRow(tableKey, numLevel, out var row))
+			{
+				data = default;
+				return false;
+			}
+			data = row.ToDictionary(x => x.Key, x => (int)x.Value);
+			return true;
 		}
 
-		public IReadOnlyDictionary<string, int> EnemyAtDoorForCurrentProgress()
+		bool TryGetAvailableLevel(Table tableKey, out int level)
 		{
-			var numLevel = AvailableLevel(_levelsData.EnemiesAtDoor);
-			return _levelsData.EnemiesAtStart[numLevel]
-				.ToDictionary(x => x.Key, x => (int)x.Value);
-		}
+			if (_levelsData.TryGetLastLevelFor(tableKey, out var levelCount) == false)
+			{
+				Debug.LogError($"Cannot to get the last level for the \"{tableKey}\".");
+				level = default;
+				return false;
+			}
 
-		int AvailableLevel(IReadOnlyDictionary<string, float>[] levels)
-		{
 			var reachedLevel = _progressService.ReachedLevel;
-			var levelCount = levels.Length;
-			return reachedLevel >= levelCount
+			level = reachedLevel >= levelCount
 				? levelCount - 1
 				: reachedLevel;
+
+			return true;
 		}
 	}
 }

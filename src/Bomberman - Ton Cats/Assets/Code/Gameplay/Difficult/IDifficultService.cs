@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Gameplay.StaticData.LevelData;
 using Infrastructure;
 
 namespace Gameplay.Difficult
 {
 	public interface IDifficultService : IService
 	{
-		IReadOnlyDictionary<string, int> EnemyAtDoorForCurrentProgress();
-		IReadOnlyDictionary<string, int> EnemyAtStartForCurrentProgress();
+		bool TryGetDataForCurrentProgress(Table tableKey,
+			out IReadOnlyDictionary<string, int> data);
 	}
 }

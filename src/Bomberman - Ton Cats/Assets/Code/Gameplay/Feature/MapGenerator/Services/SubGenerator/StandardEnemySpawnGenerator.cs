@@ -5,6 +5,7 @@ using Gameplay.Difficult;
 using Gameplay.Feature.MapGenerator.Services.SafeArea;
 using Gameplay.Feature.MapGenerator.StaticData;
 using Gameplay.Map;
+using Gameplay.StaticData.LevelData;
 using UnityEngine;
 
 namespace Gameplay.Feature.MapGenerator.Services.SubGenerator
@@ -37,7 +38,12 @@ namespace Gameplay.Feature.MapGenerator.Services.SubGenerator
 
 		public void CreateEnemySpawnCells(Vector2Int heroSpawnPoint)
 		{
-			var enemyDictionary = _difficultService.EnemyAtStartForCurrentProgress();
+			if (_difficultService.TryGetDataForCurrentProgress(Table.EnemiesAtStart,
+				    out var enemyDictionary) == false)
+			{
+				Debug.LogError("Cannot ot create enemies.");
+				return;
+			}
 			_availableCells = AvailableCells(heroSpawnPoint);
 			var availableSpawnCount = AvailableSpawnCount(enemyDictionary);
 

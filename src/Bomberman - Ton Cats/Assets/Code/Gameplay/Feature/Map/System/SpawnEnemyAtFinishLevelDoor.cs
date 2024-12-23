@@ -2,9 +2,11 @@
 using Gameplay.Difficult;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.FinishLevel.Component;
+using Gameplay.StaticData.LevelData;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.Map.System
@@ -24,8 +26,15 @@ namespace Gameplay.Feature.Map.System
 			{
 				_door.SetEntity(doorEntity);
 				var pos = _door.TransformPos();
-				var enemyList = _difficultService.EnemyAtDoorForCurrentProgress();
-				foreach (var pair in enemyList)
+
+				if (_difficultService.TryGetDataForCurrentProgress(Table.EnemiesAtDoor,
+					    out var enemyDictionary) == false)
+				{
+					Debug.LogError("Cannot to spawn enemies.");
+					return;
+				}
+
+				foreach (var pair in enemyDictionary)
 				{
 					var enemyId = pair.Key;
 					var count = pair.Value;

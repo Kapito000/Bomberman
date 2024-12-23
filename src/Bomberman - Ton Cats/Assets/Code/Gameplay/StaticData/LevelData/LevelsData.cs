@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Common.Dictionary;
 using Static_table_data;
 using UnityEngine;
 using Menu = Constant.CreateAssetMenu.Path;
@@ -13,43 +12,61 @@ namespace Gameplay.StaticData.LevelData
 		[SerializeField] TextAsset _enemiesAtDoorTable;
 		[SerializeField] TextAsset _enemiesAtStartTable;
 
-		IReadOnlyDictionary<string, float>[] _bonuses;
-		IReadOnlyDictionary<string, float>[] _enemiesAtDoor;
-		IReadOnlyDictionary<string, float>[] _enemiesAtStart;
-
-		public IReadOnlyDictionary<string, float>[] Bonuses => _bonuses;
-		public IReadOnlyDictionary<string, float>[] EnemiesAtDoor => _enemiesAtDoor;
-		public IReadOnlyDictionary<string, float>[] EnemiesAtStart => _enemiesAtStart;
+		Dictionary<Table, SimpleFloatTable> _tables = new();
 
 		public void Init()
 		{
 			ParseData();
 		}
 
+		public bool TryGetRow(Table tableKey, int rowIndex,
+			out IReadOnlyDictionary<string, float> row)
+		{
+			if (_tables.TryGetValue(tableKey, out var table) == false)
+			{
+				CastCannotToGetDataMessage();
+				row = default;
+				return false;
+			}
+			if (table.TryGetRowDictionary(rowIndex, out row) == false)
+			{
+				CastCannotToGetDataMessage();
+				return false;
+			}
+
+			return true;
+		}
+
+		public bool TryGetLastLevelFor(Table tableKey, out int lastLevel)
+		{
+			if (_tables.TryGetValue(tableKey, out var table) == false)
+			{
+				lastLevel = default;
+				return false;
+			}
+
+			lastLevel = table.RowCount;
+			return true;
+		}
+
 		void ParseData()
 		{
-			ParseTable(_bonusesTable, ref _bonuses);
-			ParseTable(_enemiesAtDoorTable, ref _enemiesAtDoor);
-			ParseTable(_enemiesAtStartTable, ref _enemiesAtStart);
+			ParseTable(Table.Bonuses, _bonusesTable);
+			ParseTable(Table.EnemiesAtDoor, _enemiesAtDoorTable);
+			ParseTable(Table.EnemiesAtStart, _enemiesAtStartTable);
 		}
 
-		void ParseTable(TextAsset textAsset,
-			ref IReadOnlyDictionary<string, float>[] levels)
+		void ParseTable(Table tableKey, TextAsset textAsset)
 		{
-			var floatTable = FloatTable(textAsset);
-			CacheRow(floatTable, ref levels);
-		}
-
-		void CacheRow(SimpleFloatTable floatTable,
-			ref IReadOnlyDictionary<string, float>[] levels)
-		{
-			levels = new IReadOnlyDictionary<string, float>[floatTable.RowCount];
-			for (int rowIndex = 0; rowIndex < levels.Length; rowIndex++)
-				floatTable.TryGetRowDictionary(rowIndex, out levels[rowIndex]);
+			SimpleFloatTable table = FloatTable(textAsset);
+			_tables.Add(tableKey, table);
 		}
 
 		SimpleFloatTable FloatTable(TextAsset textAsset) =>
 			TableFactory.ParseXSV(textAsset.text,
 				SimpleFloatTable.SeparatorType.Tab);
+
+		void CastCannotToGetDataMessage() =>
+			Debug.LogError("Cannot to get the table data.");
 	}
 }

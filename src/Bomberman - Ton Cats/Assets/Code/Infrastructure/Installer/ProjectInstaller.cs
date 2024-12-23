@@ -24,6 +24,7 @@ using Gameplay.Physics;
 using Gameplay.Progress;
 using Gameplay.Reskin;
 using Gameplay.Reskin.StaticData;
+using Gameplay.SaveLoad;
 using Gameplay.StaticData.LevelData;
 using Gameplay.StaticData.SceneNames;
 using Gameplay.UI.Factory;
@@ -86,6 +87,7 @@ namespace Infrastructure.Installer
 			BindEntityWrapper();
 			BindAssetProvider();
 			BindPhysicsService();
+			BindSaveLoadService();
 			BindProgressService();
 			BindDifficultService();
 			BindGameStateMachine();
@@ -95,6 +97,11 @@ namespace Infrastructure.Installer
 			BindInstantiateService();
 			BindGameSettingsService();
 			BindEntityBehaviourFactory();
+		}
+
+		void BindSaveLoadService()
+		{
+			Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
 		}
 
 		void BindReskinService()
@@ -109,7 +116,7 @@ namespace Infrastructure.Installer
 
 		void BindProgressService()
 		{
-			Container.Bind<IProgressService>().To<ProgressService>().AsSingle();
+			Container.BindInterfacesTo<ProgressService>().AsSingle();
 		}
 
 		void BindGameSettingsService()

@@ -11,29 +11,21 @@ namespace Gameplay.Feature.FinishLevel.System
 	public sealed class FinishLevelViewSystem : IEcsRunSystem
 	{
 		[Inject] IWindowService _windowService;
-		[Inject] ISaveLoadService _saveLoadService;
 		[Inject] IFinishLevelService _finishLevelService;
 
 		readonly EcsFilterInject<Inc<
 			FinishLevelObserver, LevelFinished, LevelComplete,
 			LevelFinishedProcessor>> _completeFilter;
-		readonly
-			EcsFilterInject<Inc<FinishLevelObserver, LevelFinished, GameOver,
-				LevelFinishedProcessor>> _gameOverFilter;
+		readonly EcsFilterInject<Inc<FinishLevelObserver, LevelFinished, GameOver,
+			LevelFinishedProcessor>> _gameOverFilter;
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var e in _gameOverFilter.Value)
-			{
-				CallFinishLevelView(WindowId.GameOver);
-			}
+				CallFinishLevelView(WindowId.RestartThisLevel);
 
 			foreach (var e in _completeFilter.Value)
-			{
-				CallFinishLevelView(WindowId.LevelComplete);
-			}
-
-			_saveLoadService.Save();
+				CallFinishLevelView(WindowId.LaunchNextLevel);
 		}
 
 		void CallFinishLevelView(WindowId windowId)

@@ -6,5 +6,7 @@
 		bool LevelComplete(int observerEntity);
 		void SwitchGameToMainMenu();
 		void LaunchGamePause();
+		void LaunchNextLevel();
+		void RestartThisLevel();
 	}
 }

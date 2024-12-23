@@ -6,5 +6,7 @@
 		GameOver,
 		LevelComplete,
 		GameSettings,
+		LaunchNextLevel,
+		RestartThisLevel,
 	}
 }

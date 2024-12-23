@@ -30,5 +30,17 @@ namespace Infrastructure.FinishLevel
 		{
 			_gameStateMachine.EnterToLoadScene(_sceneNameData.MainMenu);
 		}
+
+		public void LaunchNextLevel()
+		{
+			var gameSceneName = _sceneNameData.Game;
+			_gameStateMachine.EnterToLoadScene(gameSceneName);
+		}
+
+		public void RestartThisLevel()
+		{
+			var gameSceneName = _sceneNameData.Game;
+			_gameStateMachine.EnterToLoadScene(gameSceneName);
+		}
 	}
 }

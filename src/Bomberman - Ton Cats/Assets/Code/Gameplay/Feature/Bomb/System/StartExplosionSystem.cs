@@ -1,8 +1,7 @@
 ﻿using Common.Component;
 using Extensions;
 using Gameplay.Feature.Bomb.Component;
-using Gameplay.Feature.Explosion.Component;
-using Gameplay.Feature.Explosion.Factory;
+using Gameplay.Feature.Bomb.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -10,7 +9,7 @@ using UnityEngine;
 using Zenject;
 using Transform = UnityEngine.Transform;
 
-namespace Gameplay.Feature.Explosion.System
+namespace Gameplay.Feature.Bomb.System
 {
 	public sealed class StartExplosionSystem : IEcsRunSystem
 	{
@@ -18,7 +17,7 @@ namespace Gameplay.Feature.Explosion.System
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _createRequest;
 		[Inject] EntityWrapper _explosionRequest;
-		[Inject] IExplosionFactory _explosionFactory;
+		[Inject] IBombFactory _factory;
 
 		readonly EcsFilterInject<Inc<ExplosionRequest, Position>> _filter;
 		readonly EcsFilterInject<

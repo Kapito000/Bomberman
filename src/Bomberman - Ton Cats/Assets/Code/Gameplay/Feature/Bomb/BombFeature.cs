@@ -12,6 +12,18 @@ namespace Gameplay.Feature.Bomb
 			AddUpdate<PutBombSystem>();
 			AddUpdate<BombExplosionSystem>();
 			AddUpdate<PutBombAudioEffect>();
+			
+			AddUpdate<StartExplosionSystem>();
+			AddUpdate<ScanExplosionAreaSystem>();
+			AddUpdate<CreateBlowUpDestructibleSystem>();
+			AddUpdate<CreateExplosionCenterSystem>();
+			AddUpdate<ExplosionCenterAudioEffectSystem>();
+			AddUpdate<CreateExplosionPartSystem>();
+			AddUpdate<AddToTargetBufferSystem>();
+			AddUpdate<RemoveFromTargetBufferSystem>();
+			AddUpdate<ExplosionDamageSystem>();
+			
+			AddCleanup<CleanupSystem>();
 		}
 	}
 }

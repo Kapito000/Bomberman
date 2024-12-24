@@ -1,12 +1,12 @@
 ﻿using Common.Component;
-using Gameplay.Feature.Explosion.Component;
-using Gameplay.Feature.Explosion.Factory;
+using Gameplay.Feature.Bomb.Component;
+using Gameplay.Feature.Bomb.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.Explosion.System
+namespace Gameplay.Feature.Bomb.System
 {
 	public sealed class CreateExplosionPartSystem : IEcsRunSystem
 	{
@@ -14,8 +14,8 @@ namespace Gameplay.Feature.Explosion.System
 			Inc<CreateExplosionRequest, Position, Direction, ExplosionPartComponent,
 				ForParent>> _requestFilter;
 
+		[Inject] IBombFactory _factory;
 		[Inject] EntityWrapper _request;
-		[Inject] IExplosionFactory _explosionFactory;
 
 		public void Run(IEcsSystems systems)
 		{
@@ -27,7 +27,7 @@ namespace Gameplay.Feature.Explosion.System
 				var dir = _request.Direction();
 				var parent = _request.ForParent();
 				var part = _request.ExplosionPart();
-				_explosionFactory.CreateExplosionPart(pos, dir, parent, part);
+				_factory.CreateExplosionPart(pos, dir, parent, part);
 			}
 		}
 	}

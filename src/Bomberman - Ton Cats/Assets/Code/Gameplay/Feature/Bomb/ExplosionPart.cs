@@ -1,4 +1,4 @@
-﻿namespace Gameplay.Feature.Explosion
+﻿namespace Gameplay.Feature.Bomb
 {
 	public enum ExplosionPart
 	{

@@ -1,12 +1,12 @@
 ﻿using Common.Component;
 using Gameplay.Audio.Service;
-using Gameplay.Feature.Explosion.Component;
+using Gameplay.Feature.Bomb.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.Explosion.System
+namespace Gameplay.Feature.Bomb.System
 {
 	public sealed class ExplosionCenterAudioEffectSystem : IEcsRunSystem
 	{
@@ -14,7 +14,7 @@ namespace Gameplay.Feature.Explosion.System
 		[Inject] IAudioService _audioService;
 		
 		readonly EcsFilterInject<
-				Inc<Component.Explosion, ExplosionCenter, FirstBreath, TransformComponent>>
+				Inc<Explosion, ExplosionCenter, FirstBreath, TransformComponent>>
 			_explosionFilter;
 		
 		public void Run(IEcsSystems systems)

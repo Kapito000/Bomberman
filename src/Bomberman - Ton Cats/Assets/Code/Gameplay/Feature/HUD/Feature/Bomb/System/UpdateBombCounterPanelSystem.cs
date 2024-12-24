@@ -14,7 +14,7 @@ namespace Gameplay.Feature.HUD.Feature.Bomb.System
 		[Inject] EntityWrapper _panel;
 		
 		readonly EcsFilterInject<
-			Inc<HeroComponent, BombCarrier, BombNumber>> _heroFilter;
+			Inc<HeroComponent, BombCarrier, BombStack>> _heroFilter;
 		readonly EcsFilterInject<
 			Inc<BombCounterPanel>> _bombCounterPanelFilter;
 
@@ -26,7 +26,7 @@ namespace Gameplay.Feature.HUD.Feature.Bomb.System
 				_hero.SetEntity(hero);
 				_panel.SetEntity(panel);
 
-				var bombNumber = _hero.BombNumber();
+				var bombNumber = _hero.BombStack().Count;
 				_panel.BombCounterPanel().SetValue(bombNumber);
 			}
 		}

@@ -1,12 +1,12 @@
 ﻿using Common.Component;
-using Gameplay.Feature.Explosion.Component;
-using Gameplay.Feature.Explosion.Factory;
+using Gameplay.Feature.Bomb.Component;
+using Gameplay.Feature.Bomb.Factory;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.Explosion.System
+namespace Gameplay.Feature.Bomb.System
 {
 	public sealed class CreateExplosionCenterSystem : IEcsRunSystem
 	{
@@ -15,7 +15,7 @@ namespace Gameplay.Feature.Explosion.System
 			_requestFilter;
 
 		[Inject] EntityWrapper _request;
-		[Inject] IExplosionFactory _explosionFactory;
+		[Inject] IBombFactory _factory;
 
 		public void Run(IEcsSystems systems)
 		{
@@ -25,7 +25,7 @@ namespace Gameplay.Feature.Explosion.System
 
 				var pos = _request.Position();
 				var parent = _request.ForParent();
-				_explosionFactory.CreateExplosionCenter(pos, parent);
+				_factory.CreateExplosionCenter(pos, parent);
 			}
 		}
 	}

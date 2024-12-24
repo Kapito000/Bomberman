@@ -23,7 +23,7 @@ namespace Gameplay.Feature.Bomb.Behaviour
 				return;
 
 			_bomb.SetEntity(e);
-			_bomb.Add<Explosion.Component.Explosion>();
+			_bomb.Add<Component.Explosion>();
 		}
 	}
 }

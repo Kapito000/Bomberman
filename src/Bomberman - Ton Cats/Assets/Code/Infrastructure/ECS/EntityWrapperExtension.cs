@@ -11,8 +11,6 @@ using Gameplay.Feature.DamageApplication.Component;
 using Gameplay.Feature.Enemy.AI.Blackboard;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Component;
-using Gameplay.Feature.Explosion;
-using Gameplay.Feature.Explosion.Component;
 using Gameplay.Feature.Hero.Behaviour;
 using Gameplay.Feature.Hero.Component;
 using Gameplay.Feature.HUD.Component;
@@ -20,7 +18,6 @@ using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Timer.Component;
 using Leopotam.EcsLite;
-using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
@@ -108,18 +105,6 @@ namespace Infrastructure.ECS
 
 		public void AddVirtualCameraFollowTarget(Transform followTarget) =>
 			_world.AddFollowTarget(_entity, followTarget);
-
-		public void SetBombNumber(int value)
-		{
-			ref var bombNumber = ref _world.GetPool<BombNumber>().Get(_entity);
-			bombNumber.Value = value;
-		}
-
-		public int BombNumber()
-		{
-			ref var bombNumber = ref Get<BombNumber>();
-			return bombNumber.Value;
-		}
 
 		public IEntityView View()
 		{

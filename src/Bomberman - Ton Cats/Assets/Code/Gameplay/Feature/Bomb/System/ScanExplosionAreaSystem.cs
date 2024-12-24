@@ -1,6 +1,6 @@
 ﻿using Common.Component;
+using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Destruction.Component;
-using Gameplay.Feature.Explosion.Component;
 using Gameplay.Feature.Map.MapController;
 using Gameplay.Map;
 using Infrastructure.ECS;
@@ -10,7 +10,7 @@ using Leopotam.EcsLite.Di;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Feature.Explosion.System
+namespace Gameplay.Feature.Bomb.System
 {
 	public sealed class ScanExplosionAreaSystem : IEcsRunSystem
 	{

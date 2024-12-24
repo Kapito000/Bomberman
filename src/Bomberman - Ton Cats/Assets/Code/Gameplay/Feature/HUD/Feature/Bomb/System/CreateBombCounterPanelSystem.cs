@@ -18,7 +18,7 @@ namespace Gameplay.Feature.HUD.Feature.Bomb.System
 		readonly EcsFilterInject<
 			Inc<UpperPanel, TransformComponent>> _upperPanelFilter;
 		readonly EcsFilterInject<
-			Inc<HeroComponent, BombCarrier, BombNumber>> _heroFilter;
+			Inc<HeroComponent, BombCarrier, BombStack>> _heroFilter;
 
 		public void Run(IEcsSystems systems)
 		{

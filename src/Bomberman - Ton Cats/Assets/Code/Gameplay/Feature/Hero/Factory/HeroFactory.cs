@@ -35,7 +35,7 @@ namespace Gameplay.Feature.Hero.Factory
 				.Add<CharacterInput>()
 				.Add<MovementDirection>()
 				.Add<BombCarrier>()
-				.Add<BombNumber>().With(e => e.SetBombNumber(_heroData.StartBombNumber))
+				.AddBombStack(4)
 				.Add<MoveSpeed>().With(e => e.SetMoveSpeed(_heroData.MovementSpeed))
 				.Add<LifePoints>().With(e =>
 					e.SetLifePoints(_heroData.LifePointsOnStart))

@@ -1,7 +1,7 @@
 ﻿using Common.Component;
+using Gameplay.Feature.Bomb.Component;
+using Gameplay.Feature.Bomb.Factory;
 using Gameplay.Feature.Destruction.Component;
-using Gameplay.Feature.Explosion.Component;
-using Gameplay.Feature.Explosion.Factory;
 using Gameplay.Feature.Map.MapController;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
@@ -9,13 +9,13 @@ using Leopotam.EcsLite.Di;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Feature.Explosion.System
+namespace Gameplay.Feature.Bomb.System
 {
 	public sealed class CreateBlowUpDestructibleSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _request;
 		[Inject] IMapController _mapController;
-		[Inject] IExplosionFactory _explosionFactory;
+		[Inject] IBombFactory _factory;
 
 		readonly EcsFilterInject<
 			Inc<CreateExplosionRequest, BlowUpDestructible, DestructibleTileCellPos,
@@ -47,7 +47,7 @@ namespace Gameplay.Feature.Explosion.System
 		{
 			var pos = _request.Position();
 			var parent = _request.ForParent();
-			_explosionFactory.CreateDestructibleTile(pos, parent);
+			_factory.CreateDestructibleTile(pos, parent);
 		}
 	}
 }

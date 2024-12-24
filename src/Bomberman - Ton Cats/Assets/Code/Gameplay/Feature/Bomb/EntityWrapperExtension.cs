@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Extensions;
-using Gameplay.Feature.Explosion.Component;
+using Gameplay.Feature.Bomb.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 
-namespace Gameplay.Feature.Explosion
+namespace Gameplay.Feature.Bomb
 {
 	public static class EntityWrapperExtension
 	{

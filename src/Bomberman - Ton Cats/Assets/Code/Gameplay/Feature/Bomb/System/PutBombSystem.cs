@@ -13,7 +13,7 @@ namespace Gameplay.Feature.Bomb.System
 	public sealed class PutBombSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<
-				Inc<BombCarrier, BombNumber, PutBombRequest, TransformComponent>>
+				Inc<BombCarrier, BombStack, PutBombRequest, TransformComponent>>
 			_putBombRequestFilter;
 		readonly EcsFilterInject<Inc<BombParent, TransformComponent>>
 			_bombParentFilter;
@@ -31,11 +31,10 @@ namespace Gameplay.Feature.Bomb.System
 				_bombParent.SetEntity(parentEntity);
 				_bombCarrier.SetEntity(requestEntity);
 				var parent = _bombParent.Transform();
-				var bombNumber = _bombCarrier.BombNumber();
-				if (bombNumber <= 0)
-					continue;
 
-				_bombCarrier.SetBombNumber(bombNumber - 1);
+				if (_bombCarrier.BombStack().IsEmpty())
+					continue;
+				
 				var bombCarrierPos = _bombCarrier.TransformPos();
 				var pos = CellCenterPos(bombCarrierPos);
 				_bombFactory.CreateBomb(pos, parent);

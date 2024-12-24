@@ -5,7 +5,6 @@ using Gameplay.Feature.Collisions;
 using Gameplay.Feature.DamageApplication;
 using Gameplay.Feature.Destruction;
 using Gameplay.Feature.Enemy;
-using Gameplay.Feature.Explosion;
 using Gameplay.Feature.FinishLevel;
 using Gameplay.Feature.GameMusic;
 using Gameplay.Feature.GameUI;
@@ -33,7 +32,6 @@ namespace Gameplay.Feature.FeatureControl
 			Add<HeroFeature>();
 			Add<EnemyFeature>();
 			Add<BombFeature>();
-			Add<ExplosionFeature>();
 			Add<DamageApplicationFeature>();
 			Add<LifeFeature>();
 			Add<MapFeature>();

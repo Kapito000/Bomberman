@@ -1,12 +1,12 @@
 ﻿using Extensions;
-using Gameplay.Feature.Explosion.Component;
+using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Life.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.Explosion.System
+namespace Gameplay.Feature.Bomb.System
 {
 	public sealed class ExplosionDamageSystem : IEcsRunSystem
 	{

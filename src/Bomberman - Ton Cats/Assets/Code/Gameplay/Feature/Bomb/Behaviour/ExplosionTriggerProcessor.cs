@@ -3,7 +3,7 @@ using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
 
-namespace Gameplay.Feature.Explosion.Behaviour
+namespace Gameplay.Feature.Bomb.Behaviour
 {
 	public sealed class ExplosionTriggerProcessor : ColliderCheckBehaviour
 	{

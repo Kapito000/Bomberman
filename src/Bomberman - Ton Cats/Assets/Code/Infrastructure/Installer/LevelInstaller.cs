@@ -5,7 +5,6 @@ using Gameplay.Feature.Camera.Factory;
 using Gameplay.Feature.Enemy.AI;
 using Gameplay.Feature.Enemy.Base.Factory;
 using Gameplay.Feature.Enemy.Base.System;
-using Gameplay.Feature.Explosion.Factory;
 using Gameplay.Feature.FeatureControl;
 using Gameplay.Feature.FinishLevel.Factory;
 using Gameplay.Feature.Hero.Factory;
@@ -122,7 +121,6 @@ namespace Infrastructure.Installer
 			Container.Bind<IBombFactory>().To<BombFactory>().AsSingle();
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 			Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
-			Container.Bind<IExplosionFactory>().To<ExplosionFactory>().AsSingle();
 			Container.Bind<IFinishLevelFactory>().To<FinishLevelFactory>().AsSingle();
 			Container.Bind<IPlayerProgressFactory>().To<PlayerProgressFactory>()
 				.AsSingle();

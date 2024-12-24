@@ -18,8 +18,11 @@ namespace Common.Collections
 		public StackList(int capacity) =>
 			_list = new List<T>(capacity);
 
-		public void Push(T item) =>
+		public StackList<T> Push(T item)
+		{
 			_list.Add(item);
+			return this;
+		}
 
 		public bool TryPop(out T value)
 		{

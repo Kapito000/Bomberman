@@ -1,8 +1,10 @@
-﻿using Common.Component;
+﻿using Common.Collections;
+using Common.Component;
 using Common.HUD;
 using Extensions;
 using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Audio.Component;
+using Gameplay.Feature.Bomb;
 using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.DamageApplication.Component;
@@ -18,6 +20,7 @@ using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Timer.Component;
 using Leopotam.EcsLite;
+using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.U2D.Animation;
@@ -575,6 +578,19 @@ namespace Infrastructure.ECS
 		public IDisplay<int> EnemyCounterDisplay()
 		{
 			ref var component = ref Get<EnemyCounterDisplay>();
+			return component.Value;
+		}
+
+		public EntityWrapper AddBombStack(int capacity)
+		{
+			ref var component = ref AddComponent<BombStack>();
+			component.Value = new StackList<BombType>(capacity);
+			return this;
+		}
+
+		public StackList<BombType> BombStack()
+		{
+			ref var component = ref Get<BombStack>();
 			return component.Value;
 		}
 	}

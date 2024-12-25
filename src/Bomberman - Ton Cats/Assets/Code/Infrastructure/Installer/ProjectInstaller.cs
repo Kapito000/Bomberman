@@ -6,6 +6,7 @@ using Gameplay.Audio.Service;
 using Gameplay.Collisions;
 using Gameplay.Difficult;
 using Gameplay.Feature.Audio.Behaviour;
+using Gameplay.Feature.Bomb.StaticData;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.GameMusic.Factory;
 using Gameplay.Feature.Hero.StaticData;
@@ -43,6 +44,7 @@ using Infrastructure.SceneLoader;
 using Infrastructure.TimeService;
 using Leopotam.EcsLite;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 using AudioSettings = Gameplay.GameSettings.Audio.AudioSettings;
 
@@ -60,6 +62,7 @@ namespace Infrastructure.Installer
 		[SerializeField] WindowKitData _windowKitData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
+		[SerializeField] BombDataService _bombDataService;
 		[SerializeField] AudioClipProvider _audioClipProvider;
 		[SerializeField] DirectLinkProvider _assetProvider;
 		[SerializeField] AudioMixerProvider _audioMixerProvider;
@@ -276,6 +279,7 @@ namespace Infrastructure.Installer
 
 		void BindStaticData()
 		{
+			Container.Bind<IBombDataService>().FromInstance(_bombDataService).AsSingle();
 			Container.Bind<IHeroData>().FromInstance(_heroData).AsSingle();
 			Container.Bind<ISceneNameData>().FromInstance(_sceneNamesData)
 				.AsSingle();

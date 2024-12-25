@@ -32,12 +32,12 @@ namespace Gameplay.Feature.Bomb.System
 				_bombCarrier.SetEntity(requestEntity);
 				var parent = _bombParent.Transform();
 
-				if (_bombCarrier.BombStack().IsEmpty())
+				if (_bombCarrier.BombStack().TryPop(out var bombType) == false)
 					continue;
 				
 				var bombCarrierPos = _bombCarrier.TransformPos();
 				var pos = CellCenterPos(bombCarrierPos);
-				_bombFactory.CreateBomb(pos, parent);
+				_bombFactory.CreateBomb(bombType, pos, parent);
 			}
 		}
 

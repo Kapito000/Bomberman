@@ -15,7 +15,8 @@ namespace Gameplay.Feature.Enemy.Base.System
 	{
 		[Inject] Patrolling _patrolling;
 		
-		[Inject] public EntityWrapper Entity { get; private set; }
+		[Inject] EntityWrapper _entity;
+		public EntityWrapper Entity => _entity;
 
 		EnemyAIStateMachine _stateMachine;
 		
@@ -56,7 +57,7 @@ namespace Gameplay.Feature.Enemy.Base.System
 		{
 			foreach (var enemy in _enemyFilter.Value)
 			{
-				Entity.SetEntity(enemy);
+				_entity.SetEntity(enemy);
 				_tree.Process();
 			}
 		}

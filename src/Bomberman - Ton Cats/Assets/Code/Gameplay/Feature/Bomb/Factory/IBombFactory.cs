@@ -5,7 +5,7 @@ namespace Gameplay.Feature.Bomb.Factory
 {
 	public interface IBombFactory : IFactory
 	{
-		int CreateBomb(Vector2 pos, Transform parent);
+		int CreateBomb(BombType bombType, Vector2 pos, Transform parent);
 		int CreateBombParent();
 		int CreateExplosionRequest(Vector2 pos);
 		int CreateExplosionPart(Vector2 pos, Vector2 direction, Transform parent,

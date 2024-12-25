@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor.AssetImporters;
 using UnityEngine;
 
-namespace Static_table_data.AssetImporters
+namespace StaticTableData.AssetImporters
 {
 	[ScriptedImporter(1, "tsv")]
 	public class TSVImporter : ScriptedImporter

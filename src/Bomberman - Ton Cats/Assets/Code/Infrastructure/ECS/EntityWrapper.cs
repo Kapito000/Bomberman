@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 
 namespace Infrastructure.ECS
 {
-	public partial class EntityWrapper
+	public partial struct EntityWrapper
 	{
 		int _entity;
 		readonly EcsWorld _world;
@@ -15,6 +15,7 @@ namespace Infrastructure.ECS
 		public EntityWrapper(EcsWorld world)
 		{
 			_world = world;
+			_entity = -1;
 		}
 
 		public void SetEntity(int entity)

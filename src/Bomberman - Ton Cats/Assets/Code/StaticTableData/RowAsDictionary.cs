@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Static_table_data
+namespace StaticTableData
 {
 	class RowAsDictionary : IReadOnlyDictionary<string, float>
 	{

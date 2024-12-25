@@ -8,4 +8,10 @@
 		TimeDelay,
 		RemoteDetonation,
 	}
+
+	public enum BombCharacteristic
+	{
+		ExplosionPart,
+		ExplosionRadius,
+	}
 }

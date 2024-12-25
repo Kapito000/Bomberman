@@ -28,7 +28,7 @@ using Transform = UnityEngine.Transform;
 
 namespace Infrastructure.ECS
 {
-	public partial class EntityWrapper
+	public partial struct EntityWrapper
 	{
 		public EcsWorld World() => _world;
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Static_table_data;
+using StaticTableData;
 using UnityEngine;
 using Menu = Constant.CreateAssetMenu.Path;
 
@@ -28,11 +28,8 @@ namespace Gameplay.StaticData.LevelData
 				row = default;
 				return false;
 			}
-			if (table.TryGetRowDictionary(rowIndex, out row) == false)
-			{
-				CastCannotToGetDataMessage();
-				return false;
-			}
+			
+			table.GetRowDictionary(rowIndex, out row);
 
 			return true;
 		}

@@ -19,7 +19,7 @@ namespace Gameplay.Feature.Bomb.Factory
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _entity;
 
-		public int CreateBomb(Vector2 pos, Transform parent)
+		public int CreateBomb(BombType bombType, Vector2 pos, Transform parent)
 		{
 			var prefab = _kit.AssetProvider.Bomb();
 			var instance = _kit.InstantiateService.Instantiate(prefab, pos, parent);
@@ -28,6 +28,8 @@ namespace Gameplay.Feature.Bomb.Factory
 			_bomb
 				.Add<BombComponent>()
 				;
+			InitBombType(_bomb, bombType);
+
 			return entity;
 		}
 
@@ -38,11 +40,12 @@ namespace Gameplay.Feature.Bomb.Factory
 			_bombParent.SetEntity(entity);
 			_bombParent
 				.Add<BombParent>()
-				.Add<Common.Component.TransformComponent>().With(e => e.SetTransform(instance.transform))
+				.Add<Common.Component.TransformComponent>()
+				.With(e => e.SetTransform(instance.transform))
 				;
 			return entity;
 		}
-		
+
 		public int CreateExplosionRequest(Vector2 pos)
 		{
 			var entity = _world.NewEntity();
@@ -75,11 +78,27 @@ namespace Gameplay.Feature.Bomb.Factory
 			PlayAnimation(instance, ExplosionPart.Center);
 			return entity;
 		}
-		
+
 		public void CreateDestructibleTile(Vector2 pos, Transform parent)
 		{
 			var prefab = _kit.AssetProvider.DestructibleTile();
 			_kit.InstantiateService.Instantiate(prefab, pos, parent);
+		}
+
+		void InitBombType(EntityWrapper bomb, BombType bombType)
+		{
+			switch (bombType)
+			{
+				case BombType.Big:
+				case BombType.Usual:
+					break;
+				case BombType.Hunter:
+				case BombType.TimeDelay:
+				case BombType.RemoteDetonation:
+				default:
+					Debug.LogError($"Unknown bomb type {bombType}");
+					break;
+			}
 		}
 
 		void PlayAnimation(GameObject instance, ExplosionPart part)
@@ -137,6 +156,5 @@ namespace Gameplay.Feature.Bomb.Factory
 					return;
 			}
 		}
-
 	}
 }

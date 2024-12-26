@@ -5,7 +5,6 @@ using Gameplay.Feature.Map.MapController;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.Bomb.System

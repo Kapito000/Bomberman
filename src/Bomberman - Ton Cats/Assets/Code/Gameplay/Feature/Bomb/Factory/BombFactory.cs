@@ -71,7 +71,8 @@ namespace Gameplay.Feature.Bomb.Factory
 		public int CreateExplosionPart(Vector2Int cell, ExplosionPart part,
 			Transform parent, Vector2 direction = default)
 		{
-			var instance = InstantiateExplosion(cell, parent);
+			var pos = _mapController.GetCellCenterWorld(cell);
+			var instance = InstantiateExplosion(pos, parent);
 			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			_entity.SetEntity(e);
 			_entity

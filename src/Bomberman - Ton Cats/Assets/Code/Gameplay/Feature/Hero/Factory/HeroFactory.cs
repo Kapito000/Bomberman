@@ -1,6 +1,7 @@
 ﻿using Common.Component;
 using Extensions;
 using Gameplay.Audio.Service;
+using Gameplay.Feature.Bomb;
 using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Hero.Component;
 using Gameplay.Feature.Hero.StaticData;
@@ -40,6 +41,11 @@ namespace Gameplay.Feature.Hero.Factory
 				.Add<LifePoints>().With(e =>
 					e.SetLifePoints(_heroData.LifePointsOnStart))
 				;
+
+			for (int i = 0; i < 100; i++)
+			{
+				_heroEntity.BombStack().Push(BombType.Usual);
+			}
 
 			AddTakenDamageEffectComponents(_heroEntity);
 

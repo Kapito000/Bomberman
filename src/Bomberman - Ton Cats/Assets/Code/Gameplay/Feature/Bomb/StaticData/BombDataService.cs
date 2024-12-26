@@ -1,6 +1,8 @@
 ﻿using StaticTableData;
 using UnityEngine;
 using Menu = Constant.CreateAssetMenu.Path;
+using MappedSpan =
+	System.Collections.Generic.IReadOnlyDictionary<string, float>;
 
 namespace Gameplay.Feature.Bomb.StaticData
 {
@@ -22,12 +24,28 @@ namespace Gameplay.Feature.Bomb.StaticData
 		public bool TryGet(BombType bombType, BombCharacteristic characteristic,
 			out float value)
 		{
-			var successfulGet = _table
+			var successful = _table
 				.TryGetValue(characteristic.ToString(), bombType.ToString(), out value);
-			if (successfulGet == false)
+			if (successful == false)
 			{
 				Debug.LogError($"Cannot ot get the \"{characteristic.ToString()}\" " +
 					$"for the \"{bombType.ToString()}\".");
+				return false;
+			}
+
+			return true;
+		}
+
+		public bool TryGetCharacteristic(BombType bombType,
+			out MappedSpan characteristics)
+		{
+			var bombName = bombType.ToString();
+			var successful = _table
+				.TryGetMappedRow(bombName, out characteristics);
+			if (successful == false)
+			{
+				Debug.LogError($"Cannot ot get the characteristics for the " +
+					$"\"{bombName}\".");
 				return false;
 			}
 

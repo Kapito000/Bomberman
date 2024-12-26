@@ -5,5 +5,6 @@
 		float DeltaTime();
 		void Stop();
 		void Run();
+		float GameTime();
 	}
 }

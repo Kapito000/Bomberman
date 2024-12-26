@@ -1,4 +1,5 @@
-﻿using Gameplay.StaticData;
+﻿using System.Collections.Generic;
+using Gameplay.StaticData;
 
 namespace Gameplay.Feature.Bomb.StaticData
 {
@@ -7,5 +8,7 @@ namespace Gameplay.Feature.Bomb.StaticData
 		void Init();
 		bool TryGet(BombType bombType, BombCharacteristic characteristic,
 			out float value);
+		bool TryGetCharacteristic(BombType bombType,
+			out IReadOnlyDictionary<string, float> characteristics);
 	}
 }

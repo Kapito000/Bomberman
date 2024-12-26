@@ -16,14 +16,5 @@ namespace Gameplay.Feature.Bomb.Behaviour
 		{
 			_animator = GetComponent<Animator>();
 		}
-
-		void ExplosionEvent()
-		{
-			if (TryGetEntity(out var e) ==false)
-				return;
-
-			_bomb.SetEntity(e);
-			_bomb.Add<Component.Explosion>();
-		}
 	}
 }

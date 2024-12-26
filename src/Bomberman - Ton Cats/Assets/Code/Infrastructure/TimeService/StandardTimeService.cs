@@ -4,6 +4,9 @@ namespace Infrastructure.TimeService
 {
 	public sealed class StandardTimeService : ITimeService
 	{
+		public float GameTime() =>
+			Time.time;
+
 		public float DeltaTime() =>
 			Time.deltaTime;
 

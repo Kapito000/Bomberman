@@ -7,7 +7,7 @@ namespace Gameplay.Feature.Bomb.Factory
 	{
 		int CreateBomb(BombType bombType, Vector2 pos, Transform parent);
 		int CreateBombParent();
-		int CreateExplosionRequest(Vector2 pos);
+		int CreateExplosionRequest(Vector2 pos, float explosionRadius);
 		int CreateExplosionPart(Vector2 pos, Vector2 direction, Transform parent,
 			ExplosionPart part);
 		int CreateExplosionCenter(Vector2 pos, Transform parent);

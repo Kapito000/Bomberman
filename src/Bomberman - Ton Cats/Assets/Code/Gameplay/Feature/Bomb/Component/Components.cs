@@ -11,6 +11,7 @@ namespace Gameplay.Feature.Bomb.Component
 	public struct BombParent { }
 	public struct BombCarrier { }
 	public struct BombComponent { }
+	public struct BombExplosion { }
 	public struct ExplosionTimer { public float Value; }
 	public struct PutBombRequest { }
 	public struct ExplosionRadius { public float Value; }

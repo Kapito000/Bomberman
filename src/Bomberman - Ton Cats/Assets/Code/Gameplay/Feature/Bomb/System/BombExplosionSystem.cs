@@ -16,16 +16,17 @@ namespace Gameplay.Feature.Bomb.System
 		[Inject] IBombFactory _factory;
 
 		readonly EcsFilterInject<
-				Inc<BombComponent, Component.Explosion, TransformComponent>>
-			_filter;
+				Inc<BombComponent, BombExplosion, ExplosionRadius, TransformComponent>>
+			_bombFilter;
 
 		public void Run(IEcsSystems systems)
 		{
-			foreach (var e in _filter.Value)
+			foreach (var bombEntity in _bombFilter.Value)
 			{
-				_bomb.SetEntity(e);
+				_bomb.SetEntity(bombEntity);
 				Vector2 pos = _bomb.TransformPos();
-				_factory.CreateExplosionRequest(pos);
+				var explosionRadius = _bomb.ExplosionRadius();
+				_factory.CreateExplosionRequest(pos, explosionRadius);
 				_bomb.Add<Destructed>();
 			}
 		}

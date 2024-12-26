@@ -5,10 +5,13 @@ using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Bomb.StaticData;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
+using Infrastructure.TimeService;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
+using MappedSpan =
+	System.Collections.Generic.IReadOnlyDictionary<string, float>;
 
 namespace Gameplay.Feature.Bomb.Factory
 {
@@ -16,6 +19,7 @@ namespace Gameplay.Feature.Bomb.Factory
 	{
 		[Inject] EcsWorld _world;
 		[Inject] IFactoryKit _kit;
+		[Inject] ITimeService _timeService;
 		[Inject] EntityWrapper _bomb;
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _entity;
@@ -48,13 +52,14 @@ namespace Gameplay.Feature.Bomb.Factory
 			return entity;
 		}
 
-		public int CreateExplosionRequest(Vector2 pos)
+		public int CreateExplosionRequest(Vector2 pos, float explosionRadius)
 		{
 			var entity = _world.NewEntity();
 			_entity.SetEntity(entity);
 			_entity
 				.Add<ExplosionRequest>()
-				.Add<Position>().With(e => e.SetPosition(pos))
+				.AddPosition(pos)
+				.AddExplosionRadius(explosionRadius)
 				;
 			return entity;
 		}
@@ -89,21 +94,36 @@ namespace Gameplay.Feature.Bomb.Factory
 
 		void InitBombType(EntityWrapper bomb, BombType bombType)
 		{
-			if (_bombDataService.TryGet(bombType, BombCharacteristic.ExplosionTimer,
-				    out var timer) == false)
+			var successful = _bombDataService
+				.TryGetCharacteristic(bombType, out var characteristics);
+			if (successful == false)
 			{
-				return;
-			}
-			if (_bombDataService.TryGet(bombType, BombCharacteristic.ExplosionRadius,
-				    out var radius) == false)
-			{
+				Debug.LogError(
+					$"Cannot to get data for the \"{bombType.ToString()}\" bomb.");
 				return;
 			}
 
-			bomb
-				.AddExplosionTimer(timer)
-				.AddExplosionRadius(radius)
-				;
+			AddExplosionTimer(bomb, characteristics);
+			AddExplosionRadius(bomb, characteristics);
+		}
+
+		void AddExplosionTimer(EntityWrapper bomb, MappedSpan characteristics)
+		{
+			var name = BombCharacteristic.ExplosionTimer.ToString();
+			if (characteristics.TryGetValue(name, out var timer)
+			    && timer > 0)
+				bomb.AddExplosionTimer(_timeService.GameTime() + timer);
+			else
+				bomb.AddExplosionTimer(4);
+		}
+
+		void AddExplosionRadius(EntityWrapper bomb, MappedSpan characteristics)
+		{
+			var name = BombCharacteristic.ExplosionRadius.ToString();
+			if (characteristics.TryGetValue(name, out var radius))
+				bomb.AddExplosionRadius(radius);
+			else
+				bomb.AddExplosionRadius(1);
 		}
 
 		void PlayAnimation(GameObject instance, ExplosionPart part)
@@ -130,7 +150,7 @@ namespace Gameplay.Feature.Bomb.Factory
 			_entity.SetEntity(entity);
 			_entity
 				.Add<FirstBreath>()
-				.Add<Component.Explosion>()
+				.Add<Explosion>()
 				.AddTransform(instance.transform)
 				;
 			return entity;

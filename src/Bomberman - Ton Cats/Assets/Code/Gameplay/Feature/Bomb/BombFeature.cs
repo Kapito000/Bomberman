@@ -10,8 +10,10 @@ namespace Gameplay.Feature.Bomb
 			AddInit<CreateBombParentSystem>();
 			
 			AddUpdate<PutBombSystem>();
-			AddUpdate<BombExplosionSystem>();
 			AddUpdate<PutBombAudioEffect>();
+
+			AddUpdate<ExplosionTimerSystem>();
+			AddUpdate<BombExplosionSystem>();
 			
 			AddUpdate<StartExplosionSystem>();
 			AddUpdate<ScanExplosionAreaSystem>();

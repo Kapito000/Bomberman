@@ -21,9 +21,7 @@ namespace Gameplay.Feature.Bomb
 			AddUpdate<CreateExplosionSystem>();
 			AddUpdate<ExplosionCenterAudioEffectSystem>();
 			
-			AddUpdate<AddToTargetBufferSystem>();
-			AddUpdate<RemoveFromTargetBufferSystem>();
-			AddUpdate<ExplosionDamageSystem>();
+			AddUpdate<ExplosionDamage>();
 		}
 	}
 }

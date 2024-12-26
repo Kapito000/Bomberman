@@ -2,6 +2,7 @@
 using Extensions;
 using Gameplay.Feature.Bomb.Behaviour;
 using Gameplay.Feature.Bomb.Component;
+using Gameplay.Feature.Bomb.StaticData;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using Leopotam.EcsLite;
@@ -18,6 +19,7 @@ namespace Gameplay.Feature.Bomb.Factory
 		[Inject] EntityWrapper _bomb;
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _entity;
+		[Inject] IBombDataService _bombDataService;
 
 		public int CreateBomb(BombType bombType, Vector2 pos, Transform parent)
 		{
@@ -40,7 +42,7 @@ namespace Gameplay.Feature.Bomb.Factory
 			_bombParent.SetEntity(entity);
 			_bombParent
 				.Add<BombParent>()
-				.Add<Common.Component.TransformComponent>()
+				.Add<TransformComponent>()
 				.With(e => e.SetTransform(instance.transform))
 				;
 			return entity;
@@ -87,18 +89,21 @@ namespace Gameplay.Feature.Bomb.Factory
 
 		void InitBombType(EntityWrapper bomb, BombType bombType)
 		{
-			switch (bombType)
+			if (_bombDataService.TryGet(bombType, BombCharacteristic.ExplosionTimer,
+				    out var timer) == false)
 			{
-				case BombType.Big:
-				case BombType.Usual:
-					break;
-				case BombType.Hunter:
-				case BombType.TimeDelay:
-				case BombType.RemoteDetonation:
-				default:
-					Debug.LogError($"Unknown bomb type {bombType}");
-					break;
+				return;
 			}
+			if (_bombDataService.TryGet(bombType, BombCharacteristic.ExplosionRadius,
+				    out var radius) == false)
+			{
+				return;
+			}
+
+			bomb
+				.AddExplosionTimer(timer)
+				.AddExplosionRadius(radius)
+				;
 		}
 
 		void PlayAnimation(GameObject instance, ExplosionPart part)

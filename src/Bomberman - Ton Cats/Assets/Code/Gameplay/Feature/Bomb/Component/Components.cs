@@ -11,8 +11,9 @@ namespace Gameplay.Feature.Bomb.Component
 	public struct BombParent { }
 	public struct BombCarrier { }
 	public struct BombComponent { }
+	public struct ExplosionTimer { public float Value; }
 	public struct PutBombRequest { }
-	[Serializable] public struct BombAnimatorComponent { public BombAnimator Value; }
+	public struct ExplosionRadius { public float Value; }
 	public struct Explosion { }
 	public struct ExplosionRequest { }
 	public struct CreateExplosionRequest { }
@@ -24,4 +25,5 @@ namespace Gameplay.Feature.Bomb.Component
 	public struct TargetsBufferDecrementRequest { public List<int> Value; }
 	public struct TargetsBuffer { public List<EcsPackedEntityWithWorld> Value; }
 	public struct ExplodedTargetsBuffer { public List<EcsPackedEntityWithWorld> Value; }
+	[Serializable] public struct BombAnimatorComponent { public BombAnimator Value; }
 }

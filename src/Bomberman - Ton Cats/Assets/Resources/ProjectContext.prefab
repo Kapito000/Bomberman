@@ -74,7 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9bb2e078db463bac8679fff2493273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: {fileID: 5187562094624297472, guid: a252ceb821f72dd4f9b6ab31da48e7a0, type: 3}
   _aiData: {fileID: 11400000, guid: aa034e23ac655ad4c83f3f0391fec357, type: 2}
   _mapData: {fileID: 11400000, guid: a468fdc1c8113e546b604f96023b62b7, type: 2}
   _heroData: {fileID: 11400000, guid: eb53c9d54d44aae4e8aa6ecf56b5c61f, type: 2}
@@ -85,6 +84,7 @@ MonoBehaviour:
   _windowKitData: {fileID: 11400000, guid: 29775650dbd34dc4e9aa2000e8f572b8, type: 2}
   _sceneNamesData: {fileID: 11400000, guid: d0022a8e84f23ca43b2a0e9413aaad62, type: 2}
   _tileCollection: {fileID: 11400000, guid: 260116ef626b8464aa40ca488c3f2af4, type: 2}
+  _bombDataService: {fileID: 11400000, guid: 4c618e82e326eaa4d9820a75dc99165a, type: 2}
   _audioClipProvider: {fileID: 11400000, guid: 61cfd0d77e9ed6a46af42678fbaffafa, type: 2}
   _assetProvider: {fileID: 11400000, guid: ca71632310af84646bd2153a470be011, type: 2}
   _audioMixerProvider: {fileID: 11400000, guid: 3748f66f52b277c4bb22e79c30881386, type: 2}

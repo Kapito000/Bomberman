@@ -578,5 +578,31 @@ namespace Infrastructure.ECS
 			ref var component = ref Get<BombStack>();
 			return component.Value;
 		}
+
+		public float ExplosionTimer()
+		{
+			ref var component = ref Get<ExplosionTimer>();
+			return component.Value;
+		}
+		
+		public EntityWrapper AddExplosionTimer(float value)
+		{
+			ref var component = ref AddComponent<ExplosionTimer>();
+			component.Value = value;
+			return this;
+		}
+		
+		public float ExplosionRadius()
+		{
+			ref var component = ref Get<ExplosionRadius>();
+			return component.Value;
+		}
+
+		public EntityWrapper AddExplosionRadius(float radius)
+		{
+			ref var component = ref AddComponent<ExplosionRadius>();
+			component.Value = radius;
+			return this;
+		}
 	}
 }

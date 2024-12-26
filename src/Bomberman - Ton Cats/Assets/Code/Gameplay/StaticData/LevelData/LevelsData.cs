@@ -28,8 +28,12 @@ namespace Gameplay.StaticData.LevelData
 				row = default;
 				return false;
 			}
-			
-			table.GetRowDictionary(rowIndex, out row);
+
+			if (table.TryGetMappedRow(rowIndex, out row) == false)
+			{
+				CastCannotToGetDataMessage();
+				return false;
+			}
 
 			return true;
 		}
@@ -59,9 +63,11 @@ namespace Gameplay.StaticData.LevelData
 			_tables.Add(tableKey, table);
 		}
 
-		SimpleFloatTable FloatTable(TextAsset textAsset) =>
-			TableFactory.ParseXSV(textAsset.text,
+		SimpleFloatTable FloatTable(TextAsset textAsset)
+		{
+			return TableFactory.ParseXSV(textAsset.text,
 				SimpleFloatTable.SeparatorType.Tab);
+		}
 
 		void CastCannotToGetDataMessage() =>
 			Debug.LogError("Cannot to get the table data.");

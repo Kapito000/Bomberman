@@ -31,7 +31,7 @@ namespace StaticTableData
 
 			if (valueRows == null)
 			{
-				return new(0, 0, null, oorPolicy);
+				return new(0, 0, null, navType, oorPolicy);
 			}
 
 			// debug purposes
@@ -70,11 +70,14 @@ namespace StaticTableData
 
 				return navType switch
 				{
-					namedColumns => new(columnNames, valueRows.Count, valueGetter,
-						oorPolicy),
-					namedRows => new(columnCount, rowNames, valueGetter, oorPolicy),
-					named2D => new(columnNames, rowNames, valueGetter, oorPolicy),
-					_ => new(columnCount, valueRows.Count, valueGetter, oorPolicy),
+					namedColumns =>
+						new(columnNames, valueRows.Count, valueGetter, navType, oorPolicy),
+					namedRows =>
+						new(columnCount, rowNames, valueGetter, navType, oorPolicy),
+					named2D =>
+						new(columnNames, rowNames, valueGetter, navType, oorPolicy),
+					_ =>
+						new(columnCount, valueRows.Count, valueGetter, navType, oorPolicy),
 				};
 			}
 			catch (FormatException fe)
@@ -91,8 +94,7 @@ namespace StaticTableData
 		}
 
 		static (List<string[]> valueRows, string[] headers, string[] rowNames)
-			ExtractTableData(
-				IEnumerable<string> lines,
+			ExtractTableData(IEnumerable<string> lines,
 				SimpleFloatTable.SeparatorType sepType,
 				IFloatTable.NavigationType navType =
 					IFloatTable.NavigationType.NamedColumns)

@@ -65,8 +65,9 @@ namespace Gameplay.StaticData.LevelData
 
 		SimpleFloatTable FloatTable(TextAsset textAsset)
 		{
+			var navType = IFloatTable.NavigationType.NamedColumns;
 			return TableFactory.ParseXSV(textAsset.text,
-				SimpleFloatTable.SeparatorType.Tab);
+				SimpleFloatTable.SeparatorType.Tab, navType);
 		}
 
 		void CastCannotToGetDataMessage() =>

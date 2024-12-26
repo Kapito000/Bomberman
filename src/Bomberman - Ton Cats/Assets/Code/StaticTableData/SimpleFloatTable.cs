@@ -17,42 +17,20 @@ namespace StaticTableData
 		readonly Dictionary<string, int> _cachedRowIds;
 		readonly float[,] _values;
 
-		// have no naming navigation by default; changes in specific ctors
-		readonly IFloatTable.NavigationType _navigationType =
-			IFloatTable.NavigationType.OnlyIndices;
+		readonly IFloatTable.NavigationType _navigationType;
 
 		public OutOfRangePolicy OORPolicy = OutOfRangePolicy.DefaultValue;
 
 		public IFloatTable.NavigationType NavType => _navigationType;
 
-		public SimpleFloatTable(string[] columns, string[] rows,
-			Func<int, int, float> valueGetter,
-			OutOfRangePolicy oorPolicy = OutOfRangePolicy.DefaultValue)
-			: this(columns.Length, rows.Length, valueGetter, oorPolicy)
-		{
-			_cachedColumnIds = columns.ToIndexDictionary();
-			_cachedRowIds = rows.ToIndexDictionary();
-		}
-
-		public SimpleFloatTable(int colCount, string[] rows,
-			Func<int, int, float> valueGetter,
-			OutOfRangePolicy oorPolicy = OutOfRangePolicy.DefaultValue)
-			: this(colCount, rows.Length, valueGetter, oorPolicy)
-		{
-			_cachedRowIds = rows.ToIndexDictionary();
-		}
-
-		public SimpleFloatTable(string[] columns, int rowCount,
-			Func<int, int, float> valueGetter,
-			OutOfRangePolicy oorPolicy = OutOfRangePolicy.DefaultValue)
-			: this(columns.Length, rowCount, valueGetter, oorPolicy)
-		{
-			_cachedColumnIds = columns.ToIndexDictionary();
-		}
+		public SimpleFloatTable(IFloatTable.NavigationType navType) =>
+			_navigationType = navType;
 
 		public SimpleFloatTable(int colCount, int rowCount,
 			Func<int, int, float> valueGetter,
+			IFloatTable.NavigationType navType,
 			OutOfRangePolicy oorPolicy = OutOfRangePolicy.DefaultValue)
+			: this(navType)
 		{
 			OORPolicy = oorPolicy;
 
@@ -70,6 +48,34 @@ namespace StaticTableData
 					SetValueInternal(col, row, valueGetter(col, row));
 				}
 			}
+		}
+
+		public SimpleFloatTable(string[] columns, string[] rows,
+			Func<int, int, float> valueGetter,
+			IFloatTable.NavigationType navType,
+			OutOfRangePolicy oorPolicy = OutOfRangePolicy.DefaultValue)
+			: this(columns.Length, rows.Length, valueGetter, navType, oorPolicy)
+		{
+			_cachedColumnIds = columns.ToIndexDictionary();
+			_cachedRowIds = rows.ToIndexDictionary();
+		}
+
+		public SimpleFloatTable(int colCount, string[] rows,
+			Func<int, int, float> valueGetter,
+			IFloatTable.NavigationType navType,
+			OutOfRangePolicy oorPolicy = OutOfRangePolicy.DefaultValue)
+			: this(colCount, rows.Length, valueGetter, navType, oorPolicy)
+		{
+			_cachedRowIds = rows.ToIndexDictionary();
+		}
+
+		public SimpleFloatTable(string[] columns, int rowCount,
+			Func<int, int, float> valueGetter,
+			IFloatTable.NavigationType navType,
+			OutOfRangePolicy oorPolicy = OutOfRangePolicy.DefaultValue)
+			: this(columns.Length, rowCount, valueGetter, navType, oorPolicy)
+		{
+			_cachedColumnIds = columns.ToIndexDictionary();
 		}
 
 		public int ColumnCount
@@ -168,7 +174,7 @@ namespace StaticTableData
 			}
 
 			const int dimension =
-					COL_DIM; // for row dictionary we iterate over column values inside single row
+				COL_DIM; // for row dictionary we iterate over column values inside single row
 			return TryGetDimMap(dimension, rowIndex, out dict);
 		}
 
@@ -193,7 +199,7 @@ namespace StaticTableData
 			}
 
 			const int dimension =
-					ROW_DIM; // for column dictionary we iterate over row values inside single column
+				ROW_DIM; // for column dictionary we iterate over row values inside single column
 			return TryGetDimMap(dimension, columnIndex, out dict);
 		}
 

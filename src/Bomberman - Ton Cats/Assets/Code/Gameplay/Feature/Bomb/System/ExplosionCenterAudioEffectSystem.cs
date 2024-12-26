@@ -12,16 +12,20 @@ namespace Gameplay.Feature.Bomb.System
 	{
 		[Inject] EntityWrapper _explosion;
 		[Inject] IAudioService _audioService;
-		
+
 		readonly EcsFilterInject<
-				Inc<Explosion, ExplosionCenter, FirstBreath, TransformComponent>>
+				Inc<Explosion, FirstBreath, ExplosionPart, TransformComponent>>
 			_explosionFilter;
-		
+
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var e in _explosionFilter.Value)
 			{
 				_explosion.SetEntity(e);
+				var explosionPart = _explosion.ExplosionPart();
+				if (explosionPart != ExplosionPart.Center)
+					continue;
+				
 				var pos = _explosion.TransformPos();
 				var clipId = Constant.AudioClipId.c_BombExplosion;
 				_audioService.Player.PlaySfxClipAtPoint(clipId, pos);

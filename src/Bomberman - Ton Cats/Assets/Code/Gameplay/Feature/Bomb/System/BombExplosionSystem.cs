@@ -1,11 +1,10 @@
-﻿using Common.Component;
-using Gameplay.Feature.Bomb.Component;
+﻿using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Bomb.Factory;
 using Gameplay.Feature.Destruction.Component;
+using Gameplay.Feature.Map.Component;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.Bomb.System
@@ -16,7 +15,7 @@ namespace Gameplay.Feature.Bomb.System
 		[Inject] IBombFactory _factory;
 
 		readonly EcsFilterInject<
-				Inc<BombComponent, BombExplosion, ExplosionRadius, TransformComponent>>
+				Inc<BombComponent, BombExplosion, ExplosionRadius, CellPos>>
 			_bombFilter;
 
 		public void Run(IEcsSystems systems)
@@ -24,9 +23,9 @@ namespace Gameplay.Feature.Bomb.System
 			foreach (var bombEntity in _bombFilter.Value)
 			{
 				_bomb.SetEntity(bombEntity);
-				Vector2 pos = _bomb.TransformPos();
+				var cell = _bomb.CellPos();
 				var explosionRadius = _bomb.ExplosionRadius();
-				_factory.CreateExplosionRequest(pos, explosionRadius);
+				_factory.CreateCallExplosion(cell, explosionRadius);
 				_bomb.Add<Destructed>();
 			}
 		}

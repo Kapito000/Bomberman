@@ -183,34 +183,15 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public EntityWrapper AddBlowUpDestructible()
+		public Transform Parent()
 		{
-			Add<BlowUpDestructible>();
-			return this;
-		}
-
-		public Vector2Int DestructibleTileCellPos()
-		{
-			ref var destructibleTile = ref Get<DestructibleTileCellPos>();
-			return destructibleTile.Value;
-		}
-
-		public EntityWrapper AddDestructibleTileCellPos(Vector2Int cellPos)
-		{
-			ref var destructibleTilePos = ref AddComponent<DestructibleTileCellPos>();
-			destructibleTilePos.Value = cellPos;
-			return this;
-		}
-
-		public Transform ForParent()
-		{
-			ref var forParent = ref Get<ForParent>();
+			ref var forParent = ref Get<Parent>();
 			return forParent.Value;
 		}
 
-		public EntityWrapper AddForParent(Transform parent)
+		public EntityWrapper AddParent(Transform parent)
 		{
-			ref var forParent = ref AddComponent<ForParent>();
+			ref var forParent = ref AddComponent<Parent>();
 			forParent.Value = parent;
 			return this;
 		}
@@ -592,16 +573,16 @@ namespace Infrastructure.ECS
 			return this;
 		}
 		
-		public float ExplosionRadius()
+		public int ExplosionRadius()
 		{
 			ref var component = ref Get<ExplosionRadius>();
 			return component.Value;
 		}
 
-		public EntityWrapper AddExplosionRadius(float radius)
+		public EntityWrapper AddExplosionRadius(int radius)
 		{
 			ref var component = ref AddComponent<ExplosionRadius>();
-			component.Value = radius;
+			component.Value = (int) radius;
 			return this;
 		}
 	}

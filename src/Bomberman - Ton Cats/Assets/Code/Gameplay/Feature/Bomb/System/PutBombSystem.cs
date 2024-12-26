@@ -34,17 +34,11 @@ namespace Gameplay.Feature.Bomb.System
 
 				if (_bombCarrier.BombStack().TryPop(out var bombType) == false)
 					continue;
-				
-				var bombCarrierPos = _bombCarrier.TransformPos();
-				var pos = CellCenterPos(bombCarrierPos);
-				_bombFactory.CreateBomb(bombType, pos, parent);
-			}
-		}
 
-		Vector2 CellCenterPos(Vector2 bombCarrierPos)
-		{
-			var cellPos = _mapController.WorldToCell(bombCarrierPos);
-			return _mapController.GetCellCenterWorld(cellPos);
+				var bombCarrierPos = _bombCarrier.TransformPos();
+				var cell = _mapController.WorldToCell(bombCarrierPos);
+				_bombFactory.CreateBomb(bombType, cell, parent);
+			}
 		}
 	}
 }

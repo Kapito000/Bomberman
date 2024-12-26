@@ -1,6 +1,6 @@
-﻿using Common.Component;
-using Gameplay.Feature.Bomb.Component;
+﻿using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Destruction.Component;
+using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Map.MapController;
 using Gameplay.Map;
 using Infrastructure.ECS;
@@ -18,18 +18,18 @@ namespace Gameplay.Feature.Bomb.System
 		[Inject] IMapController _mapController;
 		[Inject] IInstantiateService _instantiateService;
 
-		readonly EcsFilterInject<Inc<CreateExplosionRequest, Position>> _filter;
+		readonly EcsFilterInject<Inc<CreateExplosionRequest, CellPos>>
+			_requestFilter;
 
 		public void Run(IEcsSystems systems)
 		{
-			foreach (var request in _filter.Value)
+			foreach (var requestEntity in _requestFilter.Value)
 			{
-				_request.SetEntity(request);
+				_request.SetEntity(requestEntity);
 
-				var pos = _request.Position();
-				var cellPos = _mapController.WorldToCell(pos);
-				if (_mapController.TryGet(cellPos, out TileType tileType) == false ||
-				    tileType == TileType.Free)
+				var cell = _request.CellPos();
+				if (_mapController.TryGet(cell, out TileType tileType) == false
+				    || tileType == TileType.Free)
 					continue;
 
 				if (tileType == TileType.None)
@@ -41,8 +41,7 @@ namespace Gameplay.Feature.Bomb.System
 				if (tileType == TileType.Destructible)
 				{
 					_request
-						.AddBlowUpDestructible()
-						.AddDestructibleTileCellPos(cellPos)
+						.Add<BlowUpDestructible>()
 						;
 				}
 				else if (tileType == TileType.Indestructible)

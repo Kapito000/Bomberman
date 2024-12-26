@@ -5,12 +5,11 @@ namespace Gameplay.Feature.Bomb.Factory
 {
 	public interface IBombFactory : IFactory
 	{
-		int CreateBomb(BombType bombType, Vector2 pos, Transform parent);
+		int CreateBomb(BombType bombType, Vector2Int cell, Transform parent);
 		int CreateBombParent();
-		int CreateExplosionRequest(Vector2 pos, float explosionRadius);
-		int CreateExplosionPart(Vector2 pos, Vector2 direction, Transform parent,
-			ExplosionPart part);
-		int CreateExplosionCenter(Vector2 pos, Transform parent);
+		int CreateCallExplosion(Vector2Int cell, int explosionRadius);
+		int CreateExplosionPart(Vector2Int cell, ExplosionPart part, Transform parent,
+			Vector2 direction = default);
 		void CreateDestructibleTile(Vector2 pos, Transform parent);
 	}
 }

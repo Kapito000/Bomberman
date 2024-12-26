@@ -82,17 +82,17 @@ namespace Gameplay.Feature.Map.MapController
 		public Vector2 GetCellCenterWorld(Vector2Int cellPos) =>
 			_mapView.GetCellCenterWorld(cellPos);
 
-		public bool TryGet(Vector2Int pos, out TileType type) =>
-			_tilesGrid.TryGet(pos, out type);
+		public bool TryGet(Vector2Int cell, out TileType type) =>
+			_tilesGrid.TryGet(cell, out type);
 
-		public bool TryGet(Vector2Int pos, out MapItem type) =>
-			_itemsGrid.TryGet(pos, out type);
+		public bool TryGet(Vector2Int cell, out MapItem type) =>
+			_itemsGrid.TryGet(cell, out type);
 
-		public void DestroyTile(Vector2Int cellPos)
+		public void DestroyTile(Vector2Int cell)
 		{
 			_entity.NewEntity()
 				.Add<DestroyedTile>()
-				.AddCellPos(cellPos)
+				.AddCellPos(cell)
 				.Add<DestroyedTileRequest>()
 				;
 		}

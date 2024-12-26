@@ -14,14 +14,15 @@ namespace Gameplay.Feature.Bomb.Component
 	public struct BombExplosion { }
 	public struct ExplosionTimer { public float Value; }
 	public struct PutBombRequest { }
-	public struct ExplosionRadius { public float Value; }
+	public struct ExplosionRadius { public int Value; }
+	
+	public struct ExplosionPartComponent { public ExplosionPart Value; }
+	
+	public struct CallExplosion { }
+	
 	public struct Explosion { }
-	public struct ExplosionRequest { }
 	public struct CreateExplosionRequest { }
 	public struct BlowUpDestructible { }
-	public struct DestructibleTileCellPos { public Vector2Int Value; }
-	public struct ExplosionPartComponent { public ExplosionPart Value; }
-	public struct ExplosionCenter { }
 	public struct TargetsBufferIncrementRequest { public List<int> Value; }
 	public struct TargetsBufferDecrementRequest { public List<int> Value; }
 	public struct TargetsBuffer { public List<EcsPackedEntityWithWorld> Value; }

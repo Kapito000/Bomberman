@@ -11,10 +11,9 @@ namespace Gameplay.Feature.Bomb.System
 		[Inject] EntityWrapper _buffer;
 		[Inject] EntityWrapper _explosion;
 
-		readonly EcsFilterInject<
-			Inc<Component.Explosion, TargetsBufferIncrementRequest>> _requestFilter;
-		readonly EcsFilterInject<
-			Inc<Component.Explosion, TargetsBuffer>> _targetBufferFilter;
+		readonly EcsFilterInject<Inc<Explosion, TargetsBufferIncrementRequest>>
+			_requestFilter;
+		readonly EcsFilterInject<Inc<Explosion, TargetsBuffer>> _targetBufferFilter;
 
 		public void Run(IEcsSystems systems)
 		{

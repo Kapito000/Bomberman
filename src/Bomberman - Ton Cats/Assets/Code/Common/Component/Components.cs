@@ -21,7 +21,7 @@ namespace Common.Component
 	public struct Position { public Vector3 Value; }
 	public struct Direction { public Vector2 Value; }
 	public struct FirstBreath { }
-	public struct ForParent { public Transform Value; }
+	public struct Parent { public Transform Value; }
 	public struct Launched { }
 	public struct AdditionalAudioSourceParent { public Transform Value; }
 }

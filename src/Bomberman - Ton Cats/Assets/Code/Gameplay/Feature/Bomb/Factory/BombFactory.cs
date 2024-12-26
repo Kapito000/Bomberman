@@ -3,6 +3,7 @@ using Extensions;
 using Gameplay.Feature.Bomb.Behaviour;
 using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Bomb.StaticData;
+using Gameplay.Feature.Map.MapController;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using Infrastructure.TimeService;
@@ -23,16 +24,19 @@ namespace Gameplay.Feature.Bomb.Factory
 		[Inject] EntityWrapper _bomb;
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _entity;
+		[Inject] IMapController _mapController;
 		[Inject] IBombDataService _bombDataService;
 
-		public int CreateBomb(BombType bombType, Vector2 pos, Transform parent)
+		public int CreateBomb(BombType bombType, Vector2Int cell, Transform parent)
 		{
 			var prefab = _kit.AssetProvider.Bomb();
+			var pos = _mapController.GetCellCenterWorld(cell);
 			var instance = _kit.InstantiateService.Instantiate(prefab, pos, parent);
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
 			_bomb.SetEntity(entity);
 			_bomb
 				.Add<BombComponent>()
+				.AddCellPos(cell)
 				;
 			InitBombType(_bomb, bombType);
 
@@ -52,38 +56,34 @@ namespace Gameplay.Feature.Bomb.Factory
 			return entity;
 		}
 
-		public int CreateExplosionRequest(Vector2 pos, float explosionRadius)
+		public int CreateCallExplosion(Vector2Int cell, int explosionRadius)
 		{
 			var entity = _world.NewEntity();
 			_entity.SetEntity(entity);
 			_entity
-				.Add<ExplosionRequest>()
-				.AddPosition(pos)
+				.Add<CallExplosion>()
+				.AddCellPos(cell)
 				.AddExplosionRadius(explosionRadius)
 				;
 			return entity;
 		}
 
-		public int CreateExplosionPart(Vector2 pos, Vector2 direction,
-			Transform parent, ExplosionPart part)
+		public int CreateExplosionPart(Vector2Int cell, ExplosionPart part,
+			Transform parent, Vector2 direction = default)
 		{
-			var instance = InstantiateExplosion(pos, parent);
-			var entity = InitExplosionEntity(instance);
-			SetRotation(instance, direction);
-			PlayAnimation(instance, part);
-			return entity;
-		}
-
-		public int CreateExplosionCenter(Vector2 pos, Transform parent)
-		{
-			var instance = InstantiateExplosion(pos, parent);
-			var entity = InitExplosionEntity(instance);
-			_entity.SetEntity(entity);
+			var instance = InstantiateExplosion(cell, parent);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			_entity.SetEntity(e);
 			_entity
-				.Add<ExplosionCenter>()
+				.Add<FirstBreath>()
+				.Add<Explosion>()
+				.AddTransform(instance.transform)
 				;
-			PlayAnimation(instance, ExplosionPart.Center);
-			return entity;
+
+			if (part != ExplosionPart.Center)
+				SetRotation(instance, direction);
+			PlayAnimation(instance, part);
+			return e;
 		}
 
 		public void CreateDestructibleTile(Vector2 pos, Transform parent)
@@ -121,7 +121,7 @@ namespace Gameplay.Feature.Bomb.Factory
 		{
 			var name = BombCharacteristic.ExplosionRadius.ToString();
 			if (characteristics.TryGetValue(name, out var radius))
-				bomb.AddExplosionRadius(radius);
+				bomb.AddExplosionRadius((int)radius);
 			else
 				bomb.AddExplosionRadius(1);
 		}
@@ -142,18 +142,6 @@ namespace Gameplay.Feature.Bomb.Factory
 			var prefab = _kit.AssetProvider.Explosion();
 			return _kit.InstantiateService
 				.Instantiate(prefab, pos, quaternion.identity, parent);
-		}
-
-		int InitExplosionEntity(GameObject instance)
-		{
-			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
-			_entity.SetEntity(entity);
-			_entity
-				.Add<FirstBreath>()
-				.Add<Explosion>()
-				.AddTransform(instance.transform)
-				;
-			return entity;
 		}
 
 		void SetRotation(GameObject instance, Vector2 direction)

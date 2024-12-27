@@ -10,6 +10,7 @@ using Infrastructure.TimeService;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 using MappedSpan =
 	System.Collections.Generic.IReadOnlyDictionary<string, float>;
@@ -29,7 +30,7 @@ namespace Gameplay.Feature.Bomb.Factory
 
 		public int CreateBomb(BombType bombType, Vector2Int cell, Transform parent)
 		{
-			var prefab = _kit.AssetProvider.Bomb();
+			var prefab = _kit.AssetProvider.Bomb(bombType);
 			var pos = _mapController.GetCellCenterWorld(cell);
 			var instance = _kit.InstantiateService.Instantiate(prefab, pos, parent);
 			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
@@ -39,6 +40,7 @@ namespace Gameplay.Feature.Bomb.Factory
 				.AddCellPos(cell)
 				;
 			InitBombType(_bomb, bombType);
+			TryInitBombHunter(bombType, _bomb, instance);
 
 			return entity;
 		}
@@ -108,14 +110,35 @@ namespace Gameplay.Feature.Bomb.Factory
 			AddExplosionRadius(bomb, characteristics);
 		}
 
+		bool TryInitBombHunter(BombType bombType, EntityWrapper bomb,
+			GameObject obj)
+		{
+			if (bombType != BombType.Hunter)
+				return false;
+
+			bomb.Add<BombHunter>();
+			if (obj.TryGetComponent<NavMeshAgent>(out var navMeshAgent) == false)
+			{
+				Debug.LogError($"Cannot to get \"{nameof(NavMeshAgent)}\"");
+				return false;
+			}
+
+			var filter = Constant.NavMesh.AreaMask.Walkable;
+			if (NavMesh.SamplePosition(obj.transform.position, out var hit,
+				    Mathf.Epsilon, filter))
+			{
+				navMeshAgent.enabled = true;
+			}
+
+			return true;
+		}
+
 		void AddExplosionTimer(EntityWrapper bomb, MappedSpan characteristics)
 		{
 			var name = BombCharacteristic.ExplosionTimer.ToString();
 			if (characteristics.TryGetValue(name, out var timer)
 			    && timer > 0)
 				bomb.AddExplosionTimer(_timeService.GameTime() + timer);
-			else
-				bomb.AddExplosionTimer(4);
 		}
 
 		void AddExplosionRadius(EntityWrapper bomb, MappedSpan characteristics)

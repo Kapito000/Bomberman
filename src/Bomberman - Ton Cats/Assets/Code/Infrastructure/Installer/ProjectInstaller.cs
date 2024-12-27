@@ -288,7 +288,8 @@ namespace Infrastructure.Installer
 			Container.Bind<ITileProvider>().FromInstance(_tileCollection).AsSingle();
 			Container.Bind<ILevelsData>().FromInstance(_levelsData).AsSingle();
 			Container.Bind<IWindowKitData>().FromInstance(_windowKitData).AsSingle();
-			Container.Bind<IBombDataService>().FromInstance(_bombDataService).AsSingle();
+			Container.Bind<IBombDataService>().FromInstance(_bombDataService)
+				.AsSingle();
 			Container.Bind<IGameSettingsStartValueData>().To<GameSettingsStartValue>()
 				.AsSingle();
 			Container.Bind<IAudioStartValueData>().To<AudioStartValueData>()

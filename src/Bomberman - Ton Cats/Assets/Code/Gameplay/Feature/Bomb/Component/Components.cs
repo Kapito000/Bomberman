@@ -13,6 +13,8 @@ namespace Gameplay.Feature.Bomb.Component
 	public struct PutBombRequest { }
 	public struct ExplosionRadius { public int Value; }
 	
+	public struct BombHunter { }
+	
 	public struct ExplosionPartComponent { public ExplosionPart Value; }
 	
 	public struct CallExplosion { }

@@ -44,7 +44,7 @@ namespace Gameplay.Feature.Hero.Factory
 
 			for (int i = 0; i < 100; i++)
 			{
-				_heroEntity.BombStack().Push(BombType.Usual);
+				_heroEntity.BombStack().Push(BombType.Hunter);
 			}
 
 			AddTakenDamageEffectComponents(_heroEntity);

@@ -1,4 +1,5 @@
-﻿using Extensions;
+﻿using Constant.NavMesh;
+using Extensions;
 using Gameplay.Audio.Service;
 using Gameplay.Feature.Destruction.Component;
 using Gameplay.Feature.Enemy.Base.Component;
@@ -104,7 +105,7 @@ namespace Gameplay.Feature.Enemy.Base.Factory
 			navMeshAgent.speed = data.Characteristics.MovementSpeed;
 			if (enemyId == Constant.EnemyId.c_Hologram)
 			{
-				var agentTypeName = Constant.NavMeshAgentTypeName.c_VolatileEnemy;
+				var agentTypeName = AgentTypeName.c_VolatileEnemy;
 				var agentTypeId = NavMeshExtension.GetAgentTypeIDByName(agentTypeName);
 				navMeshAgent.agentTypeID = agentTypeId;
 			}

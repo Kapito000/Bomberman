@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cinemachine;
 using Common.HUD;
+using Gameplay.Feature.Bomb;
 using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Windows;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Infrastructure.AssetProvider
 		CinemachineVirtualCamera VirtualCamera();
 		GameObject Hero();
 		GameObject HeroSpawnPoint();
-		GameObject Bomb();
+		GameObject Bomb(BombType bombType);
 		Canvas UiRoot();
 		Canvas HudRoot();
 		GameObject CharacterJoystick();

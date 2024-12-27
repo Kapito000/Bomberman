@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cinemachine;
 using Common.HUD;
+using Gameplay.Feature.Bomb;
 using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Windows;
 using UnityEngine;
@@ -19,10 +20,12 @@ namespace Infrastructure.AssetProvider
 		[Space]
 		[SerializeField] GameObject _hero;
 		[SerializeField] GameObject _heroSpawnPoint;
-		[SerializeField] GameObject _bomb;
 		[SerializeField] GameObject _explosion;
 		[SerializeField] GameObject _baseEnemy;
 		[SerializeField] GameObject _finishLevelDoor;
+		[Header("Bombs")]
+		[SerializeField] GameObject _bomb;
+		[SerializeField] GameObject _bombHunter;
 		[Header("Audio")]
 		[SerializeField] GameObject _ambientMusic;
 		[SerializeField] GameObject _finishLevelMusic;
@@ -44,11 +47,13 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] IntegerDisplay _enemyCounterDisplay;
 		[SerializeField] GameTimerDisplay _gameTimerDisplay;
 
+		public GameObject Bomb(BombType bombType) =>
+			bombType == BombType.Hunter ? _bombHunter : _bomb;
+
 		public Camera Camera() => _camera;
 		public Canvas UiRoot() => _root;
 		public Canvas HudRoot() => _hudRoot;
 		public GameObject Hero() => _hero;
-		public GameObject Bomb() => _bomb;
 		public GameObject BaseEnemy() => _baseEnemy;
 		public GameObject Explosion() => _explosion;
 		public GameObject UpperPanel() => _upperPanel;

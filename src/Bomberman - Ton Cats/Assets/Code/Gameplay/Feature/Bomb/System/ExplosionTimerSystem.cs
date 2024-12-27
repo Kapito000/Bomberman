@@ -21,7 +21,7 @@ namespace Gameplay.Feature.Bomb.System
 				_bomb.SetEntity(bombEntity);
 
 				var timer = _bomb.ExplosionTimer();
-				if (timer >= _timeService.GameTime())
+				if (timer < _timeService.GameTime())
 				{
 					_bomb.Add<BombExplosion>();
 					_bomb.Remove<ExplosionTimer>();

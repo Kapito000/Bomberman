@@ -16,7 +16,6 @@ namespace Gameplay.Feature.Bomb
 			AddUpdate<BombExplosionSystem>();
 			
 			AddUpdate<CallExplosionSystem>();
-			AddUpdate<ScanExplosionAreaSystem>();
 			AddUpdate<CreateBlowUpDestructibleSystem>();
 			AddUpdate<CreateExplosionSystem>();
 			AddUpdate<ExplosionCenterAudioEffectSystem>();

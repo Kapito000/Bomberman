@@ -2,6 +2,8 @@
 using Gameplay.Feature.Bomb.Component;
 using Gameplay.Feature.Bomb.Factory;
 using Gameplay.Feature.Map.Component;
+using Gameplay.Feature.Map.MapController;
+using Gameplay.Map;
 using Infrastructure.ECS;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -18,6 +20,7 @@ namespace Gameplay.Feature.Bomb.System
 		[Inject] EntityWrapper _bombParent;
 		[Inject] EntityWrapper _createRequest;
 		[Inject] EntityWrapper _callExplosion;
+		[Inject] IMapController _mapController;
 
 		readonly EcsFilterInject<Inc<CallExplosion, CellPos, ExplosionRadius>>
 			_callExplosionFilter;
@@ -37,27 +40,42 @@ namespace Gameplay.Feature.Bomb.System
 				var parent = Parent(bombParentEntity);
 				RequestCreatingExplosion(cell, parent, ExplosionPart.Center);
 
-				for (int i = 0; i < explosionRadius; i++)
-				{
-					var part = i == explosionRadius - 1
-						? ExplosionPart.End
-						: ExplosionPart.Middle;
-
-					RequestCreatingExplosion(
-						cell + Vector2Int.up * i, parent, part, Vector2.up);
-					RequestCreatingExplosion(
-						cell + Vector2Int.down * i, parent, part, Vector2.down);
-					RequestCreatingExplosion(
-						cell + Vector2Int.left * i, parent, part, Vector2.left);
-					RequestCreatingExplosion(
-						cell + Vector2Int.right * i, parent, part, Vector2.right);
-				}
+				RequestForDirection(explosionRadius, parent, cell, Vector2Int.up);
+				RequestForDirection(explosionRadius, parent, cell, Vector2Int.down);
+				RequestForDirection(explosionRadius, parent, cell, Vector2Int.left);
+				RequestForDirection(explosionRadius, parent, cell, Vector2Int.right);
 
 				_callExplosion.Destroy();
 			}
 		}
 
-		void RequestCreatingExplosion(Vector2Int cell, Transform parent,
+		void RequestForDirection(int explosionRadius, Transform parent,
+			Vector2Int center, Vector2Int dir)
+		{
+			for (int i = 0; i < explosionRadius; i++)
+			{
+				var part = i == explosionRadius - 1
+					? ExplosionPart.End
+					: ExplosionPart.Middle;
+
+				var cell = center + dir * i;
+
+				if (_mapController.TryGet(cell, out TileType tileType)
+				    && tileType == TileType.Indestructible)
+					break;
+
+				if (tileType == TileType.Destructible)
+				{
+					var request = RequestCreatingExplosion(cell, parent, part, dir);
+					request.Add<BlowUpDestructible>();
+					break;
+				}
+
+				RequestCreatingExplosion(cell, parent, part, dir);
+			}
+		}
+
+		EntityWrapper RequestCreatingExplosion(Vector2Int cell, Transform parent,
 			ExplosionPart part, Vector2 dir = default)
 		{
 			_createRequest.NewEntity()
@@ -69,6 +87,8 @@ namespace Gameplay.Feature.Bomb.System
 
 			if (part != ExplosionPart.Center)
 				_createRequest.AddDirection(dir);
+
+			return _createRequest;
 		}
 
 		Transform Parent(int bombParent)

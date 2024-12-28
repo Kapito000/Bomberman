@@ -125,9 +125,8 @@ namespace Gameplay.Feature.Bomb.Factory
 				return false;
 			}
 
-			var filter = Constant.NavMesh.AreaMask.Walkable;
-			if (NavMesh
-			    .SamplePosition(obj.transform.position, out var hit, 1, NavMesh.AllAreas))
+			int mask = 1 << Constant.NavMesh.AreaMask.Walkable;
+			if (NavMesh.SamplePosition(obj.transform.position, out _, .1f, mask))
 			{
 				navMeshAgent.enabled = true;
 			}

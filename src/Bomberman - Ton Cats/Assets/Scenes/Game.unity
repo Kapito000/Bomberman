@@ -827,6 +827,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base enemy navigation surface
       objectReference: {fileID: 0}
+    - target: {fileID: 8303610445941152886, guid: 2b92faef62c14374d9638ed2c93dc6b6, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

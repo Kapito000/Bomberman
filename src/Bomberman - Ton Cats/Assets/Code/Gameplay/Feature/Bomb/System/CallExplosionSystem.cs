@@ -40,10 +40,14 @@ namespace Gameplay.Feature.Bomb.System
 				var parent = Parent(bombParentEntity);
 				RequestCreatingExplosion(cell, parent, ExplosionPart.Center);
 
-				RequestForDirection(explosionRadius, parent, cell, Vector2Int.up);
-				RequestForDirection(explosionRadius, parent, cell, Vector2Int.down);
-				RequestForDirection(explosionRadius, parent, cell, Vector2Int.left);
-				RequestForDirection(explosionRadius, parent, cell, Vector2Int.right);
+
+				if (explosionRadius > 0)
+				{
+					RequestForDirection(explosionRadius, parent, cell, Vector2Int.up);
+					RequestForDirection(explosionRadius, parent, cell, Vector2Int.down);
+					RequestForDirection(explosionRadius, parent, cell, Vector2Int.left);
+					RequestForDirection(explosionRadius, parent, cell, Vector2Int.right);
+				}
 
 				_callExplosion.Destroy();
 			}
@@ -58,7 +62,7 @@ namespace Gameplay.Feature.Bomb.System
 					? ExplosionPart.End
 					: ExplosionPart.Middle;
 
-				var cell = center + dir * i;
+				var cell = center + dir * (i + 1);
 
 				if (_mapController.TryGet(cell, out TileType tileType)
 				    && tileType == TileType.Indestructible)

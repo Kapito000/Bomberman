@@ -12,7 +12,7 @@ namespace Gameplay.Feature.Bomb
 			AddUpdate<PutBombSystem>();
 			AddUpdate<PutBombAudioEffect>();
 			
-			// AddUpdate<>();
+			AddUpdate<HunterBombTargetSelectionSystem>();
 
 			AddUpdate<ExplosionTimerSystem>();
 			AddUpdate<BombExplosionSystem>();

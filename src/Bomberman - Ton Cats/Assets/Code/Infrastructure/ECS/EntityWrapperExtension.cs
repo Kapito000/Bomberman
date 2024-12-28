@@ -17,6 +17,7 @@ using Gameplay.Feature.HUD.Component;
 using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Timer.Component;
+using Gameplay.Navigation.Component;
 using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.AI;
@@ -25,6 +26,7 @@ using BombCounterPanel = Gameplay.Feature.HUD.Component.BombCounterPanel;
 using LifePointsPanel = Gameplay.Feature.HUD.Component.LifePointsPanel;
 using Rigidbody2D = UnityEngine.Rigidbody2D;
 using Transform = UnityEngine.Transform;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Infrastructure.ECS
 {
@@ -162,7 +164,7 @@ namespace Infrastructure.ECS
 			component.Value = points;
 			return this;
 		}
-		
+
 		public EntityWrapper SetLifePoints(int value)
 		{
 			ref var health = ref Get<LifePoints>();
@@ -370,13 +372,16 @@ namespace Infrastructure.ECS
 			return this;
 		}
 
-		public Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay GameTimerDisplay()
+		public Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay
+			GameTimerDisplay()
 		{
 			ref var component = ref Get<GameTimerDisplayComponent>();
 			return component.Value;
 		}
 
-		public EntityWrapper AddGameTimerDisplay(Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay gameTimerDisplay)
+		public EntityWrapper AddGameTimerDisplay(
+			Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay
+				gameTimerDisplay)
 		{
 			ref var component = ref AddComponent<GameTimerDisplayComponent>();
 			component.Value = gameTimerDisplay;
@@ -487,7 +492,7 @@ namespace Infrastructure.ECS
 			ref var component = ref Get<EnemyId>();
 			return component.Value;
 		}
-		
+
 		public EntityWrapper AddEnemyId(string enemyId)
 		{
 			ref var component = ref AddComponent<EnemyId>();
@@ -500,7 +505,7 @@ namespace Infrastructure.ECS
 			ref var component = ref Get<ImmortalTimer>();
 			return component.Value;
 		}
-		
+
 		public EntityWrapper AddImmortalTimer(float time)
 		{
 			ref var component = ref AddComponent<ImmortalTimer>();
@@ -513,7 +518,7 @@ namespace Infrastructure.ECS
 			ref var component = ref Get<RestoreLifePoints>();
 			return component.Value;
 		}
-		
+
 		public EntityWrapper AddRestoreLifePoints(int lifePoints)
 		{
 			ref var component = ref AddComponent<RestoreLifePoints>();
@@ -540,7 +545,7 @@ namespace Infrastructure.ECS
 			component.Value = value;
 			return this;
 		}
-		
+
 		public IDisplay<int> EnemyCounterDisplay()
 		{
 			ref var component = ref Get<EnemyCounterDisplay>();
@@ -565,14 +570,14 @@ namespace Infrastructure.ECS
 			ref var component = ref Get<ExplosionTimer>();
 			return component.Value;
 		}
-		
+
 		public EntityWrapper AddExplosionTimer(float value)
 		{
 			ref var component = ref AddComponent<ExplosionTimer>();
 			component.Value = value;
 			return this;
 		}
-		
+
 		public int ExplosionRadius()
 		{
 			ref var component = ref Get<ExplosionRadius>();
@@ -582,7 +587,40 @@ namespace Infrastructure.ECS
 		public EntityWrapper AddExplosionRadius(int radius)
 		{
 			ref var component = ref AddComponent<ExplosionRadius>();
-			component.Value = (int) radius;
+			component.Value = (int)radius;
+			return this;
+		}
+
+		public Transform BombHunterTarget()
+		{
+			ref var component = ref AddComponent<BombHunterTarget>();
+			return component.Value;
+		}
+
+		public EntityWrapper AddBombHunterTarget(Transform target)
+		{
+			ref var component = ref AddComponent<BombHunterTarget>();
+			component.Value = target;
+			return this;
+		}
+
+		public EntityWrapper ReplaceBombHunterTarget(Transform target)
+		{
+			ref var component = ref ReplaceComponent<BombHunterTarget>();
+			component.Value = target;
+			return this;
+		}
+
+		public Vector2 AgentDestination()
+		{
+			ref var currentPatrolPoint = ref Get<AgentDestination>();
+			return currentPatrolPoint.Value;
+		}
+
+		public EntityWrapper ReplaceAgentDestination(Vector2 destination)
+		{
+			ref var currentPatrolPoint = ref ReplaceComponent<AgentDestination>();
+			currentPatrolPoint.Value = destination;
 			return this;
 		}
 	}

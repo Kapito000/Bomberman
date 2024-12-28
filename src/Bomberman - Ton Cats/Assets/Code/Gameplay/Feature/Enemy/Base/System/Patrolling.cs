@@ -3,13 +3,14 @@ using Gameplay.AI;
 using Gameplay.Feature.Enemy.AI;
 using Gameplay.Feature.Enemy.Base.Component;
 using Gameplay.Feature.Enemy.Base.StaticData;
+using Gameplay.Navigation.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.Enemy.Base.System
 {
-	public sealed class  Patrolling
+	public sealed class Patrolling
 	{
 		[Inject] IAIData _aiData;
 		[Inject] FindPatrolPoints _findPatrolPoints;
@@ -24,7 +25,7 @@ namespace Gameplay.Feature.Enemy.Base.System
 
 		public bool HasCurrentPatrolPoint()
 		{
-			return Agent().Has<CurrentDestination>();
+			return Agent().Has<PatrolPoint>();
 		}
 
 		public bool IsPatrolPointArrived()
@@ -42,8 +43,8 @@ namespace Gameplay.Feature.Enemy.Base.System
 			var pos = Agent().TransformPos();
 			var patrolDistance = _aiData.PatrolDistance;
 			var destination = _findPatrolPoints.CalculatePoint(pos, patrolDistance);
-			Agent().ReplaceCurrentDestination(destination);
-			Agent().NavMeshAgent().SetDestination(destination);
+			Agent().ReplacePatrolPoint(destination);
+			Agent().ReplaceAgentDestination(destination);
 			return BehaviourTreeStatus.Success;
 		}
 
@@ -53,8 +54,8 @@ namespace Gameplay.Feature.Enemy.Base.System
 			var patrolDistance = _aiData.PatrolDistance;
 			var destination = _findPatrolVolatilePoints
 				.CalculatePoint(pos, patrolDistance);
-			Agent().ReplaceCurrentDestination(destination);
-			Agent().NavMeshAgent().SetDestination(destination);
+			Agent().ReplacePatrolPoint(destination);
+			Agent().ReplaceAgentDestination(destination);
 			return BehaviourTreeStatus.Success;
 		}
 

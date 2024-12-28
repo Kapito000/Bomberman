@@ -3,6 +3,7 @@ using System.Linq;
 using Extensions;
 using Gameplay.Feature.Map.MapController;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Gameplay.Feature.Enemy.AI
 {

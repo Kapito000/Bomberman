@@ -11,6 +11,7 @@ using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using UnityEngine;
 using Zenject;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Gameplay.Feature.Hero.Factory
 {

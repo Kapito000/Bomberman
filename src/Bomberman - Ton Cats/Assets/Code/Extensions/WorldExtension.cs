@@ -38,7 +38,7 @@ namespace Extensions
 		}
 
 		public static void SetMovementDirection(this EcsWorld world, int e,
-			Vector2 value)
+			UnityEngine.Vector2 value)
 		{
 			ref var movableDirection = ref world.GetPool<MovementDirection>().Get(e);
 			movableDirection.Value = value;

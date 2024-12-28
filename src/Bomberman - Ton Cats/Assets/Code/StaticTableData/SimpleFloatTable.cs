@@ -209,7 +209,7 @@ namespace StaticTableData
 			if (lineIndex < 0)
 				throw new ArgumentOutOfRangeException(nameof(lineIndex));
 			dict = null;
-			if (lineIndex < GetSize(dimension))
+			if (lineIndex <= GetSize(dimension))
 			{
 				dict = new D1NavDictionary(this, dimension, lineIndex);
 			}

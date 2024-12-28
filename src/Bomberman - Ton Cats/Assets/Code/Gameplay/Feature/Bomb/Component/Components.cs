@@ -1,6 +1,7 @@
 ﻿using System;
 using Common.Collections;
 using Gameplay.Feature.Bomb.Behaviour;
+using UnityEngine;
 
 namespace Gameplay.Feature.Bomb.Component
 {
@@ -14,6 +15,7 @@ namespace Gameplay.Feature.Bomb.Component
 	public struct ExplosionRadius { public int Value; }
 	
 	public struct BombHunter { }
+	public struct BombHunterTarget { public Transform Value; }
 	
 	public struct ExplosionPartComponent { public ExplosionPart Value; }
 	

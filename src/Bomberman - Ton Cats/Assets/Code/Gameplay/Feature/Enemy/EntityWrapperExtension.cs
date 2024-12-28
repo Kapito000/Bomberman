@@ -1,4 +1,4 @@
-using Gameplay.Feature.Enemy.Base.Component;
+﻿using Gameplay.Feature.Enemy.Base.Component;
 using Infrastructure.ECS;
 using UnityEngine;
 
@@ -6,17 +6,17 @@ namespace Gameplay.Feature.Enemy
 {
 	public static class EntityWrapperExtension
 	{
-		public static Vector2 CurrentPatrolPoint(this EntityWrapper e)
+		public static Vector2 PatrolPoint(this EntityWrapper e)
 		{
-			ref var currentPatrolPoint = ref e.Get<CurrentDestination>();
-			return currentPatrolPoint.Value;
+			ref var component = ref e.Get<PatrolPoint>();
+			return component.Value;
 		}
 
-		public static Vector2 ReplaceCurrentDestination(this EntityWrapper e,
-			Vector2 destination)
+		public static EntityWrapper ReplacePatrolPoint(this EntityWrapper e, Vector2 value)
 		{
-			ref var currentPatrolPoint = ref e.ReplaceComponent<CurrentDestination>();
-			return currentPatrolPoint.Value = destination;
+			ref var component = ref e.ReplaceComponent<PatrolPoint>();
+			component.Value = value;
+			return e;
 		}
 	}
 }

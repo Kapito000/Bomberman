@@ -14,6 +14,7 @@ using UnityEngine.AI;
 using Zenject;
 using MappedSpan =
 	System.Collections.Generic.IReadOnlyDictionary<string, float>;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Gameplay.Feature.Bomb.Factory
 {
@@ -117,6 +118,7 @@ namespace Gameplay.Feature.Bomb.Factory
 				return false;
 
 			bomb.Add<BombHunter>();
+
 			if (obj.TryGetComponent<NavMeshAgent>(out var navMeshAgent) == false)
 			{
 				Debug.LogError($"Cannot to get \"{nameof(NavMeshAgent)}\"");
@@ -124,8 +126,8 @@ namespace Gameplay.Feature.Bomb.Factory
 			}
 
 			var filter = Constant.NavMesh.AreaMask.Walkable;
-			if (NavMesh.SamplePosition(obj.transform.position, out var hit,
-				    Mathf.Epsilon, filter))
+			if (NavMesh
+			    .SamplePosition(obj.transform.position, out var hit, 1, NavMesh.AllAreas))
 			{
 				navMeshAgent.enabled = true;
 			}

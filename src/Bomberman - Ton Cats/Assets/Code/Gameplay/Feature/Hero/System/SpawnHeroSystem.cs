@@ -6,7 +6,6 @@ using Gameplay.Feature.Hero.StaticData;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Unity.Mathematics;
-using UnityEngine;
 using Zenject;
 
 namespace Gameplay.Feature.Hero.System
@@ -24,7 +23,7 @@ namespace Gameplay.Feature.Hero.System
 			foreach (var spawnPointEntity in _filter.Value)
 			{
 				var transform = _world.Transform(spawnPointEntity);
-				Vector2 pos = transform.position;
+				var pos = transform.position;
 				_heroFactory.CreateHero(pos, quaternion.identity, transform);
 			}
 		}

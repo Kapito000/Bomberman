@@ -16,6 +16,7 @@ using Gameplay.Feature.Map;
 using Gameplay.Feature.MapGenerator;
 using Gameplay.Feature.PlayerProgress;
 using Gameplay.Feature.Timer;
+using Gameplay.Navigation;
 using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature.FeatureControl
@@ -29,11 +30,14 @@ namespace Gameplay.Feature.FeatureControl
 			Add<MapGenerationFeature>();
 			Add<CollisionsFeature>();
 			Add<GameMusicFeature>();
+			
 			Add<HeroFeature>();
 			Add<EnemyFeature>();
 			Add<BombFeature>();
 			Add<DamageApplicationFeature>();
 			Add<LifeFeature>();
+			Add<NavigationFeature>();
+			
 			Add<MapFeature>();
 			Add<TimerFeature>();
 			Add<AudioFeature>();

@@ -8,8 +8,12 @@ namespace Gameplay.Feature.Input
 		public InputFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddInit<CharacterPutBombInputSystem>();
+			
+			AddInit<CharacterScreenTapSystem>();
+			
 			AddUpdate<CharacterMoveInputSystem>();
-			AddCleanup<PutBombRequestCleanupSystem>();
+			
+			AddCleanup<CleanupSystem>();
 		}
 	}
 }

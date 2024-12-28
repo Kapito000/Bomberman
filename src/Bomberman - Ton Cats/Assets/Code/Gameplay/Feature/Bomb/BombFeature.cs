@@ -14,7 +14,9 @@ namespace Gameplay.Feature.Bomb
 			
 			AddUpdate<HunterBombTargetSelectionSystem>();
 
-			AddUpdate<ExplosionTimerSystem>();
+			AddUpdate<RemoteDetonationSystem>();
+			AddUpdate<DetonationTimerSystem>();
+			
 			AddUpdate<BombExplosionSystem>();
 			
 			AddUpdate<CallExplosionSystem>();

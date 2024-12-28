@@ -5,7 +5,7 @@ namespace Gameplay.Feature.Camera.Factory
 {
 	public interface ICameraFactory : IFactory
 	{
-		void CreateCamera();
+		int CreateCamera();
 		int CreateVirtualCamera(Transform followTarget);
 	}
 }

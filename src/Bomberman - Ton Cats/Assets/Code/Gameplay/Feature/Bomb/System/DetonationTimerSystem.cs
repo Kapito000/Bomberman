@@ -8,12 +8,14 @@ using Zenject;
 
 namespace Gameplay.Feature.Bomb.System
 {
-	public sealed class ExplosionTimerSystem : IEcsRunSystem
+	public sealed class DetonationTimerSystem : IEcsRunSystem
 	{
 		[Inject] ITimeService _timeService;
 		[Inject] EntityWrapper _bomb;
 
-		EcsFilterInject<Inc<BombComponent, ExplosionTimer>> _bombFilter;
+		EcsFilterInject<
+			Inc<BombComponent, ExplosionTimer>,
+			Exc<BombExplosion>> _bombFilter;
 
 		public void Run(IEcsSystems systems)
 		{

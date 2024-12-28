@@ -14,6 +14,7 @@ using Gameplay.Feature.Enemy.Component;
 using Gameplay.Feature.Hero.Behaviour;
 using Gameplay.Feature.Hero.Component;
 using Gameplay.Feature.HUD.Component;
+using Gameplay.Feature.Input.Component;
 using Gameplay.Feature.Life.Component;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Timer.Component;
@@ -621,6 +622,32 @@ namespace Infrastructure.ECS
 		{
 			ref var currentPatrolPoint = ref ReplaceComponent<AgentDestination>();
 			currentPatrolPoint.Value = destination;
+			return this;
+		}
+
+		public Vector2 ScreenTap()
+		{
+			ref var component = ref Get<ScreenTap>();
+			return component.Value;
+		}
+
+		public EntityWrapper AddScreenTap(Vector2 screenPos)
+		{
+			ref var component = ref AddComponent<ScreenTap>();
+			component.Value = screenPos;
+			return this;
+		}
+
+		public Camera Camera()
+		{
+			ref var component = ref Get<CameraComponent>();
+			return component.Value;
+		}
+		
+		public EntityWrapper AddCamera(Camera value)
+		{
+			ref var component = ref AddComponent<CameraComponent>();
+			component.Value = value;
 			return this;
 		}
 	}

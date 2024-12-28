@@ -6,6 +6,7 @@ using UnityEngine.U2D.Animation;
 
 namespace Common.Component
 {
+	[Serializable] public struct CameraComponent { public Camera Value; }
 	[Serializable] public struct TransformComponent { public Transform Value; }
 	[Serializable] public struct AudioSourceComponent { public AudioSource Value; }
 	[Serializable] public struct Rigidbody2DComponent { public Rigidbody2D Value; }

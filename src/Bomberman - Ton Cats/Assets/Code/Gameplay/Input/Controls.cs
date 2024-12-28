@@ -46,6 +46,15 @@ namespace Gameplay.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScreenTap"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5070ea3-670a-474f-9b09-25a0a5bfe71d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -66,7 +75,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -77,7 +86,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -88,7 +97,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -99,7 +108,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -121,7 +130,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -132,7 +141,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -143,7 +152,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -154,7 +163,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -176,7 +185,7 @@ namespace Gameplay.Input
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard"",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""PutBomb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -191,17 +200,33 @@ namespace Gameplay.Input
                     ""action"": ""PutBomb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70287c6f-2d89-4f95-afe5-535a35ce8afe"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard and mouse;Gamepad"",
+                    ""action"": ""ScreenTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""Keyboard"",
-            ""bindingGroup"": ""Keyboard"",
+            ""name"": ""Keyboard and mouse"",
+            ""bindingGroup"": ""Keyboard and mouse"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -224,6 +249,7 @@ namespace Gameplay.Input
             m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
             m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
             m_Character_PutBomb = m_Character.FindAction("PutBomb", throwIfNotFound: true);
+            m_Character_ScreenTap = m_Character.FindAction("ScreenTap", throwIfNotFound: true);
         }
 
         ~@Controls()
@@ -292,12 +318,14 @@ namespace Gameplay.Input
         private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
         private readonly InputAction m_Character_Movement;
         private readonly InputAction m_Character_PutBomb;
+        private readonly InputAction m_Character_ScreenTap;
         public struct CharacterActions
         {
             private @Controls m_Wrapper;
             public CharacterActions(@Controls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Character_Movement;
             public InputAction @PutBomb => m_Wrapper.m_Character_PutBomb;
+            public InputAction @ScreenTap => m_Wrapper.m_Character_ScreenTap;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -313,6 +341,9 @@ namespace Gameplay.Input
                 @PutBomb.started += instance.OnPutBomb;
                 @PutBomb.performed += instance.OnPutBomb;
                 @PutBomb.canceled += instance.OnPutBomb;
+                @ScreenTap.started += instance.OnScreenTap;
+                @ScreenTap.performed += instance.OnScreenTap;
+                @ScreenTap.canceled += instance.OnScreenTap;
             }
 
             private void UnregisterCallbacks(ICharacterActions instance)
@@ -323,6 +354,9 @@ namespace Gameplay.Input
                 @PutBomb.started -= instance.OnPutBomb;
                 @PutBomb.performed -= instance.OnPutBomb;
                 @PutBomb.canceled -= instance.OnPutBomb;
+                @ScreenTap.started -= instance.OnScreenTap;
+                @ScreenTap.performed -= instance.OnScreenTap;
+                @ScreenTap.canceled -= instance.OnScreenTap;
             }
 
             public void RemoveCallbacks(ICharacterActions instance)
@@ -340,13 +374,13 @@ namespace Gameplay.Input
             }
         }
         public CharacterActions @Character => new CharacterActions(this);
-        private int m_KeyboardSchemeIndex = -1;
-        public InputControlScheme KeyboardScheme
+        private int m_KeyboardandmouseSchemeIndex = -1;
+        public InputControlScheme KeyboardandmouseScheme
         {
             get
             {
-                if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
-                return asset.controlSchemes[m_KeyboardSchemeIndex];
+                if (m_KeyboardandmouseSchemeIndex == -1) m_KeyboardandmouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard and mouse");
+                return asset.controlSchemes[m_KeyboardandmouseSchemeIndex];
             }
         }
         private int m_GamepadSchemeIndex = -1;
@@ -362,6 +396,7 @@ namespace Gameplay.Input
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnPutBomb(InputAction.CallbackContext context);
+            void OnScreenTap(InputAction.CallbackContext context);
         }
     }
 }

@@ -11,12 +11,14 @@ namespace Gameplay.Input.Character
 
 		public Vector2 Movement { get; private set; }
 		public event Action PutBomb;
+		public event Action<Vector2> ScreenClick;
 
 		[Inject]
 		void Construct()
 		{
 			_controls.Character.PutBomb.performed += OnPutBombPerformed;
 			_controls.Character.Movement.performed += OnMovePerformed;
+			_controls.Character.ScreenTap.performed += OnScreenTapPerformed;
 		}
 
 		public void Enable() =>
@@ -29,6 +31,7 @@ namespace Gameplay.Input.Character
 		{
 			_controls.Character.PutBomb.performed -= OnPutBombPerformed;
 			_controls.Character.Movement.performed -= OnMovePerformed;
+			_controls.Character.ScreenTap.performed -= OnScreenTapPerformed;
 		}
 
 		void OnPutBombPerformed(InputAction.CallbackContext context) =>
@@ -37,6 +40,12 @@ namespace Gameplay.Input.Character
 		void OnMovePerformed(InputAction.CallbackContext context)
 		{
 			Movement = context.ReadValue<Vector2>();
+		}
+
+		void OnScreenTapPerformed(InputAction.CallbackContext context)
+		{
+			var screenPos = _controls.Character.MousePos.ReadValue<Vector2>();
+			ScreenClick?.Invoke(screenPos);
 		}
 	}
 }

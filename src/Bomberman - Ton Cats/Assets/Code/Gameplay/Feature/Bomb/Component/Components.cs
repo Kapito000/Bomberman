@@ -17,6 +17,8 @@ namespace Gameplay.Feature.Bomb.Component
 	public struct BombHunter { }
 	public struct BombHunterTarget { public Transform Value; }
 	
+	public struct BombRemoteDetonation { }
+	
 	public struct ExplosionPartComponent { public ExplosionPart Value; }
 	
 	public struct CallExplosion { }

@@ -7,5 +7,6 @@ namespace Gameplay.Input.Character
 	{
 		Vector2 Movement { get; }
 		event Action PutBomb;
+		event Action<Vector2> ScreenClick;
 	}
 }

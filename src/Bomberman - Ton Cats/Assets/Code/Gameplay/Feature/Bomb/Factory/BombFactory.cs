@@ -41,6 +41,7 @@ namespace Gameplay.Feature.Bomb.Factory
 				;
 			InitBombType(_bomb, bombType);
 			TryInitBombHunter(bombType, _bomb, instance);
+			TryInitBombRemoteDetonation(bombType, _bomb);
 
 			return entity;
 		}
@@ -129,6 +130,16 @@ namespace Gameplay.Feature.Bomb.Factory
 			{
 				navMeshAgent.enabled = true;
 			}
+
+			return true;
+		}
+
+		bool TryInitBombRemoteDetonation(BombType bombType, EntityWrapper bomb)
+		{
+			if (bombType != BombType.RemoteDetonation)
+				return false;
+
+			bomb.Add<BombRemoteDetonation>();
 
 			return true;
 		}

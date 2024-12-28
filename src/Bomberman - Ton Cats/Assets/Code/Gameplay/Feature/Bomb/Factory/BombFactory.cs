@@ -38,7 +38,6 @@ namespace Gameplay.Feature.Bomb.Factory
 			_bomb.SetEntity(entity);
 			_bomb
 				.Add<BombComponent>()
-				.AddCellPos(cell)
 				;
 			InitBombType(_bomb, bombType);
 			TryInitBombHunter(bombType, _bomb, instance);

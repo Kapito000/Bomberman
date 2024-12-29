@@ -26,6 +26,7 @@ namespace Infrastructure.AssetProvider
 		[Header("Bombs")]
 		[SerializeField] GameObject _bomb;
 		[SerializeField] GameObject _bombHunter;
+		[SerializeField] GameObject _remoteDetonaion;
 		[Header("Audio")]
 		[SerializeField] GameObject _ambientMusic;
 		[SerializeField] GameObject _finishLevelMusic;
@@ -48,7 +49,12 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] GameTimerDisplay _gameTimerDisplay;
 
 		public GameObject Bomb(BombType bombType) =>
-			bombType == BombType.Hunter ? _bombHunter : _bomb;
+			bombType switch
+			{
+				BombType.Hunter => _bombHunter,
+				BombType.RemoteDetonation => _remoteDetonaion,
+				_ => _bomb,
+			};
 
 		public Camera Camera() => _camera;
 		public Canvas UiRoot() => _root;

@@ -37,7 +37,7 @@ namespace Gameplay.Feature.Bomb.System
 				foreach (var e in _physicsService.OverlapPoint(tapPoint))
 				{
 					_entity.SetEntity(e);
-					if (_entity.Has<BombRemoteDetonation>() ==false)
+					if (_entity.Has<BombRemoteDetonation>() == false)
 						continue;
 
 					_entity.Replace<BombExplosion>();

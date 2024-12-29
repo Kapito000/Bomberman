@@ -12,5 +12,6 @@ namespace Gameplay.Windows
 		void Create(Transform parent, params WindowId[] ids);
 		void Create(Transform parent, IEnumerable<WindowId> ids);
 		bool TryRegistry(BaseWindow window);
+		bool Opened(WindowId windowId);
 	}
 }

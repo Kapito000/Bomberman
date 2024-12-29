@@ -32,6 +32,9 @@ namespace Gameplay.Windows
 			return false;
 		}
 
+		public bool Opened(WindowId windowId) =>
+			_openedWindows.ContainsKey(windowId);
+
 		public void Open(WindowId windowId)
 		{
 			if (_openedWindows.ContainsKey(windowId))

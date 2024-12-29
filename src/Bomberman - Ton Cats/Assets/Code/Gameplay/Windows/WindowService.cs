@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Gameplay.Windows.Factory;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,7 @@ namespace Gameplay.Windows
 	{
 		[Inject] IWindowFactory _windowFactory;
 
+		readonly List<WindowId> _closeList = new();
 		readonly Dictionary<WindowId, BaseWindow> _poolWindows = new();
 		readonly Dictionary<WindowId, BaseWindow> _openedWindows = new();
 
@@ -63,8 +65,12 @@ namespace Gameplay.Windows
 
 		public void CloseAll()
 		{
+			_closeList.Clear();
+
 			foreach (var windowId in _openedWindows.Keys)
-				Close(windowId);
+				_closeList.Add(windowId);
+
+			_closeList.ForEach(Close);
 		}
 
 		bool TryCreate(WindowId id, Transform parent)

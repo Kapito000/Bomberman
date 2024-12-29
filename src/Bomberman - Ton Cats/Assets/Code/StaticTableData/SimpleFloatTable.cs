@@ -173,8 +173,7 @@ namespace StaticTableData
 				return false;
 			}
 
-			const int dimension =
-				COL_DIM; // for row dictionary we iterate over column values inside single row
+			const int dimension = COL_DIM;
 			return TryGetDimMap(dimension, rowIndex, out dict);
 		}
 
@@ -198,8 +197,7 @@ namespace StaticTableData
 				return false;
 			}
 
-			const int dimension =
-				ROW_DIM; // for column dictionary we iterate over row values inside single column
+			const int dimension = ROW_DIM; // for column dictionary we iterate over row values inside single column
 			return TryGetDimMap(dimension, columnIndex, out dict);
 		}
 
@@ -209,10 +207,10 @@ namespace StaticTableData
 			if (lineIndex < 0)
 				throw new ArgumentOutOfRangeException(nameof(lineIndex));
 			dict = null;
-			if (lineIndex <= GetSize(dimension))
-			{
+			// if (lineIndex < GetSize(dimension))
+			// {
 				dict = new D1NavDictionary(this, dimension, lineIndex);
-			}
+			// }
 			return dict != null;
 		}
 

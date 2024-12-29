@@ -43,11 +43,6 @@ namespace Gameplay.Feature.Hero.Factory
 					e.SetLifePoints(_heroData.LifePointsOnStart))
 				;
 
-			for (int i = 0; i < 100; i++)
-			{
-				_heroEntity.BombStack().Push(BombType.RemoteDetonation);
-			}
-
 			AddTakenDamageEffectComponents(_heroEntity);
 
 			return entity;

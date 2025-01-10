@@ -81,6 +81,7 @@ namespace Gameplay.Feature.Bomb.Factory
 			_entity
 				.Add<FirstBreath>()
 				.Add<Explosion>()
+				.AddExplosionPart(part)
 				.AddTransform(instance.transform)
 				;
 

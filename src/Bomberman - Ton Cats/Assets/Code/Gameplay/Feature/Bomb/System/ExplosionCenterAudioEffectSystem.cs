@@ -14,7 +14,7 @@ namespace Gameplay.Feature.Bomb.System
 		[Inject] IAudioService _audioService;
 
 		readonly EcsFilterInject<
-				Inc<Explosion, FirstBreath, ExplosionPart, TransformComponent>>
+				Inc<Explosion, FirstBreath, ExplosionPartComponent, TransformComponent>>
 			_explosionFilter;
 
 		public void Run(IEcsSystems systems)
@@ -25,7 +25,7 @@ namespace Gameplay.Feature.Bomb.System
 				var explosionPart = _explosion.ExplosionPart();
 				if (explosionPart != ExplosionPart.Center)
 					continue;
-				
+
 				var pos = _explosion.TransformPos();
 				var clipId = Constant.AudioClipId.c_BombExplosion;
 				_audioService.Player.PlaySfxClipAtPoint(clipId, pos);

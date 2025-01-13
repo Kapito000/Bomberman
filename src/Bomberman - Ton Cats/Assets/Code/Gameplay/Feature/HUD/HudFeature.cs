@@ -28,6 +28,7 @@ namespace Gameplay.Feature.HUD
 			AddLateUpdate<UpdateBombCounterPanelSystem>();
 			AddLateUpdate<UpdateGameTimerDisplaySystem>();
 			AddLateUpdate<UpdateEnemyCounterDisplaySystem>();
+			AddLateUpdate<HideHudSystem>();
 		}
 	}
 }

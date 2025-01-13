@@ -650,5 +650,18 @@ namespace Infrastructure.ECS
 			component.Value = value;
 			return this;
 		}
+
+		public EntityWrapper AddCanvas(Canvas canvas)
+		{
+			ref var component = ref AddComponent<CanvasComponent>();
+			component.Value = canvas;
+			return this;
+		}
+		
+		public Canvas Canvas()
+		{
+			ref var component = ref Get<CanvasComponent>();
+			return component.Value;
+		}
 	}
 }

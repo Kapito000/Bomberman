@@ -24,6 +24,8 @@ namespace Gameplay.Feature.FinishLevel
 			AddUpdate<LevelCompleteMusicSystem>();
 			
 			AddUpdate<FinishLevelViewSystem>();
+			AddUpdate<HideHudSystem>();
+			
 			AddUpdate<SaveProgressSystem>();
 			
 			AddCleanup<CleanupSystem>();

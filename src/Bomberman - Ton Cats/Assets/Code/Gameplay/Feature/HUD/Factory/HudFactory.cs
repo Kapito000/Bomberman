@@ -6,7 +6,8 @@ using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using UnityEngine;
 using Zenject;
-using GameTimerDisplay = Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay;
+using GameTimerDisplay =
+	Gameplay.Feature.HUD.Feature.Timer.Behaviour.GameTimerDisplay;
 using NotImplementedException = System.NotImplementedException;
 
 namespace Gameplay.Feature.HUD.Factory
@@ -20,14 +21,17 @@ namespace Gameplay.Feature.HUD.Factory
 		public int CreateHudRoot(Transform parent)
 		{
 			var hudRoot = _kit.AssetProvider.HudRoot();
-			var instance = _kit.InstantiateService.Instantiate(hudRoot, parent);
-			var entity = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance);
+			var instance = _kit.InstantiateService
+				.Instantiate<Canvas>(hudRoot, parent);
+			var entity = _kit.EntityBehaviourFactory
+				.InitEntityBehaviour(instance.gameObject);
 			_hudRootEntity.SetEntity(entity);
 
 			var transform = instance.GetComponent<Transform>();
 			_hudRootEntity
 				.Add<HudRoot>()
 				.Add<TransformComponent>().With(e => e.SetTransform(transform))
+				.AddCanvas(instance)
 				;
 			return entity;
 		}
@@ -63,7 +67,8 @@ namespace Gameplay.Feature.HUD.Factory
 			var prefab = _kit.AssetProvider.GameTimerDisplay();
 			var instance = _kit.InstantiateService
 				.Instantiate<GameTimerDisplay>(prefab, parent);
-			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance.gameObject);
+			var e = _kit.EntityBehaviourFactory.InitEntityBehaviour(instance
+				.gameObject);
 			_entity.SetEntity(e);
 			_entity
 				.AddGameTimerDisplay(instance)

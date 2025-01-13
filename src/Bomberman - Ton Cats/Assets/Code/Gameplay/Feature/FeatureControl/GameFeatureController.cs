@@ -43,8 +43,8 @@ namespace Gameplay.Feature.FeatureControl
 			Add<AudioFeature>();
 			Add<CameraFeature>();
 			Add<GameUiFeature>();
-			Add<HudFeature>();
 			Add<FinishLevelFeature>();
+			Add<HudFeature>();
 			Add<PlayerProgressFeature>();
 			Add<DestructionFeature>();
 		}

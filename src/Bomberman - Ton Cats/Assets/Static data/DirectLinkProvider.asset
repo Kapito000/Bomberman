@@ -36,7 +36,7 @@ MonoBehaviour:
     - {fileID: 6570180536727888626, guid: cfa886046fac29841b983e0103e37735, type: 3}
     - {fileID: 6274013183545169145, guid: c27d413c4c1b39a42b712ba71b8fcc5a, type: 3}
     - {fileID: 7198722437013280408, guid: 0e57600613afbb445ac0a540d9a42388, type: 3}
-    - {fileID: 1812040272597357529, guid: df28f7c6cfe95fd448b504f473de8f00, type: 3}
+    - {fileID: 7198722437013280408, guid: 7c59eeabe11a03c40af216e113387e12, type: 3}
   _hudRoot: {fileID: 8017098716089676229, guid: faa23bd9d87b9194dbb9532caf1f2fdb, type: 3}
   _upperPanel: {fileID: 8391452172291091251, guid: 753c2ee5865d4114c889ada63cc2d3fc, type: 3}
   _putBombButton: {fileID: 186695312122789468, guid: f1b6b89e894823644b7ae9b2b4eaa415, type: 3}

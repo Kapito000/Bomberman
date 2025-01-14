@@ -1,5 +1,4 @@
-﻿using Infrastructure.Installer;
-using StaticTableData;
+﻿using StaticTableData;
 using UnityEngine;
 using Zenject;
 using MappedSpan =
@@ -9,7 +8,7 @@ namespace Gameplay.Feature.Bomb.StaticData
 {
 	public sealed class BombDataService : IBombDataService
 	{
-		[Inject(Id = TsvData.BombData)] TextAsset _tsv;
+		[Inject(Id = Constant.TsvDataId.c_Bomb)] TextAsset _tsv;
 
 		SimpleFloatTable _table;
 

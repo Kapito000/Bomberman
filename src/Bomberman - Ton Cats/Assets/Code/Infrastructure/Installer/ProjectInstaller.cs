@@ -44,7 +44,6 @@ using Infrastructure.SceneLoader;
 using Infrastructure.TimeService;
 using Leopotam.EcsLite;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 using AudioSettings = Gameplay.GameSettings.Audio.AudioSettings;
 
@@ -56,7 +55,6 @@ namespace Infrastructure.Installer
 		[SerializeField] MapData _mapData;
 		[SerializeField] HeroData _heroData;
 		[SerializeField] EnemyList _enemyList;
-		[SerializeField] LevelsData _levelsData;
 		[SerializeField] SkinLibrary _skinLibrary;
 		[SerializeField] GameTimerData _gameTimerData;
 		[SerializeField] WindowKitData _windowKitData;
@@ -285,7 +283,8 @@ namespace Infrastructure.Installer
 			Container.Bind<IMapData>().FromInstance(_mapData).AsSingle();
 			Container.Bind<IEnemyList>().FromInstance(_enemyList).AsSingle();
 			Container.Bind<ITileProvider>().FromInstance(_tileCollection).AsSingle();
-			Container.Bind<ILevelsData>().FromInstance(_levelsData).AsSingle();
+			Container.Bind<IEnemiesAtLevelsData>().To<EnemiesAtEnemiesAtLevelsData>()
+				.AsSingle();
 			Container.Bind<IWindowKitData>().FromInstance(_windowKitData).AsSingle();
 			Container.Bind<IBombDataService>().To<BombDataService>().AsSingle();
 			Container.Bind<IGameSettingsStartValueData>().To<GameSettingsStartValue>()

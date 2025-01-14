@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using StaticTableData;
 using UnityEngine;
-using Menu = Constant.CreateAssetMenu.Path;
+using Zenject;
 
 namespace Gameplay.StaticData.LevelData
 {
-	[CreateAssetMenu(menuName = Menu.c_StaticData + nameof(LevelsData))]
-	public sealed class LevelsData : ScriptableObject, ILevelsData
+	public sealed class EnemiesAtEnemiesAtLevelsData : IEnemiesAtLevelsData
 	{
-		[SerializeField] TextAsset _bonusesTable;
-		[SerializeField] TextAsset _enemiesAtDoorTable;
-		[SerializeField] TextAsset _enemiesAtStartTable;
+		[Inject(Id = Constant.TsvDataId.c_EnemiesAtDoor)]
+		TextAsset _enemiesAtDoorTable;
+		[Inject(Id = Constant.TsvDataId.c_EnemiesAtStart)]
+		TextAsset _enemiesAtStartTable;
 
 		Dictionary<Table, SimpleFloatTable> _tables = new();
 
@@ -52,7 +52,6 @@ namespace Gameplay.StaticData.LevelData
 
 		void ParseData()
 		{
-			ParseTable(Table.Bonuses, _bonusesTable);
 			ParseTable(Table.EnemiesAtDoor, _enemiesAtDoorTable);
 			ParseTable(Table.EnemiesAtStart, _enemiesAtStartTable);
 		}

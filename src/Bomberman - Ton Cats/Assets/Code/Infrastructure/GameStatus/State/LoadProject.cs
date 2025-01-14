@@ -7,7 +7,7 @@ namespace Infrastructure.GameStatus.State
 {
 	public sealed class LoadProject : State, IState
 	{
-		[Inject] ILevelsData _levelsData;
+		[Inject] IEnemiesAtLevelsData _enemiesAtLevelsData;
 		[Inject] IBombDataService _bombData;
 		[Inject] ISaveLoadService _saveLoadService;
 
@@ -20,7 +20,7 @@ namespace Infrastructure.GameStatus.State
 		public void Enter()
 		{
 			_bombData.Init();
-			_levelsData.Init();
+			_enemiesAtLevelsData.Init();
 			_saveLoadService.Load();
 			_gameStateMachine.EnterToLoadScene(FirstScene);
 		}

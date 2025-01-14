@@ -2,7 +2,7 @@
 
 namespace Gameplay.StaticData.LevelData
 {
-	public interface ILevelsData : IStaticData
+	public interface IEnemiesAtLevelsData : IStaticData
 	{
 		void Init();
 

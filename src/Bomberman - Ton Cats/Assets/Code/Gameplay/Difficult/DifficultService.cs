@@ -9,7 +9,7 @@ namespace Gameplay.Difficult
 {
 	public sealed class DifficultService : IDifficultService
 	{
-		[Inject] ILevelsData _levelsData;
+		[Inject] IEnemiesAtLevelsData _enemiesAtLevelsData;
 		[Inject] IProgressService _progressService;
 
 		public bool TryGetDataForCurrentProgress(Table tableKey,
@@ -23,7 +23,7 @@ namespace Gameplay.Difficult
 				data = default;
 				return false;
 			}
-			if (!_levelsData.TryGetRow(tableKey, numLevel, out var row))
+			if (!_enemiesAtLevelsData.TryGetRow(tableKey, numLevel, out var row))
 			{
 				data = default;
 				return false;
@@ -34,7 +34,7 @@ namespace Gameplay.Difficult
 
 		bool TryGetAvailableLevel(Table tableKey, out int level)
 		{
-			if (_levelsData.TryGetLastLevelFor(tableKey, out var levelCount) == false)
+			if (_enemiesAtLevelsData.TryGetLastLevelFor(tableKey, out var levelCount) == false)
 			{
 				Debug.LogError($"Cannot to get the last level for the \"{tableKey}\".");
 				level = default;

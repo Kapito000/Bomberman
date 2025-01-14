@@ -7,6 +7,7 @@ using Gameplay.Collisions;
 using Gameplay.Difficult;
 using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Bomb.StaticData;
+using Gameplay.Feature.Bonus.StaticData;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.GameMusic.Factory;
 using Gameplay.Feature.Hero.StaticData;
@@ -292,6 +293,9 @@ namespace Infrastructure.Installer
 			Container.Bind<IAudioStartValueData>().To<AudioStartValueData>()
 				.AsSingle().WhenInjectedInto<IGameSettingsStartValueData>();
 			Container.Bind<ISkinLibrary>().FromInstance(_skinLibrary).AsSingle();
+			Container.Bind<IBonusesForLevel>().To<BonusesForLevel>().AsSingle();
+			Container.Bind<IAdditionalBombBonuses>().To<AdditionalBombBonuses>()
+				.AsSingle();
 		}
 
 		void BindGameStateMachine()

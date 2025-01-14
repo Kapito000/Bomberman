@@ -13,10 +13,14 @@ namespace Infrastructure.Installer
 		[Header("Enemies at levels")]
 		[SerializeField] TextAsset _enemiesAtDoorTable;
 		[SerializeField] TextAsset _enemiesAtStartTable;
+		[Header("Bonuses")]
+		[SerializeField] TextAsset _bonusesTable;
+		[SerializeField] TextAsset _additionalBombsBonuses;
 
 		public override void InstallBindings()
 		{
 			BindBomb();
+			BindBonuses();
 			BindEnemiesData();
 		}
 
@@ -24,6 +28,12 @@ namespace Infrastructure.Installer
 		{
 			Bind(Constant.TsvDataId.c_EnemiesAtDoor, _enemiesAtDoorTable);
 			Bind(Constant.TsvDataId.c_EnemiesAtStart, _enemiesAtStartTable);
+		}
+
+		void BindBonuses()
+		{
+			Bind(Constant.TsvDataId.c_Bonuses, _bonusesTable);
+			Bind(Constant.TsvDataId.c_AdditionalBombBonuses, _additionalBombsBonuses);
 		}
 
 		void BindBomb() =>

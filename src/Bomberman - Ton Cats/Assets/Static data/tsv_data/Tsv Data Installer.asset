@@ -15,3 +15,5 @@ MonoBehaviour:
   _bombData: {fileID: 6141685009667397333, guid: dd098ea175f36fa4abbc31d3c2a18787, type: 3}
   _enemiesAtDoorTable: {fileID: -3353251550612655614, guid: c2cd4abc6164c1a46afa69e8dd7a146b, type: 3}
   _enemiesAtStartTable: {fileID: 1716695391902317254, guid: 222a00b93bf55ae478a2e3b1698e9a3a, type: 3}
+  _bonusesTable: {fileID: -2488799605505472349, guid: 416b4089add1b5a458b9a2ae3da8487d, type: 3}
+  _additionalBombsBonuses: {fileID: 3318547753470475535, guid: f17b8310aa07eba4c946b0985f8dc858, type: 3}

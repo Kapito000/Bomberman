@@ -1,15 +1,15 @@
-﻿using StaticTableData;
+﻿using Infrastructure.Installer;
+using StaticTableData;
 using UnityEngine;
-using Menu = Constant.CreateAssetMenu.Path;
+using Zenject;
 using MappedSpan =
 	System.Collections.Generic.IReadOnlyDictionary<string, float>;
 
 namespace Gameplay.Feature.Bomb.StaticData
 {
-	[CreateAssetMenu(menuName = Menu.c_StaticData + nameof(BombDataService))]
-	public sealed class BombDataService : ScriptableObject, IBombDataService
+	public sealed class BombDataService : IBombDataService
 	{
-		[SerializeField] TextAsset _tsv;
+		[Inject(Id = TsvData.BombData)] TextAsset _tsv;
 
 		SimpleFloatTable _table;
 

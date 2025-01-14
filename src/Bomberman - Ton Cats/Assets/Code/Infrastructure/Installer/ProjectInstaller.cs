@@ -62,7 +62,6 @@ namespace Infrastructure.Installer
 		[SerializeField] WindowKitData _windowKitData;
 		[SerializeField] SceneNamesData _sceneNamesData;
 		[SerializeField] TileCollection _tileCollection;
-		[SerializeField] BombDataService _bombDataService;
 		[SerializeField] AudioClipProvider _audioClipProvider;
 		[SerializeField] DirectLinkProvider _assetProvider;
 		[SerializeField] AudioMixerProvider _audioMixerProvider;
@@ -288,8 +287,7 @@ namespace Infrastructure.Installer
 			Container.Bind<ITileProvider>().FromInstance(_tileCollection).AsSingle();
 			Container.Bind<ILevelsData>().FromInstance(_levelsData).AsSingle();
 			Container.Bind<IWindowKitData>().FromInstance(_windowKitData).AsSingle();
-			Container.Bind<IBombDataService>().FromInstance(_bombDataService)
-				.AsSingle();
+			Container.Bind<IBombDataService>().To<BombDataService>().AsSingle();
 			Container.Bind<IGameSettingsStartValueData>().To<GameSettingsStartValue>()
 				.AsSingle();
 			Container.Bind<IAudioStartValueData>().To<AudioStartValueData>()

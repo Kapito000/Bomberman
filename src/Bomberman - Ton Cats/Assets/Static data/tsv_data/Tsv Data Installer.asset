@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17caeeee44f4141b67e4ebcbc28aada, type: 3}
-  m_Name: Bomb Data
+  m_Script: {fileID: 11500000, guid: 0dcd7e78272649a29069e6dd0129d275, type: 3}
+  m_Name: Tsv Data Installer
   m_EditorClassIdentifier: 
-  _tsv: {fileID: 6141685009667397333, guid: dd098ea175f36fa4abbc31d3c2a18787, type: 3}
+  _bombData: {fileID: 6141685009667397333, guid: dd098ea175f36fa4abbc31d3c2a18787, type: 3}

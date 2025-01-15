@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using Gameplay.Difficult;
+﻿using Gameplay.Difficult;
 using Gameplay.Feature.Map.MapController;
 using Gameplay.Feature.MapGenerator.Services.SubGenerator;
 using Gameplay.Feature.MapGenerator.StaticData;
 using Gameplay.LevelData;
 using Gameplay.Map;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Feature.MapGenerator.Services
 {
@@ -13,12 +13,15 @@ namespace Gameplay.Feature.MapGenerator.Services
 	{
 		Vector2Int _heroSpawnCell;
 
+		IGrid<string> _bonusesGrid;
 		IGrid<string> _enemySpawnGrid;
+		IGrid<MapItem> _itemGrid;
 		IGrid<TileType> _tilesGrid;
 
 		readonly IMapData _mapData;
 		readonly IGameLevelData _levelData;
 
+		[Inject] readonly BonusGenerator _bonusGenerator;
 		readonly StandardHeroSpawnGenerator _heroSpawnGenerator;
 		readonly StandardEnemySpawnGenerator _enemySpawnGenerator;
 		readonly StandardOutLineWallGenerator _outLineWallGenerator;
@@ -45,12 +48,13 @@ namespace Gameplay.Feature.MapGenerator.Services
 		public void CreateMap()
 		{
 			var size = _mapData.MapSize + new Vector2Int(2, 2);
+			_itemGrid = new ItemGrid(size.x, size.y);
 			_tilesGrid = new TilesGrid(size.x, size.y);
-			var itemGrid = new ItemGrid(size.x, size.y);
 			_enemySpawnGrid = new ComparableGrid<string>(size.x, size.y);
+			_bonusesGrid = new StringGrid(size.x, size.y);
 
 			_enemySpawnGenerator.SetGrids(_tilesGrid, _enemySpawnGrid);
-			MapController().SetGrids(_tilesGrid, itemGrid);
+			MapController().SetGrids(_tilesGrid, _itemGrid, _bonusesGrid);
 		}
 
 		public void CreateGroundTiles()
@@ -94,6 +98,11 @@ namespace Gameplay.Feature.MapGenerator.Services
 			var destructibles = MapController().AllCoordinates(TileType.Destructible);
 			foreach (var cell in destructibles)
 				MapController().TrySet(TileType.Destructible, cell);
+		}
+
+		public void CreateBonuses()
+		{
+			_bonusGenerator.Create(_tilesGrid, _itemGrid, _bonusesGrid);
 		}
 
 		public void SetNoneAsFree()

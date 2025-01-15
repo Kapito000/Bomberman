@@ -24,8 +24,8 @@ namespace Gameplay.Feature.Bonus.StaticData
 			var result = new Dictionary<string, int>();
 			bonuses = result;
 
-			if (level >= _table.ColumnCount)
-				level = _table.ColumnCount - 1;
+			if (level >= _table.RowCount)
+				level = _table.RowCount - 1;
 
 			if (_table.TryGetMappedRow(level, out var dictionary) == false)
 				return false;

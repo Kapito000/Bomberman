@@ -11,7 +11,6 @@ using Gameplay.Feature.Bonus.StaticData;
 using Gameplay.Feature.Enemy.Base.StaticData;
 using Gameplay.Feature.GameMusic.Factory;
 using Gameplay.Feature.Hero.StaticData;
-using Gameplay.Feature.MapGenerator.Services;
 using Gameplay.Feature.MapGenerator.StaticData;
 using Gameplay.Feature.Timer.StaticData;
 using Gameplay.GameSettings;
@@ -79,7 +78,6 @@ namespace Infrastructure.Installer
 			BindUIFactories();
 			BindAudioService();
 			BindInputService();
-			BindMapGenerator();
 			BindMusicFactory();
 			BindReskinService();
 			BindGameTimerData();
@@ -222,11 +220,6 @@ namespace Infrastructure.Installer
 		void BindPhysicsService()
 		{
 			Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
-		}
-
-		void BindMapGenerator()
-		{
-			Container.Bind<IMapGenerator>().To<StandardMapGenerator>().AsSingle();
 		}
 
 		void BindTimeService()

@@ -94,5 +94,12 @@ namespace Extensions
 
 			return minElement;
 		}
+
+		public static T GetRandom<T>(this IEnumerable<T> source)
+		{
+			var enumerable = source as T[] ?? source.ToArray();
+			var index = UnityEngine.Random.Range(0, enumerable.Length);
+			return enumerable.ElementAt(index);
+		}
 	}
 }

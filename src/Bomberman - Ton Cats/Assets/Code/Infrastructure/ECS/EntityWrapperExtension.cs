@@ -6,6 +6,7 @@ using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Audio.Component;
 using Gameplay.Feature.Bomb;
 using Gameplay.Feature.Bomb.Component;
+using Gameplay.Feature.Bonus.Component;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.DamageApplication.Component;
 using Gameplay.Feature.Enemy.AI.Blackboard;
@@ -643,7 +644,7 @@ namespace Infrastructure.ECS
 			ref var component = ref Get<CameraComponent>();
 			return component.Value;
 		}
-		
+
 		public EntityWrapper AddCamera(Camera value)
 		{
 			ref var component = ref AddComponent<CameraComponent>();
@@ -657,11 +658,24 @@ namespace Infrastructure.ECS
 			component.Value = canvas;
 			return this;
 		}
-		
+
 		public Canvas Canvas()
 		{
 			ref var component = ref Get<CanvasComponent>();
 			return component.Value;
+		}
+
+		public string BonusType()
+		{
+			ref var component = ref AddComponent<BonusType>();
+			return component.Value;
+		}
+
+		public EntityWrapper AddBonusType(string bonusType)
+		{
+			ref var component = ref AddComponent<BonusType>();
+			component.Value = bonusType;
+			return this;
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Gameplay.AI.Navigation;
 using Gameplay.Feature.Audio.Behaviour;
 using Gameplay.Feature.Bomb.Factory;
+using Gameplay.Feature.Bonus.Factory;
 using Gameplay.Feature.Camera.Factory;
 using Gameplay.Feature.Enemy.AI;
 using Gameplay.Feature.Enemy.Base.Factory;
@@ -10,6 +11,8 @@ using Gameplay.Feature.FinishLevel.Factory;
 using Gameplay.Feature.Hero.Factory;
 using Gameplay.Feature.HUD.Factory;
 using Gameplay.Feature.Map.MapController;
+using Gameplay.Feature.MapGenerator.Services;
+using Gameplay.Feature.MapGenerator.Services.SubGenerator;
 using Gameplay.Feature.PlayerProgress.Factory;
 using Gameplay.LevelData;
 using Gameplay.MapView;
@@ -22,7 +25,6 @@ using Infrastructure.FinishLevel.Condition.LevelComplete;
 using Infrastructure.GameStatus;
 using Infrastructure.GameStatus.State;
 using Leopotam.EcsLite;
-using NavMeshPlus.Components;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
@@ -47,6 +49,7 @@ namespace Infrastructure.Installer
 			BindFactories();
 			BindWindowKitId();
 			BindAIFunctional();
+			BindMapGenerator();
 			BindMapController();
 			BindDevSceneRunner();
 			BindNavigationSurface();
@@ -119,6 +122,7 @@ namespace Infrastructure.Installer
 			Container.Bind<IHudFactory>().To<HudFactory>().AsSingle();
 			Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
 			Container.Bind<IBombFactory>().To<BombFactory>().AsSingle();
+			Container.Bind<IBonusFactory>().To<BonusFactory>().AsSingle();
 			Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
 			Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
 			Container.Bind<IFinishLevelFactory>().To<FinishLevelFactory>().AsSingle();
@@ -126,6 +130,13 @@ namespace Infrastructure.Installer
 				.AsSingle();
 		}
 
+		void BindMapGenerator()
+		{
+			Container.Bind<BonusGenerator>().AsSingle()
+				.WhenInjectedInto<StandardMapGenerator>();
+			Container.Bind<IMapGenerator>().To<StandardMapGenerator>().AsSingle();
+		}
+		
 		void BindFeatureController()
 		{
 			Container.Bind<IFeatureController>().To<GameFeatureController>()

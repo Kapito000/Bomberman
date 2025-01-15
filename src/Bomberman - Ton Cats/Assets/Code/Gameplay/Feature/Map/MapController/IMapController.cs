@@ -7,7 +7,8 @@ namespace Gameplay.Feature.Map.MapController
 	public interface IMapController
 	{
 		bool HasTile(Vector2Int cell);
-		void SetGrids(IGrid<TileType> tilesGrid, ItemGrid itemsGrid);
+		void SetGrids(IGrid<TileType> tilesGrid, IGrid<MapItem> itemsGrid,
+			IGrid<string> bonusesGrid);
 		bool IsFree(Vector2Int cell);
 		bool TrySet(TileType type, Vector2Int cell);
 		bool TrySet(MapItem itemType, Vector2Int cell);

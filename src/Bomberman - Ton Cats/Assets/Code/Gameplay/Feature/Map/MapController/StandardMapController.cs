@@ -16,6 +16,7 @@ namespace Gameplay.Feature.Map.MapController
 		[Inject] IMapView _mapView;
 		[Inject] EntityWrapper _entity;
 
+		IGrid<string> _bonusesGrid;
 		IGrid<MapItem> _itemsGrid;
 		IGrid<TileType> _tilesGrid;
 
@@ -30,10 +31,12 @@ namespace Gameplay.Feature.Map.MapController
 			return type == TileType.Free;
 		}
 
-		public void SetGrids(IGrid<TileType> tilesGrid, ItemGrid itemsGrid)
+		public void SetGrids(IGrid<TileType> tilesGrid, IGrid<MapItem> itemsGrid,
+			IGrid<string> bonusesGrid)
 		{
 			_tilesGrid = tilesGrid;
 			_itemsGrid = itemsGrid;
+			_bonusesGrid = bonusesGrid;
 		}
 
 		public bool TrySet(TileType type, Vector2Int cell)

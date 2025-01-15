@@ -14,6 +14,7 @@ namespace Gameplay.Feature.MapGenerator.Services
 		void CreateHeroSafeArea();
 		void CreateEnemySpawnCells();
 		void CreateDestructibleWalls();
+		void CreateBonuses();
 		void SetNoneAsFree();
 		IGrid<string> EnemySpawnGrid { get; }
 	}

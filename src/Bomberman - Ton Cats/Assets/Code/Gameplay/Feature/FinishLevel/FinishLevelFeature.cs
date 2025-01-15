@@ -10,7 +10,6 @@ namespace Gameplay.Feature.FinishLevel
 		{
 			AddInit<CreateFinishLevelObserverSystem>();
 			AddInit<CreateFinishLevelMusicSystem>();
-			AddInit<CreateFinishLevelDoorSystem>();
 			
 			AddUpdate<EnterToFinishLevelDoorProcessSystem>();
 			AddUpdate<ExitFormFinishLevelDoorProcessSystem>();

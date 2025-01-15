@@ -34,7 +34,8 @@ namespace Gameplay.Difficult
 
 		bool TryGetAvailableLevel(Table tableKey, out int level)
 		{
-			if (_enemiesAtLevelsData.TryGetLastLevelFor(tableKey, out var levelCount) == false)
+			if (false == _enemiesAtLevelsData
+				    .TryGetLastLevelFor(tableKey, out var levelCount))
 			{
 				Debug.LogError($"Cannot to get the last level for the \"{tableKey}\".");
 				level = default;

@@ -10,7 +10,7 @@ namespace Gameplay.Feature.Bomb.StaticData
 	{
 		[Inject(Id = Constant.TsvDataId.c_Bomb)] TextAsset _tsv;
 
-		SimpleFloatTable _table;
+		IFloatTable _table;
 
 		public void Init()
 		{

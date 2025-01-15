@@ -8,6 +8,7 @@ namespace Gameplay.Feature.Map
 		public MapFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
 			AddUpdate<DestroyTileSystem>();
+			AddUpdate<SpawnBonusSystem>();
 			AddUpdate<SpawnFinishLevelDoorSystem>();
 			AddUpdate<SpawnEnemyAtFinishLevelDoor>();
 			AddUpdate<RebakeNavigationSurfaceSystem>();

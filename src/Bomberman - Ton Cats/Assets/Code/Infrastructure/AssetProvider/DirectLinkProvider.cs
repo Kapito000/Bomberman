@@ -6,6 +6,7 @@ using Gameplay.Feature.HUD.Feature.Timer.Behaviour;
 using Gameplay.Windows;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using Menu = Constant.CreateAssetMenu;
 
 namespace Infrastructure.AssetProvider
@@ -26,7 +27,9 @@ namespace Infrastructure.AssetProvider
 		[Header("Bombs")]
 		[SerializeField] GameObject _bomb;
 		[SerializeField] GameObject _bombHunter;
-		[SerializeField] GameObject _remoteDetonaion;
+		[SerializeField] GameObject _remoteDetonation;
+		[Space]
+		[SerializeField] GameObject _bonus;
 		[Header("Audio")]
 		[SerializeField] GameObject _ambientMusic;
 		[SerializeField] GameObject _finishLevelMusic;
@@ -47,12 +50,12 @@ namespace Infrastructure.AssetProvider
 		[SerializeField] IntegerDisplay _bombCounterPanel;
 		[SerializeField] IntegerDisplay _enemyCounterDisplay;
 		[SerializeField] GameTimerDisplay _gameTimerDisplay;
-
+		
 		public GameObject Bomb(BombType bombType) =>
 			bombType switch
 			{
 				BombType.Hunter => _bombHunter,
-				BombType.RemoteDetonation => _remoteDetonaion,
+				BombType.RemoteDetonation => _remoteDetonation,
 				_ => _bomb,
 			};
 
@@ -80,5 +83,6 @@ namespace Infrastructure.AssetProvider
 		public GameObject FinishLevelMusic() => _finishLevelMusic;
 		public GameObject MainMenuUpperPanel() => _mainMenuUpperPanel;
 		public IntegerDisplay EnemyCounterDisplay() => _enemyCounterDisplay;
+		public GameObject Bonus() => _bonus;
 	}
 }

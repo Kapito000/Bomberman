@@ -667,7 +667,7 @@ namespace Infrastructure.ECS
 
 		public string BonusType()
 		{
-			ref var component = ref AddComponent<BonusType>();
+			ref var component = ref Get<BonusType>();
 			return component.Value;
 		}
 

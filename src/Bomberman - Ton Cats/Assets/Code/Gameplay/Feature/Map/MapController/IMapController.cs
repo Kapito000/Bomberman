@@ -16,6 +16,7 @@ namespace Gameplay.Feature.Map.MapController
 		bool TryGet(Vector2Int cell, out MapItem type);
 		bool SetGround(Vector2Int cell);
 		void DestroyTile(Vector2Int cell);
+		void RemoveItem(Vector2Int tileCell);
 		Vector2 GetCellCenterWorld(Vector2Int cellPos);
 		Vector2Int WorldToCell(Vector2 pos);
 		IEnumerable<Vector2Int> AllCoordinates(TileType type);

@@ -36,5 +36,6 @@ namespace Infrastructure.AssetProvider
 		GameObject FinishLevelMusic();
 		GameObject MainMenuUpperPanel();
 		IntegerDisplay EnemyCounterDisplay();
+		GameObject Bonus();
 	}
 }

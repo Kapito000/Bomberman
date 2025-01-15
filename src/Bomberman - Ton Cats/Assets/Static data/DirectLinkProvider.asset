@@ -21,7 +21,8 @@ MonoBehaviour:
   _finishLevelDoor: {fileID: 5717685852050178812, guid: 11e17d803bf338245b468ea41f01af8a, type: 3}
   _bomb: {fileID: 522777777130883961, guid: ef692530b47e6ac4ebc1b83a8297df86, type: 3}
   _bombHunter: {fileID: 4024519466054772191, guid: 12d8d4d883112e447a7f5549b9212364, type: 3}
-  _remoteDetonaion: {fileID: 1481837853571293900, guid: 76fe8b5c80602c948a00adf49fa9695a, type: 3}
+  _remoteDetonation: {fileID: 1481837853571293900, guid: 76fe8b5c80602c948a00adf49fa9695a, type: 3}
+  _bonus: {fileID: 5717685852050178812, guid: 3eb45dcfe0a042d46938a2656c1704e1, type: 3}
   _ambientMusic: {fileID: 6151127893788280244, guid: a57fa11e23da93849a82fa499065628d, type: 3}
   _finishLevelMusic: {fileID: 6151127893788280244, guid: 18e12603fcc99694e96571b082c6cf90, type: 3}
   _destructibleTile: {fileID: 4954203463075040424, guid: dfaa6b8ca3608ce4b9c4b19e8271c4ca, type: 3}

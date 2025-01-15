@@ -100,6 +100,9 @@ namespace Gameplay.Feature.Map.MapController
 				;
 		}
 
+		public void RemoveItem(Vector2Int cell) =>
+			_itemsGrid.TrySet(MapItem.None, cell);
+
 		void CastCannotModifyMapMessage() =>
 			Debug.LogWarning("Cannot to modify map.");
 	}

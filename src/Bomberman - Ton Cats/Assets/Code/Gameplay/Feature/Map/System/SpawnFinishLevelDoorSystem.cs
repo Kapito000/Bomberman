@@ -28,10 +28,10 @@ namespace Gameplay.Feature.Map.System
 		{
 			Cleanup();
 
-			foreach (var e in _destroyedTileFilter.Value)
+			foreach (var tileEntity in _destroyedTileFilter.Value)
 			foreach (var finishLevelDoorEntity in _finishLevelDoorFilter.Value)
 			{
-				_destroyedTile.SetEntity(e);
+				_destroyedTile.SetEntity(tileEntity);
 				var cell = _destroyedTile.CellPos();
 				if (_mapController.TryGet(cell, out MapItem type) &&
 				    type == MapItem.FinishLevelDoor)

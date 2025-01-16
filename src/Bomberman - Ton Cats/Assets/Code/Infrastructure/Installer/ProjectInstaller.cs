@@ -55,7 +55,9 @@ namespace Infrastructure.Installer
 		[SerializeField] MapData _mapData;
 		[SerializeField] HeroData _heroData;
 		[SerializeField] EnemyList _enemyList;
+		[SerializeField] BonusNames _bonusNames;
 		[SerializeField] SkinLibrary _skinLibrary;
+		[SerializeField] BonusSprites _bonusSprites;
 		[SerializeField] GameTimerData _gameTimerData;
 		[SerializeField] WindowKitData _windowKitData;
 		[SerializeField] SceneNamesData _sceneNamesData;
@@ -271,6 +273,8 @@ namespace Infrastructure.Installer
 		void BindStaticData()
 		{
 			Container.Bind<IHeroData>().FromInstance(_heroData).AsSingle();
+			Container.Bind<IBonusNames>().FromInstance(_bonusNames).AsSingle();
+			Container.Bind<IBonusSprites>().FromInstance(_bonusSprites).AsSingle();
 			Container.Bind<ISceneNameData>().FromInstance(_sceneNamesData)
 				.AsSingle();
 			Container.Bind<IAIData>().FromInstance(_aiData).AsSingle();

@@ -1,4 +1,5 @@
-﻿using Infrastructure.Factory.SystemFactory;
+﻿using Gameplay.Feature.Bonus.System;
+using Infrastructure.Factory.SystemFactory;
 
 namespace Gameplay.Feature.Bonus
 {
@@ -6,7 +7,8 @@ namespace Gameplay.Feature.Bonus
 	{
 		public BonusFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
-			
+			AddUpdate<SpawnBonusObjectSystem>();
+			AddUpdate<SetBonusSpriteSystem>();
 		}
 	}
 }

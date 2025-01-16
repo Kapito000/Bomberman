@@ -37,7 +37,7 @@ namespace Gameplay.Feature.Map.System
 				    type == MapItem.FinishLevelDoor)
 				{
 					var pos = _mapController.GetCellCenterWorld(cell);
-					_finishLevelFactory.CreateFinishLevelDoor(finishLevelDoorEntity, pos);
+					_finishLevelFactory.CreateFinishLevelDoorObject(finishLevelDoorEntity, pos);
 				}
 			}
 		}

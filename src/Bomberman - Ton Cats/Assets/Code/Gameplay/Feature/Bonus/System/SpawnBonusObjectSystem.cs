@@ -8,33 +8,31 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Zenject;
 
-namespace Gameplay.Feature.Map.System
+namespace Gameplay.Feature.Bonus.System
 {
-	public sealed class SpawnBonusSystem : IEcsRunSystem
+	public sealed class SpawnBonusObjectSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _tile;
-		[Inject] EntityWrapper _bonus;
+		
 		[Inject] IBonusFactory _bonusFactory;
 		[Inject] IMapController _mapController;
-		
+
 		readonly EcsFilterInject<Inc<BonusComponent, BonusType>> _bonusesFilter;
 		readonly EcsFilterInject<Inc<DestroyedTile, CellPos>> _destroyedTileFilter;
-		
+
 		public void Run(IEcsSystems systems)
 		{
-			foreach (var bonusEntity in _bonusesFilter.Value)
 			foreach (var tileEntity in _destroyedTileFilter.Value)
+			foreach (var bonusEntity in _bonusesFilter.Value)
 			{
 				_tile.SetEntity(tileEntity);
-				_bonus.SetEntity(bonusEntity);
 
 				var tileCell = _tile.CellPos();
 				if (_mapController.TryGet(tileCell, out MapItem item)
 				    && item == MapItem.Bonus)
 				{
 					var pos = _mapController.GetCellCenterWorld(tileCell);
-					var bonusType = _bonus.BonusType();
-					_bonusFactory.CreateBonus(pos, bonusEntity, bonusType);
+					_bonusFactory.CreateBonusObject(pos, bonusEntity);
 					_mapController.RemoveItem(tileCell);
 				}
 			}

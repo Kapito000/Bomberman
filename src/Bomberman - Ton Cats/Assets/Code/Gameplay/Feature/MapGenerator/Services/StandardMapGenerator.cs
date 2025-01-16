@@ -13,8 +13,8 @@ namespace Gameplay.Feature.MapGenerator.Services
 	{
 		Vector2Int _heroSpawnCell;
 
-		IGrid<string> _bonusesGrid;
 		IGrid<string> _enemySpawnGrid;
+		IGrid<string> _bonusesGrid;
 		IGrid<MapItem> _itemGrid;
 		IGrid<TileType> _tilesGrid;
 
@@ -29,6 +29,9 @@ namespace Gameplay.Feature.MapGenerator.Services
 		readonly StandardIndestructibleTilesGenerator _indestructibleTilesGenerator;
 
 		public IGrid<string> EnemySpawnGrid => _enemySpawnGrid;
+		public IGrid<string> BonusesGrid => _bonusesGrid;
+		public IGrid<MapItem> ItemGrid => _itemGrid;
+		public IGrid<TileType> TilesGrid => _tilesGrid;
 
 		public StandardMapGenerator(IMapData mapData, IGameLevelData levelData,
 			IDifficultService difficultService)

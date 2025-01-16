@@ -46,7 +46,7 @@ namespace Gameplay.Feature.FinishLevel.Factory
 			return e;
 		}
 
-		public GameObject CreateFinishLevelDoor(int doorEntity, Vector2 pos)
+		public GameObject CreateFinishLevelDoorObject(int doorEntity, Vector2 pos)
 		{
 			var prefab = _kit.AssetProvider.FinishLevelDoor();
 			var instance = _kit.InstantiateService.Instantiate(prefab, pos);

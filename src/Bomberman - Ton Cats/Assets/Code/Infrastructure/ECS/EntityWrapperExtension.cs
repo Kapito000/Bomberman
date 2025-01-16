@@ -1,4 +1,5 @@
-﻿using Common.Collections;
+﻿using System.Collections.Generic;
+using Common.Collections;
 using Common.Component;
 using Common.HUD;
 using Extensions;
@@ -675,6 +676,19 @@ namespace Infrastructure.ECS
 		{
 			ref var component = ref AddComponent<BonusType>();
 			component.Value = bonusType;
+			return this;
+		}
+		
+		public BombType BombBonusType()
+		{
+			ref var component = ref Get<BombBonusType>();
+			return component.Value;
+		}
+		
+		public EntityWrapper AddBombBonusType(BombType value)
+		{
+			ref var component = ref AddComponent<BombBonusType>();
+			component.Value = value;
 			return this;
 		}
 	}

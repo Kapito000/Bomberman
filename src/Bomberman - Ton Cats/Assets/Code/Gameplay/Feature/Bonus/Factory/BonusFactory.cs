@@ -1,4 +1,5 @@
-﻿using Gameplay.Feature.Bonus.Component;
+﻿using Common.Component;
+using Gameplay.Feature.Bonus.Component;
 using Infrastructure.ECS;
 using Infrastructure.Factory.Kit;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Gameplay.Feature.Bonus.Factory
 	public sealed class BonusFactory : IBonusFactory
 	{
 		[Inject] IFactoryKit _kit;
-		[Inject] EntityWrapper _entity; 
+		[Inject] EntityWrapper _entity;
 
 		public int CreateBonusEntity(string bonusType, Vector2Int cell)
 		{
@@ -17,12 +18,12 @@ namespace Gameplay.Feature.Bonus.Factory
 				.Add<BonusComponent>()
 				.AddBonusType(bonusType)
 				.AddCellPos(cell)
+				.Add<FirstBreath>()
 				;
 			return _entity.Enity;
-
 		}
 
-		public GameObject CreateBonus(Vector2 pos, int bonusEntity, string bonusType)
+		public GameObject CreateBonusObject(Vector2 pos, int bonusEntity)
 		{
 			var prefab = _kit.AssetProvider.Bonus();
 			var instance = _kit.InstantiateService.Instantiate(prefab, pos);
@@ -31,8 +32,7 @@ namespace Gameplay.Feature.Bonus.Factory
 			_entity
 				.AddTransform(instance.transform)
 				;
-			
-			// Get bonus data from the map controller.
+
 			return instance;
 		}
 	}

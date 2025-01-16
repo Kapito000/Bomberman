@@ -17,5 +17,8 @@ namespace Gameplay.Feature.MapGenerator.Services
 		void CreateBonuses();
 		void SetNoneAsFree();
 		IGrid<string> EnemySpawnGrid { get; }
+		IGrid<string> BonusesGrid { get; }
+		IGrid<MapItem> ItemGrid { get; }
+		IGrid<TileType> TilesGrid { get; }
 	}
 }

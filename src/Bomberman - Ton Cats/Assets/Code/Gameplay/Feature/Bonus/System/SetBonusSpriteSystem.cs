@@ -15,7 +15,7 @@ namespace Gameplay.Feature.Bonus.System
 		[Inject] IBonusSprites _bonusSprites;
 
 		readonly EcsFilterInject<
-				Inc<BonusComponent, BonusType, SpriteRendererComponent>>
+				Inc<BonusComponent, BonusType, ObjectFirstBreath, SpriteRendererComponent>>
 			_bonusesFilter;
 
 		public void Run(IEcsSystems systems)

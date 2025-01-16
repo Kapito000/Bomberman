@@ -9,6 +9,7 @@ namespace Gameplay.Feature.Destruction.System
 	public sealed class CommonCleanupSystem : IEcsRunSystem
 	{
 		readonly EcsFilterInject<Inc<FirstBreath>> _firstBreathFilter;
+		readonly EcsFilterInject<Inc<ObjectFirstBreath>> _objectFirstBreathFilter;
 
 		[Inject] EntityWrapper _entity;
 
@@ -18,6 +19,12 @@ namespace Gameplay.Feature.Destruction.System
 			{
 				_entity.SetEntity(e);
 				_entity.Remove<FirstBreath>();
+			}
+			
+			foreach (var e in _objectFirstBreathFilter.Value)
+			{
+				_entity.SetEntity(e);
+				_entity.Remove<ObjectFirstBreath>();
 			}
 		}
 	}

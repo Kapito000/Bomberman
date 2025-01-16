@@ -31,6 +31,7 @@ namespace Gameplay.Feature.Bonus.Factory
 			_entity.SetEntity(bonusEntity);
 			_entity
 				.AddTransform(instance.transform)
+				.Add<ObjectFirstBreath>()
 				;
 
 			return instance;

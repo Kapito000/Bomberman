@@ -13,12 +13,15 @@ namespace Gameplay.Feature.Bonus.System
 	public sealed class SpawnBonusObjectSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _tile;
-		
+		[Inject] EntityWrapper _bonus;
+
 		[Inject] IBonusFactory _bonusFactory;
 		[Inject] IMapController _mapController;
 
-		readonly EcsFilterInject<Inc<BonusComponent, BonusType>> _bonusesFilter;
-		readonly EcsFilterInject<Inc<DestroyedTile, CellPos>> _destroyedTileFilter;
+		readonly EcsFilterInject<
+			Inc<BonusComponent, BonusType, CellPos>> _bonusesFilter;
+		readonly EcsFilterInject<
+			Inc<DestroyedTile, CellPos>> _destroyedTileFilter;
 
 		public void Run(IEcsSystems systems)
 		{
@@ -26,15 +29,19 @@ namespace Gameplay.Feature.Bonus.System
 			foreach (var bonusEntity in _bonusesFilter.Value)
 			{
 				_tile.SetEntity(tileEntity);
+				_bonus.SetEntity(bonusEntity);
 
 				var tileCell = _tile.CellPos();
-				if (_mapController.TryGet(tileCell, out MapItem item)
-				    && item == MapItem.Bonus)
-				{
-					var pos = _mapController.GetCellCenterWorld(tileCell);
-					_bonusFactory.CreateBonusObject(pos, bonusEntity);
-					_mapController.RemoveItem(tileCell);
-				}
+				var bonusCell = _bonus.CellPos();
+
+				if (tileCell != bonusCell
+				    || false == _mapController.TryGet(tileCell, out MapItem item)
+				    || item != MapItem.Bonus)
+					continue;
+
+				var pos = _mapController.GetCellCenterWorld(tileCell);
+				_bonusFactory.CreateBonusObject(pos, bonusEntity);
+				_mapController.RemoveItem(tileCell);
 			}
 		}
 	}

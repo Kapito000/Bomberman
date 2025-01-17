@@ -1,5 +1,6 @@
 ﻿using Gameplay.Feature.Audio;
 using Gameplay.Feature.Bomb;
+using Gameplay.Feature.Bonus;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.Collisions;
 using Gameplay.Feature.DamageApplication;
@@ -37,6 +38,8 @@ namespace Gameplay.Feature.FeatureControl
 			Add<DamageApplicationFeature>();
 			Add<LifeFeature>();
 			Add<NavigationFeature>();
+			
+			Add<BonusFeature>();
 			
 			Add<MapFeature>();
 			Add<TimerFeature>();

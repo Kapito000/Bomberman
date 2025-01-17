@@ -1,4 +1,5 @@
-﻿using Gameplay.Feature.Bonus.Component;
+﻿using Common.Component;
+using Gameplay.Feature.Bonus.Component;
 using Gameplay.Feature.Bonus.Factory;
 using Gameplay.Feature.Map.Component;
 using Gameplay.Feature.Map.MapController;
@@ -13,6 +14,7 @@ namespace Gameplay.Feature.Bonus.System
 	public sealed class SpawnBonusObjectSystem : IEcsRunSystem
 	{
 		[Inject] EntityWrapper _tile;
+		[Inject] EntityWrapper _bonusesParent;
 		[Inject] EntityWrapper _bonus;
 
 		[Inject] IBonusFactory _bonusFactory;
@@ -22,14 +24,19 @@ namespace Gameplay.Feature.Bonus.System
 			Inc<BonusComponent, BonusType, CellPos>> _bonusesFilter;
 		readonly EcsFilterInject<
 			Inc<DestroyedTile, CellPos>> _destroyedTileFilter;
+		readonly EcsFilterInject<
+			Inc<BonusesParent, TransformComponent>> _bonusesParentFilter;
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var tileEntity in _destroyedTileFilter.Value)
+			foreach (var bonusesParentEntity in _bonusesParentFilter.Value)
 			foreach (var bonusEntity in _bonusesFilter.Value)
 			{
 				_tile.SetEntity(tileEntity);
 				_bonus.SetEntity(bonusEntity);
+				_bonusesParent.SetEntity(bonusesParentEntity);
+
 
 				var tileCell = _tile.CellPos();
 				var bonusCell = _bonus.CellPos();
@@ -40,7 +47,8 @@ namespace Gameplay.Feature.Bonus.System
 					continue;
 
 				var pos = _mapController.GetCellCenterWorld(tileCell);
-				_bonusFactory.CreateBonusObject(pos, bonusEntity);
+				var parent = _bonusesParent.Transform();
+				_bonusFactory.CreateBonusObject(pos, bonusEntity, parent);
 				_mapController.RemoveItem(tileCell);
 			}
 		}

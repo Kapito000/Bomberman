@@ -7,6 +7,8 @@ namespace Gameplay.Feature.Bonus
 	{
 		public BonusFeature(ISystemFactory systemFactory) : base(systemFactory)
 		{
+			AddInit<CreateBonusParentSystem>();
+			
 			AddUpdate<SpawnBonusObjectSystem>();
 			AddUpdate<SetBonusSpriteSystem>();
 		}

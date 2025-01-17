@@ -4,6 +4,7 @@
 	{
 		public const string c_Services = "Services";
 		public const string c_MusicParent = "Music";
+		public const string c_BonusesParent = "Bonuses";
 		public const string c_EcsRunnerName = "ECS runner";
 		public const string c_PooledAudioSource = "Pooled audio source";
 		public const string c_DamageAudioEffect = "Damage audio effect";

@@ -42,7 +42,7 @@ namespace Gameplay.Feature.FeatureControl
 			Add<LifeFeature>();
 			Add<NavigationFeature>();
 			
-			Add<BonusFeature>();
+			Add<SpawnBonusFeature>();
 			
 			Add<MapFeature>();
 			Add<TimerFeature>();

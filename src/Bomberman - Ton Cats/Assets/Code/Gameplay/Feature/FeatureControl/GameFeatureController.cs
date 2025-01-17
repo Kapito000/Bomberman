@@ -1,6 +1,7 @@
 ﻿using Gameplay.Feature.Audio;
 using Gameplay.Feature.Bomb;
 using Gameplay.Feature.Bonus;
+using Gameplay.Feature.BonusApplication;
 using Gameplay.Feature.Camera;
 using Gameplay.Feature.Collisions;
 using Gameplay.Feature.DamageApplication;
@@ -31,6 +32,8 @@ namespace Gameplay.Feature.FeatureControl
 			Add<MapGenerationFeature>();
 			Add<CollisionsFeature>();
 			Add<GameMusicFeature>();
+			
+			Add<BonusApplicationFeature>();
 			
 			Add<HeroFeature>();
 			Add<EnemyFeature>();

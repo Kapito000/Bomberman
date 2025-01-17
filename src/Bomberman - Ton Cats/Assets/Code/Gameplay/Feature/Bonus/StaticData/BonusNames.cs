@@ -7,5 +7,6 @@ namespace Gameplay.Feature.Bonus.StaticData
 	public sealed class BonusNames : ScriptableObject, IBonusNames
 	{
 		[field: SerializeField] public string Bomb { get; private set; }
+		[field: SerializeField] public string AddLifePoint { get; private set; }
 	}
 }

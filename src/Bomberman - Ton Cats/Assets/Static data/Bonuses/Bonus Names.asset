@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Bonus Names
   m_EditorClassIdentifier: 
   <Bomb>k__BackingField: bomb
+  <AddLifePoint>k__BackingField: additionalLifePoint

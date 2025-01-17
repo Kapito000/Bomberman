@@ -3,5 +3,6 @@
 	public interface IBonusNames
 	{
 		string Bomb { get; }
+		string AddLifePoint { get; }
 	}
 }
